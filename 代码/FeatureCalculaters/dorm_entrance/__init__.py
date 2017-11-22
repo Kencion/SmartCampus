@@ -1,0 +1,1 @@
+#收集dorm_entrance表中的数据
