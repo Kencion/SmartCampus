@@ -21,16 +21,20 @@ try:
         sql="select distinct student_num,student_name,grade,student_type from subsidy"
         cursor.execute(sql)
         result=cursor.fetchall()
-         #print(result)
+        #print(result)
         for re in result:
             count=int(re[2])
-            if str(re[3])=='��ͨ��У����ѧ��':
-                while count<=int(re[2])+3 & count<=2017:
+            if str(re[3])=='普通高校本科学生':
+                while count<=int(re[2])+8 and count<=2016:
+                    #print(re)
                     sql="insert into students(student_num,student_name,student_grade,student_type) values(%s,%s,%s,%s)"
                     cursor.execute(sql,(str(re[0])+str(count),re[1],str(re[2]),re[3]))
                     count=count+1
+                    
+                #print(count)
             else:
-                while count<=int(re[2])+2 & count<=2017:
+                while count<=int(re[2])+8 and count<=2016:
+                    #print(re)
                     sql="insert into students(student_num,student_name,student_grade,student_type) values(%s,%s,%s,%s)"
                     cursor.execute(sql,(str(re[0])+str(count),re[1],str(re[2]),re[3]))
                     count=count+1
