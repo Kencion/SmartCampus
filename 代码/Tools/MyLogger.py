@@ -1,7 +1,7 @@
 '''
 Created on 2017年7月22日
 
-@author: zhenglongtian
+@author: jack
 '''
 
 import sys, logging, logging.config

@@ -3,7 +3,7 @@ Created on 2017年7月22日
 高斯过程
 @author: zhenglongtian
 '''
-from Classifiers.SingleModels import SingleClassifier
+import SingleClassifier
 from sklearn import gaussian_process
 
 class GaussianProcesses(SingleClassifier.SingleClassifier):

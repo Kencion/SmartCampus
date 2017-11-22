@@ -1,13 +1,11 @@
 from sklearn import datasets
 from sklearn import metrics
 from sklearn.ensemble import ExtraTreesClassifier
-import DataCarer
+from Tools import DataCarer
 from sklearn import tree
 from numpy import *
 from sklearn.linear_model import SGDClassifier
 from sklearn.ensemble import RandomForestClassifier
-import DataCarer
-from numpy import *
 from sklearn.pipeline import Pipeline
 from sklearn.feature_selection import SelectFromModel, SelectKBest, chi2
 from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier, VotingClassifier, AdaBoostClassifier
@@ -21,13 +19,11 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 
 def createTrainDataSet():
-    dataSet = DataCarer.createTrainDataSet()
-    DataCarer.transform(dataSet)
+    dataSet = DataCarer.createTrainDataSet() # DataCarer.transform(dataSet)
     return mat(dataSet)
 
 def createTestDataSet():
-    students, dataSet = DataCarer.createTestDataSet()
-    DataCarer.transform(dataSet)
+#  DataCarer.transform(dataSet)
     return students, dataSet
 
 # get train data and test data
