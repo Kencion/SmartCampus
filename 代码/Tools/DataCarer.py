@@ -3,7 +3,7 @@
 #  
 # @author: zhenglongtian
 # '''
-from ModModules.SubsidyatureCalculaters import Student
+from Modules.Subsidy.FeatureCalculaters  import Student
 import MyDataBase
 import random
 from sklearn.neighbors import NearestNeighbors
