@@ -1,5 +1,5 @@
-import library
-import scholarship
-import subsidy
+# 特征计算模块
+__all__ = ['library', 'scholarship', 'subsidy']
 
-__all__ = [library.__all__, scholarship.__all__, subsidy.__all__]
+if __name__ == '__main__':
+    pass

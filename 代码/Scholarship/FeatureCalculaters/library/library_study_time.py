@@ -1,18 +1,18 @@
 '''
 Created on 2017年11月21日
 
-@author: qfWu
+@author: jack
 '''
 from Tools import *
 
-class library_study_time(FeatureCalculater):
+class library_study_time(FeatureCalculater.FeatureCalculater):
     '''
             计算每一学年图书馆学习时间
     '''
     def setLevel(self):
         pass
         
-    @MyLog.myException
+    @MyLogger.myException
     def calculate(self):
         student_num = str(self.student.getStudentId())
         for school_year in self.school_year:
@@ -22,6 +22,6 @@ class library_study_time(FeatureCalculater):
             sql = "update students set library_study_time ='" + str(library_study_time) + "' where student_num=" + student_num + " AND school_year =" + str(school_year)
             self.executer.execute(sql)
         
-    @MyLog.myException
+    @MyLogger.myException
     def rankit(self):
         pass

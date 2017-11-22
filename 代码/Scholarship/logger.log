@@ -1,0 +1,36 @@
+2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_study_time' object has no attribute 'student'
+2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_week_study_time' object has no attribute 'student'
+2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_amount' object has no attribute 'student'
+2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_rank' object has no attribute 'student'
+2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_amount' object has no attribute 'student'
+2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_rank' object has no attribute 'student'
+2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_study_time' object has no attribute 'student'
+2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_week_study_time' object has no attribute 'student'
+2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_amount' object has no attribute 'student'
+2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_rank' object has no attribute 'student'
+2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_amount' object has no attribute 'student'
+2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
+2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_rank' object has no attribute 'student'
+2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
+2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_study_time' object has no attribute 'student'
+2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
+2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_week_study_time' object has no attribute 'student'
+2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
+2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_amount' object has no attribute 'student'
+2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
+2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_rank' object has no attribute 'student'
+2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
+2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_amount' object has no attribute 'student'
+2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
+2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_rank' object has no attribute 'student'

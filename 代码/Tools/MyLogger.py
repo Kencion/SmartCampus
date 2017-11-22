@@ -6,7 +6,7 @@ Created on 2017年7月22日
 
 import sys, logging, logging.config
 
-class Logger:
+class MyLogger:
     '''
     日志类
     '''
@@ -39,7 +39,7 @@ def logger():
     :return:
     '''
 
-    logger = Logger()
+    logger = MyLogger()
     logger.printLogs()
     logging.debug('This is debug message!')
     logging.info('This is info message!')
@@ -63,7 +63,7 @@ def myException(function):
         try:
             return function(*args, **kwargs)
         except:
-            logger=Logger()
+            logger = MyLogger()
             info = sys.exc_info()
             logging.error(function.__doc__)
             logging.error(str(info[0]) + ":" + str(info[1]))

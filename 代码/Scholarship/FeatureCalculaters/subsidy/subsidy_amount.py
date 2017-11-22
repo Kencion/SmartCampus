@@ -1,18 +1,18 @@
 '''
 Created on 2017年11月21日
 
-@author: qfWu
+@author: jack
 '''
 from Tools import *
 
-class subsidy_amount(FeatureCalculater):
+class subsidy_amount(FeatureCalculater.FeatureCalculater):
     '''
             计算获得奖学金的金额
     '''
     def setLevel(self):
         pass
         
-    @MyLog.myException
+    @MyLogger.myException
     def calculate(self):
         for school_year in self.school_year:
             student_num = str(self.student.getStudentId())
@@ -22,6 +22,6 @@ class subsidy_amount(FeatureCalculater):
             sql = "update students set subsidy_amount ='" + str(subsidy_amount) + "' where student_num=" + student_num + " AND school_year =" + str(school_year)
             self.executer.execute(sql)
         
-    @MyLog.myException
+    @MyLogger.myException
     def rankit(self):
         pass
