@@ -1,5 +1,4 @@
 '''
-Created on 2017骞�11鏈�21鏃�
  
 @author: 95679
 '''
@@ -13,27 +12,41 @@ class score1(FeatureCalculater.FeatureCalculater):
         self.executer.execute(sql)
         e = self.executer.fetchall()
         for i in e:
-            stu_num = str(i[0])
-            school_year = str(i[1])
-            next_year = str(int(str(i[1])) + 1)
-            year1 = school_year + "/" + next_year + "-1"
-            year2 = school_year + "/" + next_year + "-2"
-            sql = "select score,course_credit from score where stu_num = " + stu_num + " and school_year = " + year1   
+            score1 = 0
+            credit1 = 0
+            score2 = 0
+            credit2 = 0
+            score = 0
+            print(str(i[0]))
+            stu_num = str(i[0])[:-4]
+            school_year = str(i[0])[-4:]
+            next_year = str(int(school_year)+1)
+            year1 = school_year + "/" +next_year+"-1"
+            year2 = school_year + "/" +next_year+"-2"
+            
+            sql = "select score,course_credit from score where stu_num = '"+stu_num+"' and school_year = '"+year1+"'"   
+        
             print(sql)
-            self.executer.execute(sql)
-            stu1 = self.executer.fetchone()
+            cur.execute(sql)
+            stu1 = cur.fetchone()
             print(stu1)
-            score1 = float(stu1[0])
-            credit1 = int(stu1[1])
-            sql = "select score,course_credit from score where stu_num = " + stu_num + " and school_year = " + year2
+            if(stu1!=None):
+                score1 = float(stu1[0])
+                credit1 = int(stu1[1])
+            
+            sql = "select score,course_credit from score where stu_num = '"+stu_num+"' and school_year = '"+year2+"'"
+            
             self.executer.execute(sql)
             stu2 = self.executer.fetchone()
-            score2 = float(stu2[0])
-            credit2 = int(stu2[1])
-            score = (score1 * credit1 + score2 * credit2) / (credit1 + credit2)
+            if(stu2!=None):
+                score2 = float(stu2[0])
+                credit2 = int(stu2[1])
+            if((credit1+credit2)!=0):
+                score = (score1*credit1+score2*credit2)/(credit1+credit2)
             print(score)
-            self.executer.execute("update students set score = " + score + " where student_num = " + stu_num + " and school = " + school_year)
-        print("ok")
+            sql = "update students set score = "+str(score)+" where student_num = '"+stu_num+school_year+"'"
+            print(sql)
+            self.executer.execute(sql)
         #yhj
         #score表：导入字段 学年
         sql = "select DISTINCT stu_num,left(school_year, 9) from score"

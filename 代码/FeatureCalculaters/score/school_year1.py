@@ -1,5 +1,4 @@
 '''
-Created on 2017��11��22��
 
 '''
 from Tools import *
