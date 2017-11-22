@@ -4,7 +4,7 @@
 # @author: zhenglongtian
 # '''
 from Modules.Subsidy.FeatureCalculaters  import Student
-import MyDataBase
+from Tools import MyDataBase
 import random
 from sklearn.neighbors import NearestNeighbors
 from numpy import mat

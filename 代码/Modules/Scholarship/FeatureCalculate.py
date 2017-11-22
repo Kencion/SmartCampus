@@ -7,7 +7,6 @@ Created on 2017年11月21日
 from FeatureCalculaters.library import * 
 from FeatureCalculaters.scholarship import *
 from FeatureCalculaters.subsidy import *
-from FeatureCalculaters.score import *
 from tqdm import tqdm 
 
 claculaters = [library_study_time.library_study_time(),
