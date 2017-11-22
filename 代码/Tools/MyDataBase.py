@@ -15,11 +15,11 @@ class MyDataBase:
         db.close
     '''
     def __init__(self, database):
-        print("connect to data base " + database + " ......")
+#         print("connect to data base " + database + " ......")
         self.db = pymysql.connect("172.16.20.5", "root", "", database, charset='utf8')
         self.cursor = self.db.cursor()
         self.db.autocommit(True)  # 设置每次执行自动提交
-        print("connect success!")
+#         print("connect success!")
 
     def getConn(self):
         return self.db
