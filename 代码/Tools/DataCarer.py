@@ -3,31 +3,31 @@
 #  
 # @author: zhenglongtian
 # '''
-# from FeatureCalculate import Student
-# from Tools import MyDataBase
-# import random
-# from sklearn.neighbors import NearestNeighbors
-# from numpy import mat
+from ModModules.SubsidyatureCalculaters import Student
+import MyDataBase
+import random
+from sklearn.neighbors import NearestNeighbors
+from numpy import mat
 #  
 # '''
 # used to deal with the data
 # '''
 # Student = Student.Student
-# def createTrainDataSet():
-#     '''
-#     get train data
-#     '''
-#     db = MyDataBase.MyDataBase("train")
-#     conn, executer = db.getConn(), db.getExcuter()
-#     # get all the students
-#     executer.execute("select * from students_rank")
-#     dataSet = []
-#     for i in executer.fetchall():
-#         student = Student(studentId=i[0], attributes=list(i[1:-1]), subsidy=i[-1])
-#         dataSet.append(student.getAll())
-#     conn.close();executer.close()
-#     dataSet = mat(dataSet)
-#     return dataSet[:, :-1], dataSet[:, -1]
+def createTrainDataSet():
+    '''
+    get train data
+    '''
+    db = MyDataBase.MyDataBase("train")
+    conn, executer = db.getConn(), db.getExcuter()
+    # get all the students
+    executer.execute("select * from students_rank")
+    dataSet = []
+    for i in executer.fetchall():
+        student = Student(studentId=i[0], attributes=list(i[1:-1]), subsidy=i[-1])
+        dataSet.append(student.getAll())
+    conn.close();executer.close()
+    dataSet = mat(dataSet)
+    return dataSet[:, :-1], dataSet[:, -1]
 #  
 # def createValidateDataSet():
 #     '''

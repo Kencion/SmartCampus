@@ -3,7 +3,7 @@ Created on 2017年7月22日
 
 @author: zhenglongtian
 '''
-from Classifiers.SingleModels import SingleClassifier
+import SingleClassifier
 from sklearn.neural_network import MLPClassifier
 
 class MLP(SingleClassifier.SingleClassifier):
