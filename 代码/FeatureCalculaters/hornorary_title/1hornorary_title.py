@@ -1,14 +1,14 @@
 '''
-Created on 2017��11��22��
+Created on 2017��11��22��
 
 @author: yhj
 '''
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
-class scholarship_amount(FeatureCalculater.FeatureCalculater):
+class hornorary_title(FeatureCalculater.FeatureCalculater):
     '''
-            计算获得奖学金的金额
+            计算获得荣誉称号
     '''
     def setLevel(self):
         pass

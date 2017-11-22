@@ -6,9 +6,9 @@ Created on 2017骞�11鏈�21鏃�
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
-class library_study_time(FeatureCalculater.FeatureCalculater):
+class library_borrow(FeatureCalculater.FeatureCalculater):
     '''
-            璁＄畻姣忎竴瀛﹀勾鍥句功棣嗗涔犳椂闂�
+            计算图书馆借阅
     '''
     def setLevel(self):
         pass

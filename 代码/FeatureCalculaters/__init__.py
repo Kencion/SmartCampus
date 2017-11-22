@@ -1,5 +1,10 @@
-# 特征计算模块
+'''
+特征计算模块
+模块名字以1开头的表示只要跑一次，其他的是一次跑一个学生的
+'''
+
 __all__ = ['library', 'scholarship', 'subsidy']
+
 
 if __name__ == '__main__':
     from Tools import *
@@ -20,7 +25,7 @@ if __name__ == '__main__':
             # print(result)
             for re in result:
                 count = int(re[2])
-                if str(re[3]) == '��ͨ��У����ѧ��':
+                if str(re[3]) == '��ͨ��У����ѧ��':
                     while count <= int(re[2]) + 3 & count <= 2017:
                         sql = "insert into students(student_num,student_name,student_grade,student_type) values(%s,%s,%s,%s)"
                         self.executer.execute(sql, (str(re[0]) + str(count), re[1], str(re[2]), re[3]))
