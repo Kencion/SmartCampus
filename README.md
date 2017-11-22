@@ -1,2 +1,2 @@
-# SmartCampus
-智慧校园
+﻿# SmartCampus
+智慧校园项目
