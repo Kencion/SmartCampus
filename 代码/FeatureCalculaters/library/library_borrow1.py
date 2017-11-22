@@ -6,7 +6,7 @@ Created on 2017骞�11鏈�21鏃�
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
-class library_borrow(FeatureCalculater.FeatureCalculater):
+class library_borrow1(FeatureCalculater.FeatureCalculater):
     '''
             计算图书馆借阅
     '''

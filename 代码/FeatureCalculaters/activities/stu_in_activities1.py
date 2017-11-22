@@ -1,13 +1,11 @@
 '''
-Created on 2017Äê11ÔÂ22ÈÕ
-
-@author: Jack
+@author: yhj
 '''
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
 from boto.sdb.db.sequence import double
 
-class stu_in_activities(FeatureCalculater.FeatureCalculater):
+class stu_in_activities1(FeatureCalculater.FeatureCalculater):
     '''
             è®¡ç®—è·å¾—å¥–å­¦é‡‘çš„é‡‘é¢
     '''

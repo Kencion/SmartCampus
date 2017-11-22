@@ -1,12 +1,10 @@
 '''
-Created on 2017��11��22��
-
 @author: yhj
 '''
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
-class hornorary_title(FeatureCalculater.FeatureCalculater):
+class hornorary_title1(FeatureCalculater.FeatureCalculater):
     '''
             计算获得荣誉称号
     '''

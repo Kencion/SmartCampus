@@ -6,7 +6,7 @@ Created on 2017年11月21日
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
-class library_study_time(FeatureCalculater.FeatureCalculater):
+class library_entrance1(FeatureCalculater.FeatureCalculater):
     '''
             计算每一学年图书馆进出
     '''

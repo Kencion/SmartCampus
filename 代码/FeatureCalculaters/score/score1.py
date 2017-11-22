@@ -6,7 +6,7 @@ Created on 2017骞�11鏈�21鏃�
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
  
-class score(FeatureCalculater.FeatureCalculater):
+class score1(FeatureCalculater.FeatureCalculater):
     def calculate(self):
         #yzh
         sql = "select student_num,school_year from students"

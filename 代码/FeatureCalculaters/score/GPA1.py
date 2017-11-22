@@ -5,7 +5,7 @@ Created on 2017年11月21日
 '''
 from FeatureCalculaters import FeatureCalculater
 
-class GPA(FeatureCalculater.FeatureCalculater):
+class GPA1(FeatureCalculater.FeatureCalculater):
     def calculate(self):
         import pymysql 
         

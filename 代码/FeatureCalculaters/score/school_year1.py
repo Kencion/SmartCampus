@@ -1,11 +1,11 @@
 '''
-Created on 2017Äê11ÔÂ22ÈÕ
+Created on 2017ï¿½ï¿½11ï¿½ï¿½22ï¿½ï¿½
 
 '''
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
-class scholarship_amount(FeatureCalculater.FeatureCalculater):
+class school_year1(FeatureCalculater.FeatureCalculater):
     '''
             è®¡ç®—è·å¾—å¥–å­¦é‡‘çš„é‡‘é¢
     '''
