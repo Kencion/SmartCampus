@@ -16,6 +16,7 @@ class GPA1(FeatureCalculater.FeatureCalculater):
     def calculate(self):
         sql = "select student_num from students"
         self.executer.execute(sql)
+        print(sql)
         e = self.executer.fetchall()
         for i in e:
             GPA1 = 0

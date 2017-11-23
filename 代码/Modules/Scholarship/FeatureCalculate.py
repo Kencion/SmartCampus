@@ -13,25 +13,24 @@ from FeatureCalculaters.score import GPA1
 from FeatureCalculaters.score import school_year1
 from FeatureCalculaters.score import score1
 from FeatureCalculaters.score import score_rank1
-from tqdm import tqdm
+#from tqdm import tqdm
 
 claculaters = [#stu_in_activities1.stu_in_activities1(),
 #     hornorary_title1.hornorary_title1(),
 #     library_borrow1.library_borrow1(),
 #     library_entrance1.library_entrance1(),
 
-#     GPA1.GPA1(),
+     GPA1.GPA1(),
     
-#     school_year1.school_year1(),
-#     score1.score1(),
-    score_rank1.score_rank1(),
+     #school_year1.school_year1(),
+     #score1.score1(),
+    #score_rank1.score_rank1(),
     ]
-
-for claculater in tqdm(claculaters):
+for claculater in claculaters:
     claculater.calculate()
-     
-# 关闭数据库
-for claculater in tqdm(claculaters):
+#      
+# # 关闭数据库
+for claculater in claculaters:
     claculater.afterCalculate()
 
 
@@ -49,12 +48,12 @@ claculaters = [library_study_time.library_study_time(),
  
 students = []
 
-for student in tqdm(students):
-    for claculater in tqdm(claculaters):
+for student in students:
+    for claculater in claculaters:
         claculater.setStudent(student)
         claculater.calculate()
-     
+      
 # 关闭数据库
-for claculater in tqdm(claculaters):
+for claculater in claculaters:
     claculater.afterCalculate()
 
