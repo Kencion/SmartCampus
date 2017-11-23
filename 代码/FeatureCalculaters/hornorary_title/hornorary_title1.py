@@ -13,16 +13,32 @@ class hornorary_title1(FeatureCalculater.FeatureCalculater):
         
     @MyLogger.myException
     def calculate(self):
-        sql = "select student_num,sum(amount) as amount,grant_year,count(*) as times from hornorary_title where title_name!="" group by student_num,grant_year"
+        sql = "update students set avg_hornorary_times=0"
+        self.executer.execute(sql)
+        sql = "select student_num,left(grant_year,4),count(*) from hornorary_handled group by student_num,left(grant_year,4)"
         self.executer.execute(sql)
         result = self.executer.fetchall()
-        # print(result)
         for re in result:
-            sql = "update students set hornorary_amount=%s,avg_hornorary_times=%s where student_num=%s and school_year=%s"
-            # sql="update students set hornorary_amount=%s,avg_hornorary_times=%s where student_num=%s and school_year=%s"
-            self.executer.execute(sql, (int(re[1]), int(re[3]), re[0], re[2]))
-            # print(re[1])
-            # cursor.execute(sql,(re[0],re[1],re[2],re[3],int(count)))
+            sql = "update students set avg_hornorary_times=%s where student_num=%s"
+            self.executer.execute(sql, (re[2], (re[0] + re[1])))
+        
+        sql = "update students set hornorary_rank=null"
+        self.executer.execute(sql)
+        sql = "select student_num,left(grant_year,4),grant_rank from hornorary_handled"
+        self.executer.execute(sql)
+        result = self.executer.fetchall()
+        for re in result:
+            sql = "update students set hornorary_rank=%s where student_num=%s"
+            self.executer.execute(sql, (re[2], (re[0] + re[1])))
+        
+        sql="update students set hornorary_rank=null"
+        self.executer.execute(sql)
+        sql="select student_num,left(grant_year,4),grant_rank from hornorary_handled"
+        self.executer.execute(sql)
+        result=self.executer.fetchall()
+        for re in result:
+            sql="update students set hornorary_rank=%s where student_num=%s"
+            self.executer.execute(sql,(re[2],(re[0]+re[1])))
         
     @MyLogger.myException
     def rankit(self):

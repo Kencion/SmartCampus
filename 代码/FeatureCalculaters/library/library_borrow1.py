@@ -1,7 +1,5 @@
 '''
-Created on 2017骞�11鏈�21鏃�
-
-@author: jack
+@author: yhj
 '''
 from Tools import *
 from FeatureCalculaters import FeatureCalculater

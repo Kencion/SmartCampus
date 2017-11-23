@@ -58,3 +58,5 @@
 2017-11-22 15:33:13 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_amount' object has no attribute 'student'
 2017-11-22 15:33:13 MyLogger.py[line:68] ERROR None
 2017-11-22 15:33:13 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_rank' object has no attribute 'student'
+2017-11-23 10:16:12 MyLogger.py[line:68] ERROR None
+2017-11-23 10:16:12 MyLogger.py[line:69] ERROR <class 'pymysql.err.ProgrammingError'>:(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'group by student_num,grant_year' at line 1")

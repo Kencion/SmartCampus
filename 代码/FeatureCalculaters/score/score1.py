@@ -27,8 +27,8 @@ class score1(FeatureCalculater.FeatureCalculater):
             sql = "select score,course_credit from score where stu_num = '"+stu_num+"' and school_year = '"+year1+"'"   
         
             print(sql)
-            cur.execute(sql)
-            stu1 = cur.fetchone()
+            self.executer.execute(sql)
+            stu1 = self.executer.fetchone()
             print(stu1)
             if(stu1!=None):
                 score1 = float(stu1[0])
