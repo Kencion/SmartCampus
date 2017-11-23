@@ -13,4 +13,4 @@
 
 代码/**/logger.log
 
-代码/**/*.pyc
+*.pyc
