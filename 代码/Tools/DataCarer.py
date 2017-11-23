@@ -20,7 +20,7 @@ def createTrainDataSet():
     db = MyDataBase.MyDataBase("软件学院")
     conn, executer = db.getConn(), db.getExcuter()
     # get all the students
-    executer.execute("select * from students_rank")
+    executer.execute("select * from students")
     dataSet = []
     for i in executer.fetchall():
         student = Student(studentId=i[0], attributes=list(i[1:-1]), subsidy=i[-1])
