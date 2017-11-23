@@ -1,6 +1,6 @@
 '''
  
-@author: 95679
+@author: yzh
 '''
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
