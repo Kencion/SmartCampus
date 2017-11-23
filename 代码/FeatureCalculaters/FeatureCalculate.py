@@ -28,29 +28,29 @@ executer.execute(sql)
 student_nums = executer.fetchall()
 db.close()
 
-claculaters = [  
-    activity_avg_level1.activity_avg_level1(),
-    activity_last_time1.activity_last_time1(),
-    activity_num1.activity_num1(),
-    participation_avg_point1.participation_avg_point1(),
-    hornorary_title1.hornorary_title1(), 
-    library_borrow1.library_borrow1(),
-    library_entrance1.library_entrance1(),
-    failed_num1.failed_num1(),
-    GPA1.GPA1(),
-    score_rank1.score_rank1(),
-    score1.score1(),
-    is_social_practice_great1.is_social_practice_great1(),
-    social_practice1.social_practice1(),
-        
-    ]
-    
-for claculater in tqdm(claculaters):
-    claculater.calculate()
-         
-# 关闭数据库
-for claculater in tqdm(claculaters):
-    claculater.afterCalculate()
+# claculaters = [  
+#     activity_avg_level1.activity_avg_level1(),
+#     activity_last_time1.activity_last_time1(),
+#     activity_num1.activity_num1(),
+#     participation_avg_point1.participation_avg_point1(),
+#     hornorary_title1.hornorary_title1(), 
+#     library_borrow1.library_borrow1(),
+#     library_entrance1.library_entrance1(),
+#     failed_num1.failed_num1(),
+#     GPA1.GPA1(),
+#     score_rank1.score_rank1(),
+#     score1.score1(),
+#     is_social_practice_great1.is_social_practice_great1(),
+#     social_practice1.social_practice1(),
+#         
+#     ]
+#     
+# for claculater in tqdm(claculaters):
+#     claculater.calculate()
+#          
+# # 关闭数据库
+# for claculater in tqdm(claculaters):
+#     claculater.afterCalculate()
 
 # 下面是要执行学生个数次数的
 claculaters = [

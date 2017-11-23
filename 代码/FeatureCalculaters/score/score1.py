@@ -31,6 +31,7 @@ class score1(FeatureCalculater.FeatureCalculater):
             stu1 = self.executer.fetchone()
             #print(stu1)
             if(stu1!=None):
+                #!!!!!!! something wrong
                 score1 = float(stu1[0])
                 credit1 = int(stu1[1])
             
