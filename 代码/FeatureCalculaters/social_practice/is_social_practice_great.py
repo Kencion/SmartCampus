@@ -35,6 +35,7 @@ class score_rank1(FeatureCalculater.FeatureCalculater):
             sql = "update students set is_social_practice_great = '"+str(is_social_practice_great)+"' where student_num = '"+str(stu_num)+str(year)+"'"
             #print(sql)
             self.executer.execute(sql)
+            
     @MyLogger.myException
     def rankit(self):
         pass
