@@ -7,14 +7,14 @@ from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
 class subsidy_amount(FeatureCalculater.FeatureCalculater):
-    '''
-            计算获得奖学金的金额
-    '''
     def setLevel(self):
         pass
         
     @MyLogger.myException
     def calculate(self):
+        '''
+                        计算获得奖学金的金额
+        '''
         for school_year in self.school_year:
             student_num = str(self.student_num)
             sql = "SELECT amount FROM subsidy where student_num = '" + student_num + "' AND grant_year=" + str(school_year)

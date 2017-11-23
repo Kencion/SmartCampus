@@ -7,14 +7,14 @@ from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
 class library_week_study_time(FeatureCalculater.FeatureCalculater):
-    '''
-            计算每一学年周末图书馆学习时间
-    '''
     def setLevel(self):
         pass
         
     @MyLogger.myException
     def calculate(self):
+        '''
+                        计算每一学年周末图书馆学习时间
+        '''
         student_num = str(self.student_num)
         for school_year in self.school_year:
             sql = "SELECT sum(seat_time) FROM library_study_time where student_num =' " + student_num + "' AND DAYOFYEAR(select_seat_time)= " + str(school_year) + " AND DAYOFWEEK(select_seat_time) in (6,7)"

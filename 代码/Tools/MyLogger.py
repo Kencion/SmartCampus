@@ -60,12 +60,16 @@ def loggerByConfig():
 
 def myException(function):
     def wrapper(*args, **kwargs):
-        try:
+        open = False
+        if open:
+            try:
+                return function(*args, **kwargs)
+            except:
+                logger = MyLogger()
+                info = sys.exc_info()
+                logging.error(function.__doc__)
+                logging.error(str(info[0]) + ":" + str(info[1]))
+                print(function.__doc__)
+        else:
             return function(*args, **kwargs)
-        except:
-            logger = MyLogger()
-            info = sys.exc_info()
-            logging.error(function.__doc__)
-            logging.error(str(info[0]) + ":" + str(info[1]))
-            print(function.__doc__)
     return wrapper
