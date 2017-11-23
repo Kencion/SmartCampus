@@ -4,9 +4,8 @@
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
 from boto.sdb.db.sequence import double
-from Data import sql
 
-class stu_in_activities1(FeatureCalculater.FeatureCalculater):
+class activity_avg_level1(FeatureCalculater.FeatureCalculater):
     '''
             计算活动持续时间
     '''

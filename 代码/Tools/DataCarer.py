@@ -3,7 +3,7 @@ Created on 2017年7月22日
 学生画像数据提取模块
 @author: ljs
 '''
-from Modules.Subsidy.FeatureCalculaters  import Student
+from Modules.Subsidy.FeatureCalculaters.Student  import Student
 from Tools import MyDataBase
 import random
 from sklearn.neighbors import NearestNeighbors
@@ -20,7 +20,7 @@ def createTrainDataSet():
     db = MyDataBase.MyDataBase("软件学院")
     conn, executer = db.getConn(), db.getExcuter()
     # get all the students
-    executer.execute("select * from students")
+    executer.execute("select * from students_rank")
     dataSet = []
     for i in executer.fetchall():
         student = Student(studentId=i[0], attributes=list(i[1:-1]), subsidy=i[-1])

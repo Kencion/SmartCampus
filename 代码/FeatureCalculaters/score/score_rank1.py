@@ -16,7 +16,7 @@ class score_rank1(FeatureCalculater.FeatureCalculater):
     def calculate(self):
         sql = "select student_num from students"
         self.executer.execute(sql)
-        sql = "select student_num,school_year from students"
+        sql = "select student_num from students"
         self.executer.execute(sql)
         e = self.executer.fetchall()
         for i in e:
@@ -29,10 +29,10 @@ class score_rank1(FeatureCalculater.FeatureCalculater):
             year1 = school_year + "/" + next_year + "-1"
             year2 = school_year + "/" + next_year + "-2"
             sql = "select Rank from score where stu_num = '" + stu_num + "' and school_year = '" + year1 + "'"  
-            print(sql)
+            #print(sql)
             self.executer.execute(sql)
             stu1 = self.executer.fetchone()
-            print(stu1)
+            #print(stu1)
             if(stu1 != None):
                 rank1 = int(stu1[0])
             sql = "select Rank from score where stu_num = '" + stu_num + "' and school_year = '" + year2 + "'"
@@ -42,7 +42,7 @@ class score_rank1(FeatureCalculater.FeatureCalculater):
                 rank2 = float(stu2[0])
             rank = (rank1 + rank2) / 2
             print(rank)
-            sql = "update students set rank = " + str(rank) + " where student_num = '" + stu_num + school_year + "'"
+            sql = "update students set score_rank = " + str(rank) + " where student_num = '" + stu_num + school_year + "'"
             self.executer.execute(sql)
             
     @MyLogger.myException

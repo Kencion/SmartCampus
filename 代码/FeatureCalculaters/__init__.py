@@ -25,18 +25,17 @@ if __name__ == '__main__':
             
         @MyLogger.myException
         def calculate(self):
+            from tqdm import tqdm
             sql = "select distinct student_num,student_name,grade,student_type from subsidy"
             self.executer.execute(sql)
             result = self.executer.fetchall()
-            for re in result:
+            for re in tqdm(result):
                 count = int(re[2])
                 if str(re[3]) == '普通高校本科学生':
                     while count <= int(re[2]) + 8 and count <= 2016:
                         sql = "insert into students(student_num,student_name,student_grade,student_type) values(%s,%s,%s,%s)"
                         self.executer.execute(sql, (str(re[0]) + str(count), re[1], str(re[2]), re[3]))
                         count = count + 1
-                        
-                    print(count)
                 else:
                     while count <= int(re[2]) + 8 and count <= 2016:
                         sql = "insert into students(student_num,student_name,student_grade,student_type) values(%s,%s,%s,%s)"

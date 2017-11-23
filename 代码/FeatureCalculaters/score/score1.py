@@ -8,7 +8,7 @@ from FeatureCalculaters import FeatureCalculater
 class score1(FeatureCalculater.FeatureCalculater):
     def calculate(self):
         #yzh
-        sql = "select student_num,school_year from students"
+        sql = "select student_num from students"
         self.executer.execute(sql)
         e = self.executer.fetchall()
         for i in e:

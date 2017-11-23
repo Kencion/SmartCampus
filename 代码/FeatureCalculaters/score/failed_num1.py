@@ -6,7 +6,7 @@ Created on 2017年11月22日
 from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
-class failed_num(FeatureCalculater.FeatureCalculater):
+class failed_num1(FeatureCalculater.FeatureCalculater):
     '''
             计算挂科数目
     '''
@@ -39,7 +39,7 @@ class failed_num(FeatureCalculater.FeatureCalculater):
                 num2 = float(stu2[0])
             num = num1 + num2
             print(num)
-            sql = "update students set failed_num = "+num+" where student_num = '"+stu_num+school_year+"'"
+            sql = "update students set failed_num = "+str(num)+" where student_num = '"+stu_num+school_year+"'"
             self.executer.execute(sql)
             
     @MyLogger.myException
