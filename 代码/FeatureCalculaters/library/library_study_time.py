@@ -15,12 +15,14 @@ class library_study_time(FeatureCalculater.FeatureCalculater):
         
     @MyLogger.myException
     def calculate(self):
-        student_num = str(self.student.getStudentId())
+        student_num = str(self.student_num)
         for school_year in self.school_year:
-            sql = "SELECT sum(seat_time) FROM library_study_time where student_num = " + student_num + " AND DAYOFYEAR(select_seat_time)=" + str(school_year)
+            sql = "SELECT sum(seat_time) FROM library_study_time where student_num = '" + student_num + "' AND DAYOFYEAR(select_seat_time)=" + str(school_year)
             self.executer.execute(sql)
             library_study_time = self.executer.fetchone()[0]
-            sql = "update students set library_study_time ='" + str(library_study_time) + "' where student_num=" + student_num + " AND school_year =" + str(school_year)
+            if library_study_time == None:
+                library_study_time = 0
+            sql = "update students set library_study_time =" + str(library_study_time) + " where student_num='" + student_num + str(school_year) + "'"
             self.executer.execute(sql)
         
     @MyLogger.myException
