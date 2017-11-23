@@ -1,62 +1,634 @@
-2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_study_time' object has no attribute 'student'
-2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_week_study_time' object has no attribute 'student'
-2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_amount' object has no attribute 'student'
-2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_rank' object has no attribute 'student'
-2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_amount' object has no attribute 'student'
-2017-11-22 14:55:16 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:16 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_rank' object has no attribute 'student'
-2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_study_time' object has no attribute 'student'
-2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_week_study_time' object has no attribute 'student'
-2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_amount' object has no attribute 'student'
-2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_rank' object has no attribute 'student'
-2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_amount' object has no attribute 'student'
-2017-11-22 14:55:43 MyLogger.py[line:68] ERROR None
-2017-11-22 14:55:43 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_rank' object has no attribute 'student'
-2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
-2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_study_time' object has no attribute 'student'
-2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
-2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_week_study_time' object has no attribute 'student'
-2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
-2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_amount' object has no attribute 'student'
-2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
-2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_rank' object has no attribute 'student'
-2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
-2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_amount' object has no attribute 'student'
-2017-11-22 14:56:46 MyLogger.py[line:68] ERROR None
-2017-11-22 14:56:46 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_rank' object has no attribute 'student'
-2017-11-22 15:32:18 MyLogger.py[line:68] ERROR None
-2017-11-22 15:32:18 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_study_time' object has no attribute 'student'
-2017-11-22 15:32:18 MyLogger.py[line:68] ERROR None
-2017-11-22 15:32:18 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_week_study_time' object has no attribute 'student'
-2017-11-22 15:32:18 MyLogger.py[line:68] ERROR None
-2017-11-22 15:32:18 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_amount' object has no attribute 'student'
-2017-11-22 15:32:18 MyLogger.py[line:68] ERROR None
-2017-11-22 15:32:18 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_rank' object has no attribute 'student'
-2017-11-22 15:32:18 MyLogger.py[line:68] ERROR None
-2017-11-22 15:32:18 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_amount' object has no attribute 'student'
-2017-11-22 15:32:18 MyLogger.py[line:68] ERROR None
-2017-11-22 15:32:18 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_rank' object has no attribute 'student'
-2017-11-22 15:33:13 MyLogger.py[line:68] ERROR None
-2017-11-22 15:33:13 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_study_time' object has no attribute 'student'
-2017-11-22 15:33:13 MyLogger.py[line:68] ERROR None
-2017-11-22 15:33:13 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'library_week_study_time' object has no attribute 'student'
-2017-11-22 15:33:13 MyLogger.py[line:68] ERROR None
-2017-11-22 15:33:13 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_amount' object has no attribute 'student'
-2017-11-22 15:33:13 MyLogger.py[line:68] ERROR None
-2017-11-22 15:33:13 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'scholarship_rank' object has no attribute 'student'
-2017-11-22 15:33:13 MyLogger.py[line:68] ERROR None
-2017-11-22 15:33:13 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_amount' object has no attribute 'student'
-2017-11-22 15:33:13 MyLogger.py[line:68] ERROR None
-2017-11-22 15:33:13 MyLogger.py[line:69] ERROR <class 'AttributeError'>:'subsidy_rank' object has no attribute 'student'
-2017-11-23 10:16:12 MyLogger.py[line:68] ERROR None
-2017-11-23 10:16:12 MyLogger.py[line:69] ERROR <class 'pymysql.err.ProgrammingError'>:(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'group by student_num,grant_year' at line 1")
+2017-11-23 12:04:59 MyLogger.py[line:68] ERROR None
+2017-11-23 12:04:59 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:04:59 MyLogger.py[line:68] ERROR None
+2017-11-23 12:04:59 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:04:59 MyLogger.py[line:68] ERROR None
+2017-11-23 12:04:59 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:04:59 MyLogger.py[line:68] ERROR None
+2017-11-23 12:04:59 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:04:59 MyLogger.py[line:68] ERROR None
+2017-11-23 12:04:59 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:04:59 MyLogger.py[line:68] ERROR None
+2017-11-23 12:04:59 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:04:59 MyLogger.py[line:68] ERROR None
+2017-11-23 12:04:59 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:04:59 MyLogger.py[line:68] ERROR None
+2017-11-23 12:04:59 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:00 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:00 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:00 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:00 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:00 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:00 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:00 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:00 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:01 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:01 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:01 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:01 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:01 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:01 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:01 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:01 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:01 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:01 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:01 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:01 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:01 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:01 MyLogger.py[line:69] ERROR <class 'pymysql.err.DataError'>:(1264, "Out of range value for column 'subsidy_amount' at row 1")
+2017-11-23 12:05:01 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:01 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:02 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:02 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:02 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:02 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:02 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:02 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:02 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:02 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:03 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:03 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:03 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:03 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:03 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:03 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:03 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:03 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:03 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:03 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:03 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:03 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:03 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:03 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:03 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:03 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:04 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:04 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:04 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:04 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:04 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:04 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:04 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:04 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:04 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:04 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:04 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:04 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:04 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:04 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:04 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:04 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:05 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:05 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:05 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:05 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:05 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:05 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:05 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:05 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:05 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:05 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:05 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:05 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:05 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:05 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:05 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:05 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:06 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:06 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:06 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:06 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:06 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:06 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:06 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:06 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:06 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:06 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:06 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:06 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:06 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:06 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:06 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:06 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:07 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:07 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:07 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:07 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:07 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:07 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:07 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:07 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:08 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:08 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:08 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:08 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:08 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:08 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:08 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:08 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:08 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:08 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:08 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:08 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:08 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:08 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:08 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:08 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:09 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:09 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:09 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:09 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:09 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:09 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:09 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:09 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:09 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:09 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:09 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:09 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:10 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:10 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:10 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:10 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:10 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:10 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:10 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:10 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:10 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:10 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:10 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:10 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:11 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:11 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:11 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:11 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:11 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:11 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:11 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:11 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:11 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:11 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:11 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:11 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:11 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:11 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:11 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:11 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:12 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:12 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:12 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:12 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:12 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:12 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:12 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:12 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:12 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:12 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:12 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:12 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:12 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:12 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:12 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:12 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:13 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:13 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:13 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:13 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:13 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:13 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:13 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:13 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:13 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:13 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:13 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:13 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:13 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:13 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:13 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:13 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:14 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:14 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:14 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:14 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:14 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:14 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:14 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:14 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:14 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:14 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:14 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:14 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:14 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:14 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:14 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:14 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:15 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:15 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:15 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:15 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:15 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:15 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:15 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:15 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:15 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:15 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:15 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:15 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:15 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:15 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:15 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:15 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:16 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:16 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:16 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:16 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:16 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:16 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:16 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:16 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:16 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:16 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:16 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:16 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:16 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:16 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:16 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:16 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:17 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:17 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:17 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:17 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:17 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:17 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:17 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:17 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:18 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:18 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:18 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:18 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:18 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:18 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:18 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:18 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:18 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:18 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:18 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:18 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:18 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:18 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:18 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:18 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:19 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:19 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:19 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:19 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:19 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:19 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:19 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:19 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:20 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:20 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:20 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:20 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:20 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:20 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:20 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:20 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:20 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:20 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:20 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:20 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:20 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:20 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:20 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:20 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:21 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:21 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:21 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:21 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:21 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:21 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:21 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:21 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:22 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:22 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:22 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:22 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:22 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:22 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:22 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:22 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:22 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:22 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:22 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:22 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:22 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:22 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:22 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:22 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:23 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:23 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:23 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:23 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:23 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:23 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:23 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:23 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:23 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:23 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:23 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:23 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:23 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:23 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:23 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:23 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:24 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:24 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:24 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:24 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:24 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:24 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:24 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:24 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:25 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:25 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:25 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:25 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:25 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:25 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:25 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:25 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:25 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:25 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:25 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:25 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:25 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:25 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:25 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:25 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:26 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:26 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:26 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:26 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:26 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:26 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:26 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:26 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:26 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:26 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:26 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:26 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:26 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:26 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:27 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:27 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:27 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:27 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:27 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:27 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:27 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:27 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:27 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:27 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:28 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:28 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:28 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:28 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:28 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:28 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:28 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:28 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:28 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:28 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:28 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:28 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:28 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:28 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:28 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:28 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:29 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:29 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:29 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:29 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:29 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:29 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:29 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:29 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:30 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:30 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:30 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:30 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:30 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:30 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:30 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:30 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:31 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:31 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:31 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:31 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:31 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:31 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:31 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:31 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:31 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:31 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:31 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:31 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:31 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:31 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:31 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:31 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:32 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:32 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:32 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:32 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:32 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:32 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:32 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:32 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:32 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:32 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:32 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:32 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:32 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:32 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:32 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:32 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:33 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:33 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:33 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:33 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:33 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:33 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:33 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:33 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:33 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:33 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:33 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:33 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:33 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:33 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:33 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:33 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:34 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:34 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:34 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:34 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:34 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:34 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:34 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:34 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:34 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:34 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:34 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:34 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:34 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:34 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:34 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:34 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:35 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:35 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:35 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:35 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:35 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:35 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:35 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:35 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:36 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:36 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:36 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:36 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:36 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:36 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:36 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:36 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:36 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:36 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:36 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:36 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:36 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:36 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:36 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:36 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:37 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:37 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:37 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:37 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:37 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:37 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:37 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:37 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:38 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:38 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:38 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:38 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:38 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:38 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:38 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:38 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:38 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:38 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:38 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:38 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:38 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:38 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:38 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:38 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:39 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:39 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:39 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:39 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:39 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:39 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:39 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:39 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:40 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:40 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:40 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:40 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:40 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:40 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:40 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:40 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:40 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:40 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:40 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:40 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:40 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:40 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:40 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:40 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:41 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:41 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:41 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:41 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:41 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:41 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:41 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:41 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:41 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:41 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:41 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:41 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:41 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:41 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:41 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:41 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:42 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:42 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:42 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:42 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:42 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:42 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:42 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:42 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:43 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:43 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:43 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:43 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:43 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:43 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:43 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:43 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:43 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:43 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:43 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:43 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:43 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:43 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:43 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:43 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:44 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:44 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:44 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:44 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:44 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:44 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:44 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:44 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:45 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:45 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:45 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:45 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:45 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:45 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:45 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:45 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:45 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:45 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:45 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:45 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:45 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:45 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:45 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:45 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:46 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:46 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:46 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:46 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:46 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:46 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:46 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:46 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
+2017-11-23 12:05:47 MyLogger.py[line:68] ERROR None
+2017-11-23 12:05:47 MyLogger.py[line:69] ERROR <class 'TypeError'>:'NoneType' object is not subscriptable
