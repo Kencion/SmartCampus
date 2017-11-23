@@ -1,2 +1,2 @@
 
-__all__ = ['hornorary_rank', 'avg_hornorary_times', ]
+__all__ = ['hornorary_rank', 'hornorary_times', ]

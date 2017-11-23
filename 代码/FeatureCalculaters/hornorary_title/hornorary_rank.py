@@ -22,9 +22,8 @@ class hornorary_rank(FeatureCalculater.FeatureCalculater):
             #
             # 之后会用数值代表这个，比如一个学生获得一次校级（5），一次院级（3），那就5+3=8
             self.executer.execute("select grant_rank from hornorary_handled where student_num=%s and grant_year=%s", (student_num, school_year + "-" + str(int(school_year) + 1)))
-            avg_hornorary_times = self.executer.fetchone()[0]
-            print(avg_hornorary_times)
-            self.executer.execute("update students set hornorary_rank =%s where student_num=%s" , (avg_hornorary_times, student_num + school_year))
+            hornorary_rank = self.executer.fetchone()[0]
+            self.executer.execute("update students set hornorary_rank =%s where student_num=%s" , (hornorary_rank, student_num + school_year))
         
     @MyLogger.myException
     def rankit(self):

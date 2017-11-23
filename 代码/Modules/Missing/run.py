@@ -1,7 +1,7 @@
 '''
 Created on 2017年11月20日
 
-@author: qfWu
+@author: jack
 '''
 from Tools.MyDataBase import MyDataBase
 from __init__ import m_out_1_not_in_sql

@@ -1,5 +1,8 @@
 '''
+Created on 2017年7月22日
+Modified on 2017年11月23日
 项目统一数据库连接工具类
+@author: jack
 '''
 import pymysql
 

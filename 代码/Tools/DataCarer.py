@@ -1,8 +1,8 @@
-# '''
-# Created on 2017年7月22日
-#  
-# @author: zhenglongtian
-# '''
+'''
+Created on 2017年7月22日
+学生画像数据提取模块
+@author: ljs
+'''
 from Modules.Subsidy.FeatureCalculaters  import Student
 from Tools import MyDataBase
 import random

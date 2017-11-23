@@ -7,12 +7,8 @@ Created on 2017年11月21日
 # 下面是只要执行一次的
 from FeatureCalculaters.activities import activity_last_time1
 from FeatureCalculaters.hornorary_title import hornorary_title1
-from FeatureCalculaters.library import library_borrow1
-from FeatureCalculaters.library import library_entrance1
-from FeatureCalculaters.score import GPA1
-from FeatureCalculaters.score import school_year1
-from FeatureCalculaters.score import score1
-from FeatureCalculaters.score import score_rank1
+from FeatureCalculaters.library import *
+from FeatureCalculaters.score import *
 from tqdm import tqdm
   
 # claculaters = [  
@@ -37,15 +33,18 @@ from FeatureCalculaters.library import *
 from FeatureCalculaters.scholarship import *
 from FeatureCalculaters.subsidy import *
 from FeatureCalculaters.hornorary_title import *
+from FeatureCalculaters.dorm_entrance import *
   
 claculaters = [
-#     library_study_time.library_study_time(),
-#     library_week_study_time.library_week_study_time(),
-#     scholarship_amount.scholarship_amount(),
-#     scholarship_rank.scholarship_rank(),
-#     subsidy_amount.subsidy_amount(),
-#     subsidy_rank.subsidy_rank(),
-    avg_hornorary_times.avg_hornorary_times(),
+    library_study_time.library_study_time(),
+    library_week_study_time.library_week_study_time(),
+    scholarship_amount.scholarship_amount(),
+    scholarship_rank.scholarship_rank(),
+    subsidy_amount.subsidy_amount(),
+    subsidy_rank.subsidy_rank(),
+    hornorary_times.hornorary_times(),
+    in_out_times.in_out_times(),
+    hornorary_rank.hornorary_rank(),
     ]
   
 from Tools import MyDataBase

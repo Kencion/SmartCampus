@@ -11,7 +11,7 @@ class FeatureCalculater:
     def __init__(self, database="软件学院"):
         self.db = MyDataBase.MyDataBase(database)
         self.executer = self.db.getExcuter()
-        self.school_year = ['2014', '2015', '2016', '2017', ]  # 一个同学一个学年作为一个记录
+        self.school_year = ['2013', '2014', '2015', '2016', '2017', '2018']  # 一个同学一个学年作为一个记录
         self.level = None
                  
     def setStudentNum(self, student_num):

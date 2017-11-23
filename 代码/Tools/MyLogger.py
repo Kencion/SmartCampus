@@ -1,7 +1,9 @@
 '''
 Created on 2017年7月22日
-
+Modified on 2017年11月23日
+日志记录器
 @author: jack
+使用手册在最下面
 '''
 
 import sys, logging, logging.config
@@ -59,8 +61,14 @@ def loggerByConfig():
     logger.error('This is error message!')
 
 def myException(function):
+    '''
+    使用手册：
+    1.打开日志记录功能，把变量 open 设置为True（本功能可以屏蔽掉一些不必要的error report）
+    2.关闭日志记录功能，把变量 open 设置为False（代码有错，程序会立马停止运行）
+    
+    '''
     def wrapper(*args, **kwargs):
-        open = False
+        open = True
         if open:
             try:
                 return function(*args, **kwargs)
