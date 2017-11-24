@@ -1,8 +1,10 @@
 '''
 @author: jack
 '''
-from Tools import MyDataBase
-from Tools import MyLogger
+from Tools import *
+from numpy import float16, double, append
+from sklearn.cluster import KMeans
+import numpy
  
 class FeatureCalculater:
     '''
@@ -17,32 +19,57 @@ class FeatureCalculater:
     def setStudentNum(self, student_num):
         self.student_num = student_num
          
-    def setLevel(self):
-        '''
-                        设置等级划分标准
-        '''
-        pass
-     
     @MyLogger.myException
     def calculate(self):
         '''
                         所有子类都要实现这个函数
+                        特征值的计算
         '''
         pass  
      
-    def classify(self, param):
+#     @MyLogger.myException
+    def cluster(self, featureName , clusters=4, sql=""):
         '''
-                        对结果按等级进行划分
+                        所有子类都要实现这个函数
+                        对特征值进行聚类来归一化处理
         '''
-        if param is None:
-            return 0
-         
-        for i in range(len(self.level)):
-            if float(param) <= float(self.level[i]):
-                return str(i + 1)
-             
-        return str(len(self.level) + 1)
-     
+        
+        # 获得学生的数据
+        self.dataSet = []
+        count = self.executer.execute(sql)  # count是行数
+        result = self.executer.fetchall()
+        for i in result:
+            self.dataSet.append(i[0])  # 根据数据库表中的字段取精度
+        self.dataSet = numpy.array(self.dataSet).reshape(count, 1)
+        # 聚类
+        kmeans = KMeans(n_clusters=clusters, random_state=0).fit(self.dataSet)  
+        # 求出聚类中心
+        center = kmeans.cluster_centers_
+        center_x = ['%0.4f' % center[i][0] for i in range(len(center))]
+        # 标注每个点的聚类结果
+        labels = kmeans.labels_ 
+        types, maxx, minn = [[] for i in range(0, clusters)], [], []
+            
+        for i in range(len(labels)):
+            types[labels[i]].append(self.dataSet[i][0])
+            sql = "update students_rank set " + featureName + "='" + str(labels[i] + 1) + "' where " + featureName + "=" + str(self.dataSet[i][0]) 
+            self.executer.execute(sql)
+        
+        for i in range(0, clusters):
+            maxx.append(max(types[i]))
+            minn.append(min(types[i]))
+            
+        maxx = sorted(maxx)
+        minn = sorted(minn)
+        cent = sorted(center_x)
+        
+        for i in range(len(maxx) - 1):
+            if maxx[i] < minn[i + 1]:
+                temp = (maxx[i] + minn[i + 1]) / 2.0
+                minn[i + 1] = (maxx[i] + minn[i + 1]) / 2.0
+                maxx[i] = temp
+        
+        return  maxx, minn, cent
     def afterCalculate(self):
         self.db.close()
  

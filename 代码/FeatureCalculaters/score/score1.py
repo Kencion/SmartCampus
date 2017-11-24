@@ -43,43 +43,15 @@ class score1(FeatureCalculater.FeatureCalculater):
                     sql = "update students set score = " + str(score) + " where student_num = '" + stu_num + str(year) + "'"
                     self.executer.execute(sql)
         
-    @MyLogger.myException
-    def cluster(self, clusters=4):
-        # 上面那个地方其实是没错的，但是eclipse会报错。那个是python3.x的参数注解，不信百度去。
-        
-        # 获得学生的数据
-        dataSet = []
-        sql = "SELECT score FROM students WHERE score != 0"
-        count = self.executer.execute(sql)  # count是行数
-        result = self.executer.fetchall()
-        for i in result:
-            dataSet.append(i[0])  # 根据数据库表中的字段取精度
-        dataSet = numpy.array(dataSet).reshape(count, 1)
-        # 聚类
-        kmeans = KMeans(n_clusters=clusters, random_state=0).fit(dataSet)  
-        # 求出聚类中心
-        center = kmeans.cluster_centers_
-        center_x = ['%0.4f' % center[i][0] for i in range(len(center))]
-        # 标注每个点的聚类结果
-        labels = kmeans.labels_ 
-        types, maxx, minn = [[] for i in range(0, clusters)], [], []
-            
-        for i in range(len(labels)):
-            types[labels[i]].append(dataSet[i][0])
-            sql = "update students_rank set score='" + str(labels[i] + 1) + "' where score=" + str(dataSet[i][0]) 
-            self.executer.execute(sql)
-            
-        print(types)
-        
-        for i in range(0, clusters):
-            maxx.append(max(types[i]))
-            minn.append(min(types[i]))
+#     @MyLogger.myException
+    def cluster(self):
+        maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='score', clusters=4, sql="SELECT score FROM students WHERE score != 0")
+        maxx[len(maxx) - 1] = 100
         
         with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
-            f.write('score字段' + '\n')
-            for i in range(len(center)):
-                f.write(str(i) + ':' + ' ' + str(center[i][0]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
+            f.write( "score字段" + '\n')
+            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
+            print("write.....")
+            for i in range(len(cent)):
+                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
             f.close()
-
-t = score1()
-t.cluster(4)
