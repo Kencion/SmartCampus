@@ -14,10 +14,12 @@ class GPA1(FeatureCalculater.FeatureCalculater):
         pass
     
     def calculate(self):
-        sql = "select distinct(stu_num),grade from score"
+        sql = "select student_num from students"
         self.executer.execute(sql)
+        print(sql)
         e = self.executer.fetchall()
         for i in e:
+<<<<<<< HEAD
 <<<<<<< HEAD
         #     print(str(i[0]))
             stu_num = str(i[0])
@@ -56,6 +58,8 @@ class GPA1(FeatureCalculater.FeatureCalculater):
 #                     print(stu_num)
 #         print("ok")
 =======
+=======
+>>>>>>> parent of f819a9d... 2017.11.24
             GPA1 = 0
             credit1 = 0
             GPA2 = 0
@@ -70,13 +74,21 @@ class GPA1(FeatureCalculater.FeatureCalculater):
             self.executer.execute(sql)
             stu1 = self.executer.fetchone()
             print(stu1)
+<<<<<<< HEAD
             if(stu1 is not None):
+=======
+            if(stu1 != None):
+>>>>>>> parent of f819a9d... 2017.11.24
                 GPA1 = float(stu1[0])
                 credit1 = int(stu1[1])
             sql = "select GPA,course_credit from score where stu_num = '" + stu_num + "' and school_year = '" + year2 + "'"
             self.executer.execute(sql)
             stu2 = self.executer.fetchone()
+<<<<<<< HEAD
             if(stu2 is not None):
+=======
+            if(stu2 != None):
+>>>>>>> parent of f819a9d... 2017.11.24
                 GPA2 = float(stu2[0])
                 credit2 = int(stu2[1])
             if((credit1 + credit2) != 0):
@@ -84,10 +96,11 @@ class GPA1(FeatureCalculater.FeatureCalculater):
             print(GPA)
             sql = "update students set GPA = " + str(GPA) + " where student_num = '" + stu_num + school_year + "'"
             self.executer.execute(sql)
+<<<<<<< HEAD
 >>>>>>> 58c8ae438e75386c56a43e66d73b1425c289dc46
+=======
+>>>>>>> parent of f819a9d... 2017.11.24
             
     @MyLogger.myException
     def rankit(self):
         pass
-gpa = GPA1()
-gpa.calculate()
