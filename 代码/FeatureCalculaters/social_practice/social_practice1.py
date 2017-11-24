@@ -8,9 +8,6 @@ from FeatureCalculaters import FeatureCalculater
 
 class social_practice1(FeatureCalculater.FeatureCalculater):
     
-    def setLevel(self):
-        pass
-    
     @MyLogger.myException
     def calculate(self):
         
@@ -35,10 +32,21 @@ class social_practice1(FeatureCalculater.FeatureCalculater):
                 is_social_practice_great = 0
             else:
                 is_social_practice_great = 1
-            sql = "update students set is_social_practice_great = '" + str(is_social_practice_great) + "' where student_num = '" + str(stu_num) + str(year) + "'"
+            sql = "update students set social_practice = '" + str(is_social_practice_great) + "' where student_num = '" + str(stu_num) + str(year) + "'"
             # print(sql)
             self.executer.execute(sql)
             
     @MyLogger.myException
-    def rankit(self):
-        pass
+    def cluster(self):
+        maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='social_practice', clusters=4, sql="SELECT social_practice FROM students WHERE social_practice != 0")
+        sql = "SELECT max(social_practice) FROM students"
+        self.executer.execute(sql)
+        maxx[len(maxx) - 1] = self.executer.fetchone()[0]
+        
+        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
+            f.write( "social_practice" + '\n')
+            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
+            print("write.....")
+            for i in range(len(cent)):
+                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
+            f.close()

@@ -43,7 +43,7 @@ class score1(FeatureCalculater.FeatureCalculater):
                     sql = "update students set score = " + str(score) + " where student_num = '" + stu_num + str(year) + "'"
                     self.executer.execute(sql)
         
-#     @MyLogger.myException
+    @MyLogger.myException
     def cluster(self):
         maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='score', clusters=4, sql="SELECT score FROM students WHERE score != 0")
         maxx[len(maxx) - 1] = 100

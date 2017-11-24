@@ -12,8 +12,6 @@ class is_social_practice_great1(FeatureCalculater.FeatureCalculater):
             判断是否是院级或者校级重点。
             思路：从social_practice表中获取student_num以及学年（根据start_time来划分），是否是重点，然后根据stu_num关键字填入students表中。
     '''
-    def setLevel(self):
-        pass
     
     def calculate(self):
         sql = "select stu_num,DATE_FORMAT(start_time,'%Y'),DATE_FORMAT(start_time,'%c'),School_key_projects_or_not,College_key_projects_or_not from social_practice"
@@ -37,5 +35,16 @@ class is_social_practice_great1(FeatureCalculater.FeatureCalculater):
             self.executer.execute(sql)
             
     @MyLogger.myException
-    def rankit(self):
-        pass
+    def cluster(self):
+        maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='is_social_practice_great', clusters=4, sql="SELECT is_social_practice_great FROM students WHERE is_social_practice_great != 0")
+        sql = "SELECT max(is_social_practice_great) FROM students"
+        self.executer.execute(sql)
+        maxx[len(maxx) - 1] = self.executer.fetchone()[0]
+        
+        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
+            f.write( "is_social_practice_great" + '\n')
+            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
+            print("write.....")
+            for i in range(len(cent)):
+                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
+            f.close()
