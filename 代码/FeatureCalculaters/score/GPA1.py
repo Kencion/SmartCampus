@@ -22,6 +22,7 @@ class GPA1(FeatureCalculater.FeatureCalculater):
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         #     print(str(i[0]))
             stu_num = str(i[0])
             grade = int(i[1])
@@ -63,6 +64,8 @@ class GPA1(FeatureCalculater.FeatureCalculater):
 >>>>>>> parent of f819a9d... 2017.11.24
 =======
 >>>>>>> parent of f819a9d... 2017.11.24
+=======
+>>>>>>> parent of f819a9d... 2017.11.24
             GPA1 = 0
             credit1 = 0
             GPA2 = 0
@@ -79,7 +82,11 @@ class GPA1(FeatureCalculater.FeatureCalculater):
             print(stu1)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if(stu1 is not None):
+=======
+            if(stu1 != None):
+>>>>>>> parent of f819a9d... 2017.11.24
 =======
             if(stu1 != None):
 >>>>>>> parent of f819a9d... 2017.11.24
@@ -93,7 +100,11 @@ class GPA1(FeatureCalculater.FeatureCalculater):
             stu2 = self.executer.fetchone()
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if(stu2 is not None):
+=======
+            if(stu2 != None):
+>>>>>>> parent of f819a9d... 2017.11.24
 =======
             if(stu2 != None):
 >>>>>>> parent of f819a9d... 2017.11.24
@@ -109,7 +120,10 @@ class GPA1(FeatureCalculater.FeatureCalculater):
             self.executer.execute(sql)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 58c8ae438e75386c56a43e66d73b1425c289dc46
+=======
+>>>>>>> parent of f819a9d... 2017.11.24
 =======
 >>>>>>> parent of f819a9d... 2017.11.24
 =======
