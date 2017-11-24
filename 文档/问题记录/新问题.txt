@@ -1,0 +1,2 @@
+subsidy_amount字段没有拆分
+scholarship_amount字段没有拆分

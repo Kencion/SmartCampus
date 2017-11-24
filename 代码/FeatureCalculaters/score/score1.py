@@ -48,7 +48,7 @@ class score1(FeatureCalculater.FeatureCalculater):
         maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='score', clusters=4, sql="SELECT score FROM students WHERE score != 0")
         maxx[len(maxx) - 1] = 100
         
-        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
+        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
             f.write( "score字段" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")

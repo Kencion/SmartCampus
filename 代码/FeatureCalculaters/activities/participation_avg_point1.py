@@ -20,7 +20,21 @@ class participation_avg_point1(FeatureCalculater.FeatureCalculater):
         for re in result:
             sql="update students set participation_avg_point=%s where student_num=%s"
             self.executer.execute(sql,(double(re[2]),re[0]+str(int(re[1])-1)))
+    def cluster(self):
+        sql="SELECT max(participation_avg_point) FROM students"
+        self.executer.execute(sql)
+        result=self.executer.fetchone()[0]
+        max_num=int(result)
+        maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='participation_avg_point', clusters=4, sql="SELECT participation_avg_point FROM students WHERE participation_avg_point != 0")
+        maxx[len(maxx) - 1] = max_num
         
+        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
+            f.write( "participation_avg_point字段" + '\n')
+            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
+            print("write.....")
+            for i in range(len(cent)):
+                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
+            f.close()     
     @MyLogger.myException
     def rankit(self):
         pass

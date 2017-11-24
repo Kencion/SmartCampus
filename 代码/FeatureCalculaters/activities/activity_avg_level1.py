@@ -23,7 +23,21 @@ class activity_avg_level1(FeatureCalculater.FeatureCalculater):
             #print(re[0]+str(int(re[1])-1))
         
         
+    def cluster(self):
+        sql="SELECT max(activity_avg_level) FROM students"
+        self.executer.execute(sql)
+        result=self.executer.fetchone()[0]
+        max_num=int(result)
+        maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='activity_avg_level', clusters=4, sql="SELECT activity_avg_level FROM students WHERE activity_avg_level != 0")
+        maxx[len(maxx) - 1] = max_num
         
+        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
+            f.write( "activity_avg_level字段" + '\n')
+            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
+            print("write.....")
+            for i in range(len(cent)):
+                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
+            f.close()    
     @MyLogger.myException
     def rankit(self):
         pass
