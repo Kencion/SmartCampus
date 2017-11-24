@@ -24,5 +24,16 @@ class subsidy_rank(FeatureCalculater.FeatureCalculater):
             self.executer.execute(sql)
         
     @MyLogger.myException
-    def rankit(self):
-        pass
+    def cluster(self):
+        maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='subsidy_rank', clusters=4, sql="SELECT subsidy_rank FROM students WHERE subsidy_rank != 0")
+        sql = "SELECT max(subsidy_rank) FROM students"
+        self.executer.execute(sql)
+        maxx[len(maxx) - 1] = self.executer.fetchone()[0]
+        
+        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
+            f.write( "subsidy_rank" + '\n')
+            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
+            print("write.....")
+            for i in range(len(cent)):
+                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
+            f.close()
