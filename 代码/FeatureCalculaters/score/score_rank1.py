@@ -29,16 +29,16 @@ class score_rank1(FeatureCalculater.FeatureCalculater):
             year1 = school_year + "/" + next_year + "-1"
             year2 = school_year + "/" + next_year + "-2"
             sql = "select Rank from score where stu_num = '" + stu_num + "' and school_year = '" + year1 + "'"  
-            #print(sql)
+            # print(sql)
             self.executer.execute(sql)
             stu1 = self.executer.fetchone()
-            #print(stu1)
-            if(stu1 != None):
+            # print(stu1)
+            if(stu1 is not None):
                 rank1 = int(stu1[0])
             sql = "select Rank from score where stu_num = '" + stu_num + "' and school_year = '" + year2 + "'"
             self.executer.execute(sql)
             stu2 = self.executer.fetchone()
-            if(stu2 != None):
+            if(stu2 is not None):
                 rank2 = float(stu2[0])
             rank = (rank1 + rank2) / 2
             print(rank)

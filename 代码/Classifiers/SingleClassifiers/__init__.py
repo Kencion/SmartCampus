@@ -1,8 +1,12 @@
 '''
 Created on 2017年7月22日
- 
+ 对分类器进行自定义
+SingleClassifier是所有单分类器的父类
 @author: zhenglongtian
 '''
+
+__all__ = ['DecesionTree', 'ExtraTrees', 'GaussianNB', 'GaussianProcesses', 'MLP', 'NearestNeighbors', 'RandomForest', 'SGD', 'SVC', ]
+
 from Tools import DataCarer
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import AdaBoostClassifier

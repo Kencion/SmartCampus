@@ -33,13 +33,13 @@ class GPA1(FeatureCalculater.FeatureCalculater):
             self.executer.execute(sql)
             stu1 = self.executer.fetchone()
             print(stu1)
-            if(stu1 != None):
+            if(stu1 is not None):
                 GPA1 = float(stu1[0])
                 credit1 = int(stu1[1])
             sql = "select GPA,course_credit from score where stu_num = '" + stu_num + "' and school_year = '" + year2 + "'"
             self.executer.execute(sql)
             stu2 = self.executer.fetchone()
-            if(stu2 != None):
+            if(stu2 is not None):
                 GPA2 = float(stu2[0])
                 credit2 = int(stu2[1])
             if((credit1 + credit2) != 0):

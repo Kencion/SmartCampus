@@ -3,12 +3,12 @@ Created on 2017年7月22日
 
 @author: zhenglongtian
 '''
-import SingleClassifier
+from __init__ import SingleClassifier
 from sklearn.neural_network import MLPClassifier
 
-class MLP(SingleClassifier.SingleClassifier):
+class MLP(SingleClassifier):
     def __init__(self):
-        SingleClassifier.SingleClassifier.__init__(self)
+        SingleClassifier.__init__(self)
         # weak classifier
         self.clf = MLPClassifier(activation='relu', alpha=1e-05, batch_size='auto',
        beta_1=0.9, beta_2=0.999, early_stopping=False,

@@ -1,35 +1,21 @@
-from sklearn import datasets
-from sklearn import metrics
-from sklearn.ensemble import ExtraTreesClassifier
-from Tools import DataCarer
-from sklearn import tree
+'''
+特征选择
+'''
+from Tools import *
 from numpy import *
-from sklearn.linear_model import SGDClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.pipeline import Pipeline
 from sklearn.feature_selection import SelectFromModel, SelectKBest, chi2
-from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier, VotingClassifier, AdaBoostClassifier
-from sklearn import tree
-from sklearn import svm
+from sklearn import tree,svm
 from sklearn.svm import LinearSVC 
-from sklearn.neural_network import MLPClassifier
-from sklearn.linear_model import SGDClassifier
+from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier, VotingClassifier, AdaBoostClassifier
+from sklearn.linear_model import SGDClassifier,LogisticRegression
 from sklearn.neighbors.nearest_centroid import NearestCentroid
 from sklearn.naive_bayes import GaussianNB
-from sklearn.linear_model import LogisticRegression
-
-def createTrainDataSet():
-    dataSet = DataCarer.createTrainDataSet() # DataCarer.transform(dataSet)
-    return mat(dataSet)
-
-def createTestDataSet():
-#  DataCarer.transform(dataSet)
-    return students, dataSet
+from sklearn.neural_network import MLPClassifier
+from sklearn.pipeline import Pipeline
 
 # get train data and test data
-dataSet = mat(createTrainDataSet())
-X_train, Y_train = dataSet[:, :-1], dataSet[:, -1]
-students, dataSet = createTestDataSet()
+X_train, Y_train = DataCarer.createTrainDataSet()  
+students, dataSet = DataCarer.createValidateDataSet()
 X_test = dataSet
 
 # weak classifiers
@@ -45,35 +31,17 @@ clf6 = RandomForestClassifier(random_state=1)
 clf7 = GaussianNB()
 
 # stronger classifier
+# use adaboost to make them stronger
 clf0 = AdaBoostClassifier(base_estimator=clf0, learning_rate=1, n_estimators=110, algorithm='SAMME')
 clf1 = AdaBoostClassifier(base_estimator=clf1, learning_rate=1, n_estimators=50, algorithm='SAMME')
 clf2 = AdaBoostClassifier(base_estimator=clf2, learning_rate=1, n_estimators=1, algorithm='SAMME')
 clf4 = AdaBoostClassifier(base_estimator=clf4, learning_rate=1, n_estimators=1, algorithm='SAMME')
 clf6 = AdaBoostClassifier(base_estimator=clf6, learning_rate=1, n_estimators=150, algorithm='SAMME')
 clf7 = AdaBoostClassifier(base_estimator=clf7, learning_rate=1, n_estimators=150, algorithm='SAMME')
-dataset = mat(createTrainDataSet()) 
 
-clf0.fit(X_train,Y_train)
-fetureSelection = SelectFromModel(clf0,prefit=True)
 
-print(fetureSelection.get_support(indices=True)) #display importance of each variables
+# choose the features
+clf6.fit(X_train, Y_train)
+fetureSelection = SelectFromModel(clf6, prefit=True)
 
-# from sklearn import datasets
-# from sklearn.feature_selection import RFE
-# from sklearn.linear_model import LogisticRegression
-#  
-# def createTrainDataSet():
-#     dataSet = DataCarer.createTrainDataSet()
-#     DataCarer.transform(dataSet)
-#     return mat(dataSet)
-#   
-# dataset = mat(createTrainDataSet())
-#   
-# X = dataset[:, :-1]
-# Y = dataset[:, -1]
-# model = LogisticRegression() # build logistic regression model
-# rfe = RFE(model,20) # limit number of variables to three
-# rfe = rfe.fit(X,Y)
-# print(rfe.support_) 
-# print(rfe.ranking_)
-
+print(fetureSelection.get_support(indices=True))  # display importance of each variables
