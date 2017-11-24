@@ -8,9 +8,6 @@ class school_year1(FeatureCalculater.FeatureCalculater):
     '''
             计算获得奖学金的金额
     '''
-    def setLevel(self):
-        pass
-        
     @MyLogger.myException
     def calculate(self):
         sql = "select DISTINCT stu_num,left(school_year, 9) from score"

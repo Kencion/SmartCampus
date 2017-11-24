@@ -68,7 +68,7 @@ def myException(function):
     
     '''
     def wrapper(*args, **kwargs):
-        open = True
+        open = False
         if open:
             try:
                 return function(*args, **kwargs)

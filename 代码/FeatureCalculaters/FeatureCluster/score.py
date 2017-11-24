@@ -54,7 +54,7 @@ class score(FeatureCalculater.FeatureCalculater):
                 self.executer.execute(sql)
             if labels[i] == 3:
                 type4_x.append(dataSet[i][0])
-                sql="update students_rank set score='"+str(labels[i]+1)+"' where score='"+str(dataSet[i][0])+"'"
+                sql="update students_rank set score='"+str(labels[i]+1)+"' where score="+str(dataSet[i][0])+""
                 self.executer.execute(sql)
         
         max2.append(max(type1_x))
@@ -65,11 +65,28 @@ class score(FeatureCalculater.FeatureCalculater):
         min2.append(min(type3_x))
         max2.append(max(type4_x))
         min2.append(min(type4_x))
+        
+        max3=sorted(max2)
+        min3=sorted(min2)
+        cent=sorted(center_x)
+        print(min3)
+        print(max3)
+        for i in range(len(max3)-1):
+            if max3[i]<min3[i+1]:
+                temp=(max3[i]+min3[i+1])/2.0
+                min3[i+1]=(max3[i]+min3[i+1])/2.0
+                max3[i]=temp
+        max3[len(max3)-1]=100
         with open(r"聚类对应的字段区间","a",encoding='utf8') as f:
             f.write('score字段'+'\n')
+            f.write(str(0)+':'+str(0)+' '+str(0)+' '+str(min3[0])+'\n')#手动加入第一区间
+            print("write.....")
             for i in range(len(center)):
-                f.write(str(i)+':'+' '+str(center[i][0])+' '+str(min2[i])+' '+str(max2[i])+'\n')
+                f.write(str(i+1)+':'+str(cent[i])+' '+str(min3[i])+' '+str(max3[i])+'\n')
             f.close()
+        print(min3)
+        print(max3)   
+        print("over")
          #print(max2)
          #print(min2)
         #max3=sorted(max2)
