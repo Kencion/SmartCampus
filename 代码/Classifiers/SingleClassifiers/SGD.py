@@ -3,12 +3,12 @@ Created on 2017年7月22日
 随机梯度下降
 @author: zhenglongtian
 '''
-import SingleClassifier
+from __init__ import SingleClassifier
 from sklearn.linear_model import SGDClassifier
 
-class SGD(SingleClassifier.SingleClassifier):
+class SGD(SingleClassifier):
     def __init__(self):
-        SingleClassifier.SingleClassifier.__init__(self)
+        SingleClassifier.__init__(self)
         #weak classifier
         self.clf=SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
         eta0=0.0, fit_intercept=True, l1_ratio=0.15,
