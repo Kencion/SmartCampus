@@ -12,14 +12,14 @@ from sklearn.feature_selection import SelectFromModel
 from sklearn.externals import joblib
 from numpy import mat
 from Tools import DataCarer
-from SingleClassifiers import *
+from Classifiers.SingleClassifiers import *
 
 class StrongerClassifer():
     
     def __init__(self):
         # weak classifiers
         self.clfs = [
-            DecesionTree.DecesionTree().getBestOne('DecesionTree'),
+            DecesionTree.DecesionTree({'0.0':1, '1.0':4, '2.0':6, '3.0':8, '4.0':10}).getBestOne('DecesionTree'),
 #             ExtraTrees.ExtraTrees().getBestOne('ExtraTrees'),
 #             GaussianNB.GaussianNB().getBestOne('GaussianNB'),
 #             GaussianProcesses.GaussianProcesses().getBestOne('GaussianProcesses'),
@@ -31,7 +31,7 @@ class StrongerClassifer():
             ]
         # final classifier
         self.finalClassifier = VotingClassifier(estimators=[
-                ('0', self.clfs[0]),
+                ('DecisidonTree', self.clfs[0]),
                 ],
                voting='soft',
                weights=[1, ])
@@ -62,17 +62,27 @@ class StrongerClassifer():
         for i in range(1, 2):
             X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.1, random_state=0)
             clf.fit(X_train, Y_train)
-            for i, j in zip(X_test.tolist(), clf.predict(X_test).tolist()):
-                print(j)
-                print("---")
-                print(i)
+            result = clf.predict(X_test)
+            print(clf.decision_path())
+#             for i, j in zip(X_test.tolist(), result.tolist()):
+#                 print(j)
+#                 print("---")
+#                 print(i)
             accuracyRates.append(clf.score(X_test, Y_test))
             if i == 1:
                 joblib.dump(clf, 'final.pkl')
                 
         # 输出正确率的均值
         print(mat(accuracyRates).mean())
+        
+    def test(self):
+        clf = self.clfs[0]
+        X, Y = DataCarer.createTrainDataSet()
+        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.1, random_state=0)
+        clf.fit(X_train, Y_train)
+        clf.predict(X_test)
+        print(clf.tree_)
 
 if __name__ == '__main__':
     t = StrongerClassifer()
-    t.haha()
+    t.test()
