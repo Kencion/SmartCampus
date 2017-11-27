@@ -6,14 +6,15 @@ Modified on 2017年11月23日
 使用手册在最下面
 '''
 
-import sys, logging, logging.config
+import sys, logging.config
+from Tools.__init__ import get_log_open, get_log_file
 
 class MyLogger:
     '''
     日志类
     '''
 
-    def __init__(self, filename='logger.log'):
+    def __init__(self, filename=get_log_file()):
         logging.basicConfig(
             level=logging.DEBUG,
             format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
@@ -68,8 +69,7 @@ def myException(function):
     
     '''
     def wrapper(*args, **kwargs):
-        open = False
-        if open:
+        if get_log_open():
             try:
                 return function(*args, **kwargs)
             except:

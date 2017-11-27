@@ -3,7 +3,7 @@ Created on 2017年7月22日
 支持向量机
 @author: zhenglongtian
 '''
-from __init__ import SingleClassifier
+from Classifiers.SingleClassifiers.SingleClassfier import SingleClassifier
 from sklearn import svm
 
 class SVC(SingleClassifier):

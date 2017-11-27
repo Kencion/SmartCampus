@@ -5,6 +5,7 @@ Modified on 2017年11月23日
 @author: jack
 '''
 import pymysql
+from  Tools.__init__ import get_database_name, get_database_ip, get_database_pwd, get_database_user
 
 class MyDataBase:
     '''
@@ -17,9 +18,9 @@ class MyDataBase:
         
         db.close
     '''
-    def __init__(self, database):
+    def __init__(self, database=get_database_name(), ip=get_database_ip(), user=get_database_user(), pwd=get_database_pwd()):
 #         print("connect to data base " + database + " ......")
-        self.db = pymysql.connect("172.16.20.5", "root", "", database, charset='utf8')
+        self.db = pymysql.connect(ip, user, pwd, database, charset='utf8')
         self.cursor = self.db.cursor()
         self.db.autocommit(True)  # 设置每次执行自动提交
 #         print("connect success!")
@@ -37,3 +38,5 @@ class MyDataBase:
 
 if __name__ == '__main__':
     print("a module used to connect db")
+    t = MyDataBase()
+    t.close()

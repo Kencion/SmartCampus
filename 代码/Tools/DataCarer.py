@@ -1,12 +1,13 @@
 '''
 Created on 2017年7月22日
 学生画像数据提取模块
-@author: ljs
+@author: LI
+Jack:建议写成一个类，比较帅
 '''
-from FeatureCalculaters.Student  import Student
-from Tools import MyDataBase
 import random
 from sklearn.neighbors import NearestNeighbors
+from FeatureCalculaters.Student  import Student
+from Tools import MyDataBase
 from numpy import mat
 
 def createTrainDataSet():

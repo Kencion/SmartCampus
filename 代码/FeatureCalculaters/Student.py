@@ -18,9 +18,15 @@ class Student():
         self.label = label
         
     def setStudent_num(self, student_num): 
+        '''
+        设置学号
+        '''
         self.student_num = student_num
     
     def getStudent_num(self):
+        '''
+        获取学号
+        '''
         return self.student_num
         
     def getAll(self):

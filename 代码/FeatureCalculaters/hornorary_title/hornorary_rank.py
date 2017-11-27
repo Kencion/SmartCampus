@@ -22,4 +22,7 @@ class hornorary_rank(FeatureCalculater.FeatureCalculater):
             self.executer.execute("select grant_rank from hornorary_handled where student_num=%s and grant_year=%s", (student_num, school_year + "-" + str(int(school_year) + 1)))
             hornorary_rank = self.executer.fetchone()[0]
             self.executer.execute("update students set hornorary_rank =%s where student_num=%s" , (hornorary_rank, student_num + school_year))
-      
+    
+    @MyLogger.myException
+    def cluster(self):
+        pass
