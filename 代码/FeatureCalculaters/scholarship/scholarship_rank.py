@@ -15,7 +15,7 @@ class scholarship_rank(FeatureCalculater.FeatureCalculater):
         '''
         for school_year in self.school_year:
             student_num = str(self.student_num)
-            self.executer.execute("SELECT rank FROM scholarship where student_num =%s AND grant_year=%s", (student_num , school_year))
+            self.executer.execute("SELECT scholarship_type FROM scholarship_handled where student_num =%s AND grant_year=%s", (student_num , school_year))
             scholarship_rank = self.executer.fetchone()[0]
             self.executer.execute("update students set scholarship_rank =%s where student_num=", (scholarship_rank, student_num + str(school_year)))
         
@@ -26,7 +26,7 @@ class scholarship_rank(FeatureCalculater.FeatureCalculater):
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]
         
-        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
+        with open(r"Cluster_Feature", "a", encoding='utf8') as f:
             f.write( "scholarship_rank" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")

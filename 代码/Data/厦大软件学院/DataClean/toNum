@@ -6,34 +6,34 @@ FROM
 UPDATE students
 SET student_type = '1'
 WHERE
-	student_type = 'ÆÕÍ¨¸ßĞ£±¾¿ÆÑ§Éú';
+	student_type = 'æ™®é€šé«˜æ ¡æœ¬ç§‘å­¦ç”Ÿ';
 
 UPDATE students
 SET student_type = '2'
 WHERE
-	student_type = 'Ë¶Ê¿ÑĞ¾¿Éú';
+	student_type = 'ç¡•å£«ç ”ç©¶ç”Ÿ';
 
 UPDATE students
 SET student_type = '3'
 WHERE
-	student_type = '½»Á÷Éú';
+	student_type = 'äº¤æµç”Ÿ';
 
 UPDATE students
 SET student_type = '4'
 WHERE
-	student_type = '²©Ê¿ÑĞ¾¿Éú';
+	student_type = 'åšå£«ç ”ç©¶ç”Ÿ';
 
 UPDATE students
 SET student_type = '5'
 WHERE
-	student_type = 'ÆÕÍ¨½øĞŞÉú';
+	student_type = 'æ™®é€šè¿›ä¿®ç”Ÿ';
 
 UPDATE students
 SET student_type = '6'
 WHERE
-	student_type = 'Ë¶Ê¿×¨ÒµÑ§Î»ÑĞ¾¿Éú';
+	student_type = 'ç¡•å£«ä¸“ä¸šå­¦ä½ç ”ç©¶ç”Ÿ';
 
-##########################################
+######################################
 SELECT DISTINCT
 	(hornorary_rank)
 FROM
@@ -42,8 +42,8 @@ FROM
 UPDATE students
 SET hornorary_rank = '1'
 WHERE
-	hornorary_rank = 'Ğ£¼¶';
-##########################################
+	hornorary_rank = 'æ ¡çº§';
+######################################
 -- SELECT DISTINCT
 -- 	(subsidy_rank)
 -- FROM
@@ -51,19 +51,19 @@ WHERE
 UPDATE students
 SET subsidy_rank = '3'
 WHERE
-	subsidy_rank = 'ÈıµÈ';
+	subsidy_rank = 'ä¸‰ç­‰';
 
 UPDATE students
 SET subsidy_rank = '2'
 WHERE
-	subsidy_rank = '¶şµÈ';
+	subsidy_rank = 'äºŒç­‰';
 
 UPDATE students
 SET subsidy_rank = '1'
 WHERE
-	subsidy_rank = 'Ò»µÈ';
+	subsidy_rank = 'ä¸€ç­‰';
 
 UPDATE students
 SET subsidy_rank = '4'
 WHERE
-	subsidy_rank = '²»·ÖµÈ';
+	subsidy_rank = 'ä¸åˆ†ç­‰';

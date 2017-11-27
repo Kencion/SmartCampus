@@ -10,7 +10,6 @@ class social_practice1(FeatureCalculater.FeatureCalculater):
     
     @MyLogger.myException
     def calculate(self):
-        
         '''
         实现将数据库表social_practice中原来无法处理的队员一列分离开来，插入到原来表中。
          判断是否是院级或者校级重点。
@@ -43,7 +42,7 @@ class social_practice1(FeatureCalculater.FeatureCalculater):
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]
         
-        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
+        with open(r"Cluster_Feature", "a", encoding='utf8') as f:
             f.write( "social_practice" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")

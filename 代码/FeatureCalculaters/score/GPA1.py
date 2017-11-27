@@ -6,13 +6,12 @@ from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
 class GPA1(FeatureCalculater.FeatureCalculater):
-    '''
-            计算GPA
-    '''
-    def setLevel(self):
-        pass
-    
+
+    @MyLogger.myException
     def calculate(self):
+        '''
+                计算GPA
+        '''
         sql = "select distinct(stu_num),grade from score"
         self.executer.execute(sql)
         e = self.executer.fetchall()
@@ -52,7 +51,7 @@ class GPA1(FeatureCalculater.FeatureCalculater):
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]
         
-        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
+        with open(r"Cluster_Feature", "a", encoding='utf8') as f:
             f.write( "gpa" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")

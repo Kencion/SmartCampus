@@ -28,7 +28,8 @@ class activity_last_time1(FeatureCalculater.FeatureCalculater):
                 sql = "update students set activity_last_time=%s where student_num=%s "
                 self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(re[1][0:4])))
                 # print((str)(re[1][0:4])+'/'+((str)((int)(re[1][0:4])+1)))
-                
+    
+    @MyLogger.myException
     def cluster(self):
         sql = "SELECT max(activity_last_time) FROM students"
         self.executer.execute(sql)
@@ -37,7 +38,7 @@ class activity_last_time1(FeatureCalculater.FeatureCalculater):
         maxx, minn, cent = FeatureCalculater.FeatureCalculater.cluster(self, featureName='activity_last_time', clusters=4, sql="SELECT activity_last_time FROM students WHERE activity_last_time != 0")
         maxx[len(maxx) - 1] = max_num
         
-        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
+        with open(r"Cluster_Feature", "a", encoding='utf8') as f:
             f.write("activity_last_time字段" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")

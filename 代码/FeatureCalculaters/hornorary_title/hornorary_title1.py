@@ -5,14 +5,12 @@ from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
 class hornorary_title1(FeatureCalculater.FeatureCalculater):
-    '''
-            计算获得荣誉称号
-    '''
-    def setLevel(self):
-        pass
-        
+
     @MyLogger.myException
     def calculate(self):
+        '''
+                计算获得荣誉称号
+        '''
         sql = "update students set avg_hornorary_times=0"
         self.executer.execute(sql)
         sql = "select student_num,left(grant_year,4),count(*) from hornorary_handled group by student_num,left(grant_year,4)"
@@ -41,5 +39,5 @@ class hornorary_title1(FeatureCalculater.FeatureCalculater):
             self.executer.execute(sql,(re[2],(re[0]+re[1])))
         
     @MyLogger.myException
-    def rankit(self):
+    def cluster(self):
         pass

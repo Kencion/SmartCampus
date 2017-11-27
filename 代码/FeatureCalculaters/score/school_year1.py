@@ -5,11 +5,12 @@ from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
 class school_year1(FeatureCalculater.FeatureCalculater):
-    '''
-            计算获得奖学金的金额
-    '''
+
     @MyLogger.myException
     def calculate(self):
+        '''
+                计算获得奖学金的金额
+        '''
         sql = "select DISTINCT stu_num,left(school_year, 9) from score"
         self.executer.execute(sql)
         result = self.executer.fetchall()

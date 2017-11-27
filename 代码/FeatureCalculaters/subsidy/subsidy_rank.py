@@ -7,8 +7,6 @@ from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
 class subsidy_rank(FeatureCalculater.FeatureCalculater):
-    def setLevel(self):
-        pass
         
     @MyLogger.myException
     def calculate(self):
@@ -17,7 +15,7 @@ class subsidy_rank(FeatureCalculater.FeatureCalculater):
         '''
         for school_year in self.school_year:
             student_num = str(self.student_num)
-            sql = "SELECT rank FROM subsidy where student_num = '" + student_num + "' AND grant_year=" + str(school_year)
+            sql = "SELECT rank FROM subsidy_handled where student_num = '" + student_num + "' AND grant_year=" + str(school_year)
             self.executer.execute(sql)
             subsidy_rank = self.executer.fetchone()[0]
             sql = "update students set subsidy_rank ='" + str(subsidy_rank) + "' where student_num='" + student_num + str(school_year) + "'"
@@ -30,7 +28,7 @@ class subsidy_rank(FeatureCalculater.FeatureCalculater):
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]
         
-        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
+        with open(r"Cluster_Feature", "a", encoding='utf8') as f:
             f.write( "subsidy_rank" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")

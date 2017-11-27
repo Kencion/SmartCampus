@@ -1,8 +1,7 @@
 '''
 @author: jack
 '''
-from Tools import *
-from numpy import float16, double, append
+from Tools import MyDataBase, MyLogger
 from sklearn.cluster import KMeans
 import numpy
  
@@ -13,11 +12,11 @@ class FeatureCalculater:
     def __init__(self, database="软件学院"):
         self.db = MyDataBase.MyDataBase(database)
         self.executer = self.db.getExcuter()
-        self.school_year = ['2013', '2014', '2015', '2016', '2017', '2018']  # 一个同学一个学年作为一个记录
+        self.school_year = ['2013', '2014', '2015', '2016', '2017', ]  # 一个同学一个学年作为一个记录
         self.level = None
                  
     def setStudentNum(self, student_num):
-        self.student_num = student_num
+        self.student_num = student_num  # 学号
          
     @MyLogger.myException
     def calculate(self):
@@ -61,16 +60,16 @@ class FeatureCalculater:
             
         maxx = sorted(maxx)
         minn = sorted(minn)
+        center_x = [float(i) for i in center_x]
         cent = sorted(center_x)
-        
         for i in range(len(maxx) - 1):
             if maxx[i] < minn[i + 1]:
                 temp = (maxx[i] + minn[i + 1]) / 2.0
                 minn[i + 1] = (maxx[i] + minn[i + 1]) / 2.0
                 maxx[i] = temp
-        
         return  maxx, minn, cent
-    def afterCalculate(self):
+    
+    def tearDown(self):
         self.db.close()
  
 if __name__ == '__main__':
