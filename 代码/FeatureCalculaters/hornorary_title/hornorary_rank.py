@@ -7,8 +7,6 @@ from Tools import *
 from FeatureCalculaters import FeatureCalculater
 
 class hornorary_rank(FeatureCalculater.FeatureCalculater):
-    def setLevel(self):
-        pass
         
     @MyLogger.myException
     def calculate(self):
@@ -25,6 +23,3 @@ class hornorary_rank(FeatureCalculater.FeatureCalculater):
             hornorary_rank = self.executer.fetchone()[0]
             self.executer.execute("update students set hornorary_rank =%s where student_num=%s" , (hornorary_rank, student_num + school_year))
       
-    @MyLogger.myException
-    def rankit(self):
-        pass

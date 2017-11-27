@@ -9,8 +9,6 @@ class activity_last_time1(FeatureCalculater.FeatureCalculater):
     '''
             计算活动持续时间
     '''
-    def setLevel(self):
-        pass
         
     @MyLogger.myException
     def calculate(self):
@@ -30,21 +28,19 @@ class activity_last_time1(FeatureCalculater.FeatureCalculater):
                 sql = "update students set activity_last_time=%s where student_num=%s "
                 self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(re[1][0:4])))
                 # print((str)(re[1][0:4])+'/'+((str)((int)(re[1][0:4])+1)))
+                
     def cluster(self):
-        sql="SELECT max(activity_last_time) FROM students"
+        sql = "SELECT max(activity_last_time) FROM students"
         self.executer.execute(sql)
-        result=self.executer.fetchone()[0]
-        max_num=int(result)
-        maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='activity_last_time', clusters=4, sql="SELECT activity_last_time FROM students WHERE activity_last_time != 0")
+        result = self.executer.fetchone()[0]
+        max_num = int(result)
+        maxx, minn, cent = FeatureCalculater.FeatureCalculater.cluster(self, featureName='activity_last_time', clusters=4, sql="SELECT activity_last_time FROM students WHERE activity_last_time != 0")
         maxx[len(maxx) - 1] = max_num
         
-        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
-            f.write( "activity_last_time字段" + '\n')
+        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
+            f.write("activity_last_time字段" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")
             for i in range(len(cent)):
                 f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
             f.close()     
-    @MyLogger.myException
-    def rankit(self):
-        pass

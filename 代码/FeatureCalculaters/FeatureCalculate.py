@@ -39,14 +39,15 @@ claculaters = [
 #     failed_num1.failed_num1(),
 #     GPA1.GPA1(),
 #     score_rank1.score_rank1(),
-    score1.score1(),
+#     score1.score1(),
 #     is_social_practice_great1.is_social_practice_great1(),
 #     social_practice1.social_practice1(),
          
     ]
      
 for claculater in tqdm(claculaters):
-    claculater.calculate()
+#     claculater.calculate()
+    claculater.cluster()
           
 # 关闭数据库
 for claculater in tqdm(claculaters):
