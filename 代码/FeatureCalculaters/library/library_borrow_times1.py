@@ -34,13 +34,13 @@ class library_borrow_times1(FeatureCalculater.FeatureCalculater):
         
     @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='library_borrow_times', clusters=4, sql="SELECT library_borrow_times FROM students WHERE library_borrow_times != 0")
+        maxx, minn, cent = FeatureCalculater.FeatureCalculater.cluster(self, featureName='library_borrow_times', clusters=4, sql="SELECT library_borrow_times FROM students WHERE library_borrow_times != 0")
         sql = "SELECT max(library_borrow_times) FROM students"
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]
         
-        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
-            f.write( "library_borrow_times" + '\n')
+        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
+            f.write("library_borrow_times" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")
             for i in range(len(cent)):

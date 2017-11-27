@@ -22,10 +22,10 @@ SGD = SGD.SGD().getBestOne('SGD')
 SVC = SVC.SVC().getBestOne('SVC')
   
 # final classifier
-finalClassifier = VotingClassifier(estimators=[
-       ('0', DecesionTree), ('1', ExtraTrees), ('2', GaussianNB), ('4', GaussianProcesses), ('6', MLP), ('7', NearestNeighbors), \
-        ('8', RandomForest), ('9', SGD)],  # ('5', SVC), ],
-       voting='soft')
+# finalClassifier = VotingClassifier(estimators=[
+#        ('0', DecesionTree), ('1', ExtraTrees), ('2', GaussianNB), ('4', GaussianProcesses), ('6', MLP), ('7', NearestNeighbors), \
+#         ('8', RandomForest), ('9', SGD)],  # ('5', SVC), ],
+#        voting='soft')
 finalClassifier = VotingClassifier(estimators=[
        ('0', DecesionTree), \
         ('1', ExtraTrees), ('2', SGD), ('4', SVC), \

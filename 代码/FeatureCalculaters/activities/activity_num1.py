@@ -28,7 +28,7 @@ class activity_num1(FeatureCalculater.FeatureCalculater):
         maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='activity_num', clusters=4, sql="SELECT activity_num FROM students WHERE activity_num != 0")
         maxx[len(maxx) - 1] = max_num
         
-        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
+        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
             f.write( "activity_num字段" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")

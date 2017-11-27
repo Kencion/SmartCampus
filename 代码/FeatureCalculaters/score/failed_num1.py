@@ -46,7 +46,7 @@ class failed_num1(FeatureCalculater.FeatureCalculater):
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]
         
-        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
+        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
             f.write( "failed_num" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")

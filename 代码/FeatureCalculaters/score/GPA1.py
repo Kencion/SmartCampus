@@ -17,7 +17,6 @@ class GPA1(FeatureCalculater.FeatureCalculater):
         self.executer.execute(sql)
         e = self.executer.fetchall()
         for i in e:
-        #     print(str(i[0]))
             stu_num = str(i[0])
             grade = int(i[1])
             for year in range(grade,2017):
@@ -29,19 +28,15 @@ class GPA1(FeatureCalculater.FeatureCalculater):
                 year1 = str(year)+'/'+str(year+1)+'-1'
                 year2 = str(year)+'/'+str(year+1)+'-2'
                 sql = "select GPA,course_credit from score where stu_num = '"+stu_num+"' and school_year = '"+year1+"'"   
-        #         print(sql)
                 self.executer.execute(sql)
                 stu1 = self.executer.fetchone()
-        #         print(stu1)
                 
                 if stu1 is not None and stu1[0] is not None:
                     GPA1 = float(stu1[0])
                     credit1 = int(stu1[1])
                 sql = "select GPA,course_credit from score where stu_num = '"+stu_num+"' and school_year = '"+year2+"'"  
-        #         print(sql)
                 self.executer.execute(sql)
                 stu2 = self.executer.fetchone()
-        #         print(stu2)
                 if stu2 is not None and stu2[0] is not None:
                     GPA2 = float(stu2[0])
                     credit2 = int(stu2[1])
@@ -49,10 +44,6 @@ class GPA1(FeatureCalculater.FeatureCalculater):
                     GPA = (GPA1*credit1+GPA2*credit2)/(credit1+credit2)
                     sql = "update students set GPA = "+str(GPA)+" where student_num = '"+stu_num+str(year)+"'"
                     self.executer.execute(sql)
-#                 else:
-#                     print("err!")
-#                     print(stu_num)
-#         print("ok")
             
     @MyLogger.myException
     def cluster(self):
@@ -61,7 +52,7 @@ class GPA1(FeatureCalculater.FeatureCalculater):
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]
         
-        with open(r"FeatureCalculaters/聚类对应的字段区间", "a", encoding='utf8') as f:
+        with open(r"聚类对应的字段区间", "a", encoding='utf8') as f:
             f.write( "gpa" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")
