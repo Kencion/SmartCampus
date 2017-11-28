@@ -4,7 +4,7 @@ Created on 2017年11月23日
 @author: yzh
 '''
 
-from Tools import *
+from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
 
 class is_social_practice_great1(FeatureCalculater.FeatureCalculater):

@@ -3,7 +3,7 @@ Created on 2017年11月22日
 
 @author: yzh
 '''
-from Tools import *
+from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
 
 class failed_num1(FeatureCalculater.FeatureCalculater):

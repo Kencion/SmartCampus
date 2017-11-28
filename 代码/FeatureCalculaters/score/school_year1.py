@@ -1,7 +1,7 @@
 '''
 @author: yhj
 '''
-from Tools import *
+from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
 
 class school_year1(FeatureCalculater.FeatureCalculater):

@@ -2,11 +2,8 @@
  
 @author: yzh
 '''
-from Tools import *
+from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
-from numpy import float16, double, append
-from sklearn.cluster import KMeans
-import numpy
  
 class score1(FeatureCalculater.FeatureCalculater):
     

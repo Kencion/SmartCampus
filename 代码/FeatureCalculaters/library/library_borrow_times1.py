@@ -1,7 +1,7 @@
 '''
 @author: yhj
 '''
-from Tools import *
+from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
 
 class library_borrow_times1(FeatureCalculater.FeatureCalculater):

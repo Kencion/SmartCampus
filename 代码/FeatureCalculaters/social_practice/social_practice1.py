@@ -3,7 +3,7 @@ Created on 2017年11月22日
 
 @author: yzh
 '''
-from Tools import *
+from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
 
 class social_practice1(FeatureCalculater.FeatureCalculater):
