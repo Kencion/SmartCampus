@@ -2,7 +2,7 @@
 Created on 2017年11月21日
 @author: yzh
 '''
-from Tools import *
+from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
 
 class GPA1(FeatureCalculater.FeatureCalculater):

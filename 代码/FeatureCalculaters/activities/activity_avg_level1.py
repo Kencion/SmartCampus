@@ -1,7 +1,7 @@
 '''
 @author: yhj
 '''
-from Tools import *
+from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
 from boto.sdb.db.sequence import double
 

@@ -9,6 +9,12 @@ from sklearn.neighbors import NearestNeighbors
 from FeatureCalculaters.Student  import Student
 from Tools import MyDataBase
 from numpy import mat
+# import Tools.Random_Data as rd
+# import pymysql.cursors
+# import time
+# from datetime import date, datetime
+# from boto.sdb.db.sequence import double
+# from Tools.Random_Data import  Random_Data
 
 def createTrainDataSet():
     '''
@@ -95,3 +101,14 @@ def saveResult(students, results, filename):
                 
             f.write(str(student.getStudentId()) + "," + str(temp) + "\n")
 
+# def get_train_data_and_test_data():
+#     #从数据库提取特征属性
+#     sql="select subsidy_amount,scholarship_amount from students where subsidy_amount!=0 and scholarship_amount!=0"
+#     cursor.execute(sql)
+#     result=cursor.fetchall()
+#     #从数据库获取分类标签
+#     sql="select distinct(scholarship_amount) from students"
+#     cursor.execute(sql)
+#     label=cursor.fetchall()
+#     #获取训练集和验证集
+#     rd.Random_Data.group(result, label, 0.1)

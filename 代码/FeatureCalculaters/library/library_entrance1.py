@@ -3,7 +3,7 @@ Created on 2017年11月21日
 
 @author: jack
 '''
-from Tools import *
+from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
 
 class library_entrance1(FeatureCalculater.FeatureCalculater):

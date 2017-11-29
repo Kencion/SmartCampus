@@ -3,7 +3,7 @@ Created on 2017年11月23日
 
 @author: jack
 '''
-from Tools import *
+from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
 
 class hornorary_times(FeatureCalculater.FeatureCalculater):
