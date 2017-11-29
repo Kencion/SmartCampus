@@ -1,12 +1,12 @@
 '''
-Created on 2017年11月22日
+Created on 2017年11月29日
 
 @author: yzh
 '''
 from Tools import MyLogger
 from FeatureCalculaters import FeatureCalculater
 
-class failed_num1(FeatureCalculater.FeatureCalculater):
+class failed_pass_num(FeatureCalculater.FeatureCalculater):
     
     @MyLogger.myException
     def calculate(self):
@@ -49,22 +49,25 @@ class failed_num1(FeatureCalculater.FeatureCalculater):
                     
                 failed_num = failed_num1 + failed_num2
                 pass_num = pass_num1 + pass_num2
-                sql = "update students set failed_num = "+str(failed_num)+" where student_num = '"+stu_num+str(year)+"'"
-#                 sql = "update students set failed_pass_num = "+str(pass_num)+" where student_num = '"+stu_num+str(year)+"'"
+                #sql = "update students set failed_num = "+str(failed_num)+" where student_num = '"+stu_num+str(year)+"'"
+                sql = "update students set failed_pass_num = "+str(pass_num)+" where student_num = '"+stu_num+str(year)+"'"
 #                 print(sql)
                 self.executer.execute(sql)
             
     @MyLogger.myException
     def cluster(self):
         maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='failed_num', clusters=4, sql="SELECT failed_num FROM students WHERE failed_num != 0")
-        sql = "SELECT max(failed_num) FROM students"
+        sql = "SELECT max(failed_pass_num) FROM students"
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]
         
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write( "failed_num" + '\n')
+            f.write( "failed_pass_num" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")
             for i in range(len(cent)):
                 f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
             f.close()
+
+# failed_pass_num1 = failed_pass_num()
+# failed_pass_num1.calculate()
