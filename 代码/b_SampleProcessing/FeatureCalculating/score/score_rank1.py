@@ -40,7 +40,7 @@ class score_rank1(FeatureCalculater):
             if(stu2 is not None):
                 rank2 = float(stu2[0])
             rank = (rank1 + rank2) / 2
-            print(rank)
+#             print(rank)
             sql = "update students set score_rank = " + str(rank) + " where student_num = '" + stu_num + school_year + "'"
             self.executer.execute(sql)
             
