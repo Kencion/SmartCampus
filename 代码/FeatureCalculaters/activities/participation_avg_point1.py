@@ -2,10 +2,10 @@
 @author: yhj
 '''
 from Tools import MyLogger
-from FeatureCalculaters import FeatureCalculater
+from FeatureCalculaters.FeatureCalculater import FeatureCalculater
 from boto.sdb.db.sequence import double
 
-class participation_avg_point1(FeatureCalculater.FeatureCalculater):
+class participation_avg_point1(FeatureCalculater):
     
     @MyLogger.myException
     def calculate(self):
@@ -25,7 +25,7 @@ class participation_avg_point1(FeatureCalculater.FeatureCalculater):
         self.executer.execute(sql)
         result=self.executer.fetchone()[0]
         max_num=int(result)
-        maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='participation_avg_point', clusters=4, sql="SELECT participation_avg_point FROM students WHERE participation_avg_point != 0")
+        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='participation_avg_point', clusters=4, sql="SELECT participation_avg_point FROM students WHERE participation_avg_point != 0")
         maxx[len(maxx) - 1] = max_num
         
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:

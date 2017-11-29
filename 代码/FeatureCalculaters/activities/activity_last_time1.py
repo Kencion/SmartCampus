@@ -2,10 +2,10 @@
 @author: yhj
 '''
 from Tools import MyLogger
-from FeatureCalculaters import FeatureCalculater
+from FeatureCalculaters.FeatureCalculater import FeatureCalculater
 from boto.sdb.db.sequence import double
 
-class activity_last_time1(FeatureCalculater.FeatureCalculater):
+class activity_last_time1(FeatureCalculater):
     '''
             计算活动持续时间
     '''
@@ -35,7 +35,7 @@ class activity_last_time1(FeatureCalculater.FeatureCalculater):
         self.executer.execute(sql)
         result = self.executer.fetchone()[0]
         max_num = int(result)
-        maxx, minn, cent = FeatureCalculater.FeatureCalculater.cluster(self, featureName='activity_last_time', clusters=4, sql="SELECT activity_last_time FROM students WHERE activity_last_time != 0")
+        maxx, minn, cent = FeatureCalculater.cluster(self, featureName='activity_last_time', clusters=4, sql="SELECT activity_last_time FROM students WHERE activity_last_time != 0")
         maxx[len(maxx) - 1] = max_num
         
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:
