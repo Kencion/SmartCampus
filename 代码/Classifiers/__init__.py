@@ -1,2 +1,0 @@
-# 这个里面是分类器都要用到的类
-# 其中FeatureSelection和VotingClassifier是所有模块分类器的父类
