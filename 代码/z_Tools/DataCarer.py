@@ -6,8 +6,8 @@ Jack:建议写成一个类，比较帅
 '''
 import random
 from sklearn.neighbors import NearestNeighbors
-from FeatureCalculaters.Student  import Student
-from Tools import MyDataBase
+from b_SampleProcessing.Student  import Student
+from z_Tools import MyDataBase
 from numpy import mat
 # import Tools.Random_Data as rd
 # import pymysql.cursors

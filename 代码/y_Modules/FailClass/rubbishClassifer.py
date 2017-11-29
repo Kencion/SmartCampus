@@ -11,8 +11,8 @@ from sklearn.ensemble import VotingClassifier
 from sklearn.feature_selection import SelectFromModel
 from sklearn.externals import joblib
 from numpy import mat
-from Tools import DataCarer
-from Classifiers.SingleClassifiers import *
+from z_Tools import DataCarer
+from c_Estimating.Classification.SingleClassifiers import *
 
 class StrongerClassifer():
     

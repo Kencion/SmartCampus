@@ -7,7 +7,7 @@ Modified on 2017年11月23日
 '''
 
 import sys, logging.config
-from Tools.__init__ import get_log_open, get_log_file
+from z_Tools.__init__ import get_log_open, get_log_file
 
 class MyLogger:
     '''

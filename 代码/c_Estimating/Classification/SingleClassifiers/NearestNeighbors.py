@@ -3,7 +3,7 @@ Created on 2017年7月22日
 随机梯度下降
 @author: zhenglongtian
 '''
-from Classifiers.SingleClassifiers.SingleClassfier import SingleClassifier
+from c_Estimating.Classification.SingleClassifiers.SingleClassfier import SingleClassifier
 from sklearn.neighbors import NearestNeighbors
 
 class NearestNeighbors(SingleClassifier):

@@ -5,7 +5,7 @@ Modified on 2017年11月23日
 @author: jack
 '''
 import pymysql
-from  Tools.__init__ import get_database_name, get_database_ip, get_database_pwd, get_database_user
+from  z_Tools.__init__ import get_database_name, get_database_ip, get_database_pwd, get_database_user
 
 class MyDataBase:
     '''

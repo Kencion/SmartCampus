@@ -1,9 +1,10 @@
-import Data.Datasample_layering.Random_Data as rd
+import a_DataProssing.Datasample_layering.Random_Data as rd
 import pymysql.cursors
 import time
 from datetime import date, datetime
 from boto.sdb.db.sequence import double
-from Data.Datasample_layering.Random_Data import  Random_Data
+from a_DataProssing.Datasample_layering.Random_Data import  Random_Data
+
 class test(Random_Data):
     def calcute(self):
         train_data=[]
