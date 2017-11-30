@@ -10,15 +10,15 @@ class ClassFailingWarning():
     
     def __init__(self):
         from sklearn.pipeline import Pipeline
-        from b_SampleProcessing.Dimension_Reduction import Pca_Learn
-        from b_SampleProcessing.Dimension_Reduction import Pca_Test
+        from b_SampleProcessing.Dimension_Reduction.Pca_Learn import Pca_Learn
+        from b_SampleProcessing.Dimension_Reduction.Pca_Test import Pca_Test
         
         self.getData()
         preProcesser1, preProcesser2 = self.getPreProcesser()
         featureSelector, estimater, evalueter = self.getFeatureSelector(), self.getEstimater(), self.getmodelEvalueter()
         preProcesser1.fit_transform(self.X_train)
         preProcesser2.fit_transform(self.X_train)
-        featureSelector.fit_transform(self.X_train)
+        featureSelector.fit_transform(self.X_train,self.Y_train)
         p=Pca_Test()
         n=p.pca_2(self.X_train,0.99) 
         p.Train_dataSet(self.X_train, n)
@@ -60,7 +60,7 @@ class ClassFailingWarning():
                 ('MySelectKBset', MySelectKBset().selector),
                 ('MySelectPercentile', MySelectPercentile().selector) 
                 ],
-                n_jobs=2)
+                n_jobs=1)
         
     def getEstimater(self):
         '''

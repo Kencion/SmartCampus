@@ -1,6 +1,6 @@
 '''
 Created on 2017年11月29日
-  
+   
 @author: yhj
 '''
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
@@ -8,7 +8,7 @@ import random
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
 from sqlalchemy.orm.relationships import remote
-  
+   
 class Data_Imbalance_Processing(FeatureCalculater):
     def __init__(self,samples,N=10,k=3):
         FeatureCalculater.__init__(self)
@@ -64,7 +64,7 @@ class Data_Imbalance_Processing(FeatureCalculater):
         sql="select count(*) from students_rank where {0}={1}"
         self.executer.execute(sql.format(feature, value))
         num=self.executer.fetchone()[0]
-        samples=[i[1:-1] for i in samples]
+        samples=[i[1:] for i in samples]
         return samples,num
     def _get_data(self,lists,proportion,feature):
         lists=sorted(lists, key=lambda x:x[1])#根据各类别比例排序
@@ -86,8 +86,3 @@ if __name__=='__main__':
     dip=Data_Imbalance_Processing(a,N=100)
     lists,proportion=dip._get_proportion('score')#分类属性
     dip._get_data(lists, proportion,'score')
-
-
-# a=[[1,2,3],[2,3,4]]
-# a=[i[0:-1] for i in a]
-# print(a)
