@@ -35,22 +35,23 @@ def createTrainDataSet():
     dataSet = mat(dataSet)
     return mat(dataSet[:, :-1]), mat(dataSet[:, -1])
   
-def createValidateDataSet():
+def createValidateDataSet(column='score', year='2016'):
     '''
     get validate data
     '''
     db = MyDataBase.MyDataBase("软件学院")
-    conn, executer = db.getConn(), db.getExcuter()
+    executer = db.getExcuter()
     
     # get all the students
-    executer.execute("select * from students_rank")
+    sql = "select * from students_rank where {0} =0 and right(student_num,4) in('{1}','2017')"
+    executer.execute(sql.format(column, year))
     students, dataSet = [], []
     for i in executer.fetchall():
         student = Student(student_num=i[0], features=list(i[1:-1]), label=i[-1])
         dataSet.append(student.getAll())
         students.append(student)
         
-    conn.close();executer.close()
+    executer.close()
     
     dataSet = mat(dataSet)
     

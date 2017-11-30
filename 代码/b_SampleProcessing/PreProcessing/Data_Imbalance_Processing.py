@@ -1,11 +1,9 @@
 '''
 Created on 2017年11月29日
 
-@author: LENOVO
+@author: yhj
 '''
-from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
-from boto.sdb.db.sequence import double
 import random
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
