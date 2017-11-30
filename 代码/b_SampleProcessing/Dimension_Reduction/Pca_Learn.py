@@ -1,7 +1,7 @@
 from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 from boto.sdb.db.sequence import double
-import Pca_Test
+from b_SampleProcessing.Dimension_Reduction.Pca_Test import Pca_Test
 import numpy as np 
 class Pca_Learn(FeatureCalculater): 
     def get_traindataSet(self):
