@@ -30,6 +30,7 @@ class score1(FeatureCalculater):
                 if stu1 is not None and stu1[0] is not None:
                     score1 = float(stu1[0])
                     credit1 = int(stu1[1])
+                    
                 sql = "select score,course_credit from score where stu_num = '" + stu_num + "' and school_year = '" + year2 + "'"  
                 self.executer.execute(sql)
                 stu2 = self.executer.fetchone()
@@ -40,10 +41,11 @@ class score1(FeatureCalculater):
                     score = (score1 * credit1 + score2 * credit2) / (credit1 + credit2)
                     sql = "update students set score = " + str(score) + " where student_num = '" + stu_num + str(year) + "'"
                     self.executer.execute(sql)
+        print("ok")
         
     @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='score', clusters=4, sql="SELECT score FROM students WHERE score != 0")
+        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='score', clusters=4, sql="SELECT score FROM students WHERE score != NULL")
         maxx[len(maxx) - 1] = 100
         
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:
@@ -53,3 +55,5 @@ class score1(FeatureCalculater):
             for i in range(len(cent)):
                 f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
             f.close()
+# score = score1()
+# score.calculate()
