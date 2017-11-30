@@ -10,6 +10,7 @@ class ClassFailingWarning():
     
     def __init__(self):
         from sklearn.pipeline import Pipeline
+        
         self.getData()
         preProcesser1, preProcesser2 = self.getPreProcesser()
         featureSelector, estimater, evalueter = self.getFeatureSelector(), self.getEstimater(), self.getmodelEvalueter()
