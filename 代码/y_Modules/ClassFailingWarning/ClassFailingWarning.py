@@ -11,14 +11,19 @@ class ClassFailingWarning():
     def __init__(self):
         from sklearn.pipeline import Pipeline
         self.getData()
-        featureSelector, estimater, evalueter = self.getFeatureSelector(), self.getEstimater(), self.getmodelEvalueting()
+        preProcesser1, preProcesser2 = self.getPreProcesser()
+        featureSelector, estimater, evalueter = self.getFeatureSelector(), self.getEstimater(), self.getmodelEvalueter()
         hahaha = Pipeline(
-            [('featureSelector', featureSelector),
-              ('estimater', estimater)
-                ]
+            [   ('preProcesser1', preProcesser1),
+                ('preProcesser2', preProcesser2),
+                ('featureSelector', featureSelector),
+                ('estimater', estimater)                ]
             )
         hahaha.fit(self.X_train, self.Y_train)
-        print(hahaha.score(self.X_train, self.Y_train))
+        print("准确率", hahaha.score(self.X_train, self.Y_train))
+        for student, score in zip(self.students, hahaha.predict(self.X_test)):
+            print(student.getStudent_num(), "----", score)
+            
     
     def getData(self):
         """
@@ -28,7 +33,19 @@ class ClassFailingWarning():
         self.X_train, self.Y_train = DataCarer.createTrainDataSet()  
         self.students, self.X_test = DataCarer.createValidateDataSet()
         
+    def getPreProcesser(self):
+        '''
+        获得特征预处理器
+        '''
+        from b_SampleProcessing.PreProcessing.MyMinMaxScaler import MyMinMaxScaler
+        from b_SampleProcessing.PreProcessing.MyImputer import MyImputer
+        
+        return MyImputer().transformer, MyMinMaxScaler().transformer
+        
     def getFeatureSelector(self):
+        '''
+        获得特征选择器
+        '''
         from b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
         from b_SampleProcessing.FeatureSelection.MySelectPercentile import MySelectPercentile
         from sklearn.pipeline import FeatureUnion
@@ -41,10 +58,17 @@ class ClassFailingWarning():
                 n_jobs=2)
         
     def getEstimater(self):
+        '''
+        获得预测器，这里是分类器
+        '''
         from c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
-        return MyDecesionTree().clf
+        
+        return MyDecesionTree().estimater
     
-    def getmodelEvalueting(self):
+    def getmodelEvalueter(self):
+        '''
+        获得模型评估器，主要是评估算法正确率
+        '''
         pass
 
 

@@ -3,15 +3,16 @@ Created on 2017年11月22日
 
 @author: yzh
 '''
-from Tools import MyLogger
-from FeatureCalculaters import FeatureCalculater
 
-class failed_num1(FeatureCalculater.FeatureCalculater):
+from z_Tools import MyLogger
+from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+
+class failed_num1(FeatureCalculater):
     
     @MyLogger.myException
     def calculate(self):
         '''
-                            计算挂科重修过的数目
+                            计算挂科的数目
         '''
         sql = "select distinct(stu_num),grade from score"
         self.executer.execute(sql)
@@ -56,7 +57,7 @@ class failed_num1(FeatureCalculater.FeatureCalculater):
             
     @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.FeatureCalculater.cluster(self,featureName='failed_num', clusters=4, sql="SELECT failed_num FROM students WHERE failed_num != NULL")
+        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='failed_num', clusters=4, sql="SELECT failed_num FROM students WHERE failed_num != NULL")
         sql = "SELECT max(failed_num) FROM students"
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]

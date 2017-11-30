@@ -3,12 +3,12 @@ Created on 2017年7月22日
 
 @author: zhenglongtian
 '''
-from sklearn import tree
 
 class MyDecesionTree():
     def __init__(self, class_weight=None):
-        # weak classifier
-        self.clf = tree.DecisionTreeClassifier(
+        from sklearn import tree
+        
+        self.estimater =  tree.DecisionTreeClassifier(
             criterion='gini',
             splitter='best',
             max_depth=None,

@@ -42,11 +42,12 @@ class GPA1(FeatureCalculater):
                 if((credit1+credit2)!=0):
                     GPA = (GPA1*credit1+GPA2*credit2)/(credit1+credit2)
                     sql = "update students set GPA = "+str(GPA)+" where student_num = '"+stu_num+str(year)+"'"
+#                     print(sql)
                     self.executer.execute(sql)
-            
+#         print("ok")   
     @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='gpa', clusters=4, sql="SELECT gpa FROM students WHERE gpa != 0")
+        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='gpa', clusters=4, sql="SELECT gpa FROM students WHERE gpa != NULL")
         sql = "SELECT max(gpa) FROM students"
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]
@@ -58,3 +59,5 @@ class GPA1(FeatureCalculater):
             for i in range(len(cent)):
                 f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
             f.close()
+# gpa = GPA1()
+# gpa.calculate()
