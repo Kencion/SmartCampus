@@ -11,7 +11,8 @@ class Failed_failed_num(FeatureCalculater):
     @MyLogger.myException
     def calculate(self):
         '''
-                计算failed_failed_num
+                            计算failed_failed_num：挂科重修后任然没通过的数目
+                            从score表中取出信息，按照score表中的学号索取到students表的学号，再将挂科信息填充到students表中。
         '''
         sql = "select student_num,failed_num,failed_pass_num from students"
         self.executer.execute(sql)
