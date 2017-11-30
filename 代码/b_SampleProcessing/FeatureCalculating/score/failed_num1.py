@@ -13,6 +13,7 @@ class failed_num1(FeatureCalculater):
     def calculate(self):
         '''
                             计算挂科的数目
+                            从score表中取出信息，按照score表中的学号索取到students表的学号，再将挂科信息填充到students表中。
         '''
         sql = "select distinct(stu_num),grade from score"
         self.executer.execute(sql)

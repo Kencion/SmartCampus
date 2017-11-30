@@ -10,7 +10,9 @@ class GPA1(FeatureCalculater):
     @MyLogger.myException
     def calculate(self):
         '''
-                计算GPA
+                            计算GPA
+                            从score表中取出信息，按照score表中的学号索取到students表的学号，再将GPA信息填充到students表中。
+        GPA = (GPA1*学分1+GPA2*学分2)/(学分1+学分2)
         '''
         sql = "select distinct(stu_num),grade from score"
         self.executer.execute(sql)
