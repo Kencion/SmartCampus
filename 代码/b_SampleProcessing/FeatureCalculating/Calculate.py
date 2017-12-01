@@ -24,10 +24,10 @@ claculaters1 = [
 #         hornorary_title1.hornorary_title1(),
 #         library_borrow_times1.library_borrow_times1(),
 #         library_entrance1.library_entrance1(),
-        failed_num1.failed_num1(),
-        GPA1.GPA1(),
-        score_rank1.score_rank1(),
-        score1.score1(),
+#         failed_num1.failed_num1(),
+#         GPA1.GPA1(),
+#         score_rank1.score_rank1(),
+#         score1.score1(),
 #         is_social_practice_great1.is_social_practice_great1(),
 #         social_practice1.social_practice1(),
           
@@ -38,7 +38,7 @@ claculaters2 = [
 #     library_study_time.library_study_time(),
 #     library_week_study_time.library_week_study_time(),
 #     scholarship_amount.scholarship_amount(),
-#     scholarship_rank.scholarship_rank(),
+    scholarship_rank.scholarship_rank(),
 #     subsidy_amount.subsidy_amount(),
 #     subsidy_rank.subsidy_rank(),
 #     hornorary_times.hornorary_times(),
@@ -80,10 +80,10 @@ def nTimes():
         claculater.tearDown()
 
 if __name__ == '__main__':
-#     oneTime()
-#     nTimes()
-    for claculater in tqdm(claculaters1):
-            claculater.cluster()
+    oneTime()
+    nTimes()
+#     for claculater in tqdm(claculaters1):
+#             claculater.cluster()
 #             
 #     for claculater in tqdm(claculaters2):
 #             claculater.cluster()

@@ -15,11 +15,13 @@ class library_study_time(FeatureCalculater):
         '''
         student_num = str(self.student_num)
         for school_year in self.school_year:
-            sql = "SELECT sum(seat_time) FROM library_study_time where student_num = '" + student_num + "' AND DAYOFYEAR(select_seat_time)=" + str(school_year)
+            sql = "SELECT sum(seat_time) FROM library_study_time where student_num = '" + student_num + "' AND DATE_FORMAT(select_seat_time,'%Y')=" + str(school_year)
             self.executer.execute(sql)
             library_study_time = self.executer.fetchone()[0]
             if library_study_time == None:
                 library_study_time = 0
+            else:
+                print(library_study_time)
             sql = "update students set library_study_time =" + str(library_study_time) + " where student_num='" + student_num + str(school_year) + "'"
             self.executer.execute(sql)
         
