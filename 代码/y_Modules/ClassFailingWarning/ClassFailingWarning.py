@@ -10,7 +10,6 @@ class ClassFailingWarning():
     
     def __init__(self):
         from sklearn.pipeline import Pipeline
-        from b_SampleProcessing.Dimension_Reduction.Pca_Learn import Pca_Learn
         from b_SampleProcessing.Dimension_Reduction.Pca_Test import Pca_Test
         
         self.getData()
