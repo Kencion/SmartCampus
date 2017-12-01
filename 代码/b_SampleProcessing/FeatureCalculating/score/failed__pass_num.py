@@ -12,6 +12,7 @@ class failed_pass_num(FeatureCalculater):
     def calculate(self):
         '''
                             计算挂科重修过的数目
+                            从score表中取出信息，按照score表中的学号索取到students表的学号，再将成绩信息填充到students表中。
         '''
         sql = "select distinct(stu_num),grade from score"
         self.executer.execute(sql)

@@ -11,6 +11,6 @@
 
 数据/贫困生预测/验证数据/subsidy_final_test.txt
 
-代码/**/logger.log
+**/logger.log
 
 *.pyc

@@ -11,7 +11,7 @@ from z_Tools.__init__ import get_log_open, get_log_file
 
 class MyLogger:
     '''
-    日志类
+            日志类
     '''
 
     def __init__(self, filename=get_log_file()):

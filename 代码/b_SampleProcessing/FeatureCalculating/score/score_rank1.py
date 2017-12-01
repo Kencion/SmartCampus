@@ -12,6 +12,8 @@ class score_rank1(FeatureCalculater):
     def calculate(self):
         '''
                     计算成绩排名
+                    从score表中取出信息，按照score表中的学号索取到students表的学号，再将成绩排名信息填充到students表中。
+        rank = (rank1+rank2)/2 取算术平均
         '''
         sql = "select distinct(stu_num),grade from score"
         self.executer.execute(sql)
