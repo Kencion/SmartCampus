@@ -99,8 +99,6 @@ class Data_Imbalance_Processing(FeatureCalculater):
     @retrun（返回值解释） nparray new_dataSet:获取的新样本总集合
     """
     def _get_data(self,lists,proportion,feature):
-        print(type(lists))
-        print(type(proportion))
         lists=sorted(lists, key=lambda x:x[1])#根据各类别比例排序
         del lists[-1]#删除所占比例最大的元素，因为他不需要你在进行增加样本数
         n=1
