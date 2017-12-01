@@ -6,13 +6,17 @@ Created on 2017年11月24日
 class MyPieple():
     '''
             管道，可以把每个步骤放进来，这样跑起来很方便
-            使用集合模式
+            采用集合模式
     '''
     
     def __init__(self):
-        pass
+        self.sections=[]
     
-    def do(self):
+    def doit(self):
         '''
-                        这一步骤要做的事
+                        把每个段的doit都调用一次
+        @params 
+        @retrun
         '''
+        for section in self.sections:
+            section.doit()

@@ -1,11 +1,11 @@
 '''
-挂科预警模块
+奖学金预测模块
 Created on 2017年7月22日
 Modify on 2017年11月27日
 @author: jack
 '''
 
-class ClassFailingWarning():
+class ScholarshipForcasting():
     
     def __init__(self):
         from sklearn.pipeline import Pipeline
