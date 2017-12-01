@@ -22,7 +22,7 @@ class Pca_Learn(FeatureCalculater):
 if __name__=='__main__':
     pca2=Pca_Learn()
     samples=pca2.get_traindataSet()
-    pca =Pca_Test.Pca_Test()
+    pca =Pca_Test()
     n=pca.pca_2(samples,0.99) 
     samples2=pca2.get_testdataSet()
     #pca.Train_dataSet(samples2, n)
