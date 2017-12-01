@@ -11,7 +11,7 @@ from sqlalchemy.orm.relationships import remote
 from statsmodels.stats.proportion import proportion_confint
 
 class Data_Imbalance_Processing(FeatureCalculater):
-    def __init__(self,samples,N=10,k=5):
+    def __init__(self,samples,N=10,k=1):
         FeatureCalculater.__init__(self)
         self.n_samples,self.n_attrs=samples.shape#获取样本数和属性个数
         self.N=N#根据样本不平衡比例设置一个采样比例以确定采样倍率N
@@ -19,8 +19,8 @@ class Data_Imbalance_Processing(FeatureCalculater):
         self.samples=samples
         self.newindex=0
     def over_sampling(self):
-        #N=int(self.N)#设置样本的采样倍率
-        N=1
+        N=int(self.N)#设置样本的采样倍率
+        #N=1
         self.synthetic = np.zeros((self.n_samples * N, self.n_attrs))#初始化采样样本集
         neighbors=NearestNeighbors(n_neighbors=self.k).fit(self.samples)
         for i in range(len(self.samples)):
@@ -36,12 +36,13 @@ class Data_Imbalance_Processing(FeatureCalculater):
             self.synthetic[self.newindex]=self.samples[i]+gap*dif
             self.newindex+=1
     def _get_proportion(self,feature):
-        sql="select count(*) from students"
+        sql="select count(*) from students_rank"
         self.executer.execute(sql)
         total_num=self.executer.fetchone()[0]
-        sql="select "+feature+",count(*) from students group by "+feature+""
+        sql="select "+feature+",count(*) from students_rank group by "+feature+""
         self.executer.execute(sql)
         result=self.executer.fetchall()
+        print(result)
         #print(result)
         lists = [[] for i in range(len(result))]
         list=[]
@@ -55,21 +56,22 @@ class Data_Imbalance_Processing(FeatureCalculater):
         proportion=round(float(max(list))/3.0)-min(list)
         return lists,proportion#lists表示各类别以及所占比例，proportion表示需要其他类别增加的数量
     def _get_samples(self,feature,value):
-        sql="select * from students where {0}={1}"
+        sql="select student_num,activity_num,hornorary_rank,subsidy_rank from students_rank where {0}={1}"
         self.executer.execute(sql.format(feature, value))
         samples=self.executer.fetchall()
-        sql="select count(*) from students where {0}={1}"
+        sql="select count(*) from students_rank where {0}={1}"
         self.executer.execute(sql.format(feature, value))
         num=self.executer.fetchone()[0]
         return samples,num
     def _get_data(self,lists,proportion,feature):
         lists=sorted(lists, key=lambda x:x[1])#根据各类别比例排序
         del lists[-1]#删除所占比例最大的元素，因为他不需要你在进行增加样本数
+        #print(lists)
         for i in range(len(lists)):
             samples,num=self._get_samples(feature, lists[i][0])#获取某个类别的样本特征数据集
             samples=list(samples)
             samples=np.array(samples)#将元组转换为nparray
-            dip2=Data_Imbalance_Processing(samples,round(float(proportion)/num))
+            dip2=Data_Imbalance_Processing(samples,round(float(proportion)/(num+0.1)))
             new_dataSet=dip2.over_sampling()#新生成的样本集
             print(new_dataSet)
 #             for re in new_dataSet:

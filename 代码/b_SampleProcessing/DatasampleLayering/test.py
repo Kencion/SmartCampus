@@ -1,11 +1,11 @@
-import a_DataProssing.Datasample_layering.Random_Data as rd
+#import b_DatasampleLayering.Random_Data as rd
 import pymysql.cursors
 import time
 from datetime import date, datetime
 from boto.sdb.db.sequence import double
-from a_DataProssing.Datasample_layering.Random_Data import  Random_Data
+#from a_DataProssing.Datasample_layering.Random_Data import  Random_Data
 
-class test(Random_Data):
+class test():
     def calcute(self):
         train_data=[]
         test_data=[]
@@ -26,9 +26,11 @@ class test(Random_Data):
                 sql="select distinct(scholarship_amount) from students"
                 cursor.execute(sql)
                 label=cursor.fetchall()
+                print(type(result))
+                print(type(label))
                 #获取训练集和验证集
-                train_data,test_data=rd.Random_Data.group(self, result, label, 0.1)
-                return train_data,test_data
+                #train_data,test_data=rd.Random_Data.group(self, result, label, 0.1)
+                #return train_data,test_data
         finally:
             conn.close()
 if __name__=='__main__':
