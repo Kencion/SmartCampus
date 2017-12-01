@@ -21,6 +21,7 @@ class Pca_Test(FeatureCalculater):
     def Train_dataSet(self,samples,n):  
         self.pca=PCA(n_components=n,copy=True, whiten=False)
         newData=self.pca.fit_transform(samples,'mle') 
+        print(newData)
     def Test_dataSet(self,samples): 
         newData=self.pca.transform(samples)
     def zeroMean(self,dataMat):      #零均值化       

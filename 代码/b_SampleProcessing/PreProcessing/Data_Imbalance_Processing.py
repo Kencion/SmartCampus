@@ -10,7 +10,11 @@ import numpy as np
 from sqlalchemy.orm.relationships import remote
    
 class Data_Imbalance_Processing(FeatureCalculater):
+<<<<<<< HEAD
+    def __init__(self,samples,N=10,k=1):
+=======
     def __init__(self,samples,N=10,k=3):
+>>>>>>> 55cdcf566b9092adb9818ae5eb6f8c20bae8dc7b
         FeatureCalculater.__init__(self)
         self.n_samples,self.n_attrs=samples.shape#获取样本数和属性个数
         self.N=N#根据样本不平衡比例设置一个采样比例以确定采样倍率N
@@ -45,6 +49,7 @@ class Data_Imbalance_Processing(FeatureCalculater):
         sql="select "+feature+",count(*) from students_rank group by "+feature+""
         self.executer.execute(sql)
         result=self.executer.fetchall()
+        print(result)
         #print(result)
         lists = [[] for i in range(len(result))]
         list=[]
@@ -58,7 +63,11 @@ class Data_Imbalance_Processing(FeatureCalculater):
         proportion=round(float(max(list))/3.0)-min(list)
         return lists,proportion#lists表示各类别以及所占比例，proportion表示需要其他类别增加的数量
     def _get_samples(self,feature,value):
+<<<<<<< HEAD
+        sql="select student_num,activity_num,hornorary_rank,subsidy_rank from students_rank where {0}={1}"
+=======
         sql="select * from students_rank where {0}={1}"
+>>>>>>> 55cdcf566b9092adb9818ae5eb6f8c20bae8dc7b
         self.executer.execute(sql.format(feature, value))
         samples=self.executer.fetchall()
         sql="select count(*) from students_rank where {0}={1}"
@@ -74,8 +83,12 @@ class Data_Imbalance_Processing(FeatureCalculater):
             samples,num=self._get_samples(feature, lists[i][0])#获取某个类别的样本特征数据集
             samples=list(samples)
             samples=np.array(samples)#将元组转换为nparray
+<<<<<<< HEAD
+            dip2=Data_Imbalance_Processing(samples,round(float(proportion)/(num+0.1)))
+=======
             dip2=Data_Imbalance_Processing(samples,round(float(proportion)/num))
 #             print(round(float(proportion)/num))
+>>>>>>> 55cdcf566b9092adb9818ae5eb6f8c20bae8dc7b
             new_dataSet=dip2.over_sampling()#新生成的样本集
         return new_dataSet
 #             for re in new_dataSet:
