@@ -23,7 +23,7 @@ class code_test(unittest.TestCase):
         b = 2
         c = 3
         
-        self.assertEqual(c, self.my_code.plus(a, b))
+        self.assertEqual(str, type('11'))
 
 if __name__ == '__main__':
     unittest.main()

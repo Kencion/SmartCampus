@@ -9,6 +9,7 @@ Created on 2017年11月23日
 from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
+
 class in_out_times(FeatureCalculater):
         
     @MyLogger.myException
@@ -18,11 +19,11 @@ class in_out_times(FeatureCalculater):
         '''
         student_num = str(self.student_num)
         for school_year in self.school_year:
-            self.executer.execute("select count(*) from dorm_entrance where student_num='" + student_num + "' and DATE_FORMAT(record_time,'%Y')='" + school_year + "'")
+            self.executer.execute("select count(*) from dorm_entrance where student_num='{0}' and DATE_FORMAT(record_time,'%Y')='{1}'".format(student_num, school_year))
             in_out_times = self.executer.fetchone()[0]
-            if in_out_times != 0:
-                print(in_out_times)
-            self.executer.execute("update students set in_out_times =%s where student_num=%s" , (int(in_out_times), student_num + school_year))
+            school_year = int(school_year) - 1
+            sql = "update students set in_out_times ='{0}' where student_num='{1}'" .format (int(in_out_times), student_num + str(school_year))
+            self.executer.execute(sql)
 
     @MyLogger.myException
     def cluster(self):

@@ -36,13 +36,13 @@ claculaters1 = [
 # 下面是要执行学生个数次数的
 claculaters2 = [
 #     library_study_time.library_study_time(),
-#     library_week_study_time.library_week_study_time(),
+    library_week_study_time.library_week_study_time(),
 #     scholarship_amount.scholarship_amount(),
-    scholarship_rank.scholarship_rank(),
+#     scholarship_rank.scholarship_rank(),
 #     subsidy_amount.subsidy_amount(),
 #     subsidy_rank.subsidy_rank(),
 #     hornorary_times.hornorary_times(),
-#     in_out_times.in_out_times(),
+    in_out_times.in_out_times(),
 #     hornorary_rank.hornorary_rank(),
     ]
 

@@ -6,6 +6,7 @@ Created on 2017年11月21日
 from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
+
 class library_week_study_time(FeatureCalculater):
 
     @MyLogger.myException
@@ -15,14 +16,12 @@ class library_week_study_time(FeatureCalculater):
         '''
         student_num = str(self.student_num)
         for school_year in self.school_year:
-            sql = "SELECT sum(seat_time) FROM library_study_time where student_num =' " + student_num + "' AND DATE_FORMAT(select_seat_time,'%Y')= " + str(school_year) + " AND DAYOFWEEK(select_seat_time) in (6,7)"
+            sql = "SELECT sum(seat_time),DATE_FORMAT(select_seat_time,'%m') FROM library_study_time where student_num ='{0}' AND DATE_FORMAT(select_seat_time,'%Y')='{1}' AND DAYOFWEEK(select_seat_time) in (6,7)".format(student_num, str(school_year))
             self.executer.execute(sql)
-            print(sql)
-            library_week_study_time = self.executer.fetchone()[0]
+            result = self.executer.fetchone()
+            library_week_study_time, month = result[0], result[1]
             if library_week_study_time == None:
                 library_week_study_time = 0
-            else:
-                print(library_week_study_time)
             sql = "update students set library_week_study_time =" + str(library_week_study_time) + " where student_num='" + student_num + str(school_year) + "'"
             self.executer.execute(sql)
         

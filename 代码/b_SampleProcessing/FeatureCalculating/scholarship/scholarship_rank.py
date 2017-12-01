@@ -20,7 +20,6 @@ class scholarship_rank(FeatureCalculater):
             self.executer.execute(sql)
             try: 
                 scholarship_rank = self.executer.fetchone()[0]
-                print(scholarship_rank)
             except:
                 scholarship_rank = 0
             self.executer.execute("update students set scholarship_rank ='{0}' where student_num='{1}'".format(scholarship_rank, student_num + str(school_year)))
