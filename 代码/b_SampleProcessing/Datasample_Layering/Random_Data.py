@@ -5,7 +5,14 @@ import random
 class Random_Data(object):
     def __init__(self):
         pass
-     
+    """
+            分层抽样函数
+    @params（参数列表）tuple data_set:经过特征工程后选出的特征数据集（要包含分类标签属性）
+    Tuple  label:分类标签（经过去重后的结果）
+    float percent:抽样中测试集占得比例
+    @retrun（返回值解释） list train_data:按比例抽样后得到的训练集，
+                变量类型  test_data:按比例抽样后得到的测试集，
+    """
     def group(self, data_set, label, percent=0.1):
         list=np.zeros([len(label)])
         train_data,test_data=[],[]
@@ -27,7 +34,12 @@ class Random_Data(object):
                 test_data.extend(self.group_testdata_sample(lists[i]))
         train_data=np.array(train_data)  
         return train_data,test_data
-     
+    """
+            提取训练集函数
+    @params（参数列表）list list:标签中某个类别包含的聚合
+    int count:抽取该类别样本的数量
+    @retrun（返回值解释） list result:抽取该类别包含的样本集
+    """ 
     def group_traindata_sample(self,list,count):#提取训练集
         result=[]
         for i in range(len(list)):
@@ -38,7 +50,11 @@ class Random_Data(object):
             if int(count)==0:
                 break
         return result
-     
+    """
+            提取测试集函数
+    @params（参数列表）list list:标签中某个类别包含的聚合
+    @retrun（返回值解释） list result:抽取该类别包含的样本集
+    """ 
     def group_testdata_sample(self,list): #提取验证集
         result=list
         return result 

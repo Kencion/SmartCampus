@@ -36,6 +36,6 @@ class Student():
         @params 
         @retrun list[[]] features_and_labels:[特征,标签]
         '''
-        features_and_labels=self.features.append(self.label)
+        features_and_labels=self.features+[self.label]
         return features_and_labels
     

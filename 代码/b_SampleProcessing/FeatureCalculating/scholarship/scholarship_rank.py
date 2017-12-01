@@ -6,6 +6,7 @@ Created on 2017年11月21日
 from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
+
 class scholarship_rank(FeatureCalculater):
         
     @MyLogger.myException
@@ -15,19 +16,24 @@ class scholarship_rank(FeatureCalculater):
         '''
         for school_year in self.school_year:
             student_num = str(self.student_num)
-            self.executer.execute("SELECT scholarship_type FROM scholarship_handled where student_num =%s AND grant_year=%s", (student_num , school_year))
-            scholarship_rank = self.executer.fetchone()[0]
-            self.executer.execute("update students set scholarship_rank =%s where student_num=", (scholarship_rank, student_num + str(school_year)))
+            sql="SELECT scholarship_type FROM scholarship_handled where student_num ='{0}' AND left(grant_year,4)='{1}'".format(str(student_num) , str(school_year))
+            self.executer.execute(sql)
+            try: 
+                scholarship_rank = self.executer.fetchone()[0]
+                print(scholarship_rank)
+            except:
+                scholarship_rank = 0
+            self.executer.execute("update students set scholarship_rank ='{0}' where student_num='{1}'".format(scholarship_rank, student_num + str(school_year)))
         
     @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='scholarship_rank', clusters=4, sql="SELECT scholarship_rank FROM students WHERE scholarship_rank != 0")
+        maxx, minn, cent = FeatureCalculater.cluster(self, featureName='scholarship_rank', clusters=4, sql="SELECT scholarship_rank FROM students WHERE scholarship_rank != 0")
         sql = "SELECT max(scholarship_rank) FROM students"
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]
         
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write( "scholarship_rank" + '\n')
+            f.write("scholarship_rank" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")
             for i in range(len(cent)):
