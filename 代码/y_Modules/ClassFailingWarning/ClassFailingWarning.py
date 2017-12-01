@@ -19,24 +19,29 @@ class ClassFailingWarning():
         preProcesser1.fit_transform(self.X_train)
         preProcesser2.fit_transform(self.X_train)
         featureSelector.fit_transform(self.X_train,self.Y_train)
+        
         p=Pca_Test()
         n=p.pca_2(self.X_train,0.99) 
+        
         p.Train_dataSet(self.X_train, n)
+        preProcesser1.fit_transform(self.X_test)
+        preProcesser2.fit_transform(self.X_test)
         p.Test_dataSet(self.X_test)
         
         estimater.fit(self.X_train, self.Y_train)
         print("准确率", estimater.score(self.X_train, self.Y_train))
         for student, score in zip(self.students, estimater.predict(self.X_test)):
-            print(student.getStudent_num(), "----", score)
+            if score!=0.0:
+                print(student.getStudent_num(), "----", score)
             
     
     def getData(self):
         """
          get train data and test data
         """
-        from z_Tools import DataCarer
-        self.X_train, self.Y_train = DataCarer.createTrainDataSet()  
-        self.students, self.X_test = DataCarer.createValidateDataSet()
+        from z_Tools.DataCarer import DataCarer
+        self.X_train, self.Y_train = DataCarer().createTrainDataSet()  
+        self.students, self.X_test = DataCarer().createValidateDataSet()
         
     def getPreProcesser(self):
         '''
