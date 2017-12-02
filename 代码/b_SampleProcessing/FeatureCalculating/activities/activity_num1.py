@@ -3,21 +3,32 @@
 '''
 from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
-
+from boto.sdb.db.sequence import double
 class activity_num1(FeatureCalculater):
         
     @MyLogger.myException
     def calculate(self):
         '''
-                计算活动持续时间
+                计算每学年参与活动数量
         '''
-        sql="select stu_num,DATE_FORMAT(Start_time, '%Y'),count(*) from stu_in_activities group by stu_num,DATE_FORMAT(Start_time, '%Y')"
+#         sql="select stu_num,DATE_FORMAT(Start_time, '%Y'),count(*) from stu_in_activities group by stu_num,DATE_FORMAT(Start_time, '%Y')"
+#         self.executer.execute(sql)
+#         result=self.executer.fetchall()
+#         for re in result:
+#             sql="update students set activity_num=%s where student_num=%s"
+#             self.executer.execute(sql,(int(re[2]),re[0]+str(int(re[1])-1)))
+            
+        sql = "select Stu_num,DATE_FORMAT(Start_time, '%Y-%m'),count(*) from stu_in_activities group by stu_num,DATE_FORMAT(Start_time, '%Y-%m')"
         self.executer.execute(sql)
-        result=self.executer.fetchall()
+        result = self.executer.fetchall()
         for re in result:
-            sql="update students set activity_num=%s where student_num=%s"
-            self.executer.execute(sql,(int(re[2]),re[0]+str(int(re[1])-1)))
-
+            re[1].split('-')
+            if int(re[1][6:7]) < 9:
+                sql = "update students set activity_num=activity_num+%s where student_num=%s"
+                self.executer.execute(sql, (int(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
+            else:
+                sql = "update students set activity_num=activity_num+%s where student_num=%s "
+                self.executer.execute(sql, (int(re[2]), str(re[0]) + (str)(re[1][0:4])))
     @MyLogger.myException
     def cluster(self):
         sql="SELECT max(activity_num) FROM students"

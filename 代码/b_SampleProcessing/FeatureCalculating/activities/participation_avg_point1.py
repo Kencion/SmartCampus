@@ -10,14 +10,25 @@ class participation_avg_point1(FeatureCalculater):
     @MyLogger.myException
     def calculate(self):
         '''
-                计算活动持续时间
+                计算活动参与平均分
         '''
-        sql="select stu_num,DATE_FORMAT(Start_time, '%Y'),sum(Participation_point)/count(*) from stu_in_activities group by stu_num,DATE_FORMAT(Start_time, '%Y')"
+#         sql="select stu_num,DATE_FORMAT(Start_time, '%Y'),sum(Participation_point)/count(*) from stu_in_activities group by stu_num,DATE_FORMAT(Start_time, '%Y')"
+#         self.executer.execute(sql)
+#         result=self.executer.fetchall()
+#         for re in result:
+#             sql="update students set participation_avg_point=%s where student_num=%s"
+#             self.executer.execute(sql,(double(re[2]),re[0]+str(int(re[1])-1)))
+        sql = "select Stu_num,DATE_FORMAT(Start_time, '%Y-%m'),sum(Participation_point)/count(*) from stu_in_activities group by stu_num,DATE_FORMAT(Start_time, '%Y-%m')"
         self.executer.execute(sql)
-        result=self.executer.fetchall()
+        result = self.executer.fetchall()
         for re in result:
-            sql="update students set participation_avg_point=%s where student_num=%s"
-            self.executer.execute(sql,(double(re[2]),re[0]+str(int(re[1])-1)))
+            re[1].split('-')
+            if int(re[1][6:7]) < 9:
+                sql = "update students set participation_avg_point=(participation_avg_point+%s)/2 where student_num=%s"
+                self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
+            else:
+                sql = "update students set participation_avg_point=(participation_avg_point+%s)/2 where student_num=%s "
+                self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(re[1][0:4])))
             
     @MyLogger.myException
     def cluster(self):
