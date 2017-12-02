@@ -16,6 +16,11 @@ class FeatureCalculater:
         self.level = None
                  
     def setStudentNum(self, student_num):
+        '''
+                        设置学生学号
+        @params string student_num:学生学号
+        @retrun
+        '''
         self.student_num = student_num  # 学号
          
     @MyLogger.myException
@@ -23,6 +28,8 @@ class FeatureCalculater:
         '''
                         所有子类都要实现这个函数
                         特征值的计算
+        @params 
+        @retrun
         '''
         pass  
      
@@ -31,8 +38,9 @@ class FeatureCalculater:
         '''
                         所有子类都要实现这个函数
                         对特征值进行聚类来归一化处理
+        @params string featureName:特征名字,number clusters:要聚成几类,string sql:会用到的sql语句
+        @retrun
         '''
-        
         # 获得学生的数据
         self.dataSet = []
         count = self.executer.execute(sql)  # count是行数
@@ -70,7 +78,9 @@ class FeatureCalculater:
         return  maxx, minn, cent
     
     def tearDown(self):
+        '''
+        teardown
+        @params string featureName:特征名字,number clusters:要聚成几类,string sql:会用到的sql语句
+        @retrun
+        '''
         self.db.close()
- 
-if __name__ == '__main__':
-    pass

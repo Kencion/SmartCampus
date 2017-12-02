@@ -14,6 +14,7 @@ class avg_stay_out_time(FeatureCalculater):
         for re in result:
             sql="update students set avg_stay_out_time=%s where student_num=%s"
             self.executer.execute(sql,(float(re[1]),re[0]))
+
 if __name__=="__main__":
     a=avg_stay_out_time()
     a.calculate()

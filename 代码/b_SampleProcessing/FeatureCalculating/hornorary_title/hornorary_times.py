@@ -1,13 +1,14 @@
 '''
 Created on 2017年11月23日
-
+ 
 @author: jack
 '''
 from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
+ 
 class hornorary_times(FeatureCalculater):
-        
+         
     @MyLogger.myException
     def calculate(self):
         '''
@@ -15,21 +16,23 @@ class hornorary_times(FeatureCalculater):
         '''
         student_num = str(self.student_num)
         for school_year in self.school_year:
-            self.executer.execute("select count(*) from hornorary_handled where student_num=%s and grant_year=%s", (student_num, school_year + "-" + str(int(school_year) + 1)))
+            sql = "select count(*) from hornorary_handled where student_num='{0}' and left(grant_year,4)='{1}'".format(student_num, school_year)
+            self.executer.execute(sql)
             hornorary_times = self.executer.fetchone()[0]
-            self.executer.execute("update students set hornorary_times =%s where student_num=%s" , (hornorary_times, student_num + school_year))
-    
+            sql = "update students set hornorary_times ={0} where student_num='{1}'".format(hornorary_times, student_num + school_year)
+            self.executer.execute(sql)
+     
     @MyLogger.myException
     def cluster(self):
-        sql="SELECT max(hornorary_times) FROM students"
+        sql = "SELECT max(hornorary_times) FROM students"
         self.executer.execute(sql)
-        result=self.executer.fetchone()[0]
-        max_num=int(result)
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='hornorary_times', clusters=4, sql="SELECT hornorary_times FROM students WHERE hornorary_times != 0")
+        result = self.executer.fetchone()[0]
+        max_num = int(result)
+        maxx, minn, cent = FeatureCalculater.cluster(self, featureName='hornorary_times', clusters=4, sql="SELECT hornorary_times FROM students WHERE hornorary_times != 0")
         maxx[len(maxx) - 1] = max_num
-        
+         
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write( "hornorary_times字段" + '\n')
+            f.write("hornorary_times字段" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")
             for i in range(len(cent)):

@@ -22,7 +22,8 @@ class scholarship_rank(FeatureCalculater):
                 scholarship_rank = self.executer.fetchone()[0]
             except:
                 scholarship_rank = 0
-            self.executer.execute("update students set scholarship_rank ='{0}' where student_num='{1}'".format(scholarship_rank, student_num + str(school_year)))
+            sql="update students set scholarship_rank ='{0}' where student_num='{1}'".format(scholarship_rank, student_num + str(school_year))
+            self.executer.execute(sql)
         
     @MyLogger.myException
     def cluster(self):

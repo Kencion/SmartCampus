@@ -6,6 +6,7 @@ Created on 2017年11月21日
 from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
+
 class subsidy_rank(FeatureCalculater):
         
     @MyLogger.myException
@@ -15,7 +16,7 @@ class subsidy_rank(FeatureCalculater):
         '''
         for school_year in self.school_year:
             student_num = str(self.student_num)
-            sql = "SELECT rank FROM subsidy_handled where student_num = '" + student_num + "' AND grant_year=" + str(school_year)
+            sql = "SELECT rank FROM subsidy_handled where student_num = '{0}' AND grant_year='{1}'".format(student_num , school_year)
             self.executer.execute(sql)
             subsidy_rank = self.executer.fetchone()[0]
             sql = "update students set subsidy_rank ='" + str(subsidy_rank) + "' where student_num='" + student_num + str(school_year) + "'"

@@ -26,7 +26,7 @@ class avg_out_time(FeatureCalculater):
 #             sql="update dorm_entrance_handled set max_day_in_time=%s where student_num=%s and date=%s"
 #             self.executer.execute(sql,(float(r[3]),r[0]+str(int(r[1])-1),r[2]))
          
-          #根据出门情况，用平均值补进门时间的缺失值
+        #根据出门情况，用平均值补进门时间的缺失值
         sql="select student_num,avg(max_day_in_time) from dorm_entrance_handled group by student_num,DATE_FORMAT(date, '%Y')"
         self.executer.execute(sql)
         res=self.executer.fetchall()
