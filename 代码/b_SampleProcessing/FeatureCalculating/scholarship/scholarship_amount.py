@@ -18,15 +18,16 @@ class scholarship_amount(FeatureCalculater):
             student_num = str(self.student_num)
             sql = "SELECT amount FROM scholarship_handled where student_num ='{0}' AND left(grant_year,4)='{1}'".format(str(student_num) , school_year)
             self.executer.execute(sql)
-            scholarship_amount = self.executer.fetchone()[0]
-            if scholarship_amount == None:
+            try:
+                scholarship_amount = self.executer.fetchone()[0]
+            except:
                 scholarship_amount = 0
             sql = "update students set scholarship_amount ='{0}' where student_num='{1}'".format(str(scholarship_amount), student_num + school_year)
             self.executer.execute(sql)
         
     @MyLogger.myException
     def cluster(self):
-        maxx, minn, cent = FeatureCalculater.cluster(self, featureName='scholarship_amount', clusters=4, sql="SELECT scholarship_amount FROM students WHERE scholarship_amount != 0")
+        maxx, minn, cent = FeatureCalculater.cluster(self, featureName='scholarship_amount', clusters=2, sql="SELECT scholarship_amount FROM students WHERE scholarship_amount != 0")
         sql = "SELECT max(scholarship_amount) FROM students"
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]

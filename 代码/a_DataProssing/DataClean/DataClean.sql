@@ -67,3 +67,10 @@ UPDATE students
 SET subsidy_rank = '4'
 WHERE
 	subsidy_rank = '不分等';
+######################################
+DELETE
+FROM
+	students
+WHERE
+	in_out_times IN (- 1, 0)
+OR score_rank IN (0, NULL) 

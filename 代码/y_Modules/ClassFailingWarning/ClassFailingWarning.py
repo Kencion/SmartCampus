@@ -44,8 +44,7 @@ class ClassFailingWarning():
         print("准确率", estimater.score(self.X_train, self.Y_train))
         
         for student, score in zip(self.students, estimater.predict(self.X_test)):
-            if score != 0.0:
-                print(student.getStudent_num(), "----", score)
+            print(student.getStudent_num(), "----", score)
             
     
     def getData(self):

@@ -4,11 +4,13 @@
 from z_Tools import MyDataBase, MyLogger
 from sklearn.cluster import KMeans
 import numpy
+
  
 class FeatureCalculater:
     '''
             特征计算器的父类
     '''
+
     def __init__(self, database="软件学院"):
         self.db = MyDataBase.MyDataBase(database)
         self.executer = self.db.getExcuter()
@@ -59,7 +61,8 @@ class FeatureCalculater:
             
         for i in range(len(labels)):
             types[labels[i]].append(self.dataSet[i][0])
-            sql = "update students_rank set " + featureName + "='" + str(labels[i] + 1) + "' where " + featureName + "=" + str(self.dataSet[i][0]) 
+            sql = "update students_rank set " + featureName + "='" + str(labels[i] + 1) + "' where " + featureName + "=" + str(int(self.dataSet[i][0])) 
+            print(sql)
             self.executer.execute(sql)
         
         for i in range(0, clusters):
@@ -72,8 +75,8 @@ class FeatureCalculater:
         cent = sorted(center_x)
         for i in range(len(maxx) - 1):
             if maxx[i] < minn[i + 1]:
-                temp = (maxx[i] + minn[i + 1]) / 2.0
-                minn[i + 1] = (maxx[i] + minn[i + 1]) / 2.0
+                temp = (float(maxx[i]) + float(minn[i + 1])) / 2.0
+                minn[i + 1] = (float(maxx[i]) + float(minn[i + 1])) / 2.0
                 maxx[i] = temp
         return  maxx, minn, cent
     

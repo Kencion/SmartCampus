@@ -19,9 +19,14 @@ class in_out_times(FeatureCalculater):
         '''
         student_num = str(self.student_num)
         for school_year in self.school_year:
-            self.executer.execute("select count(*) from dorm_entrance where student_num='{0}' and DATE_FORMAT(record_time,'%Y')='{1}'".format(student_num, school_year))
-            in_out_times = self.executer.fetchone()[0]
-            school_year = int(school_year) - 1
+            self.executer.execute("select count(*),DATE_FORMAT(record_time,'%m') from dorm_entrance where student_num='{0}' and DATE_FORMAT(record_time,'%Y')='{1}'".format(student_num, school_year))
+            try:
+                result = self.executer.fetchone()[0]
+                in_out_times, month = result[0], result[1]
+                if int(month) < 9:
+                    school_year = int(school_year) - 1
+            except:
+                in_out_times = 0
             sql = "update students set in_out_times ='{0}' where student_num='{1}'" .format (int(in_out_times), student_num + str(school_year))
             self.executer.execute(sql)
 

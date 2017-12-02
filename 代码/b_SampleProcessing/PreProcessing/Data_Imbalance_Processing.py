@@ -15,7 +15,7 @@ class Data_Imbalance_Processing(FeatureCalculater):
     int N:采样倍率N(根据最少类)
     int K：k邻近个点
     """
-    def __init__(self,samples,N=10,k=3):
+    def __init__(self,samples,N=10,k=1):
         FeatureCalculater.__init__(self)
         self.n_samples,self.n_attrs=samples.shape#获取样本数和属性个数
         self.N=N#根据样本不平衡比例设置一个采样比例以确定采样倍率N

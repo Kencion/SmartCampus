@@ -14,12 +14,10 @@ class avg_stay_out_time(FeatureCalculater):
         for re in result:
             sql="update students set avg_stay_out_time=%s where student_num=%s"
             self.executer.execute(sql,(float(re[1]),re[0]))
-<<<<<<< HEAD
 
 if __name__=="__main__":
     a=avg_stay_out_time()
     a.calculate()
-=======
     @MyLogger.myException
     def cluster(self):
         sql = "SELECT max(avg_stay_out_time) FROM students"
@@ -36,4 +34,3 @@ if __name__=="__main__":
             for i in range(len(cent)):
                 f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
             f.close() 
->>>>>>> 5411ca98cab25d048c30fcb8d7e23bc91ecbf92d

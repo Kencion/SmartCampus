@@ -8,7 +8,7 @@ from boto.sdb.db.sequence import double
 class activity_avg_level1(FeatureCalculater):
      
     @MyLogger.myException
-    def calculate(self, strr):
+    def calculate(self):
         '''
                 计算活动平均活跃度得分
         '''
@@ -30,6 +30,7 @@ class activity_avg_level1(FeatureCalculater):
             else:
                 sql = "update students set activity_avg_level=(activity_avg_level+%s)/2 where student_num=%s "
                 self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(re[1][0:4])))
+    
     @MyLogger.myException
     def cluster(self):
         sql = "SELECT max(activity_avg_level) FROM students"

@@ -49,7 +49,7 @@ class GPA1(FeatureCalculater):
 #         print("ok")   
     @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='gpa', clusters=4, sql="SELECT gpa FROM students WHERE gpa != NULL")
+        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='gpa', clusters=4, sql="SELECT gpa FROM students WHERE gpa is not NULL")
         sql = "SELECT max(gpa) FROM students"
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]

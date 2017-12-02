@@ -54,7 +54,7 @@ class score_rank1(FeatureCalculater):
         
     @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='score_rank', clusters=4, sql="SELECT score_rank FROM students WHERE score_rank != NULL")
+        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='score_rank', clusters=4, sql="SELECT score_rank FROM students WHERE score_rank is not  NULL")
         sql = "SELECT max(score_rank) FROM students"
         self.executer.execute(sql)
         maxx[len(maxx) - 1] = self.executer.fetchone()[0]

@@ -50,7 +50,7 @@ class score1(FeatureCalculater):
         
     @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='score', clusters=4, sql="SELECT score FROM students WHERE score != NULL")
+        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='score', clusters=4, sql="SELECT score FROM students WHERE score is not NULL")
         maxx[len(maxx) - 1] = 100
         
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:
