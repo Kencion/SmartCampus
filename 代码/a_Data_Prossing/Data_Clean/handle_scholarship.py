@@ -37,7 +37,6 @@ for oneResult in tqdm(result):
     AmountList=[]
     index = 0
     while index < len(oneResult[3]):
-#         print(str(index))
         moneystr =''
         while index<len(oneResult[3]):
             moneystr=moneystr+oneResult[3][index]
@@ -49,7 +48,6 @@ for oneResult in tqdm(result):
                 break
             index = index+1
         if moneystr !='':
-#             print(moneystr+'__index='+str(index)+'__'+str(len(oneResult[3])))
             AmountList.append(moneystr)
   
     for i in range(len(YearList)-1):
