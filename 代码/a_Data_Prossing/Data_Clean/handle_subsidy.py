@@ -9,13 +9,6 @@ import re
 import os
 
 
-# s = "秋季专项生活困难补助" 
-# print (len(re.findall(r'.*补助',s))) 
-# string = ''
-# list2=string.split('资助')
-# print(len(list2))
-# for i in list2:
-#     print('~~~~'+i)
 db = MyDataBase.MyDataBase("软件学院")
 executer = db.getExcuter()
 sql = "SELECT student_num,grant_year,subsidy_name,amount,rank,subsidy_source FROM `subsidy` where grant_year <>'';"
@@ -35,11 +28,8 @@ for oneResult in tqdm(result):
     
     for i in range(len(firstStepList)):
         firstStepList[i] =firstStepList[i] +'补助'
-#         print(firstStepList[i])
         secondStepList.append(firstStepList[i])
     
-#     for i in secondStepList:
-#         print(i)
     for i in range(len(secondStepList)):
         bufferList =secondStepList[i].split('金')
         for j in range(len(bufferList)):
@@ -47,8 +37,6 @@ for oneResult in tqdm(result):
                 bufferList[j]= bufferList[j]+'金'
             if len(bufferList[j])>2:
                 NameList.append(bufferList[j])
-#     for i in NameList:    
-#         print(i)
          
     RankList = re.split(r'等级|等',oneResult[4])
     for i in range(len(RankList)-1):
@@ -74,16 +62,8 @@ for oneResult in tqdm(result):
                 break
             index = index+1
         if moneystr !='':
-#             print(moneystr+'__index='+str(index)+'__'+str(len(oneResult[3])))
             AmountList.append(moneystr)
 
-#     if len(YearList)>len(SourceList):
-#         print(oneResult[0])
-#         for i in YearList:
-#             print(i)
-#         for i in SourceList:
-#             print(i)
-#         os.system('pause')
     for i in range(len(YearList)-1):
         sql="insert into subsidy_handled values('"+oneResult[0]+"','"+YearList[i]+"','"+NameList[i]\
             +"','"+AmountList[i]\

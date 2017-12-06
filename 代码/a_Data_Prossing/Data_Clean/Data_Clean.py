@@ -8,13 +8,15 @@ Created on 2017年11月27日
 def doit():
     """
             将students表中的中文字符串改为数字，方便后续处理
+    @params
+    @return
     """
     from z_Tools import MyDataBase
     
     db = MyDataBase.MyDataBase("软件学院")
     executer = db.getExcuter()
     sql = ""
-    with open('DataClean.sql', 'r', encoding='UTF-8') as f:
+    with open('Data_Clean.sql', 'r', encoding='UTF-8') as f:
         for line in f:
             sql += line
             print(1)
