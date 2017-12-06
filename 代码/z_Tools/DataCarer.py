@@ -74,15 +74,15 @@ class DataCarer():
         executer = db.getExcuter()
          
         """获得所有学生的数据"""
-        sql = "select * from students_rank where {0} =0 and right(student_num,4) in('{1}','2017')"
-        executer.execute(sql.format(column, year))
+        sql = "select * from students_rank where  right(student_num,4) in('{0}','2017')"
+        executer.execute(sql.format( year))
         students, X_test = [], []
         for i in executer.fetchall():
             student = Student(student_num=i[0], features=list(i[1:-1]), label=i[-1])
             X_test.append(student.features)
             students.append(student)
         executer.close()
-         
+        #print(len(X_test))
         X_test = mat(X_test)
         
         return students, X_test

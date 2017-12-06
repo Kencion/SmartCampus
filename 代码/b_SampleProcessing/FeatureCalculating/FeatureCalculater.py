@@ -61,7 +61,7 @@ class FeatureCalculater:
             
         for i in range(len(labels)):
             types[labels[i]].append(self.dataSet[i][0])
-            sql = "update students_rank set " + featureName + "='" + str(labels[i] + 1) + "' where " + featureName + "=" + str(int(self.dataSet[i][0])) 
+            sql = "update students_rank set " + featureName + "='" + str(labels[i] + 1) + "' where " + featureName + "=" + str((self.dataSet[i][0])) 
             print(sql)
             self.executer.execute(sql)
         

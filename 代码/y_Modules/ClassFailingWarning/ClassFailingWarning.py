@@ -40,7 +40,7 @@ class ClassFailingWarning():
         
         """进行预测"""
         estimater.fit(self.X_train, self.Y_train)
-        print("准确率", estimater.score(self.X_train, self.Y_train))
+        #print("准确率", estimater.score(self.X_train, self.Y_train))
         
         for student, score in zip(self.students, estimater.predict(self.X_test)):
             print(student.getStudent_num(), "----", score)

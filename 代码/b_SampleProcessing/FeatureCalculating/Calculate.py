@@ -43,7 +43,7 @@ claculaters2 = [
 #     scholarship_rank.scholarship_rank(),
 #     subsidy_amount.subsidy_amount(),
 #     subsidy_rank.subsidy_rank(),
-#     in_out_times.in_out_times(),
+      in_out_times.in_out_times(),
     ]
 
 
