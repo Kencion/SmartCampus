@@ -35,14 +35,12 @@ class DataCarer():
             dataSet.append(student.getAll())
         executer.close()
         dataSet = np.array(dataSet)
-        print(dataSet)
         
         """获得一些新的数据"""
         a = np.array([[]])  # 没有用的数据，单纯生成对象参数
         dip = Data_Imbalance_Processing(a, N=100)
         lists, proportion = dip._get_proportion('score')  # 分类属性
         new_dataSet = np.array(list(dip._get_data(lists, proportion, 'score')))
-        print(new_dataSet.shape)
         
         """把他们加在一起以平衡数据"""
         try:
@@ -52,7 +50,6 @@ class DataCarer():
             pass
          
         """ 对刚才的数据进行分层抽样"""
-        print(dataSet.shape)
         X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
         X_train=tuple(X_train.tolist())
         t=list()

@@ -3,7 +3,6 @@
 '''
 from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
-from boto.sdb.db.sequence import double
  
 class activity_avg_level1(FeatureCalculater):
      
@@ -26,10 +25,10 @@ class activity_avg_level1(FeatureCalculater):
             re[1].split('-')
             if int(re[1][6:7]) < 9:
                 sql = "update students set activity_avg_level=(activity_avg_level+%s)/2 where student_num=%s"
-                self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
+                self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
             else:
                 sql = "update students set activity_avg_level=(activity_avg_level+%s)/2 where student_num=%s "
-                self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(re[1][0:4])))
+                self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(re[1][0:4])))
     
     @MyLogger.myException
     def cluster(self):

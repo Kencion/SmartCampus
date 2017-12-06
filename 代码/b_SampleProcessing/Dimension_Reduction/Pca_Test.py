@@ -1,6 +1,6 @@
 from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
-from boto.sdb.db.sequence import double
+#from boto.sdb.db.sequence import double
 import numpy as np
 from sklearn.decomposition import PCA
 class Pca_Test(FeatureCalculater): 
@@ -27,7 +27,7 @@ class Pca_Test(FeatureCalculater):
     def Train_dataSet(self,samples,n):  
         self.pca=PCA(n_components=n,copy=True, whiten=False)
         newData=self.pca.fit_transform(samples,n) #'mle'表示算法自己判断需要降维几维，n是我们计算出来的维度
-        print(type(newData))
+        #print(type(newData))
         return newData
     """
               根据训练集获取PCA模型,对测试集进行降维操作
@@ -37,7 +37,7 @@ class Pca_Test(FeatureCalculater):
     """
     def Test_dataSet(self,samples): 
         newData=self.pca.transform(samples)
-        print(type(newData))
+        #print(type(newData))
         return newData
     """
             数据零均值化和归一化处理函数

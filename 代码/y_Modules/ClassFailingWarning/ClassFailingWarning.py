@@ -14,7 +14,6 @@ class ClassFailingWarning():
         """=============对训练集进行操作============"""
         """获取数据"""
         self.getData()
-        
         """获取各种器"""
         preProcesser1, preProcesser2 = self.getPreProcesser()
         featureSelector, estimater, evalueter = self.getFeatureSelector(), self.getEstimater(), self.getmodelEvalueter()
@@ -24,20 +23,20 @@ class ClassFailingWarning():
         preProcesser2.fit_transform(self.X_train)
         
         """进行特征选择"""
-        featureSelector.fit_transform(self.X_train, self.Y_train)
-        
+        featureSelector.fit(self.X_train, self.Y_train)
+        self.X_train=featureSelector.transform(self.X_train)
         """利用pca对特征矩阵进行降维"""
         p = Pca_Test()
         n = p.pca_2(self.X_train, 0.99) 
-        p.Train_dataSet(self.X_train, n)
-        
+        self.X_train=p.Train_dataSet(self.X_train, n)
         """=============对测试集进行操作============"""
         """利用各种器对测试集的特征进行同训练集一样的转换"""
         preProcesser1.fit_transform(self.X_test)
         preProcesser2.fit_transform(self.X_test)
+        self.X_test=featureSelector.transform(self.X_test)
         
         """利用pca对特征矩阵进行同训练集一样的降维"""
-        p.Test_dataSet(self.X_test)
+        self.X_test=p.Test_dataSet(self.X_test)
         
         """进行预测"""
         estimater.fit(self.X_train, self.Y_train)
@@ -89,7 +88,7 @@ class ClassFailingWarning():
                 ],
                 n_jobs=1)
         
-        return featureSelector
+        return MySelectPercentile().selector
         
     def getEstimater(self):
         '''

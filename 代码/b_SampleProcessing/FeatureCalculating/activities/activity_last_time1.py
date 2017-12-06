@@ -3,7 +3,6 @@
 '''
 from z_Tools import MyLogger
 from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
-from boto.sdb.db.sequence import double
 
 class activity_last_time1(FeatureCalculater):
     '''
@@ -13,7 +12,7 @@ class activity_last_time1(FeatureCalculater):
     @MyLogger.myException
     def calculate(self):
         sql = "update students set activity_last_time=%s"
-        self.executer.execute(sql, double(0))
+        self.executer.execute(sql, float(0))
         sql = "select Distinct Stu_num,DATE_FORMAT(Start_time, '%Y-%m'),sum(time_to_sec(timediff(Finish_time,Start_time))) from stu_in_activities group by stu_num,DATE_FORMAT(Start_time, '%Y-%m')"
         self.executer.execute(sql)
         result = self.executer.fetchall()
@@ -22,10 +21,10 @@ class activity_last_time1(FeatureCalculater):
             re[1].split('-')
             if int(re[1][6:7]) < 9:
                 sql = "update students set activity_last_time=activity_last_time+%s where student_num=%s"
-                self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
+                self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
             else:
                 sql = "update students set activity_last_time=activity_last_time+%s where student_num=%s "
-                self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(re[1][0:4])))
+                self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(re[1][0:4])))
     @MyLogger.myException
     def cluster(self):
         sql = "SELECT max(activity_last_time) FROM students"
