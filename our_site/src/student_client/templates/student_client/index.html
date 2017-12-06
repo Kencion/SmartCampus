@@ -1,0 +1,8 @@
+<html>
+{{title}}
+	<form action="show_student_info" method="post">
+		{% csrf_token %}
+		<input type="text" name="student_num"/>
+		<input type="submit"/>
+	</form>
+</html>
