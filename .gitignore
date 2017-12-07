@@ -14,3 +14,8 @@
 **/logger.log
 
 *.pyc
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+.project
+.settings/.jsdtscope
+.pydevproject
+.settings/org.eclipse.wst.jsdt.ui.superType.container
