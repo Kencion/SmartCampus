@@ -56,7 +56,7 @@ ROOT_URLCONF = 'our_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,17 +75,16 @@ WSGI_APPLICATION = 'our_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydatabase1',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
-
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql', #mysql数据库驱动 
+        'NAME': 'mydatabase1',  
+        'USER': 'root',  
+        'PASSWORD': '',  #root,localhost
+        'HOST': '172.16.20.5',  #172.16.20.5
+        'PORT': '3306',  
+    }  
+}  
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 

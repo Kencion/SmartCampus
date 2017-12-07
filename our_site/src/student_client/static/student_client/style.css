@@ -1,0 +1,30 @@
+li a {
+    color: green;
+}
+/*设置文字标题在页面上的位置*/
+.headr{
+width:300px;
+height:200px;
+/*border:1px solid #f00;*/
+position:absoulte;
+left:500px;    	//只是假定的值，具体需测量
+top:700px;
+}
+.btn{
+    width:100px;
+    height:30px;
+    margin:0 10px;
+}
+td{font-size:16px;font-weight:bold;color:#0080FF;}
+.jiacu{ font-weight:bold}/*字体加粗*/
+h1 {/*居中对齐，单边内边距属性*/
+	text-align:center; 
+  /*padding-top: 10px;
+  padding-right: 0.25em;
+  padding-bottom: 2ex;
+  padding-left: 20%;*/
+  }
+h4{text-align:center;}
+p {padding: 10%;}
+#sty{height:200px;border:1px solid #F00;width:80px}
+/* CSS注释说明： 设置了红色css边框、高度200px、宽度为80px */

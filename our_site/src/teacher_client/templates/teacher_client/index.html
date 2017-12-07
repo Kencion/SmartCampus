@@ -1,7 +1,63 @@
+<!--  <!DOCTYPE html>
 <html>
-{{title}}
-	<form action="show_infos" method="post">
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+</head>
+<body>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'teacher_client/style.css' %}" />
+	<h4>
+		<font size="4" color="black">{{title}}</font><Br/>
+	</h4>
+	
+	  <form action="show_infos" id="carform" method="post">
 		{% csrf_token %}
-		<input type="submit" value="do it !"/>
+		<h4>
+			<font size="5" color="blue">student_num:</font><input type="text" name="student_num" /><Br/>
+			&nbsp;&nbsp;&nbsp;<font size="5" color="blue">school_year:</font><input type="text" name="year"/><Br/>
+			<font size="4" color="red">{{result}}</font><Br/>
+			 <select name="carlist" form="carform">
+				<option value="volvo">Volvo</option>
+				<option value="saab">Saab</option>
+				<option value="opel">Opel</option>
+				<option value="audi">Audi</option>
+			</select>
+			<button class="btn" type="submit" value="提交" style="background:#00ff00" >do it</button>
+			<button class="btn" type="reset" value="重置" style="background:#ffff33">Reset</button>
+		</h4>
 	</form>
-</html>
+</body>
+</html>-->
+<html><head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>select选择-按钮跳转</title> 
+<script type="text/javascript"> 
+function setsubmit() 
+{ 
+if(mylink.value == 0) 
+	window.location='Single_student'; 
+if(mylink.value == 1 & mylink2.value == 2) 
+	window.location='zhexian_fig'; 
+if(mylink.value == 1 & mylink2.value == 3) 
+	window.location='bingzhuang_fig';
+if(mylink.value == 1 & mylink2.value == 4) 
+	window.location='show_infos';
+} 
+</script> 
+</head> 
+<body> 
+<select name="mylink" id="mylink"> 
+<OPTION value="0">查询单个学生的信息</OPTION> 
+<OPTION value="1">查询所有学生的信息</OPTION> 
+</select>
+<select name="mylink2" id="mylink2"> 
+<OPTION value="2">折线图</OPTION> 
+<OPTION value="3">饼状图</OPTION> 
+<OPTION value="4">列表形式</OPTION>
+</select>
+<input type="button" id="btn" value="提交" onclick="setsubmit(this)" /> 
+</body> 
+</html> 
+
+
