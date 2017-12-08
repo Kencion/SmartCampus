@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'teacher_client',
 ]
 
+"Django自带的工具集"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,8 +52,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+"指向urls.py"
 ROOT_URLCONF = 'our_site.urls'
 
+"模板"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -75,6 +78,7 @@ WSGI_APPLICATION = 'our_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+
 # DATABASES = {  
 #     'default': {  
 #         'ENGINE': 'django.db.backends.mysql', #mysql数据库驱动 
@@ -85,7 +89,6 @@ WSGI_APPLICATION = 'our_site.wsgi.application'
 #         'PORT': '3306',  
 #     }  
 # }  
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -96,6 +99,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

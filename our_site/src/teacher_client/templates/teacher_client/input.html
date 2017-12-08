@@ -13,7 +13,7 @@
 	<form action="show_student" method="post">
 		{% csrf_token %}
 		<h4>
-			<font size="5" color="blue">student_num:</font><input type="text" name="student_num" /><Br/>
+			<font size="5" color="blue">student_num:</font><input type="text" name="student_num" value={{UserName}}><Br/>
 			&nbsp;&nbsp;&nbsp;<font size="5" color="blue">school_year:</font><input type="text" name="year"/><Br/>
 			<font size="4" color="red">{{result}}</font><Br/>
 			<!-- <input type="submit" name="提交" /> -->
