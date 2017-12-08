@@ -8,6 +8,12 @@ def index(request):
         'title': "hello, my dear teacher, please click the button: ",
     }
     return HttpResponse(template.render(context, request))
+def Login(request):
+    template = loader.get_template('teacher_client/Login.html')
+    context = {
+        'title': "hello, my dear teacher, please click the button: ",
+    }
+    return HttpResponse(template.render(context, request))
 def zhexian_fig(request):
     template=loader.get_template('teacher_client/zhexian_fig.html')
     from background_program.y_Modules.ClassFailingWarning.ClassFailingWarning import ClassFailingWarning
@@ -48,7 +54,7 @@ def show_student(request):
     executer.execute(sql)
     student = executer.fetchone()
     db.close 
-    print(student)
+    #print(student)
     if student is None:
         template = loader.get_template('teacher_client/input.html')
         context={
@@ -76,3 +82,33 @@ def show_infos(request):
         'infos': infos,
     }
     return HttpResponse(template.render(context, request))
+def r(request):
+    UserName= request.POST['UserName']
+    password= request.POST['password']
+    Title_category= request.POST['Title_category'] 
+    if request.POST['UserName']=='':
+        template = loader.get_template('teacher_client/Login.html')
+        context = {
+        'result': "用户名不能为空",
+        }
+        return HttpResponse(template.render(context, request))
+    elif password=='':
+        template = loader.get_template('teacher_client/Login.html')
+        context = {
+        'result': "密码不能为空",
+        }
+        return HttpResponse(template.render(context, request))    
+    if Title_category=="student":        
+        template = loader.get_template('teacher_client/input.html')
+        context = {
+            "UserName":UserName,
+            "password":password,
+            }
+        return HttpResponse(template.render(context, request))
+    else:
+        template = loader.get_template('teacher_client/index.html')
+        context = {
+            "UserName":UserName,
+            "password":password,
+            }
+        return HttpResponse(template.render(context, request))
