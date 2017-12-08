@@ -78,10 +78,7 @@ WSGI_APPLICATION = 'our_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-<<<<<<< HEAD
 
-=======
->>>>>>> facd731a42d309b235b3a46bbc9f2fc41a73e867
 # DATABASES = {  
 #     'default': {  
 #         'ENGINE': 'django.db.backends.mysql', #mysql数据库驱动 
@@ -92,10 +89,6 @@ WSGI_APPLICATION = 'our_site.wsgi.application'
 #         'PORT': '3306',  
 #     }  
 # }  
-<<<<<<< HEAD
-=======
-
->>>>>>> facd731a42d309b235b3a46bbc9f2fc41a73e867
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -107,10 +100,7 @@ DATABASES = {
     }
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> facd731a42d309b235b3a46bbc9f2fc41a73e867
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
