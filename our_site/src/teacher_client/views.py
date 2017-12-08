@@ -39,7 +39,7 @@ def zhexian_fig(request):
 #     plt.savefig("zhexian.png")
     plt.show()
     
-    template = loader.get_template('teacher_client/show_infos.html')
+    #template = loader.get_template('teacher_client/show_infos.html')
     context = {
         'infos': infos,
     }
@@ -68,7 +68,7 @@ def bingzhuang_fig(request):
 #     plt.savefig("zhexian.png")
     plt.show()
     
-    #template = loader.get_template('teacher_client/show_infos.html')
+    template = loader.get_template('teacher_client/show_infos.html')
     context = {
         'infos': infos,
     }
