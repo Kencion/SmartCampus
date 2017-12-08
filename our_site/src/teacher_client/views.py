@@ -27,9 +27,9 @@ def zhexian_fig(request):
     print(num)
     fig = plt.figure('By SmartCampus Team')
     ax = fig.add_subplot(111)
-    ax.set_title('折线图')
+    ax.set_title('Bar Chart')
     plt.bar(range(len(num)), num, color='rgb') 
-    ax.set_ylabel('学生数')
+    ax.set_ylabel('Student number')
 #     plt.savefig("zhexian.png")
     plt.show()
     
@@ -55,11 +55,11 @@ def bingzhuang_fig(request):
     print(num)
     fig = plt.figure('By SmartCampus Team')
     ax = fig.add_subplot(111)
-    ax.set_title('饼状图')
+    ax.set_title('Pie Chart')
     
     plt.pie(num,labels = range(len(num)),colors='rgb') 
     
-#     plt.savefig("zhexian.png")
+    plt.savefig("bingzhuang.png")
     plt.show()
     
     #template = loader.get_template('teacher_client/show_infos.html')
