@@ -26,6 +26,10 @@ def zhexian_fig(request):
     from background_program.y_Modules.ClassFailingWarning.ClassFailingWarning import ClassFailingWarning
     t = ClassFailingWarning()
     infos = t.doit()
+    def autolabel(rects):
+        for rect in rects:
+            height = rect.get_height()
+            plt.text(rect.get_x()+rect.get_width()/4., 1.01*height, "%s" % float(height))
     num = np.zeros(5)
     score = [x[1] for x in infos]
     for i in range(5):
@@ -33,7 +37,10 @@ def zhexian_fig(request):
     fig = plt.figure('By SmartCampus Team')
     ax = fig.add_subplot(111)
     ax.set_title('Bar Chart')
-    plt.bar(range(len(num)), num, color='rgb') 
+    colors = ['red','yellowgreen','lightskyblue','g','b']
+    rec = plt.bar(range(len(num)), num, color=colors) 
+    autolabel(rec)
+    ax.set_xlabel('Student type')
     ax.set_ylabel('Student number')
     save_path = sys.path[0]+'/teacher_client/static/teacher_client/images/zhexian.png'
     plt.savefig(save_path)
@@ -48,14 +55,25 @@ def bingzhuang_fig(request):
     t = ClassFailingWarning()
     infos = t.doit()
     num = np.zeros(5)
+    colors = ['red','yellowgreen','lightskyblue','g','b']
+    labels = [u'0',u'1',u'2',u'3',u'4']
     score = [x[1] for x in infos]
     for i in range(5):
         num[i] = score.count(i)
     fig = plt.figure('By SmartCampus Team')
     ax = fig.add_subplot(111)
     ax.set_title('Pie Chart')
-    plt.pie(num,labels = range(len(num)),colors='rgb') 
+    patches,l_text,p_text = plt.pie(num,labels = labels,colors=colors,labeldistance = 1.1,autopct = '%3.1f%%',shadow = False,startangle = 90,pctdistance = 0.6) 
     save_path = sys.path[0]+'/teacher_client/static/teacher_client/images/bingzhuang.png'
+    for t in l_text:
+        t.set_size=(30)
+    for t in p_text:
+        t.set_size=(20)
+# 设置x，y轴刻度一致，这样饼图才能是圆的
+    plt.axis('equal')
+    plt.legend()
+    plt.savefig(save_path)
+#     plt.show()
     plt.close()
     context = {
         'infos': infos,
