@@ -7,6 +7,7 @@
 <body>
 	{% load static %}<!-- 引入static这个文件 -->
 	<link rel="stylesheet" type="text/css" href="{% static 'teacher_client/style.css' %}" />
-	<p style="text-align:center"><img src={%static 'teacher_client/images/zhexian.png' %}  width="165" height="60" /></p>
+	<p style="text-align:center"><img src={%static 'teacher_client/images/zhexian.png' %}  style="width:600px;height:600px;" /></p>
+	<a href="{% url 'teacher_client:bingzhuang_fig' %}">查看饼状图</a>
 </body>
 </html>

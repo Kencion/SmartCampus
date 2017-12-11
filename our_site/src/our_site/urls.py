@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^student_client/', include('student_client.urls')),
     url(r'^teacher_client/', include('teacher_client.urls')),
+    #url(r'^teacher_client/', include('teacher_client.urls',namespace='teacher_client',app_name='teacher_client')),
 ]
