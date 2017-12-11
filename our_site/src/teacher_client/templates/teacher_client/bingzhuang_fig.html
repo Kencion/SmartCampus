@@ -2,12 +2,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 清除页面缓存 -->
+<METAHTTP-EQUIV="Pragma"CONTENT="no-cache">
+<METAHTTP-EQUIV="Cache-Control"CONTENT="no-cache">
+<METAHTTP-EQUIV="Expires"CONTENT="0">
 <title>饼状图</title>
 </head>
 <body>
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static 'teacher_client/style.css' %}" />
-	<p style="text-align:center"><img src={%static 'teacher_client/images/bingzhuang.png' %}  style="width:600px;height:600px;" /></p>
-	
+	<div>
+	<p style="text-align:center;padding-bottom: 100px;padding-top: 100px;"><img src={%static 'teacher_client/images/bingzhuang.png' %}  style="width:600px;height:480px;" /></p>
+	</div>
+	<div>
+	<a style="text-align:center;" href="{%url 'teacher_client:zhexian_fig' %}"><span style="color:red;font-size:18px;">折线图</span></a>
+	</div>
 </body>
 </html>
