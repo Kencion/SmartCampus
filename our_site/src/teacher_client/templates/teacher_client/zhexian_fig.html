@@ -12,10 +12,10 @@
 	{% load static %}<!-- 引入static这个文件 -->
 	<link rel="stylesheet" type="text/css" href="{% static 'teacher_client/style.css' %}" />
 	<div>
-	<p style="text-align:center;padding-bottom: 100px;padding-top: 100px;"><img src={%static 'teacher_client/images/zhexian.png' %}  style="width:600px;height:600px;" /></p>
+	<p style="text-align:center;padding-bottom: 50px;padding-top: 50px;"><img src={%static 'teacher_client/images/zhexian.png' %}  style="width:600px;height:600px;" /></p>
 	</div>
-	<div>
-	<a style="text-align:center;" href="{%url 'teacher_client:bingzhuang_fig' %}"><span style="color:red;font-size:18px;">饼状图</span></a>
+	<div style="text-align:center">
+	<a href="{%url 'teacher_client:bingzhuang_fig' %}"><span style="color:red;font-size:18px;">查看饼状图</span></a>
 	</div>
 </body>
 </html>
