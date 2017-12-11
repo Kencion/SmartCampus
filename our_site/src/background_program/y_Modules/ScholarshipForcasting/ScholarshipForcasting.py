@@ -5,11 +5,12 @@ Modify on 2017年11月27日
 @author: jack
 '''
 
+from background_program.y_Modules.ClassFailingWarning import  ClassFailingWarning
 class ScholarshipForcasting():
     
     def __init__(self):
         from sklearn.pipeline import Pipeline
-        from b_SampleProcessing.Dimension_Reduction.Pca_Test import Pca_Test
+        from background_program.b_SampleProcessing.Dimension_Reduction.Pca_Test import Pca_Test
         
         """=============对训练集进行操作============"""
         """获取数据"""
@@ -56,7 +57,7 @@ class ScholarshipForcasting():
         @params string student_num:学生学号
         @retrun
         '''
-        from z_Tools.DataCarer import DataCarer
+        from background_program.z_Tools.DataCarer import DataCarer
         self.X_train, self.Y_train = DataCarer().createTrainDataSet()  
         self.students, self.X_test = DataCarer().createValidateDataSet()
         
@@ -66,8 +67,8 @@ class ScholarshipForcasting():
         @params 
         @retrun    sklearn.PreProcessing.xx preProcesser:特征预处理器
         '''
-        from b_SampleProcessing.PreProcessing.MyMinMaxScaler import MyMinMaxScaler
-        from b_SampleProcessing.PreProcessing.MyImputer import MyImputer
+        from background_program.b_SampleProcessing.PreProcessing.MyMinMaxScaler import MyMinMaxScaler
+        from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
         
         preProcesser = MyImputer().transformer, MyMinMaxScaler().transformer
         
@@ -79,8 +80,8 @@ class ScholarshipForcasting():
         @params 
         @retrun    sklearn.某种类  featureSelector:特征选择器
         '''
-        from b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
-        from b_SampleProcessing.FeatureSelection.MySelectPercentile import MySelectPercentile
+        from background_program.b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
+        from background_program.b_SampleProcessing.FeatureSelection.MySelectPercentile import MySelectPercentile
         from sklearn.pipeline import FeatureUnion
         
         featureSelector = FeatureUnion(
@@ -98,7 +99,7 @@ class ScholarshipForcasting():
         @params 
         @retrun    sklearn.某种类  estimater:预测器
         '''
-        from c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
+        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
         
         estimater = MyDecesionTree().estimater
         
