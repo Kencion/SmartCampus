@@ -1,3 +1,4 @@
+#coding:UTF-8
 from django.shortcuts import loader
 from django.http import HttpResponse
 import matplotlib.pyplot as plt
@@ -38,7 +39,8 @@ def zhexian_fig(request):
     ax = fig.add_subplot(111)
     ax.set_title('Bar Chart')
     colors = ['red','yellowgreen','lightskyblue','g','b']
-    rec = plt.bar(range(len(num)), num, color=colors) 
+    labels = [u"0类",u"1类",u"2类",u"3类",u"4类"]
+    rec = plt.bar(labels, num, color=colors) 
     autolabel(rec)
     ax.set_xlabel('Student type')
     ax.set_ylabel('Student number')
@@ -56,7 +58,7 @@ def bingzhuang_fig(request):
     infos = t.doit()
     num = np.zeros(5)
     colors = ['red','yellowgreen','lightskyblue','g','b']
-    labels = [u'0',u'1',u'2',u'3',u'4']
+    labels = [u"0类",u"1类",u"2类",u"3类",u"4类"]
     score = [x[1] for x in infos]
     for i in range(5):
         num[i] = score.count(i)
