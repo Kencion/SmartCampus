@@ -2,7 +2,6 @@ from django.shortcuts import loader
 from django.http import HttpResponse
 import matplotlib.pyplot as plt
 import numpy as np
-import os, sys
 
 # Create your views here.
 def index(request):
@@ -36,17 +35,15 @@ def zhexian_fig(request):
     ax.set_title('Bar Chart')
     plt.bar(range(len(num)), num, color='rgb') 
     ax.set_ylabel('Student number')
-    
-<<<<<<< HEAD
+
     #template = loader.get_template('teacher_client/show_infos.html')
-=======
+
     save_path = 'C:/Users/95679/Desktop/SmartCampus/our_site/src/teacher_client/static/teacher_client/images/zhexian.png'
     
     plt.savefig(save_path)
 #     plt.show()
     
 #     template = loader.get_template('teacher_client/show_infos.html')
->>>>>>> a3b43a4a53d3c7adad745089aa8efca3f19129e2
     context = {
         'infos': infos,
     }
