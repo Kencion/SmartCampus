@@ -5,8 +5,10 @@ import numpy as np
 import os, sys
 from django.shortcuts import render
 from PIL import Image
+import threading
 from multiprocessing.sharedctypes import template
 # Create your views here.
+
 def index(request):
     template = loader.get_template('teacher_client/index.html')
     context = {
@@ -35,6 +37,7 @@ def zhexian_fig(request):
     ax.set_ylabel('Student number')
     save_path = sys.path[0]+'/teacher_client/static/teacher_client/images/zhexian.png'
     plt.savefig(save_path)
+    plt.close()
     context = {
         'infos': infos,
     }
@@ -53,7 +56,7 @@ def bingzhuang_fig(request):
     ax.set_title('Pie Chart')
     plt.pie(num,labels = range(len(num)),colors='rgb') 
     save_path = sys.path[0]+'/teacher_client/static/teacher_client/images/bingzhuang.png'
-    plt.savefig(save_path)
+    plt.close()
     context = {
         'infos': infos,
     }
