@@ -2,10 +2,14 @@ from django.shortcuts import loader
 from django.http import HttpResponse
 import matplotlib.pyplot as plt
 import numpy as np
+<<<<<<< HEAD
+
+=======
 import os, sys
 from django.shortcuts import render
 from PIL import Image
 from multiprocessing.sharedctypes import template
+>>>>>>> 3491578c0f68a37df68c31798b8c2c95df8bfd5b
 # Create your views here.
 def index(request):
     template = loader.get_template('teacher_client/index.html')
@@ -33,10 +37,56 @@ def zhexian_fig(request):
     ax.set_title('Bar Chart')
     plt.bar(range(len(num)), num, color='rgb') 
     ax.set_ylabel('Student number')
+<<<<<<< HEAD
 #     save_path = r'D:/zhexian.png'
 #     plt.savefig(save_path)
 #     img=Image.open(r'D:/zhexian.png')
 #     img.save(sys.path[0]+r'/teacher_client/static/teacher_client/images/zhexian.png')
+=======
+<<<<<<< HEAD
+
+    #template = loader.get_template('teacher_client/show_infos.html')
+
+    save_path = 'C:/Users/95679/Desktop/SmartCampus/our_site/src/teacher_client/static/teacher_client/images/zhexian.png'
+    
+    plt.savefig(save_path)
+#     plt.show()
+    
+#     template = loader.get_template('teacher_client/show_infos.html')
+    context = {
+        'infos': infos,
+    }
+    return HttpResponse(template.render(context, request))
+def bingzhuang_fig(request):
+    template=loader.get_template('teacher_client/bingzhuang_fig.html')
+    from background_program.y_Modules.ClassFailingWarning.ClassFailingWarning import ClassFailingWarning
+    t = ClassFailingWarning()
+    #print(type(t))
+    infos = t.doit()
+    
+    num = np.zeros(5)
+#     print(num)
+    score = [x[1] for x in infos]
+     
+     
+    for i in range(5):
+        num[i] = score.count(i)
+#     print(num)
+    fig = plt.figure('By SmartCampus Team')
+    ax = fig.add_subplot(111)
+    ax.set_title('Pie Chart')
+    
+    plt.pie(num,labels = range(len(num)),colors='rgb') 
+    
+    save_path = 'C:/Users/95679/Desktop/SmartCampus/our_site/src/teacher_client/static/teacher_client/images/bingzhuang.png'
+    
+=======
+    save_path = r'D:/zhexian.png'
+>>>>>>> 3491578c0f68a37df68c31798b8c2c95df8bfd5b
+    plt.savefig(save_path)
+    img=Image.open(r'D:/zhexian.png')
+    img.save(sys.path[0]+r'/teacher_client/static/teacher_client/images/zhexian.png')
+>>>>>>> 7960852d534f21bd98c58762414a7c3569f3f464
     context = {
         'infos': infos,
     }
