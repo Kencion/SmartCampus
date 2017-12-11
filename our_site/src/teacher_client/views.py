@@ -33,6 +33,7 @@ def zhexian_fig(request):
             plt.text(rect.get_x()+rect.get_width()/4., 1.01*height, "%s" % float(height))
     num = np.zeros(5)
     score = [x[1] for x in infos]
+    
     for i in range(5):
         num[i] = score.count(i)
     fig = plt.figure('By SmartCampus Team')
