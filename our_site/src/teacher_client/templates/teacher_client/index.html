@@ -1,32 +1,79 @@
-<html><head> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<title>select选择-按钮跳转</title> 
-<script type="text/javascript"> 
-function setsubmit() 
-{ 
-if(mylink.value == 0) 
-	window.location='Single_student'; 
-if(mylink.value == 1 & mylink2.value == 2) 
-	window.location='zhexian_fig'; 
-if(mylink.value == 1 & mylink2.value == 3) 
-	window.location='bingzhuang_fig';
-if(mylink.value == 1 & mylink2.value == 4) 
-	window.location='show_infos';
-} 
-</script> 
-</head> 
-<body> 
-<select name="mylink" id="mylink"> 
-<OPTION value="0">查询单个学生的信息</OPTION> 
-<OPTION value="1">查询所有学生的信息</OPTION> 
-</select>
-<select name="mylink2" id="mylink2"> 
-<OPTION value="2">柱状图</OPTION> 
-<OPTION value="3">饼状图</OPTION> 
-<OPTION value="4">列表形式</OPTION>
-</select>
-<input type="button" id="btn" value="提交" onclick="setsubmit(this)" /> 
-</body> 
-</html> 
-
-
+<html>
+  <head>
+    <!-- Material Design Lite -->
+    {% load static %}
+    <script src="{% static 'index_page/material.min.js' %}"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">SmartCampus</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="/index_page/login">Login</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">SmartCampus</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="">Nothing</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+        <!-- Your content goes here -->
+        	老师，您好，您真帅（美）
+		    <!-- Wide card with share menu button -->
+		    <!-- 挂科预警模块 -->
+		    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+		      <div class="mdl-card__title">
+		        <h2 class="mdl-card__title-text">挂科预警模块</h2>
+		      </div>
+		      <div class="mdl-card__supporting-text">
+		        	挂科预警模块
+		      </div>
+		      <div class="mdl-card__actions mdl-card--border">
+		        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="class_failing_warning">
+		          	预给我看
+		        </a>
+		      </div>
+		      <div class="mdl-card__menu">
+		        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+		          <i class="material-icons">share</i>
+		        </button>
+		      </div>
+		    </div>
+		    <!-- 失联预警模块 -->
+		    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+		      <div class="mdl-card__title">
+		        <h2 class="mdl-card__title-text">失联预警模块</h2>
+		      </div>
+		      <div class="mdl-card__supporting-text">
+		       		失联预警模块
+		      </div>
+		      <div class="mdl-card__actions mdl-card--border">
+		        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="class_failing_warning">
+		          	预给我看
+		        </a>
+		      </div>
+		      <div class="mdl-card__menu">
+		        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+		          <i class="material-icons">share</i>
+		        </button>
+		      </div>
+		    </div>
+        
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

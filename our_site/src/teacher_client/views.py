@@ -11,18 +11,26 @@ from multiprocessing.sharedctypes import template
 # Create your views here.
 
 def index(request):
+    """
+    @author: Jack
+    @return 教师端的主页
+    """
     template = loader.get_template('teacher_client/index.html')
-    context = {
-        'title': "hello, my dear teacher, please click the button: ",
-    }
-    return HttpResponse(template.render(context, request))
-def Login(request):
-    template = loader.get_template('teacher_client/Login.html')
-    context = {
-        'title': "hello, my dear teacher, please click the button: ",
-    }
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render(None, request))
+
+def class_failing_warning(request):
+    """
+    @author: Jack
+    @return: 模块页面
+    """
+    template = loader.get_template('teacher_client/index_old.html')
+    return HttpResponse(template.render(None, request))
+
 def zhexian_fig(request):
+    """
+    @author: 
+    @return: 填一下
+    """
     template=loader.get_template('teacher_client/zhexian_fig.html')
     from background_program.y_Modules.ClassFailingWarning.ClassFailingWarning import ClassFailingWarning
     t = ClassFailingWarning()
@@ -52,7 +60,12 @@ def zhexian_fig(request):
         'infos': infos,
     }
     return HttpResponse(template.render(context, request))
+
 def bingzhuang_fig(request):
+    """
+    @author: 
+    @return: 填一下
+    """
     template=loader.get_template('teacher_client/bingzhuang_fig.html')
     from background_program.y_Modules.ClassFailingWarning.ClassFailingWarning import ClassFailingWarning
     t = ClassFailingWarning()
@@ -82,13 +95,23 @@ def bingzhuang_fig(request):
         'infos': infos,
     }
     return HttpResponse(template.render(context, request))
+
 def Single_student(request):
+    """
+    @author: 
+    @return: 填一下
+    """
     template = loader.get_template('teacher_client/input.html')
     context = {
         'title': "hello, my dear student, please input your student_num and school_year: ",
     }
     return HttpResponse(template.render(context, request))
+
 def show_student(request):
+    """
+    @author: 
+    @return: 填一下
+    """
     from background_program.z_Tools.MyDataBase import MyDataBase
     
     student_num = request.POST['student_num']
@@ -117,7 +140,12 @@ def show_student(request):
             'score':student[3],
         }
         return HttpResponse(template.render(context, request))
+    
 def show_infos(request):
+    """
+    @author: 
+    @return: 填一下
+    """
     from background_program.y_Modules.ClassFailingWarning.ClassFailingWarning import ClassFailingWarning
     
     t = ClassFailingWarning()
@@ -128,7 +156,12 @@ def show_infos(request):
         'infos': infos,
     }
     return HttpResponse(template.render(context, request))
+
 def r(request):
+    """
+    @author: 
+    @return: 填一下
+    """
     UserName= request.POST['UserName']
     password= request.POST['password']
     Title_category= request.POST['Title_category'] 
