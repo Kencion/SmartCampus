@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^index_page/', include(('index_page.urls','index_page'),'index_page')),
     url(r'^student_client/', include(('student_client.urls','student_client'),'student_client')),
     url(r'^teacher_client/', include(('teacher_client.urls','teacher_client'),'teacher_client')),
 #     url(r'^student_client/', include('student_client.urls')),
