@@ -1,14 +1,13 @@
 '''
-挂科预警模块
-Created on 2017年7月22日
-Modify on 2017年11月27日
-@author: jack
+Created on 2017年12月13日
+
+@author: LI
 '''
 import sys
-class ClassFailingWarning():
+class ScoreForcasting():
     
-    def __init__(self):
-        pass
+    def __init__(self,labelName):
+        self.labelName = labelName
             
     def doit(self):
         '''
@@ -65,7 +64,7 @@ class ClassFailingWarning():
         @retrun
         '''
         from background_program.z_Tools.DataCarer import DataCarer
-        self.X_train, self.Y_train = DataCarer().createTrainDataSet('score')  
+        self.X_train, self.Y_train = DataCarer().createTrainDataSet(self.labelName)  
         self.students, self.X_test = DataCarer().createValidateDataSet()
         
     def getPreProcesser(self):
@@ -106,9 +105,9 @@ class ClassFailingWarning():
         @params 
         @retrun    sklearn.某种类  estimater:预测器
         '''
-        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
+        from background_program.c_Estimating.Regression.GeneralizedLinearModels.MyLinearRegression import MyLinearRegression
         
-        estimater = MyDecesionTree().estimater
+        estimater = MyLinearRegression().estimater
         
         return estimater
     
@@ -122,5 +121,5 @@ class ClassFailingWarning():
 
 
 if __name__ == '__main__':
-    t = ClassFailingWarning()
-    t.doit()
+    t = ScoreForcasting('score')
+    print(t.doit())
