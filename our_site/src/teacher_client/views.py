@@ -28,6 +28,7 @@ def class_failing_warning(request):
     @return: 挂科预警页面
     """
     from background_program.y_Modules.class_failing_warning.class_failing_warning import class_failing_warning
+    from student_client.models import Student
  
 #     broken_line_chart()
 #     pie_chart()
@@ -37,16 +38,18 @@ def class_failing_warning(request):
     """获取挂科预警的预测结果"""
     all_students = class_failing_warning().doit()
     types = set([i[1] for i in all_students])  # 按成绩来统计学生的不同类别
-    infos = dict()  # 分尅收集每种类别的学生
+    students_and_scores = dict()  # 分别收集每种类别的学生
     for i in types:
-        infos[i] = []
+        students_and_scores[i] = []
     for i in all_students:
-        infos[i[1]].append(i[0])
+        students_and_scores[i[1]].append(i[0])
+        student = Student(student_num=i[0], student_name='', score=i[1])
+        student.save()
     
     context = {
         'module_name':'挂科预警',
         'teacher_name':'我是一个老师',
-        'infos':infos,
+        'students_and_scores':students_and_scores,
         'n_types':100.0 / len(types),
         }
      

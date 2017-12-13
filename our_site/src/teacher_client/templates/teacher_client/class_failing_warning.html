@@ -12,12 +12,12 @@
 {% load static %}
 	<div style="height:350px;"
 		class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-		{% for student_type,student_nums in infos.items %}
+		{% for student_score_type,student_nums in students_and_scores.items %}
 		<div style="width:{{n_types}}%;height:350px;">
 			<ul class="demo-list-item mdl-list">
 				  <li class="mdl-list__item">
 				  	<span class="mdl-list__item-primary-content">
-				      {{student_type}}类的学生有:
+				      {{student_score_type}}类的学生有:
 				    </span>
 				  </li>
 			 </ul>
