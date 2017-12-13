@@ -10,14 +10,15 @@ Search
  <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
            <form action="search_score" method="post">
 			{% csrf_token %}
-			<h4>
 				<font size="5" color="blue">student_num:</font><input type="text" name="student_num" value={{student_num}}><Br/>
 				&nbsp;&nbsp;&nbsp;<font size="5" color="blue">school_year:</font><input type="text" name="year"/><Br/>
 				<font size="4" color="red">{{result}}</font><Br/>
-				<!-- <input type="submit" name="提交" /> -->
-				<button class="btn" type="submit" value="提交" style="background:#00ff00" >提交</button>
-				<button class="btn" type="reset" value="重置" style="background:#ffff33">Reset</button>
-			</h4>
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="color:red;">
+				  Submit
+				</button>
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+				  Reset
+				</button>
 		</form>
 </div>
           <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" style="width: 525px;height: 300px;">
