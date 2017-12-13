@@ -93,10 +93,10 @@ class DataCarer():
             sys.exit()
            
         """先获得数据库表中的全部学生的数据"""
-        executer.execute("select * from students_copy_copy where score is not null and avg_out_time is not null and avg_in_time is not null and avg_stay_out_time is not null")
+        executer.execute("select * from students_rank")
         dataSet = []
         for i in executer.fetchall():
-            student = Student(student_num=i[0], features=list(i[2:index])+list(i[index+1:]), label=i[index])
+            student = Student(student_num=i[0], features=list(i[1:index])+list(i[index+1:]), label=i[index])
             dataSet.append(student.getAll())
         executer.close()
         dataSet
@@ -144,6 +144,90 @@ class DataCarer():
         students, X_test = [], []
         for i in executer.fetchall():
             student = Student(student_num=i[0], features=list(i[1:-1]), label=i[-1])
+            X_test.append(student.features)
+            students.append(student)
+        executer.close()
+        #print(len(X_test))
+        X_test = mat(X_test)
+        
+        return students, X_test
+    def createTrainDataSet_scoreForcasting(self,label):
+        '''
+                        获取训练数据
+        @params label:标签列的列名
+        @return numpy.mat X_train:特征,numpy.mat Y_train:标签
+        '''
+        import numpy as np
+        from background_program.b_SampleProcessing.PreProcessing.Data_Imbalance_Processing import Data_Imbalance_Processing
+        from background_program.b_SampleProcessing.Datasample_Layering.Random_Data import Random_Data 
+            
+        db = MyDataBase.MyDataBase("软件学院")
+        executer = db.getExcuter()
+           
+        """确定label是哪一列，并将其作为待预测对象"""
+        executer.execute("DESCRIBE score_forcasting")
+        columnName=executer.fetchall()
+        index = -1
+        for i in range(len(columnName)):
+            if str(columnName[i][0])==label :
+                index =i
+                break
+        if index==-1:
+            print('异常：未发现'+label)
+            sys.exit()
+           
+        """先获得数据库表中的全部学生的数据"""
+        executer.execute("select * from score_forcasting")
+        dataSet = []
+        for i in executer.fetchall():
+            student = Student(student_num=i[0], features=list(i[2:index])+list(i[index+1:]), label=i[index])
+            dataSet.append(student.getAll())
+        executer.close()
+        dataSet
+        dataSet = np.array(dataSet)
+           
+        """获得一些新的数据"""
+        a = np.array([[]])  # 没有用的数据，单纯生成对象参数
+        dip = Data_Imbalance_Processing(a, N=100)
+        lists, proportion = dip._get_proportion(label)  # 分类属性
+        new_dataSet = np.array(list(dip._get_data(lists, proportion, label)))
+           
+        """把他们加在一起以平衡数据"""
+        try:
+            dataSet = np.vstack((dataSet, new_dataSet))
+            dataSet = mat(dataSet)
+        except:
+            pass
+            
+        """ 对刚才的数据进行分层抽样"""
+        X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
+        X_train=tuple(X_train.tolist())
+        t=list()
+        for i in range(len(Y_train)):
+            t.append(Y_train[i,0])
+        Y_train=tuple(set(t))
+           
+        dataSet, _ = Random_Data().group(data_set=dataSet, label=Y_train, percent=0.1)
+        dataSet=mat(dataSet)
+    
+        X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
+        return X_train, Y_train
+        
+    def createValidateDataSet_scoreForcasting(self, column='score', year='2016'):
+        '''
+                        获取测试数据
+        @params str column:设置把那一列当成结果来预测,str year:学年
+        @return list[Student] students:学生列表,numpy.mat X_test:特征
+        '''
+        db = MyDataBase.MyDataBase("软件学院")
+        executer = db.getExcuter()
+         
+        """获得所有学生的数据"""
+        sql = "select * from score_forcasting where  right(student_num,4) in('{0}','2017')"
+        executer.execute(sql.format( year))
+        students, X_test = [], []
+        for i in executer.fetchall():
+            student = Student(student_num=i[0], features=list(i[2:-1]), label=i[-1])
             X_test.append(student.features)
             students.append(student)
         executer.close()

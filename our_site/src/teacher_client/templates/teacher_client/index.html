@@ -1,79 +1,37 @@
-<html>
-  <head>
-    <!-- Material Design Lite -->
-    {% load static %}
-    <script src="{% static 'index_page/material.min.js' %}"></script>
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <!-- Material Design icon font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  </head>
-  <body>
-    <!-- Always shows a header, even in smaller screens. -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-          <!-- Title -->
-          <span class="mdl-layout-title">SmartCampus</span>
-          <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
-          <!-- Navigation. We hide it in small screens. -->
-          <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" href="/index_page/login">Login</a>
-          </nav>
-        </div>
-      </header>
-      <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">SmartCampus</span>
-        <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Nothing</a>
-        </nav>
-      </div>
-      <main class="mdl-layout__content">
-        <div class="page-content">
-        <!-- Your content goes here -->
-        	老师，您好，您真帅（美）
-		    <!-- Wide card with share menu button -->
-		    <!-- 挂科预警模块 -->
-		    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-		      <div class="mdl-card__title">
-		        <h2 class="mdl-card__title-text">挂科预警模块</h2>
-		      </div>
-		      <div class="mdl-card__supporting-text">
-		        	挂科预警模块
-		      </div>
-		      <div class="mdl-card__actions mdl-card--border">
-		        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="class_failing_warning">
-		          	预给我看
-		        </a>
-		      </div>
-		      <div class="mdl-card__menu">
-		        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-		          <i class="material-icons">share</i>
-		        </button>
-		      </div>
-		    </div>
-		    <!-- 失联预警模块 -->
-		    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-		      <div class="mdl-card__title">
-		        <h2 class="mdl-card__title-text">失联预警模块</h2>
-		      </div>
-		      <div class="mdl-card__supporting-text">
-		       		失联预警模块
-		      </div>
-		      <div class="mdl-card__actions mdl-card--border">
-		        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="class_failing_warning">
-		          	预给我看
-		        </a>
-		      </div>
-		      <div class="mdl-card__menu">
-		        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-		          <i class="material-icons">share</i>
-		        </button>
-		      </div>
-		    </div>
-        
-        </div>
-      </main>
-    </div>
-  </body>
-</html>
+{% extends "teacher_client/base.html" %}
+
+{% block title%}
+	home
+{% endblock%}
+
+{% block module_name %}home{% endblock %}
+
+{% block teacher_name %}{{teacher_name}}{% endblock %}
+
+{% block content %}
+	<div
+		class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+		<ul class="demo-list-item mdl-list">
+			  <li class="mdl-list__item">
+			    <span class="mdl-list__item-primary-content">
+			      可能会失联的学生有:
+			    </span>
+			  </li>
+			 {% for student_num in student_nums %}
+		      <li class="mdl-list__item">
+			    <span class="mdl-list__item-primary-content">
+			      {{student_num}}
+			    </span>
+			  </li>
+			 {% endfor %}
+		</ul>
+	</div>
+
+	{% load static %}
+	<div
+		class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+		<img width=100% height=100% src="{%static 'teacher_client/images/pie_chart.png' %}"/>
+		<img width=100% height=100% src="{%static 'teacher_client/images/broken_line_chart.png' %}"/> 
+	</div>
+	
+{% endblock %}
