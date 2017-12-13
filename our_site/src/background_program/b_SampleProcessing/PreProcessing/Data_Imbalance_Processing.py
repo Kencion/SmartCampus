@@ -30,10 +30,14 @@ class Data_Imbalance_Processing(FeatureCalculater):
         N=int(self.N)#设置样本的采样倍率
         self.synthetic = np.zeros((self.n_samples * N, self.n_attrs))#初始化采样样本集
         neighbors=NearestNeighbors(n_neighbors=self.k).fit(self.samples)
+#         print("*******************")
+#         print(self.samples)
         for i in range(len(self.samples)):
             #reshape：-1代表Numpy会根据剩下的维度计算出数组的另外一个shape属性值。
             nnarray=neighbors.kneighbors(self.samples[i].reshape(1,-1),return_distance=False)[0]
             self._populate(N,i,nnarray)
+#             print("***************")
+#             print(nnarray)
         return self.synthetic
     """
             根据规则生成新样本集的函数
@@ -69,7 +73,7 @@ class Data_Imbalance_Processing(FeatureCalculater):
             lists[i].append(result[i][0])
             lists[i].append(float(result[i][1])/float(total_num))
             list.append(result[i][1])
-            list2.append(result[i][0])
+
         list=sorted(list)
         proportion=round(float(max(list))/3.0)-min(list)
         return lists,proportion#lists表示各类别以及所占比例，proportion表示需要其他类别增加的数量
@@ -105,7 +109,7 @@ class Data_Imbalance_Processing(FeatureCalculater):
             samples,num=self._get_samples(feature, lists[i][0])#获取某个类别的样本特征数据集
             samples=list(samples)
             samples=np.array(samples)#将元组转换为nparray
-            dip2=Data_Imbalance_Processing(samples,round(float(proportion)/num))
+            dip2=Data_Imbalance_Processing(samples,round(float(proportion)/num),4)
             dataSet=dip2.over_sampling()#新生成的样本集
             if n==1:
                 new_dataSet=dataSet
