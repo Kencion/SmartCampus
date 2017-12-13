@@ -4,7 +4,7 @@ Created on 2017年12月13日
 @author: LI
 '''
 import sys
-class ScoreForcasting():
+class score_forcasting():
     
     def __init__(self,labelName):
         self.labelName = labelName
@@ -121,5 +121,5 @@ class ScoreForcasting():
 
 
 if __name__ == '__main__':
-    t = ScoreForcasting('score')
+    t = score_forcasting('score')
     print(t.doit())

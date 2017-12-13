@@ -70,6 +70,23 @@ def missing_warning(request):
         }
     return HttpResponse(template.render(context, request))
  
+def score_forcasting(request):
+    """
+    @author: Jack
+    @return: 成绩预测页面
+    """
+    from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
+    
+    template = loader.get_template('teacher_client/score_forcasting.html')
+    
+    infos = score_forcasting('score').doit()
+    
+    context = {
+        'module_name':'成绩预测',
+        'teacher_name':'我是一个老师',
+        'infos':infos,
+        }
+    return HttpResponse(template.render(context, request))
 
 def scholarship_forcasting(request):
     """
