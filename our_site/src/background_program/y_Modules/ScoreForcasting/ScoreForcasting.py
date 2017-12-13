@@ -64,8 +64,8 @@ class ScoreForcasting():
         @retrun
         '''
         from background_program.z_Tools.DataCarer import DataCarer
-        self.X_train, self.Y_train = DataCarer().createTrainDataSet(self.labelName)  
-        self.students, self.X_test = DataCarer().createValidateDataSet()
+        self.X_train, self.Y_train = DataCarer().createTrainDataSet_scoreForcasting(self.labelName)  
+        self.students, self.X_test = DataCarer().createValidateDataSet_scoreForcasting()
         
     def getPreProcesser(self):
         '''
