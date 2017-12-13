@@ -16,7 +16,7 @@ def index(request):
 def class_failing_warning(request):
     """
     @author: Jack
-    @return: 模块页面
+    @return: 挂科预警页面
     """
 #     broken_line_chart()
 #     pie_chart()
@@ -24,8 +24,23 @@ def class_failing_warning(request):
     template = loader.get_template('teacher_client/class_failing_warning.html')
     context = {
         'module_name':'挂科预警',
+        'teacher_name':'我是一个老师',
         }
     return HttpResponse(template.render(context, request))
+
+def missing_warning(request):
+    """
+    @author: Jack
+    @return: 失联预警页面
+    """
+    
+    template = loader.get_template('teacher_client/missing_warning.html')
+    context = {
+        'module_name':'失联预警',
+        'teacher_name':'我是一个老师',
+        }
+    return HttpResponse(template.render(context, request))
+
 
 def broken_line_chart():
     """
@@ -34,8 +49,8 @@ def broken_line_chart():
     @change: jack把这个函数的名字由zhexian_fig改成了 broken_line_chart
     @return: 填一下
     """
-    from background_program.y_Modules.ClassFailingWarning.ClassFailingWarning import ClassFailingWarning
-    t = ClassFailingWarning()
+    from background_program.y_Modules.class_failing_warning import class_failing_warning
+    t = class_failing_warning()
     infos = t.doit()
     def autolabel(rects):
         for rect in rects:
@@ -65,8 +80,8 @@ def pie_chart():
     @change: jack把这个函数的名字由bingzhuang_fig改成了 pie_chart
     @return: 填一下
     """
-    from background_program.y_Modules.ClassFailingWarning.ClassFailingWarning import ClassFailingWarning
-    t = ClassFailingWarning()
+    from background_program.y_Modules.class_failing_warning.class_failing_warning import class_failing_warning
+    t = class_failing_warning()
     infos = t.doit()
     num = np.zeros(5)
     colors = ['red', 'yellowgreen', 'lightskyblue', 'g', 'b']

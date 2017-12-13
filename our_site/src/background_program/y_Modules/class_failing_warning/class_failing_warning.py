@@ -4,8 +4,7 @@ Created on 2017年7月22日
 Modify on 2017年11月27日
 @author: jack
 '''
-import sys
-class ClassFailingWarning():
+class class_failing_warning():
     
     def __init__(self):
         pass
@@ -122,5 +121,5 @@ class ClassFailingWarning():
 
 
 if __name__ == '__main__':
-    t = ClassFailingWarning()
+    t = class_failing_warning()
     t.doit()
