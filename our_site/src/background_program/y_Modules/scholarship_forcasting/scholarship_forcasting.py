@@ -5,8 +5,7 @@ Modify on 2017年11月27日
 @author: jack
 '''
 
-from background_program.y_Modules.ClassFailingWarning import  ClassFailingWarning
-class ScholarshipForcasting():
+class scholarship_forcasting():
     
     def __init__(self):
         from sklearn.pipeline import Pipeline
@@ -115,4 +114,4 @@ class ScholarshipForcasting():
 
 
 if __name__ == '__main__':
-    t = ClassFailingWarning()
+    t = scholarship_forcasting()

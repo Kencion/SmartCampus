@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'index_page',
     'student_client',
     'teacher_client',
+    'admin_client',
 ]
 
 "Django自带的工具集"
