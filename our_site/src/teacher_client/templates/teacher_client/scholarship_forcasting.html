@@ -1,22 +1,23 @@
 {% extends "teacher_client/base.html" %}
 
 {% block title%}
-	失联预警
+	挂科预警
 {% endblock%}
 
-{% block module_name %}失联预警{% endblock %}
+{% block module_name %}挂科预警{% endblock %}
 
 {% block teacher_name %}{{teacher_name}}{% endblock %}
 
 {% block content %}
 {% load static %}
-	<div
+	<div style="overflow:scroll;height:350px;"
 		class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+		{% for student_type,student_nums in infos.items %}
 		<div style="width:200px;margin:4px;">
 			<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 			  <thead>
 			    <tr>
-			      <th>可能会失联的学生有</th>
+			      <th>{{student_type}}类的学生有</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -28,9 +29,13 @@
 			  </tbody>
 			</table>
 		</div>
+		{% endfor %}
 	</div>
 	<div
 		class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+		<img width=100% height=100% src={%static 'teacher_client/images/pie_chart.png' %}/>
+		<img width=100% height=100% src={%static 'teacher_client/images/broken_line_chart.png' %}/> 
+		</p>
 	</div>
 	<div
 		class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
