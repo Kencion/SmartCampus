@@ -3,8 +3,9 @@ from django.http import HttpResponse
 import matplotlib.pyplot as plt
 import numpy as np
 import os, sys
+from background_program.y_Modules.class_failing_warning.class_failing_warning import class_failing_warning
 # Create your views here.
-
+ 
 def index(request):
     """
     @author: Jack
@@ -12,36 +13,91 @@ def index(request):
     """
     template = loader.get_template('teacher_client/index.html')
     return HttpResponse(template.render(None, request))
-
+ 
 def class_failing_warning(request):
     """
     @author: Jack
     @return: 挂科预警页面
     """
+    from background_program.y_Modules.class_failing_warning.class_failing_warning import class_failing_warning
+ 
 #     broken_line_chart()
 #     pie_chart()
-    
+     
     template = loader.get_template('teacher_client/class_failing_warning.html')
+     
+    """获取挂科预警的预测结果"""
+    all_students = class_failing_warning().doit()
+    types = set([i[1] for i in all_students])  # 按成绩来统计学生的不同类别
+    infos = dict()  # 分尅收集每种类别的学生
+    for i in types:
+        infos[i] = []
+    for i in all_students:
+        infos[i[1]].append(i[0])
+    
     context = {
         'module_name':'挂科预警',
         'teacher_name':'我是一个老师',
+        'infos':infos,
+        'n_types':100.0 / len(types),
         }
+     
     return HttpResponse(template.render(context, request))
-
+ 
 def missing_warning(request):
     """
     @author: Jack
     @return: 失联预警页面
     """
+    from background_program.y_Modules.missing_warning import missing_warning
     
     template = loader.get_template('teacher_client/missing_warning.html')
+    
+    student_nums = missing_warning.doit()
+    
     context = {
         'module_name':'失联预警',
         'teacher_name':'我是一个老师',
+        'student_nums':student_nums,
         }
     return HttpResponse(template.render(context, request))
+ 
 
-
+def scholarship_forcasting(request):
+    """
+    @author: Jack
+    @return: 挂科预警页面
+    """
+    from background_program.y_Modules.scholarship_forcasting.scholarship_forcasting import scholarship_forcasting
+ 
+#     broken_line_chart()
+#     pie_chart()
+     
+    template = loader.get_template('teacher_client/scholarship_forcasting.html')
+     
+    """获取挂科预警的预测结果"""
+    all_students = class_failing_warning().doit()
+    types = set([i[1] for i in all_students])  # 按成绩来统计学生的不同类别
+    infos = dict()  # 分尅收集每种类别的学生
+    for i in types:
+        infos[i] = []
+    for i in all_students:
+        infos[i[1]].append(i[0])
+    
+    for i in infos:
+        print(i + 1)
+#         for j in infos.get(i):
+#             print(j)
+    
+    context = {
+        'module_name':'挂科预警',
+        'teacher_name':'我是一个老师',
+        'infos':infos,
+        }
+     
+    return HttpResponse(template.render(context, request))
+ 
+ 
 def broken_line_chart():
     """
             名字可以
@@ -49,7 +105,6 @@ def broken_line_chart():
     @change: jack把这个函数的名字由zhexian_fig改成了 broken_line_chart
     @return: 填一下
     """
-    from background_program.y_Modules.class_failing_warning import class_failing_warning
     t = class_failing_warning()
     infos = t.doit()
     def autolabel(rects):
@@ -58,7 +113,7 @@ def broken_line_chart():
             plt.text(rect.get_x() + rect.get_width() / 4., 1.01 * height, "%s" % float(height))
     num = np.zeros(5)
     score = [x[1] for x in infos]
-    
+     
     for i in range(5):
         num[i] = score.count(i)
     fig = plt.figure('By SmartCampus Team')
@@ -73,14 +128,13 @@ def broken_line_chart():
     save_path = sys.path[0] + '/teacher_client/static/teacher_client/images/broken_line_chart.png'
     plt.savefig(save_path)
     plt.close()
-
+ 
 def pie_chart():
     """
     @author: 
     @change: jack把这个函数的名字由bingzhuang_fig改成了 pie_chart
     @return: 填一下
     """
-    from background_program.y_Modules.class_failing_warning.class_failing_warning import class_failing_warning
     t = class_failing_warning()
     infos = t.doit()
     num = np.zeros(5)
