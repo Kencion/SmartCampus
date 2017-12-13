@@ -47,7 +47,7 @@ class ScoreForcasting():
         """进行预测"""
         estimater.fit(self.X_train, self.Y_train)
         # print("准确率", estimater.score(self.X_train, self.Y_train))
-        
+      
         result = []
         for student, score in zip(self.students, estimater.predict(self.X_test)):
 #             print(student.getStudent_num(), "----", score)
@@ -105,9 +105,9 @@ class ScoreForcasting():
         @params 
         @retrun    sklearn.某种类  estimater:预测器
         '''
-        from background_program.c_Estimating.Regression.GeneralizedLinearModels.MyLinearRegression import MyLinearRegression
+        from background_program.c_Estimating.Regression.GeneralizedLinearModels.RidgeRegression import RidgeRegression
         
-        estimater = MyLinearRegression().estimater
+        estimater = RidgeRegression().estimater
         
         return estimater
     
