@@ -8,29 +8,24 @@ Search
 {% block content %}
 {% load static%}
  <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-    <div style="float:left;width:300px;">
-	    <h1>
-			<font size="5" color="blue"> 
-				<span class="jiacu">{{student_name}},你好:</span><br/>
-			</font>
-		</h1>
-	</div>
-	<div style="float:center;width:300px;">
+	    
 		<table border="2" align="center">
 		  <tr>
 		    <th>student_num</th>
 		    <th>student_name</th>
+		    <th>student_grade</th>
 		    <th>score_rank</th>
 		    <th>score</th>
 		  </tr>
 		  <tr>
-		    <td height="50" weight="100"  style="text-align:center;vertical-align:middle;">{{student_num}}</td>
-		    <td height="50" weight="100"  style="text-align:center;vertical-align:middle;">{{student_name}}</td>
-		    <td height="50" weight="100"  style="text-align:center;vertical-align:middle;">{{score_rank}}</td>
-		    <td height="50" weight="100"  style="text-align:center;vertical-align:middle;">{{score}}</td>
+		    <td height="50" weight="100"  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{student_num}}</td>
+		    <td height="50" weight="100"  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{student_name}}</td>
+		    <td height="50" weight="100"  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{student_grade}}</td>
+		    <td height="50" weight="100"  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{score_rank}}</td>
+		    <td height="50" weight="100"  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{score}}</td>
 		  </tr>
 		</table>
-	</div>
+
 </div>
 <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" style="width: 525px;height: 300px;">
      <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop" style="height:325px;">

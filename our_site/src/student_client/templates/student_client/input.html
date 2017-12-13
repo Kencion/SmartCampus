@@ -7,16 +7,23 @@ Search
 {% endblock %}
 {% block content %}
 {% load static%}
- <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-           <form action="search_score" method="post">
+ <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" >
+           <form action="search_score" method="post" style="margin-left:auto;height:120px; margin-right:auto;"> 
 			{% csrf_token %}
-				<font size="5" color="blue">student_num:</font><input type="text" name="student_num" value={{student_num}}><Br/>
-				&nbsp;&nbsp;&nbsp;<font size="5" color="blue">school_year:</font><input type="text" name="year"/><Br/>
+			</Br>
+				<font size="5" color="blue">student_num:&nbsp;</font><input  style="width: 150px;font-size:14px;color:red;" type="text" name="student_num" value={{student_num}}>
+				&nbsp;&nbsp;&nbsp;<font size="5" color="blue">school_year:&nbsp;</font><input  style="width: 150px;font-size:14px;color:green;" type="text" name="year"/><Br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<font size="4" color="red">{{result}}</font><Br/>
-				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="color:red;">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="text-align:center;width:102px;color:red;">
 				  Submit
 				</button>
-				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button style="width:102px;"class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
 				  Reset
 				</button>
 		</form>
