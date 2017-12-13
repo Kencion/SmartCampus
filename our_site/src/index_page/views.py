@@ -2,7 +2,7 @@ from django.shortcuts import loader
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login,logout
 from django.http import HttpResponseRedirect  
-
+from student_client.models import Student
 # Create your views here.
 def index(request):
     """
@@ -33,10 +33,12 @@ def Login_judge(request):
     """
     if request.session.get('UserName') is not None:
         if request.session['Title_category']=='student':
+            
             template = loader.get_template('student_client/index.html')
             context = {
             "UserName":request.session.get('UserName'),
             "password":request.session.get('password'),
+            "result":request.session.get('result'),
             }
             return HttpResponse(template.render(context, request))
         else:
@@ -62,15 +64,24 @@ def Login_judge(request):
             'result': "密码不能为空",
             }
             return HttpResponse(template.render(context, request))    
-        if Title_category=="student":        
+        if Title_category=="student":       
+            
             template = loader.get_template('student_client/index.html')
             request.session['UserName'] = UserName
             request.session['password'] = password
             request.session['Title_category'] = Title_category
+            response = Student.objects.filter(student_num__startswith=UserName)
+            result=[]
+            for re in response:
+                if int(re.score)==2:
+                    result.append("注意，你有可能挂科咯")
+            request.session['result'] = result
             context = {
                 "UserName":UserName,
                 "password":password,
+                "result":result,
                 }
+            #return HttpResponseRedirect('/student_client/')
             return HttpResponse(template.render(context, request))
         else:
 #             template = loader.get_template('teacher_client/index.html')

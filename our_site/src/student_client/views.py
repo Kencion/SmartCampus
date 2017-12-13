@@ -1,13 +1,24 @@
 from django.shortcuts import render, loader
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login,logout
+from student_client.models import Student
 # Create your views here.
 def index(request):
     template = loader.get_template('student_client/index.html')
-    context = {
-        'title': "hello, my dear student, please input your student_num and school_year: ",
-    }
-    return HttpResponse(template.render(context, request))
+    
+#     password=request.session.get('password')
+#     Title_category=request.session.get('Title_category')
+#     response = Student.objects.filter(student_num__startswith=UserName)
+#     result=[]
+#     for re in response:
+#         if int(re.score)==2:
+#             result.append("注意，你有可能挂科咯")
+#     context = {
+#         "UserName":UserName,
+#         "password":password,
+#         "result":result,
+#         }
+    return HttpResponse(template.render(None, request))
 def Single_student(request):
     """
     @author: 

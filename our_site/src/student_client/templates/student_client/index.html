@@ -8,7 +8,11 @@ HOME
 {% block content %}
 {% load static%}
 <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height:216px;">  
-This is the MainSite
+<ul>
+{% for i in result %}  
+    <li style="font-size:16px;color:red;">{{i}}</li>
+    {% endfor %}  
+</ul>
 </div>
 <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" style="width: 525px;height: 300px;">
      <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop" style="height:325px;">
