@@ -26,7 +26,7 @@ def search_score(request):
     student_num=student_num+year
     db = MyDataBase("软件学院")
     executer = db.getExcuter()
-    sql = "select student_num,student_name,score_rank,score from students where student_num='{0}'".format(student_num)
+    sql = "select student_num,student_name,student_grade,score_rank,score from students where student_num='{0}'".format(student_num)
     executer.execute(sql)
     student = executer.fetchone()
     db.close 
@@ -43,7 +43,8 @@ def search_score(request):
         context = {
             'student_num':student[0],
             'student_name':student[1],
-            'score_rank':student[2],
-            'score':student[3],
+            'student_grade':student[2],
+            'score_rank':student[3],
+            'score':student[4],
         }
         return HttpResponse(template.render(context, request))
