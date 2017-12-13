@@ -1,6 +1,6 @@
 from django.shortcuts import render, loader
 from django.http import HttpResponse
-
+from django.contrib.auth import authenticate, login,logout
 # Create your views here.
 def index(request):
     template = loader.get_template('student_client/index.html')
@@ -8,8 +8,17 @@ def index(request):
         'title': "hello, my dear student, please input your student_num and school_year: ",
     }
     return HttpResponse(template.render(context, request))
-
-def show_student_info(request):
+def Single_student(request):
+    """
+    @author: 
+    @return: 填一下
+    """
+    template = loader.get_template('student_client/input.html')
+    context = {
+        'student_num':request.session['UserName'],
+    }
+    return HttpResponse(template.render(context, request))
+def search_score(request):
     from background_program.z_Tools.MyDataBase import MyDataBase
     
     student_num = request.POST['student_num']
@@ -21,16 +30,16 @@ def show_student_info(request):
     executer.execute(sql)
     student = executer.fetchone()
     db.close 
-    print(student)
+    #print(student)
     if student is None:
-        template = loader.get_template('student_client/index.html')
+        template = loader.get_template('student_client/input.html')
         context={
             'title':"hello, my dear student, please input your student_num and school_year: ",
             'result':"Sorry,I can't find the student_num or shool_year.",
             }
         return HttpResponse(template.render(context, request))
     else:
-        template = loader.get_template('student_client/show_student_info.html')
+        template = loader.get_template('student_client/search_score.html')
         context = {
             'student_num':student[0],
             'student_name':student[1],
@@ -38,4 +47,3 @@ def show_student_info(request):
             'score':student[3],
         }
         return HttpResponse(template.render(context, request))
-    
