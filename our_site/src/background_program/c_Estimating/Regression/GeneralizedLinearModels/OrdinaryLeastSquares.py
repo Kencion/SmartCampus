@@ -3,7 +3,7 @@ Created on 2017年12月12日
 
 @author: LI
 '''
-class MyLinearRegression():
+class OrdinaryLeastSquares():
     def __init__(self):
         from sklearn import linear_model
 
