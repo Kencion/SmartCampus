@@ -11,8 +11,16 @@ def index(request):
     @author: Jack
     @return 教师端的主页
     """
+    from background_program.y_Modules.missing_warning import missing_warning
+    
+    student_nums = missing_warning.doit()
+    
     template = loader.get_template('teacher_client/index.html')
-    return HttpResponse(template.render(None, request))
+    context = {
+        'teacher_name':'我是一个老师',
+        'student_nums':student_nums,
+        }
+    return HttpResponse(template.render(context, request))
  
 def class_failing_warning(request):
     """

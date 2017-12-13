@@ -1,6 +1,8 @@
 from django.shortcuts import loader
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login,logout
+from django.http import HttpResponseRedirect  
+
 # Create your views here.
 def index(request):
     """
@@ -71,7 +73,7 @@ def Login_judge(request):
                 }
             return HttpResponse(template.render(context, request))
         else:
-            template = loader.get_template('teacher_client/index.html')
+#             template = loader.get_template('teacher_client/index.html')
             request.session['UserName'] = UserName
             request.session['password'] = password
             request.session['Title_category'] = Title_category
@@ -79,4 +81,5 @@ def Login_judge(request):
                 "UserName":UserName,
                 "password":password,
                 }
-            return HttpResponse(template.render(context, request))
+            return HttpResponseRedirect('/teacher_client/')
+#             return HttpResponse(template.render(context, request))

@@ -93,10 +93,10 @@ class DataCarer():
             sys.exit()
            
         """先获得数据库表中的全部学生的数据"""
-        executer.execute("select * from students_copy_copy where score is not null and avg_out_time is not null and avg_in_time is not null and avg_stay_out_time is not null")
+        executer.execute("select * from students_rank")
         dataSet = []
         for i in executer.fetchall():
-            student = Student(student_num=i[0], features=list(i[2:index])+list(i[index+1:]), label=i[index])
+            student = Student(student_num=i[0], features=list(i[1:index])+list(i[index+1:]), label=i[index])
             dataSet.append(student.getAll())
         executer.close()
         dataSet

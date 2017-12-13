@@ -12,22 +12,21 @@
 {% load static %}
 	<div
 		class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-		<div style="width:200px;margin:4px;">
-			<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-			  <thead>
-			    <tr>
-			      <th>可能会失联的学生有</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    {% for student_num in student_nums %}
-			    <tr>
-			      <td>{{student_num}}</td>
-			    </tr>
+		
+		<ul class="demo-list-item mdl-list">
+			  <li class="mdl-list__item">
+			    <span class="mdl-list__item-primary-content">
+			      可能会失联的学生有:
+			    </span>
+			  </li>
+			  {% for student_num in student_nums %}
+		      <li class="mdl-list__item">
+			    <span class="mdl-list__item-primary-content">
+			      {{student_num}}
+			    </span>
+			  </li>
 				{% endfor %}
-			  </tbody>
-			</table>
-		</div>
+		</ul>
 	</div>
 	<div
 		class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
