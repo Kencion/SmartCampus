@@ -51,7 +51,7 @@ class score_forcasting():
         result = []
         for student, score in zip(self.students, estimater.predict(self.X_test)):
 #             print(student.getStudent_num(), "----", score)
-            result.append([student.getStudent_num(), score])
+            result.append([student.getStudent_num(), float(score)])
             
         return result
     
