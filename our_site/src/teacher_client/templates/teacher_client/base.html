@@ -81,19 +81,21 @@
           </div>
         </header>
 			<nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-				<a class="mdl-navigation__link" href="/teacher_client"><i
+			
+				<a {% block index_state %}{% endblock %} class="mdl-navigation__link" 
+					href="/teacher_client"><i
 					class="mdl-color-text--blue-grey-400 material-icons"
-					role="presentation">home</i>Home</a> 
+					role="presentation">home</i>主页</a> 
 				
-				<a class="mdl-navigation__link"
-				href="/teacher_client/score_forcasting"><i
-				class="mdl-color-text--blue-grey-400 material-icons"
-				role="presentation">home</i>成绩预测</a>
+				<a {% block score_forcasting %}{% endblock %} class="mdl-navigation__link"
+					href="/teacher_client/score_forcasting"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">home</i>成绩预测</a>
 									
-				<a class="mdl-navigation__link"
-				href="/teacher_client/missing_warning"><i
-				class="mdl-color-text--blue-grey-400 material-icons"
-				role="presentation">home</i>失联预警</a>
+				<a {% block missing_warning %}{% endblock %} class="mdl-navigation__link"
+					href="/teacher_client/missing_warning"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">home</i>失联预警</a>
 				
 				<!--<a class="mdl-navigation__link"
 				href="/teacher_client/scholarship_forcasting"><i
