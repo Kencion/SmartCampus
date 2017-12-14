@@ -24,6 +24,10 @@ def Single_student(request):
     @author: 
     @return: 填一下
     """
+#     print("***************")
+#     print(request.session.get('password'))
+#     print(request.session.get('UserName'))
+#     print(request.session.get('Title_category'))
     template = loader.get_template('student_client/input.html')
     context = {
         'student_num':request.session['UserName'],
