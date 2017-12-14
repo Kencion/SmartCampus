@@ -22,10 +22,10 @@
 			 </ul>
 			<div style="height:80%;overflow:scroll;overflow-x:hidden;">
 				<ul class="demo-list-item mdl-list">
-				  {% for info in infos %}
+				  {% for student_and_score in students_and_scores %}
 			      <li class="mdl-list__item">
 				    <span class="mdl-list__item-primary-content">
-				      {{info}}
+				      {{student_and_score.0}}===>{{student_and_score.1}}
 				    </span>
 				  </li>
 					{% endfor %}
