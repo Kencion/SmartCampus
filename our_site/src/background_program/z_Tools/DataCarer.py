@@ -3,13 +3,12 @@ Created on 2017年7月22日
 学生画像数据提取模块
 在获取训练集和测试集的地方使用
 @author: LI
-Jack:有点乱，建议修改一下
+Jack觉得有点乱，建议修改一下
 '''
 from background_program.b_SampleProcessing.Student  import Student
 from background_program.z_Tools import MyDataBase
 from numpy import mat
 import sys
-from sklearn import datasets
 
 class DataCarer():
     
