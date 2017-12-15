@@ -13,22 +13,25 @@ def index(request, update=False):
     @author: Jack
     @return 教师端的主页
     """
+    context = dict()
     try:
-        update = request.GET['update']
+        context['teacher_name'] = request.GET['user_name']
+        request.session['teacher_name'] = context['teacher_name']
+#         context['update'] = request.GET['update']
     except:
-        pass
-
+        pass 
+    try:
+        context['teacher_name'] = request.session['teacher_name']
+    except:
+        pass 
+    
     """从数据库获得失联学生的学号"""
-    student_nums = [i.student_num for i in Student.objects.filter(is_missing__exact=True)]
+    context['student_nums'] = [i.student_num for i in Student.objects.filter(is_missing__exact=True)]
 
     """将数据渲染到页面上"""
-    context = {
-        'teacher_name':'我是一个老师',
-        'student_nums':student_nums,
-        }
     template = loader.get_template('teacher_client/index.html')
-    
     return HttpResponse(template.render(context, request))
+    
 
 def score_forcasting(request, update=False):
     """
@@ -42,33 +45,32 @@ def score_forcasting(request, update=False):
             将该学生的score字段设为预测结果
     """
     try:
+        """如果需要更新数据"""
         update = request.GET['update']
+        if update:
+            pie_chart(), line_chart(), broken_line_chart()
+            from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
+            students_and_scores = score_forcasting('score').doit()
+            for i in students_and_scores:
+                Student(student_num=i[0], score=i[1]).save()
+        return HttpResponseRedirect('/teacher_client/score_forcasting')
     except:
         pass
     
-    if update:
-        pie_chart(), line_chart(), broken_line_chart()
-        from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
-        students_and_scores = score_forcasting('score').doit()
-        for i in students_and_scores:
-            Student(student_num=i[0], score=i[1]).save()
-        return HttpResponseRedirect('/teacher_client/score_forcasting')
-        
-    else:
-        students_and_scores = [[i.student_num, i.score] for i in Student.objects.all()]
-        """获取挂科的同学的学号"""    
-        class_fail_student_nums = [i.student_num for i in Student.objects.filter(score__lt=60.0)]
+    students_and_scores = [[i.student_num, i.score] for i in Student.objects.all()]
+    """获取挂科的同学的学号"""    
+    class_fail_student_nums = [i.student_num for i in Student.objects.filter(score__lt=60.0)]
+
+    """将数据渲染到页面上"""
+    context = {
+        'module_name':'成绩预测',
+        'teacher_name':request.session['teacher_name'],
+        'students_and_scores':students_and_scores,
+        'class_fail_student_nums':class_fail_student_nums,
+        }
+    template = loader.get_template('teacher_client/score_forcasting.html')
     
-        """将数据渲染到页面上"""
-        context = {
-            'module_name':'成绩预测',
-            'teacher_name':'我是一个老师',
-            'students_and_scores':students_and_scores,
-            'class_fail_student_nums':class_fail_student_nums,
-            }
-        template = loader.get_template('teacher_client/score_forcasting.html')
-        
-        return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render(context, request))
 
 def missing_warning(request, update=False):
     """
@@ -82,29 +84,28 @@ def missing_warning(request, update=False):
             将该学生的is_missing字段设为True
     """
     try:
+        """如果需要更新数据"""
         update = request.GET['update']
+        if update:
+            from background_program.y_Modules.missing_warning import missing_warning
+            missing_students = missing_warning.doit()
+            for i in missing_students:
+                Student(student_num=i, is_missing=True).save()
+            
+            return HttpResponseRedirect('/teacher_client/score_forcasting')
     except:
         pass
     
-    if update:
-        from background_program.y_Modules.missing_warning import missing_warning
-        missing_students = missing_warning.doit()
-        for i in missing_students:
-            Student(student_num=i, is_missing=True).save()
-        
-        return HttpResponseRedirect('/teacher_client/score_forcasting')
-
-    else:
-        missing_students = [i.student_num for i in Student.objects.filter(is_missing__exact=True)]
-        """将数据渲染到页面上"""
-        context = {
-            'module_name':'失联预警',
-            'teacher_name':'我是一个老师',
-            'student_nums':missing_students,
-            }
-        template = loader.get_template('teacher_client/missing_warning.html')
-        
-        return HttpResponse(template.render(context, request))
+    missing_students = [i.student_num for i in Student.objects.filter(is_missing__exact=True)]
+    """将数据渲染到页面上"""
+    context = {
+        'module_name':'失联预警',
+        'teacher_name':request.session['teacher_name'],
+        'student_nums':missing_students,
+        }
+    template = loader.get_template('teacher_client/missing_warning.html')
+    
+    return HttpResponse(template.render(context, request))
  
 def scholarship_forcasting(request, update=False):
     """

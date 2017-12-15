@@ -138,7 +138,7 @@ class DataCarer():
         executer = db.getExcuter()
          
         """获得所有学生的数据"""
-        sql = "select * from students_rank where  right(student_num,4) in('{0}','2017')"
+        sql = "select * from students_rank where right(student_num,4) in('{0}','2017')"
         executer.execute(sql.format( year))
         students, X_test = [], []
         for i in executer.fetchall():
