@@ -106,8 +106,8 @@ class class_failing_warning():
         @retrun    sklearn.某种类  estimater:预测器
         '''
         from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
-        
-        estimater = MyDecesionTree().estimater
+        from background_program.c_Estimating.Classification.LogisticRegression import LogisticRegression
+        estimater = LogisticRegression().estimater
         
         return estimater
     
@@ -122,4 +122,4 @@ class class_failing_warning():
 
 if __name__ == '__main__':
     t = class_failing_warning()
-    t.doit()
+    print(t.doit())
