@@ -185,31 +185,33 @@ class DataCarer():
         dataSet
         dataSet = np.array(dataSet)
            
-        """获得一些新的数据"""
-        a = np.array([[]])  # 没有用的数据，单纯生成对象参数
-        dip = Data_Imbalance_Processing(a, N=100)
-        lists, proportion = dip._get_proportion(label)  # 分类属性
-        new_dataSet = np.array(list(dip._get_data(lists, proportion, label)))
-           
-        """把他们加在一起以平衡数据"""
-        try:
-            dataSet = np.vstack((dataSet, new_dataSet))
-            dataSet = mat(dataSet)
-        except:
-            pass
-            
-        """ 对刚才的数据进行分层抽样"""
+#         """获得一些新的数据"""
+#         a = np.array([[]])  # 没有用的数据，单纯生成对象参数
+#         dip = Data_Imbalance_Processing(a, N=100)
+#         lists, proportion = dip._get_proportion(label)  # 分类属性
+#         new_dataSet = np.array(list(dip._get_data(lists, proportion, label)))
+#            
+#         """把他们加在一起以平衡数据"""
+#         try:
+#             dataSet = np.vstack((dataSet, new_dataSet))
+#             dataSet = mat(dataSet)
+#         except:
+#             pass
+#             
+#         """ 对刚才的数据进行分层抽样"""
+#         X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
+#         X_train=tuple(X_train.tolist())
+#         t=list()
+#         for i in range(len(Y_train)):
+#             t.append(Y_train[i,0])
+#         Y_train=tuple(set(t))
+#            
+#         dataSet, _ = Random_Data().group(data_set=dataSet, label=Y_train, percent=0.1)
+#         dataSet=mat(dataSet)
+#     
+        dataSet = mat(dataSet)
         X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
-        X_train=tuple(X_train.tolist())
-        t=list()
-        for i in range(len(Y_train)):
-            t.append(Y_train[i,0])
-        Y_train=tuple(set(t))
-           
-        dataSet, _ = Random_Data().group(data_set=dataSet, label=Y_train, percent=0.1)
-        dataSet=mat(dataSet)
-    
-        X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
+       
         return X_train, Y_train
         
     def createValidateDataSet_scoreForcasting(self, column='score', year='2016'):

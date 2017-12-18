@@ -110,10 +110,13 @@ class class_failing_warning():
         @params 
         @retrun    sklearn.某种类  estimater:预测器
         '''
-        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
-        from background_program.c_Estimating.Classification.LogisticRegression import LogisticRegression
-        estimater = LogisticRegression().estimater
+#         from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
+#         from background_program.c_Estimating.Classification.LogisticRegression import LogisticRegression
+#         estimater = LogisticRegression().estimater
+#         
+        from background_program.c_Estimating.Regression.GeneralizedLinearModels.RidgeRegression import RidgeRegression
         
+        estimater = RidgeRegression().estimater
         return estimater
     
     def get_model_evalueter(self):
