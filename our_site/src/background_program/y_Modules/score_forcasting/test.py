@@ -27,11 +27,11 @@ ax.set_title('学生成绩分布折线图')
 ax.set_xlabel('成绩')
 ax.set_ylabel('学生数量')
 plt.ylim(0,max(y)*1.1)
-ax.plot(x,y,color = 'skyblue') 
+ax.plot(x,y,linewidth =2 ,color = '#436EEE') 
 
-ax.fill(x,y,color = 'skyblue')
-save_path = sys.path[0] + '/teacher_client/static/teacher_client/images/line_chart.png'
+ax.fill(x,y,color = '#00B2EE')
+# save_path = sys.path[0] + '/teacher_client/static/teacher_client/images/line_chart.png'
 plt.legend()
-plt.savefig(save_path)
-# plt.show()
+# plt.savefig(save_path)
+plt.show()
 plt.close()
