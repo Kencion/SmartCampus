@@ -9,7 +9,6 @@ Created on 2017年12月14日
 @author: 95679
 '''
 
-
 t = score_forcasting('score')
 infos = t.doit()
 
