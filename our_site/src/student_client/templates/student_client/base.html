@@ -62,9 +62,10 @@
           </div>
         </header>
          <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a class="mdl-navigation__link" href="{% url 'index_page:Login_judge' %}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+          <a class="mdl-navigation__link" href="{% url 'student_client:index' %}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
           <a class="mdl-navigation__link" href="{%url 'student_client:Single_student' %}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Search</a>
-          <a class="mdl-navigation__link" href="{%url 'index_page:logout_view' %}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Logout</a>
+          <a class="mdl-navigation__link" href="{%url 'student_client:show_student_info' %}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>show_student_info</a>
+          <a class="mdl-navigation__link" href="/index_page/"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Logout</a>
           <div class="mdl-layout-spacer"></div>
         </nav>
       </div>

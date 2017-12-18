@@ -39,6 +39,8 @@ def Login_judge(request):
     @modify: jack
     @return: 填一下
     """
+#     if request.session.get('UserName') is not None:
+#         
     template = loader.get_template('index_page/Login.html')
     """用户名为空"""
     try:
