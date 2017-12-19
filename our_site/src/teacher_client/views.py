@@ -40,7 +40,7 @@ def score_forcasting(request, update=False):
     @return: 成绩预测页面
     """
     """
-            获得所有学生的成绩预测记过，
+            获得所有学生的成绩预测结果，
             并在数据mydatabase表student_client_Student中
             将该学生的score字段设为预测结果
     """
@@ -50,7 +50,7 @@ def score_forcasting(request, update=False):
         if update:
             pie_chart(), line_chart(), broken_line_chart()
             from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
-            students_and_scores = score_forcasting('score').doit()
+            students_and_scores = score_forcasting().doit()
             for i in students_and_scores:
                 Student(student_num=i[0], score=i[1]).save()
         return HttpResponseRedirect('/teacher_client/score_forcasting')
@@ -109,18 +109,83 @@ def missing_warning(request, update=False):
  
 def scholarship_forcasting(request, update=False):
     """
-            挂科预警页面
+            奖学金预测页面
     @author: Jack
-    @return: 挂科预警页面
+    @return: 奖学金预测页面
     """
-    pass
+    """
+            获得所有学生的成绩预测记过，
+            并在数据mydatabase表student_client_Student中
+            将该学生的score字段设为预测结果
+    """
+    try:
+        """如果需要更新数据"""
+        update = request.GET['update']
+        if update:
+            from background_program.y_Modules.scholarship_forcasting.scholarship_forcasting import scholarship_forcasting
 
+#             pie_chart(), line_chart(), broken_line_chart()
+            students_and_scholarships = scholarship_forcasting().doit()
+            for i in students_and_scholarships:
+                Student(student_num=i[0], scholarship=i[1]).save()
+        return HttpResponseRedirect('/teacher_client/scholarship_forcasting')
+    except:
+        pass
+    
+    students_and_scholarships = [[i.student_num, i.scholarship] for i in Student.objects.all()]
+
+    """将数据渲染到页面上"""
+    context = {
+        'module_name':'成绩预测',
+        'teacher_name':request.session['teacher_name'],
+        'students_and_scores':students_and_scholarships,
+        }
+    template = loader.get_template('teacher_client/scholarship_forcasting.html')
+    
+    return HttpResponse(template.render(context, request))
+
+def subsidy_forcasting(request):
+    """
+            助学金预测页面
+    @author: Jack
+    @return: 奖学金预测页面
+    """
+    """
+            获得所有学生的成绩预测记过，
+            并在数据mydatabase表student_client_Student中
+            将该学生的subsidy字段设为预测结果
+    """
+    try:
+        """如果需要更新数据"""
+        update = request.GET['update']
+        if update:
+            from background_program.y_Modules.subsidy_forcasting.subsidy_forcasting import subsidy_forcasting
+
+#             pie_chart(), line_chart(), broken_line_chart()
+            students_and_subsidies = subsidy_forcasting().doit()
+            for i in students_and_subsidies:
+                Student(student_num=i[0], subsidy=i[1]).save()
+        return HttpResponseRedirect('/teacher_client/subsidy_forcasting')
+    except:
+        pass
+    
+    students_and_subsidies = [[i.student_num, i.subsidy] for i in Student.objects.all()]
+
+    """将数据渲染到页面上"""
+    context = {
+        'module_name':'助学金预测',
+        'teacher_name':request.session['teacher_name'],
+        'students_and_subsidies':students_and_subsidies,
+        }
+    template = loader.get_template('teacher_client/subsidy_forcasting.html')
+    
+    return HttpResponse(template.render(context, request))
 
 """下面是画图的函数"""
 def broken_line_chart():
     """
     @author:yzh
-    @change: jack把这个函数的名字由zhexian_fig改成了 broken_line_chart
+    @modify: jack把这个函数的名字由zhexian_fig改成了 broken_line_chart
     @return: 填一下
     """
     from background_program.y_Modules.class_failing_warning.class_failing_warning import class_failing_warning
@@ -152,7 +217,7 @@ def broken_line_chart():
 def pie_chart():
     """
     @author: yzh
-    @change: jack把这个函数的名字由bingzhuang_fig改成了 pie_chart
+    @modify: jack把这个函数的名字由bingzhuang_fig改成了 pie_chart
     @return: 填一下
     """
     from background_program.y_Modules.class_failing_warning.class_failing_warning import class_failing_warning
@@ -188,7 +253,7 @@ def line_chart():
     """
     from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
     
-    t = score_forcasting('score')
+    t = score_forcasting()
     infos = t.doit()
     
     score = [x[1] for x in infos]

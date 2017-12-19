@@ -3,15 +3,16 @@ Created on 2017年12月17日
 
 @author: LI
 '''
-from sklearn.model_selection import cross_val_score
 from sklearn.metrics import *
 from background_program.b_SampleProcessing.Dimension_Reduction.MyPca import MyPca
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import FeatureUnion
+
+
 class score_forcasting():
     
-    def __init__(self, labelName):
-        self.labelName = labelName
+    def __init__(self):
+        self.label_name = 'score'
             
     def doit(self):
         # 获取数据
@@ -66,7 +67,7 @@ class score_forcasting():
         '''
         from background_program.z_Tools.DataCarer import DataCarer
         
-        data_carer = DataCarer(label_name='score', school_year='2016', usage="regression")
+        data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
         self.X_train, self.Y_train = data_carer.create_train_dataSet()  
         self.students, self.X_test = data_carer.create_validate_dataSet()
         
@@ -127,5 +128,5 @@ class score_forcasting():
         pass
 
 if __name__ == '__main__':
-    t = score_forcasting('score')
+    t = score_forcasting()
     print(t.doit())
