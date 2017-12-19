@@ -63,7 +63,7 @@ class class_failing_warning():
         @params string student_num:学生学号
         @retrun
         '''
-        from background_program.z_Tools.DataCarer import DataCarer
+        from background_program.a_Data_prossing.DataCarer import DataCarer
         
         self.X_train, self.Y_train = DataCarer().createTrainDataSet('score')  
         self.students, self.X_test = DataCarer().createValidateDataSet()

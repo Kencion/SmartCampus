@@ -1,12 +1,13 @@
 '''
 Created on 2017年12月17日
 
-@author: LI
+@author: jack
 '''
 from sklearn.metrics import *
 from background_program.b_SampleProcessing.Dimension_Reduction.MyPca import MyPca
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import FeatureUnion
+
 
 class subsidy_forcasting():
     
@@ -20,8 +21,8 @@ class subsidy_forcasting():
         pre_processer = self.get_pre_processer()
         # 获取特征选择器
         feature_selector = self.get_feature_selector()
-        # 获取特征降维器
-        dimension_reductor = MyPca(self.X_train).pca
+#         # 获取特征降维器
+#         dimension_reductor = MyPca(self.X_train).pca
         # 获取分类器
         estimater = self.get_estimater()
         # 获取模型评估器
@@ -30,7 +31,7 @@ class subsidy_forcasting():
         pipeline = Pipeline(
             [('pre_processer', pre_processer),
              ('feature_selector', feature_selector),
-             ('dimension_reductor', dimension_reductor),
+#              ('dimension_reductor', dimension_reductor),
              ('estimater', estimater),
              ]
             )
@@ -40,11 +41,10 @@ class subsidy_forcasting():
         
         """=============对测试集进行操作============"""
         predict_result = pipeline.predict(self.X_test)
-        print(self.X_test)
         
         result = []
-        for student, score in zip(self.students, predict_result):
-            result.append([student.getStudent_num(), score])
+        for student, subsidy in zip(self.students, predict_result):
+            result.append([student.getStudent_num(), float(subsidy)])
         
         return result
         
@@ -56,7 +56,7 @@ class subsidy_forcasting():
         @params string student_num:学生学号
         @retrun
         '''
-        from background_program.z_Tools.DataCarer import DataCarer
+        from background_program.a_Data_prossing.DataCarer import DataCarer
         
         data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
         self.X_train, self.Y_train = data_carer.create_train_dataSet()  
@@ -68,13 +68,11 @@ class subsidy_forcasting():
         @params 
         @retrun    sklearn.PreProcessing.xx preProcesser:特征预处理器
         '''
-        from background_program.b_SampleProcessing.PreProcessing.MyMinMaxScaler import MyMinMaxScaler
         from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
         
         pre_processer = FeatureUnion(
             transformer_list=[
                 ('MySelectKBset', MyImputer().transformer),
-                ('MySelectPercentile', MyMinMaxScaler().transformer) 
                 ],
                 n_jobs=2)
         
@@ -118,6 +116,7 @@ class subsidy_forcasting():
         '''
         pass
 
+
 if __name__ == '__main__':
     t = subsidy_forcasting()
-    print(t.doit())
+    print(type(t.doit()))

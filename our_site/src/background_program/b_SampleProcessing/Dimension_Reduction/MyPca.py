@@ -45,7 +45,7 @@ class MyPca(FeatureCalculater):
         float percentage:百分比，
         @retrun（返回值解释） int  num:需要降成的维度
         """
-        newData, meanVal = self.zeroMean(dataMat)  
+        newData, meanVal = self.zeroMean(dataMat) 
         covMat = np.cov(newData, rowvar=0)  # 求协方差矩阵,return ndarray；若rowvar非0，一列代表一个样本，为0，一行代表一个样本  
         eigVals, eigVects = np.linalg.eig(np.mat(covMat + 1e-5))  # 求特征值和特征向量,特征向量是按列放的，即一列代表一个特征向量  
         n = self.percentage2n(eigVals, percentage)  # 要达到percent的方差百分比，需要前n个特征向量  

@@ -51,6 +51,7 @@ def score_forcasting(request, update=False):
             pie_chart(), line_chart(), broken_line_chart()
             from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
             students_and_scores = score_forcasting().doit()
+            print(students_and_scores)
             for i in students_and_scores:
                 Student(student_num=i[0], score=i[1]).save()
         return HttpResponseRedirect('/teacher_client/score_forcasting')
