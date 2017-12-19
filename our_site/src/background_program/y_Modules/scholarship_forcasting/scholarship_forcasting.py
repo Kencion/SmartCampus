@@ -1,66 +1,77 @@
 '''
 奖学金预测模块
-Created on 2017年7月22日
-Modify on 2017年11月27日
+Created on 2017年12月19日
 @author: jack
 '''
+from sklearn.metrics import *
+from background_program.b_SampleProcessing.Dimension_Reduction.MyPca import MyPca
+from sklearn.pipeline import Pipeline
+from sklearn.pipeline import FeatureUnion
 
-class scholarship_forcasting():
+
+class score_forcasting():
     
     def __init__(self):
-        from sklearn.pipeline import Pipeline
-        from background_program.b_SampleProcessing.Dimension_Reduction.Pca_Test import Pca_Test
+        self.label_name = 'scholarship_amount'
+            
+    def doit(self):
+        # 获取数据
+        self.get_data()
+        # 获取数据预处理器
+        pre_processer = self.get_pre_processer()
+        # 获取特征选择器
+        feature_selector = self.get_feature_selector()
+        # 获取特征降维器
+        dimension_reductor = MyPca(self.X_train).pca
+        # 获取分类器
+        estimater = self.get_estimater()
+        # 获取模型评估器
+        evalueter = self.get_model_evalueter()
+        # 管道
+        pipeline = Pipeline(
+            [('pre_processer', pre_processer),
+             ('feature_selector', feature_selector),
+             ('dimension_reductor', dimension_reductor),
+             ('estimater', estimater),
+             ]
+            )
         
         """=============对训练集进行操作============"""
-        """获取数据"""
-        self.getData()
-        
-        """获取各种器"""
-        preProcesser1, preProcesser2 = self.getPreProcesser()
-        featureSelector, estimater, evalueter = self.getFeatureSelector(), self.getEstimater(), self.getmodelEvalueter()
-       
-        """利用各种器对训练集的特征进行转换"""
-        preProcesser1.fit_transform(self.X_train)
-        preProcesser2.fit_transform(self.X_train)
-        
-        """进行特征选择"""
-        featureSelector.fit_transform(self.X_train, self.Y_train)
-        
-        """利用pca对特征矩阵进行降维"""
-        p = Pca_Test()
-        n = p.pca_2(self.X_train, 0.99) 
-        p.Train_dataSet(self.X_train, n)
+        pipeline.fit(self.X_train, self.Y_train)
         
         """=============对测试集进行操作============"""
-        """利用各种器对测试集的特征进行同训练集一样的转换"""
-        preProcesser1.fit_transform(self.X_test)
-        preProcesser2.fit_transform(self.X_test)
+        Y_pred = predict_result = pipeline.predict(self.X_test)
         
-        """利用pca对特征矩阵进行同训练集一样的降维"""
-        p.Test_dataSet(self.X_test)
+        result = []
+        for student, score in zip(self.students, predict_result):
+            result.append([student.getStudent_num(), score])
         
-        """进行预测"""
-        estimater.fit(self.X_train, self.Y_train)
-        print("准确率", estimater.score(self.X_train, self.Y_train))
+        return result
+#         
+#         for i in range(len(Y_pred)):
+#             print(self.Y_test[i],Y_pred[i])
+#         print('explained_variance_score:',explained_variance_score(self.Y_test,Y_pred))
+#         print('mean_absolute_error:',mean_absolute_error(self.Y_test, Y_pred))
+#         print('mean_squared_error:',mean_squared_error(self.Y_test, Y_pred))
+#         print('mean_squared_log_error:',mean_squared_log_error(self.Y_test[:,0], Y_pred))
+#         print('median_absolute_error:',median_absolute_error(self.Y_test, Y_pred))
+#         print('r2_score:',r2_score(self.Y_test,Y_pred))
         
-        for student, score in zip(self.students, estimater.predict(self.X_test)):
-            if score != 0.0:
-                print(student.getStudent_num(), "----", score)
-            
-    
-    def getData(self):
+    def get_data(self):
         '''
-                        获得训练数据和测试数据
+                获得训练数据和测试数据
         self.X_train=训练数据特征， self.Y_train=训练数据标签
         self.X_test=测试数据特征， self.Y_test=测试数据标签
         @params string student_num:学生学号
         @retrun
         '''
         from background_program.z_Tools.DataCarer import DataCarer
-        self.X_train, self.Y_train = DataCarer().createTrainDataSet()  
-        self.students, self.X_test = DataCarer().createValidateDataSet()
         
-    def getPreProcesser(self):
+        data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="classify")
+        self.X_train, self.Y_train = data_carer.create_train_dataSet()  
+        self.students, self.X_test = data_carer.create_validate_dataSet()
+        
+    def get_pre_processer(self):
         '''
                         获得特征预处理器
         @params 
@@ -69,11 +80,16 @@ class scholarship_forcasting():
         from background_program.b_SampleProcessing.PreProcessing.MyMinMaxScaler import MyMinMaxScaler
         from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
         
-        preProcesser = MyImputer().transformer, MyMinMaxScaler().transformer
+        pre_processer = FeatureUnion(
+            transformer_list=[
+                ('MySelectKBset', MyImputer().transformer),
+                ('MySelectPercentile', MyMinMaxScaler().transformer) 
+                ],
+                n_jobs=2)
         
-        return preProcesser
+        return pre_processer
         
-    def getFeatureSelector(self):
+    def get_feature_selector(self):
         '''
                         获得特征选择器
         @params 
@@ -81,7 +97,6 @@ class scholarship_forcasting():
         '''
         from background_program.b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
         from background_program.b_SampleProcessing.FeatureSelection.MySelectPercentile import MySelectPercentile
-        from sklearn.pipeline import FeatureUnion
         
         featureSelector = FeatureUnion(
             transformer_list=[
@@ -92,19 +107,19 @@ class scholarship_forcasting():
         
         return featureSelector
         
-    def getEstimater(self):
+    def get_estimater(self):
         '''
                         获得预测器，这里是分类器
         @params 
         @retrun    sklearn.某种类  estimater:预测器
         '''
-        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
+        from background_program.c_Estimating.Regression.GeneralizedLinearModels.RidgeRegression import RidgeRegression
         
-        estimater = MyDecesionTree().estimater
+        estimater = RidgeRegression().estimater
         
         return estimater
     
-    def getmodelEvalueter(self):
+    def get_model_evalueter(self):
         '''
                         获得模型评估器，主要是评估算法正确率
         @params 
@@ -114,4 +129,5 @@ class scholarship_forcasting():
 
 
 if __name__ == '__main__':
-    t = scholarship_forcasting()
+    t = score_forcasting()
+    print(t.doit())
