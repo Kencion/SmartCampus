@@ -13,7 +13,7 @@ class Consumption(FeatureCalculater):
         '''
                             计算总消费额
         '''
-        print("start")
+#         print("start")
         sql = "select distinct(student_num) from card"
         self.executer.execute(sql)
         e = self.executer.fetchall()
@@ -29,8 +29,8 @@ class Consumption(FeatureCalculater):
                 sql = "update students set Consumption = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
 #                 print(sql)
                 self.executer.execute(sql)
-            print(stu_num)
-        print("ok")
+#             print(stu_num)
+#         print("ok")
         
     @MyLogger.myException
     def cluster(self):
@@ -44,5 +44,5 @@ class Consumption(FeatureCalculater):
             for i in range(len(cent)):
                 f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
             f.close()
-times = Consumption()
-times.calculate()
+# times = Consumption()
+# times.calculate()
