@@ -9,7 +9,7 @@ from background_program.b_SampleProcessing.Student import Student
 from background_program.z_Tools import MyDataBase
 from numpy import mat
 import numpy as np
-import sys
+
 
 class DataCarer():
     
@@ -19,14 +19,10 @@ class DataCarer():
         @params label:xxx
         @return 
         '''
-        self.db = MyDataBase.MyDataBase("软件学院")
-        self.executer = self.db.getExcuter()
-        
         self.usages = ["regression", "classify"]
         self.usage = usage
         if usage not in self.usages:
             print('用法错误：%s' % usage)
-            sys.exit()
         if usage == "regression":
             self.table_name = "students"
         elif usage == "classify":
@@ -34,6 +30,14 @@ class DataCarer():
         
         self.label_name = label_name
         self.school_year = school_year
+    
+    def open_database(self):
+        self.db = MyDataBase.MyDataBase("软件学院")
+        self.executer = self.db.getExcuter()
+        
+    def close_database(self):
+        self.executer.close()
+        self.db.close()
 
     def create_train_dataSet(self):
         '''
@@ -42,6 +46,7 @@ class DataCarer():
         @return numpy.mat X_train:特征,numpy.mat Y_train:标签
         '''
         """确定label是哪一列，并将其作为待预测对象"""
+        self.open_database()
         self.executer.execute("DESCRIBE {0}".format(self.table_name))
         columnName = self.executer.fetchall()
         index = -1
@@ -51,7 +56,6 @@ class DataCarer():
                 break
         if index == -1:
             print('异常：未发现' + self.label_name)
-            sys.exit()
            
         """先获得数据库表中的全部学生的数据"""
         self.executer.execute("select * from {0}".format(self.table_name))
@@ -60,6 +64,7 @@ class DataCarer():
             student = Student(student_num=i[0], features=list(i[1:index]) + list(i[index + 1:]), label=i[index])
             dataSet.append(student.getAll())
         dataSet = np.array(dataSet)
+        self.close_database()
         
         if self.usage == 'classify':  
             from background_program.b_SampleProcessing.PreProcessing.Data_Imbalance_Processing import Data_Imbalance_Processing
@@ -100,18 +105,15 @@ class DataCarer():
         @params str column:设置把那一列当成结果来预测,str year:学年
         @return list[Student] students:学生列表,numpy.mat X_test:特征
         '''
-        db = MyDataBase.MyDataBase("软件学院")
-        executer = db.getExcuter()
-         
         """获得所有学生的数据"""
+        self.open_database()
         sql = "select * from {0} where right(student_num,4) in('{1}','2017')"
-        executer.execute(sql.format(self.table_name, self.school_year))
+        self.executer.execute(sql.format(self.table_name, self.school_year))
         students, X_test = [], []
-        for i in executer.fetchall():
+        for i in self.executer.fetchall():
             student = Student(student_num=i[0], features=list(i[1:-1]), label=i[-1])
             X_test.append(student.features)
             students.append(student)
-        executer.close()
         X_test = mat(X_test)
-        
+        self.close_database()
         return students, X_test
