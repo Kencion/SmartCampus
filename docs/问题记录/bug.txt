@@ -1,0 +1,3 @@
+数据不平衡过采样处理遇到的问题：
+数据尽量表示为int,float数值类型，不然会导致后期相关计算时出现bug
+TypeError: ufunc 'subtract' did not contain a loop with signature matching types dtype('<U18') dtype('<U18') dtype('<U18')

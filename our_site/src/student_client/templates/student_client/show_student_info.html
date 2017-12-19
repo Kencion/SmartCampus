@@ -1,0 +1,107 @@
+{%extends "student_client/base.html"%}
+{% block title %}
+HOME
+{% endblock %}
+{% block module_name %}
+<span style="font-size:24px;color:blue;">用户个人信息页</span>
+{% endblock %}
+{% block content %}
+{% load static%}
+<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="overflow:auto;height:216px;width: 1066px;">  
+    <h1 class="text" style="font-size:18px;color:blue">{{student_name}}:你好</h1>
+    <table border="1" align="center" >
+		  <tr>
+		    <th>student_num</th>
+		    <th>student_name</th>
+		    <th>student_type</th>
+		    <th>activity_num</th>
+		    <th>activity_avg_level</th>
+		    <th>activity_last_time</th>
+		    <th>library_borrow_times</th>
+		    <th>library_study_time</th>
+		    <th>student_grade</th>
+		    <th>scholarship_amount</th>
+		    <th>scholarship_rank</th>
+		    <th>failed_num</th>
+		    <th>failed_pass_num</th>
+		    <th>failed_failed_num</th>
+		    <th>score</th>
+		    <th>score_rank</th>
+		    <th>gpa</th>
+		  </tr>
+		{% for i in result %}  
+		  <tr>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{student_num}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.0}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.1}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.2}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.3}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.4}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.5}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.6}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.7}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.8}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.9}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.10}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.11}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.12}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.13}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.14}}</td>
+		    <td  style="text-align:center;vertical-align:middle;font-weight:bold;color:blue;">{{i.15}}</td>
+		  </tr>
+    	{% endfor %}  
+</table>
+</div>
+<div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" style="width: 525px;height: 300px;">
+     <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop" style="height:325px;">
+          <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+               <h2 class="mdl-card__title-text">Updates</h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+               Non dolore elit adipisicing ea reprehenderit consectetur culpa.
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+               <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
+          </div>
+     </div>
+     <div class="demo-separator mdl-cell--1-col"></div>
+</div>  
+<div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" style="width:520px;">
+	<div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop" >
+         <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
+             <h3>View options</h3>
+              <ul>
+                 <li>
+                    <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Click per object</span>
+                    </label>
+                 </li>
+                 <li>
+                    <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox2" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Views per object</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label for="chkbox3" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox3" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Objects selected</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label for="chkbox4" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox4" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Objects viewed</span>
+                    </label>
+                  </li>
+               </ul>
+           </div>
+           <div class="mdl-card__actions mdl-card--border" style="height:137px;">
+                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change location</a>
+                <div class="mdl-layout-spacer"></div>
+                <i class="material-icons">location_on</i>
+            </div>
+        </div>          
+</div>
+{% endblock %}
