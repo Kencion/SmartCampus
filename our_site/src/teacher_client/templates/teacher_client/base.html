@@ -97,12 +97,12 @@
 					class="mdl-color-text--blue-grey-400 material-icons"
 					role="presentation">home</i>失联预警</a>
 				
-				<a class="mdl-navigation__link"
+				<a {% block scholarship_forcasting %}{% endblock %} class="mdl-navigation__link"
 				href="{% url 'teacher_client:scholarship_forcasting'%}"><i
 				class="mdl-color-text--blue-grey-400 material-icons"
 				role="presentation">home</i>奖学金预测</a>
 				
-				<a class="mdl-navigation__link"
+				<a {% block subsidy_forcasting %}{% endblock %} class="mdl-navigation__link"
 				href="{% url 'teacher_client:subsidy_forcasting'%}"><i
 				class="mdl-color-text--blue-grey-400 material-icons"
 				role="presentation">home</i>助学金预测</a>

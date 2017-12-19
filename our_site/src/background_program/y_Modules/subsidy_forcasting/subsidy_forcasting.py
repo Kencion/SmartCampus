@@ -8,11 +8,10 @@ from background_program.b_SampleProcessing.Dimension_Reduction.MyPca import MyPc
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import FeatureUnion
 
-
-class score_forcasting():
+class subsidy_forcasting():
     
     def __init__(self):
-        self.label_name = 'score'
+        self.label_name = 'subsidy_amount'
             
     def doit(self):
         # 获取数据
@@ -40,22 +39,14 @@ class score_forcasting():
         pipeline.fit(self.X_train, self.Y_train)
         
         """=============对测试集进行操作============"""
-        Y_pred = predict_result = pipeline.predict(self.X_test)
+        predict_result = pipeline.predict(self.X_test)
+        print(self.X_test)
         
         result = []
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), score])
         
         return result
-#         
-#         for i in range(len(Y_pred)):
-#             print(self.Y_test[i],Y_pred[i])
-#         print('explained_variance_score:',explained_variance_score(self.Y_test,Y_pred))
-#         print('mean_absolute_error:',mean_absolute_error(self.Y_test, Y_pred))
-#         print('mean_squared_error:',mean_squared_error(self.Y_test, Y_pred))
-#         print('mean_squared_log_error:',mean_squared_log_error(self.Y_test[:,0], Y_pred))
-#         print('median_absolute_error:',median_absolute_error(self.Y_test, Y_pred))
-#         print('r2_score:',r2_score(self.Y_test,Y_pred))
         
     def get_data(self):
         '''
@@ -127,7 +118,6 @@ class score_forcasting():
         '''
         pass
 
-
 if __name__ == '__main__':
-    t = score_forcasting()
+    t = subsidy_forcasting()
     print(t.doit())
