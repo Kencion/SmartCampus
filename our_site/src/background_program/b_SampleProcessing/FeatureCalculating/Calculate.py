@@ -6,15 +6,15 @@ Created on 2017年11月21日
 '''
  
 # 下面是只要执行一次的
-from b_SampleProcessing.FeatureCalculating.activities import *
-from b_SampleProcessing.FeatureCalculating.dorm_entrance import *
-from b_SampleProcessing.FeatureCalculating.hornorary_title import *
-from b_SampleProcessing.FeatureCalculating.library import *
-from b_SampleProcessing.FeatureCalculating.scholarship import *
-from b_SampleProcessing.FeatureCalculating.score import *
-from b_SampleProcessing.FeatureCalculating.social_practice import *
-from b_SampleProcessing.FeatureCalculating.subsidy import *
-from b_SampleProcessing.FeatureCalculating.hornorary_title import *
+# from b_SampleProcessing.FeatureCalculating.activities import *
+# from b_SampleProcessing.FeatureCalculating.dorm_entrance import *
+# from b_SampleProcessing.FeatureCalculating.hornorary_title import *
+# from b_SampleProcessing.FeatureCalculating.library import *
+# from b_SampleProcessing.FeatureCalculating.scholarship import *
+# from b_SampleProcessing.FeatureCalculating.score import *
+# from b_SampleProcessing.FeatureCalculating.social_practice import *
+# from b_SampleProcessing.FeatureCalculating.subsidy import *
+# from b_SampleProcessing.FeatureCalculating.hornorary_title import *
 from tqdm import tqdm  
 
 claculaters1 = [  
@@ -27,7 +27,7 @@ claculaters1 = [
 #         failed_num1.failed_num1(),
 #         GPA1.GPA1(),
 #         score_rank1.score_rank1(),
-        score1.score1(),
+#         score1.score1(),
 #         is_social_practice_great1.is_social_practice_great1(),
 #         social_practice1.social_practice1(),
 #         hornorary_rank.hornorary_rank(),
@@ -43,7 +43,7 @@ claculaters2 = [
 #     scholarship_rank.scholarship_rank(),
 #     subsidy_amount.subsidy_amount(),
 #     subsidy_rank.subsidy_rank(),
-      in_out_times.in_out_times(),
+#       in_out_times.in_out_times(),
     ]
 
 
@@ -57,7 +57,7 @@ def oneTime():
 
 
 def nTimes():
-    from z_Tools import MyDataBase
+    from background_program.z_Tools import MyDataBase
     db = MyDataBase.MyDataBase("软件学院")
     conn = db.getConn()
     executer = db.getExcuter()
