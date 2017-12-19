@@ -20,8 +20,8 @@ class scholarship_forcasting():
         pre_processer = self.get_pre_processer()
         # 获取特征选择器
         feature_selector = self.get_feature_selector()
-        # 获取特征降维器
-        dimension_reductor = MyPca(self.X_train).pca
+#         # 获取特征降维器
+#         dimension_reductor = MyPca(self.X_train).pca
         # 获取分类器
         estimater = self.get_estimater()
         # 获取模型评估器
@@ -30,7 +30,7 @@ class scholarship_forcasting():
         pipeline = Pipeline(
             [('pre_processer', pre_processer),
              ('feature_selector', feature_selector),
-             ('dimension_reductor', dimension_reductor),
+#              ('dimension_reductor', dimension_reductor),
              ('estimater', estimater),
              ]
             )
@@ -55,7 +55,7 @@ class scholarship_forcasting():
         @params string student_num:学生学号
         @retrun
         '''
-        from background_program.z_Tools.DataCarer import DataCarer
+        from background_program.a_Data_prossing.DataCarer import DataCarer
         
         data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="classify")
         self.X_train, self.Y_train = data_carer.create_train_dataSet()  
@@ -67,13 +67,11 @@ class scholarship_forcasting():
         @params 
         @retrun    sklearn.PreProcessing.xx preProcesser:特征预处理器
         '''
-        from background_program.b_SampleProcessing.PreProcessing.MyMinMaxScaler import MyMinMaxScaler
         from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
         
         pre_processer = FeatureUnion(
             transformer_list=[
                 ('MySelectKBset', MyImputer().transformer),
-                ('MySelectPercentile', MyMinMaxScaler().transformer) 
                 ],
                 n_jobs=2)
         
