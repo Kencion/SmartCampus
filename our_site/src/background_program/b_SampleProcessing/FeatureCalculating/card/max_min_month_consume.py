@@ -14,11 +14,11 @@ class max_min_month_consume(FeatureCalculater):
         '''
                 计算月消费最大值和最小值
         '''
-        sql = "select student_num,DATE_FORMAT(date, '%Y-%m'),type,max(abs(transaction_amount)),min(abs(transaction_amount)) from card group by student_num,DATE_FORMAT(date, '%Y-%m'),type order by student_num,DATE_FORMAT(date, '%Y-%m')"
+        sql = "select student_num,DATE_FORMAT(date, '%Y-%m'),type,sum(abs(transaction_amount)),sum(abs(transaction_amount)) from card group by student_num,DATE_FORMAT(date, '%Y-%m'),type order by student_num,DATE_FORMAT(date, '%Y-%m')"
         self.executer.execute(sql)
         result = self.executer.fetchall()
         max_count=[0,0,0,0,0,0,0]
-        min_count=[10000,10000,10000,10000,10000,10000,10000]
+        min_count=[500000,500000,500000,500000,500000,500000,500000]
         student_num=result[0][0]
         count_num=0
         flag=0
@@ -50,12 +50,12 @@ class max_min_month_consume(FeatureCalculater):
                         sql = "update students set {0}={1} where student_num='{2}'"
                         self.executer.execute(sql.format(name, float(max_count[i]),str(student_num) + (str)(year)))
                         max_count[i]=0
-                        if int(min_count[i])==10000:
+                        if int(min_count[i])==500000:
                             min_count[i]=0
                         name2=str(name_tag[i]+'_min_amount')
                         sql = "update students set {0}={1} where student_num='{2}'"
                         self.executer.execute(sql.format(name2, float(min_count[i]),str(student_num) + (str)(year)))
-                        min_count[i]=10000
+                        min_count[i]=500000
                     count_num+=1
                     tag=1
                     first=2
@@ -105,12 +105,12 @@ class max_min_month_consume(FeatureCalculater):
                     sql = "update students set {0}={1} where student_num='{2}'"
                     self.executer.execute(sql.format(name, float(max_count[i]),str(student_num) + (str)(year)))
                     max_count[i]=0
-                    if int(min_count[i])==10000:
+                    if int(min_count[i])==500000:
                         min_count[i]=0
                     name2=str(name_tag[i]+'_min_amount')
                     sql = "update students set {0}={1} where student_num='{2}'"
                     self.executer.execute(sql.format(name2, float(min_count[i]),str(student_num) + (str)(year)))
-                    min_count[i]=10000
+                    min_count[i]=500000
                 count_num+=1
                 flag=0
             month_tag=int(re[1][6:7])
