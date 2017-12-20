@@ -14,22 +14,43 @@ class max_every_type(FeatureCalculater):
         '''
                 计算每种消费的日消费最大额
         '''
-        sql = "select student_num,DATE_FORMAT(date, '%Y-%m'),type,max(abs(transaction_amount)) from card group by student_num,DATE_FORMAT(date, '%Y-%m-%d'),type order by student_num"
+        sql = "select student_num,DATE_FORMAT(date, '%Y-%m'),type,max(abs(transaction_amount)) from card group by student_num,DATE_FORMAT(date, '%Y-%m-%d'),type order by student_num,DATE_FORMAT(date, '%Y-%m-%d')"
         self.executer.execute(sql)
         result = self.executer.fetchall()
         student_num=result[0][0]
         flag=0
         max_amount=[0,0,0,0,0,0,0]
+        name_tag=['charge','exercise','snack','study','market','canteen','other']
+        tag=0
+        num=0
+        month_tag=0
+        year_tag=0
+        first=2
+        result[0][1].split('-')
+        if int(result[0][1][6:7])<9:
+            num=1
+            first=1
         for re in result:
             re[1].split('-')
             month=int(re[1][6:7])
-            year=int(re[1][0:4])-1
-            if month>=9:
-                year=int(re[1][0:4])
-                flag=1
-            elif str(re[0])!=str(student_num):
+            if re[0]!=student_num:
                 flag=2
-            else:
+                num=0
+                first=2
+            elif month>=9:
+                if first==1:
+                    first=2
+                if tag==0 and num!=0:
+                    year=int(re[1][0:4])-1
+                    print(str(student_num) + (str)(year)+"——————————————"+str(max_amount[4]))
+                    for i in range(7): 
+                        name=str(name_tag[i]+'_day_max_amount')
+                        sql = "update students set {0}={1} where student_num='{2}'"
+                        self.executer.execute(sql.format(name, float(max_amount[i]),str(student_num) + (str)(year)))   
+                        max_amount[i]=0; 
+                    tag=1
+                    first=2
+            if re[0]==student_num:
                 if str(re[2])=='other':
                     if int(re[3])>max_amount[6]:
                         max_amount[6]=int(re[3])
@@ -51,17 +72,30 @@ class max_every_type(FeatureCalculater):
                 else: 
                     if int(re[3])>max_amount[0]:
                         max_amount[0]=int(re[3])
-            name_tag=['charge','exercise','snack','study','market','canteen','other']
-            if flag==1 or flag==2:
+            if flag==2:
+                if month_tag<9:
+                    year=int(year_tag)-1
+                else:
+                    year=int(year_tag)
+                print(str(student_num) + (str)(year)+"----------"+str(max_amount[4]))
                 for i in range(7):
                     name=str(name_tag[i]+'_day_max_amount')
                     sql = "update students set {0}={1} where student_num='{2}'"
                     self.executer.execute(sql.format(name, float(max_amount[i]),str(student_num) + (str)(year)))   
                     max_amount[i]=0; 
-                print("跑了一次")
                 flag=0
+            month_tag=int(re[1][6:7])
+            year_tag=int(re[1][0:4])
+            if month<9:
+                tag=0
+                num=1
+                first=0
             student_num=re[0]
 if __name__=='__main__':
+    import datetime
     m=max_every_type()
+    start=datetime.datetime.now()
     m.calculate()
+    endtime = datetime.datetime.now()
+    print((endtime - start).seconds)
     
