@@ -57,34 +57,6 @@ class DataCarer():
         dataSet = np.array(dataSet)
         self.close_database()
         
-        if self.usage == 'classify':  
-            from background_program.b_SampleProcessing.PreProcessing.Data_Imbalance_Processing import Data_Imbalance_Processing
-            from background_program.b_SampleProcessing.Datasample_Layering.Random_Data import Random_Data  
-            
-            """获得一些新的数据"""
-            a = np.array([[]])  # 没有用的数据，单纯生成对象参数
-            dip = Data_Imbalance_Processing(a, N=100)
-            lists, proportion = dip._get_proportion(self.label_name)  # 分类属性
-            new_dataSet = np.array(list(dip._get_data(lists, proportion, self.label_name)))
-               
-            """把他们加在一起以平衡数据"""
-            try:
-                dataSet = np.vstack((dataSet, new_dataSet))
-                dataSet = mat(dataSet)
-            except:
-                pass
-                
-            """ 对刚才的数据进行分层抽样"""
-            X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
-            X_train = tuple(X_train.tolist())
-            t = list()
-                
-            for i in range(len(Y_train)):
-                t.append(Y_train[i, 0])
-            Y_train = tuple(set(t))
-               
-            dataSet, _ = Random_Data().group(data_set=dataSet, label=Y_train, percent=0.1)
-            
         dataSet = mat(dataSet)
     
         X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
@@ -131,7 +103,7 @@ class DataCarer():
         self.db.close()
         
     def pre_process(self, X):
-#         from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
+        from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
         
-#         MyImputer().transformer.fit_transform(X)
+        MyImputer().transformer.fit_transform(X)
         pass
