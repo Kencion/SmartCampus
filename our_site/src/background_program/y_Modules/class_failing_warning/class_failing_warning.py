@@ -6,10 +6,14 @@ Modify on 2017年11月27日
 '''
 from sklearn.pipeline import FeatureUnion
 
+
 class class_failing_warning():
     
     def __init__(self):
-        pass
+        import warnings
+        
+        warnings.filterwarnings("ignore")
+        self.label_name='score'
             
     def doit(self):
         '''
@@ -65,8 +69,9 @@ class class_failing_warning():
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
         
-        self.X_train, self.Y_train = DataCarer().createTrainDataSet('score')  
-        self.students, self.X_test = DataCarer().createValidateDataSet()
+        data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="classify")
+        self.X_train, self.Y_train = data_carer.create_train_dataSet()  
+        self.students, self.X_test = data_carer.create_validate_dataSet()
         
     def get_pre_processer(self):
         '''
@@ -110,13 +115,9 @@ class class_failing_warning():
         @params 
         @retrun    sklearn.某种类  estimater:预测器
         '''
-#         from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
-#         from background_program.c_Estimating.Classification.LogisticRegression import LogisticRegression
-#         estimater = LogisticRegression().estimater
-#         
-        from background_program.c_Estimating.Regression.GeneralizedLinearModels.RidgeRegression import RidgeRegression
+        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
         
-        estimater = RidgeRegression().estimater
+        estimater = MyDecesionTree().estimater
         return estimater
     
     def get_model_evalueter(self):

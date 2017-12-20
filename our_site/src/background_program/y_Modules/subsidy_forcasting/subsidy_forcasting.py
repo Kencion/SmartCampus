@@ -3,8 +3,6 @@ Created on 2017年12月17日
 
 @author: jack
 '''
-from sklearn.metrics import *
-from background_program.b_SampleProcessing.Dimension_Reduction.MyPca import MyPca
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import FeatureUnion
 
@@ -12,6 +10,9 @@ from sklearn.pipeline import FeatureUnion
 class subsidy_forcasting():
     
     def __init__(self):
+        import warnings
+        
+        warnings.filterwarnings("ignore")
         self.label_name = 'subsidy_amount'
             
     def doit(self):
@@ -21,8 +22,6 @@ class subsidy_forcasting():
         pre_processer = self.get_pre_processer()
         # 获取特征选择器
         feature_selector = self.get_feature_selector()
-#         # 获取特征降维器
-#         dimension_reductor = MyPca(self.X_train).pca
         # 获取分类器
         estimater = self.get_estimater()
         # 获取模型评估器
@@ -31,7 +30,6 @@ class subsidy_forcasting():
         pipeline = Pipeline(
             [('pre_processer', pre_processer),
              ('feature_selector', feature_selector),
-#              ('dimension_reductor', dimension_reductor),
              ('estimater', estimater),
              ]
             )
@@ -58,7 +56,7 @@ class subsidy_forcasting():
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
         
-        data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
+        data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="classify")
         self.X_train, self.Y_train = data_carer.create_train_dataSet()  
         self.students, self.X_test = data_carer.create_validate_dataSet()
         
@@ -102,9 +100,9 @@ class subsidy_forcasting():
         @params 
         @retrun    sklearn.某种类  estimater:预测器
         '''
-        from background_program.c_Estimating.Regression.GeneralizedLinearModels.RidgeRegression import RidgeRegression
+        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
         
-        estimater = RidgeRegression().estimater
+        estimater = MyDecesionTree().estimater
         
         return estimater
     
@@ -119,4 +117,4 @@ class subsidy_forcasting():
 
 if __name__ == '__main__':
     t = subsidy_forcasting()
-    print(type(t.doit()))
+    print(t.doit())
