@@ -29,8 +29,8 @@ class canteen_times(FeatureCalculater):
                 sql = "update students set canteen_times = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
 #                 print(sql)
                 self.executer.execute(sql)
-            print(stu_num)
-        print("ok")
+#             print(stu_num)
+#         print("ok")
         
     @MyLogger.myException
     def cluster(self):
@@ -44,5 +44,5 @@ class canteen_times(FeatureCalculater):
             for i in range(len(cent)):
                 f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
             f.close()
-times = canteen_times()
-times.calculate()
+# times = canteen_times()
+# times.calculate()

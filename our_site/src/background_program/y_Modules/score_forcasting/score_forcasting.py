@@ -21,8 +21,8 @@ class score_forcasting():
         pre_processer = self.get_pre_processer()
         # 获取特征选择器
         feature_selector = self.get_feature_selector()
-        # 获取特征降维器
-        dimension_reductor = MyPca(self.X_train).pca
+#         # 获取特征降维器
+#         dimension_reductor = MyPca(self.X_train).pca
         # 获取分类器
         estimater = self.get_estimater()
         # 获取模型评估器
@@ -31,7 +31,7 @@ class score_forcasting():
         pipeline = Pipeline(
             [('pre_processer', pre_processer),
              ('feature_selector', feature_selector),
-             ('dimension_reductor', dimension_reductor),
+#              ('dimension_reductor', dimension_reductor),
              ('estimater', estimater),
              ]
             )
@@ -44,7 +44,7 @@ class score_forcasting():
         
         result = []
         for student, score in zip(self.students, predict_result):
-            result.append([student.getStudent_num(), score])
+            result.append([student.getStudent_num(), float(score)])
         
         return result
 #         
@@ -65,7 +65,7 @@ class score_forcasting():
         @params string student_num:学生学号
         @retrun
         '''
-        from background_program.z_Tools.DataCarer import DataCarer
+        from background_program.a_Data_prossing.DataCarer import DataCarer
         
         data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
         self.X_train, self.Y_train = data_carer.create_train_dataSet()  
@@ -127,6 +127,7 @@ class score_forcasting():
         '''
         pass
 
+
 if __name__ == '__main__':
     t = score_forcasting()
-    print(t.doit())
+    t.doit()

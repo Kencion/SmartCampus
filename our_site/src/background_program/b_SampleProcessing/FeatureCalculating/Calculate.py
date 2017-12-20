@@ -6,15 +6,22 @@ Created on 2017年11月21日
 '''
  
 # 下面是只要执行一次的
-from b_SampleProcessing.FeatureCalculating.activities import *
-from b_SampleProcessing.FeatureCalculating.dorm_entrance import *
-from b_SampleProcessing.FeatureCalculating.hornorary_title import *
-from b_SampleProcessing.FeatureCalculating.library import *
-from b_SampleProcessing.FeatureCalculating.scholarship import *
-from b_SampleProcessing.FeatureCalculating.score import *
-from b_SampleProcessing.FeatureCalculating.social_practice import *
-from b_SampleProcessing.FeatureCalculating.subsidy import *
-from b_SampleProcessing.FeatureCalculating.hornorary_title import *
+# from b_SampleProcessing.FeatureCalculating.activities import *
+# from b_SampleProcessing.FeatureCalculating.dorm_entrance import *
+# from b_SampleProcessing.FeatureCalculating.hornorary_title import *
+# from b_SampleProcessing.FeatureCalculating.library import *
+# from b_SampleProcessing.FeatureCalculating.scholarship import *
+# from b_SampleProcessing.FeatureCalculating.score import *
+# from b_SampleProcessing.FeatureCalculating.social_practice import *
+# from b_SampleProcessing.FeatureCalculating.subsidy import *
+# from b_SampleProcessing.FeatureCalculating.hornorary_title import *
+from background_program.b_SampleProcessing.FeatureCalculating.card.canteen_consumption_divide_by_consumption import canteen_amount_divide_by_consumption
+from background_program.b_SampleProcessing.FeatureCalculating.card.canteen_times import canteen_times
+from background_program.b_SampleProcessing.FeatureCalculating.card.Consumption import Consumption
+from background_program.b_SampleProcessing.FeatureCalculating.card.max_every_type import max_every_type
+from background_program.b_SampleProcessing.FeatureCalculating.card.mean_median_var import mean_median_var
+from background_program.b_SampleProcessing.FeatureCalculating.card.total_amount_every_type import total_amount_every_type
+from background_program.b_SampleProcessing.FeatureCalculating.card.transaction_times import transaction_times
 from tqdm import tqdm  
 
 claculaters1 = [  
@@ -27,12 +34,18 @@ claculaters1 = [
 #         failed_num1.failed_num1(),
 #         GPA1.GPA1(),
 #         score_rank1.score_rank1(),
-        score1.score1(),
+#         score1.score1(),
 #         is_social_practice_great1.is_social_practice_great1(),
 #         social_practice1.social_practice1(),
 #         hornorary_rank.hornorary_rank(),
 #         hornorary_times.hornorary_times(),
-          
+            canteen_times,
+            Consumption,
+            max_every_type,
+            mean_median_var,
+            total_amount_every_type,
+            transaction_times,
+            canteen_amount_divide_by_consumption,
     ]
 
 # 下面是要执行学生个数次数的
@@ -43,7 +56,7 @@ claculaters2 = [
 #     scholarship_rank.scholarship_rank(),
 #     subsidy_amount.subsidy_amount(),
 #     subsidy_rank.subsidy_rank(),
-      in_out_times.in_out_times(),
+#       in_out_times.in_out_times(),
     ]
 
 
@@ -57,7 +70,7 @@ def oneTime():
 
 
 def nTimes():
-    from z_Tools import MyDataBase
+    from background_program.z_Tools import MyDataBase
     db = MyDataBase.MyDataBase("软件学院")
     conn = db.getConn()
     executer = db.getExcuter()
@@ -83,10 +96,10 @@ def nTimes():
 
 
 if __name__ == '__main__':
-#     oneTime()
+    oneTime()
 #     nTimes()
-    for claculater in tqdm(claculaters1):
-            claculater.cluster()
-               
-    for claculater in tqdm(claculaters2):
-            claculater.cluster()
+#     for claculater in tqdm(claculaters1):
+#             claculater.cluster()
+#                
+#     for claculater in tqdm(claculaters2):
+#             claculater.cluster()
