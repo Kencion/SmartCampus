@@ -19,7 +19,7 @@ class canteen_amount_divide_by_consumption(FeatureCalculater):
         self.executer.execute(sql)
         e = self.executer.fetchall()
         for i in e:
-            
+             
             stu_num = i[0]
             
             if i[1] != 0:
@@ -27,20 +27,14 @@ class canteen_amount_divide_by_consumption(FeatureCalculater):
                 canteen_consumption = i[1]
                 
                 if i[2] != 0:
-                    consumption = i[2]
+                    consumption = -1*i[2]
                     res = float(canteen_consumption)/float(consumption)
                 
                     sql = "update students set canteen_amount_divide_by_consumption = " + str(res) + " where student_num = '"+str(stu_num)+"'"
 #                     print(sql)
                     self.executer.execute(sql)
-                    
-                else:
-                    print("consumption is 0!!!the student_num = "+str(stu_num))
-
-            else:
-                print("canteen_consumption is 0!!!the student_num = "+str(stu_num))
-                
 #             print(stu_num)    
+#         print("ok")
                 
     @MyLogger.myException
     def cluster(self):

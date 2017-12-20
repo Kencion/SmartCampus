@@ -21,14 +21,15 @@ class Consumption(FeatureCalculater):
             stu_num = str(i[0])
             for year1 in range(2014, 2017):
                 year2 = year1+1
-                sql = "select sum(transaction_amount) from card where student_num = '" + str(stu_num) + "' and date between '" + str(year1) + "-09-01' and '"+ str(year2) +"-08-31' and transaction_amount<0" 
+                sql = "select sum(transaction_amount) from card where student_num = '" + str(stu_num) + "' and date between '" + str(year1) + "-08-01' and '"+ str(year2) +"-07-31' and transaction_amount<0" 
 #                 print(sql)
                 self.executer.execute(sql)
                 count = self.executer.fetchone()[0]
-#                 print(count)
-                sql = "update students set Consumption = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
-#                 print(sql)
-                self.executer.execute(sql)
+                if count is not None:
+#                     print(count)
+                    sql = "update students set Consumption = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
+#                     print(sql)
+                    self.executer.execute(sql)
 #             print(stu_num)
 #         print("ok")
         
