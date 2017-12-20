@@ -1,8 +1,8 @@
 '''
 @author: yhj
 '''
-from z_Tools import MyLogger
-from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+from background_program.z_Tools import MyLogger
+from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
 class activity_last_time1(FeatureCalculater):
     '''

@@ -4,8 +4,8 @@ Created on 2017年11月22日
 @author: yzh
 '''
 
-from z_Tools import MyLogger
-from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+from background_program.z_Tools import MyLogger
+from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
 class failed_num1(FeatureCalculater):
     

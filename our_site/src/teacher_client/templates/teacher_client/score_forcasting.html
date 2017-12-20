@@ -1,109 +1,92 @@
-{% extends "teacher_client/base.html" %}
-
-{% block title%}
-	成绩预警
-{% endblock%}
-
-{% block module_name %}成绩预测{% endblock %}
-
-{% block teacher_name %}{{teacher_name}}{% endblock %}
-{% block index_state %}{% endblock %}
-{% block score_forcasting %}style="color:white;"{% endblock %}
-{% block missing_warning %}{% endblock %}
-{% block scholarship_forcasting %}{% endblock %}
-{% block subsidy_forcasting %}{% endblock %}
-
-{% block content %}
-{% load static %}
-	<div
-		class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
-		<div style="width:100%;height:350px;">
+{% extends "teacher_client/base.html" %} {% block title%} 成绩预警 {%
+endblock%} {% block module_name %}成绩预测{% endblock %} {% block
+teacher_name %}{{teacher_name}}{% endblock %} {% block index_state %}{%
+endblock %} {% block score_forcasting %}style="color:white;"{% endblock
+%} {% block missing_warning %}{% endblock %} {% block
+scholarship_forcasting %}{% endblock %} {% block subsidy_forcasting %}{%
+endblock %} {% block content %} {% load static %}
+<div
+	class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+	<div style="width: 100%; height: 350px;">
+		<ul class="demo-list-item mdl-list">
+			<li class="mdl-list__item"><span
+				class="mdl-list__item-primary-content"> 预测成绩如下： </span></li>
+		</ul>
+		<div style="height: 80%; overflow: scroll; overflow-x: hidden;">
 			<ul class="demo-list-item mdl-list">
-				  <li class="mdl-list__item">
-				  	<span class="mdl-list__item-primary-content">
-				      	预测成绩如下：
-				    </span>
-				  </li>
-			 </ul>
-			<div style="height:80%;overflow:scroll;overflow-x:hidden;">
-				<ul class="demo-list-item mdl-list">
-				  {% for student_and_score in students_and_scores %}
-			      <li class="mdl-list__item">
-				    <span class="mdl-list__item-primary-content">
-				      {{student_and_score.0}}===>{{student_and_score.1}}
-				    </span>
-				  </li>
-					{% endfor %}
-				</ul>
-			</div>
+				{% for student_and_score in students_and_scores %}
+				<li class="mdl-list__item"><span
+					class="mdl-list__item-primary-content">
+						{{student_and_score.0}}===>{{student_and_score.1}} </span></li> {% endfor %}
+			</ul>
 		</div>
-		<img width=100% height=100% src="{%static 'teacher_client/images/line_chart.png' %}"/>
-		<img width=100% height=100% src="{%static 'teacher_client/images/pie_chart.png' %}"/>
-		<img width=100% height=100% src="{%static 'teacher_client/images/broken_line_chart.png' %}"/>
 	</div>
+	<img width=100% height=100%
+		src="{%static 'teacher_client/images/line_chart.png' %}" /> <img
+		width=100% height=100%
+		src="{%static 'teacher_client/images/pie_chart.png' %}" /> <img
+		width=100% height=100%
+		src="{%static 'teacher_client/images/broken_line_chart.png' %}" />
+</div>
+<div
+	class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
 	<div
-		class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-		<div
-			class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-			<div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-				<h2 class="mdl-card__title-text">可能挂科的同学：</h2>
-			</div>
-			<div class="mdl-card__supporting-text mdl-color-text--grey-600">
-				<div style="width:100%;height:350px;">
-					<div style="height:80%;overflow:scroll;overflow-x:hidden;">
-						<ul class="demo-list-item mdl-list">
-						  {% for class_fail_student_num in class_fail_student_nums %}
-					      <li class="mdl-list__item">
-						    <span class="mdl-list__item-primary-content">
-						      {{class_fail_student_num}}
-						    </span>
-						  </li>
-							{% endfor %}
-						</ul>
-					</div>
+		class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+		<div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+			<h2 class="mdl-card__title-text">可能挂科的同学：</h2>
+		</div>
+		<div class="mdl-card__supporting-text mdl-color-text--grey-600">
+			<div style="width: 100%; height: 350px;">
+				<div style="height: 80%; overflow: scroll; overflow-x: hidden;">
+					<ul class="demo-list-item mdl-list">
+						{% for class_fail_student_num in class_fail_student_nums %}
+						<li class="mdl-list__item"><span
+							class="mdl-list__item-primary-content">
+								{{class_fail_student_num}} </span></li> {% endfor %}
+					</ul>
 				</div>
 			</div>
-			<div class="mdl-card__actions mdl-card--border">
-				<a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read
-					More</a>
-			</div>
 		</div>
-		<div class="demo-separator mdl-cell--1-col"></div>
-		<div
-			class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
-			<div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
-				<h3>View options</h3>
-				<ul>
-					<li><label for="chkbox1"
-						class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-							<input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
-							<span class="mdl-checkbox__label">Click per object</span>
-					</label></li>
-					<li><label for="chkbox2"
-						class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-							<input type="checkbox" id="chkbox2" class="mdl-checkbox__input">
-							<span class="mdl-checkbox__label">Views per object</span>
-					</label></li>
-					<li><label for="chkbox3"
-						class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-							<input type="checkbox" id="chkbox3" class="mdl-checkbox__input">
-							<span class="mdl-checkbox__label">Objects selected</span>
-					</label></li>
-					<li><label for="chkbox4"
-						class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-							<input type="checkbox" id="chkbox4" class="mdl-checkbox__input">
-							<span class="mdl-checkbox__label">Objects viewed</span>
-					</label></li>
-				</ul>
-			</div>
-			<div class="mdl-card__actions mdl-card--border">
-				<a href="#"
-					class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change
-					location</a>
-				<div class="mdl-layout-spacer"></div>
-				<i class="material-icons">location_on</i>
-			</div>
+		<div class="mdl-card__actions mdl-card--border">
+			<a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read
+				More</a>
 		</div>
 	</div>
-{% endblock %}
-{% block update %}score_forcasting{% endblock %}
+	<div class="demo-separator mdl-cell--1-col"></div>
+	<div
+		class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
+		<div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
+			<h3>View options</h3>
+			<ul>
+				<li><label for="chkbox1"
+					class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+						<input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
+						<span class="mdl-checkbox__label">Click per object</span>
+				</label></li>
+				<li><label for="chkbox2"
+					class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+						<input type="checkbox" id="chkbox2" class="mdl-checkbox__input">
+						<span class="mdl-checkbox__label">Views per object</span>
+				</label></li>
+				<li><label for="chkbox3"
+					class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+						<input type="checkbox" id="chkbox3" class="mdl-checkbox__input">
+						<span class="mdl-checkbox__label">Objects selected</span>
+				</label></li>
+				<li><label for="chkbox4"
+					class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+						<input type="checkbox" id="chkbox4" class="mdl-checkbox__input">
+						<span class="mdl-checkbox__label">Objects viewed</span>
+				</label></li>
+			</ul>
+		</div>
+		<div class="mdl-card__actions mdl-card--border">
+			<a href="#"
+				class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change
+				location</a>
+			<div class="mdl-layout-spacer"></div>
+			<i class="material-icons">location_on</i>
+		</div>
+	</div>
+</div>
+{% endblock %} {% block update %}score_forcasting{% endblock %}

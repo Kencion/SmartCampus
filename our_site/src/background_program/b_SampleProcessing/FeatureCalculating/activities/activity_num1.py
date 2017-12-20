@@ -1,8 +1,10 @@
 '''
 @author: yhj
 '''
-from z_Tools import MyLogger
-from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+from background_program.z_Tools import MyLogger
+from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+
+
 class activity_num1(FeatureCalculater):
         
     @MyLogger.myException
@@ -28,17 +30,18 @@ class activity_num1(FeatureCalculater):
             else:
                 sql = "update students set activity_num=activity_num+%s where student_num=%s "
                 self.executer.execute(sql, (int(re[2]), str(re[0]) + (str)(re[1][0:4])))
+
     @MyLogger.myException
     def cluster(self):
-        sql="SELECT max(activity_num) FROM students"
+        sql = "SELECT max(activity_num) FROM students"
         self.executer.execute(sql)
-        result=self.executer.fetchone()[0]
-        max_num=int(result)
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='activity_num', clusters=4, sql="SELECT activity_num FROM students WHERE activity_num != 0")
+        result = self.executer.fetchone()[0]
+        max_num = int(result)
+        maxx, minn, cent = FeatureCalculater.cluster(self, featureName='activity_num', clusters=4, sql="SELECT activity_num FROM students WHERE activity_num != 0")
         maxx[len(maxx) - 1] = max_num
         
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write( "activity_num字段" + '\n')
+            f.write("activity_num字段" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")
             for i in range(len(cent)):

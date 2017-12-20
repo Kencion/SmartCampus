@@ -76,7 +76,6 @@ WHERE
 OR score_rank IN (0, NULL) 
 
 ##############deal_with_table_card##########
-#################这边要按顺序执行才行####3##########
 UPDATE card
 SET type = 'market'
 WHERE
@@ -91,12 +90,12 @@ WHERE
 	or business_name like '%电控%' or business_name like '%药店%'
 	or business_name like '%礼品%' or business_name like '%护理%'
 	or business_name like '%金淘振芳%' or business_name like '%捐赠%'
-	or business_name like '%克立楼总台%';
+	or business_name like '%克立楼总台%'or (transcation_aoumt<0 and business_name is null);
 	
 UPDATE card
 SET type = 'snack'
 WHERE
-	business_name like '%小吃%' or business_name like '%外卖%' 
+	(business_name like '%小吃%' and business_name not like '%餐厅%')  or business_name like '%外卖%' 
 	or business_name like '%快餐%' or business_name like '%刀削面%'
 	or business_name like '%糕点%' or business_name like '%卤面%'
 	or business_name like '%杭州小笼包%' or business_name like '%韩国铁板烧%'
@@ -129,4 +128,4 @@ WHERE
 UPDATE card
 SET type = 'charge'
 WHERE
-	business_name is null;
+	transcstion_amount>0;

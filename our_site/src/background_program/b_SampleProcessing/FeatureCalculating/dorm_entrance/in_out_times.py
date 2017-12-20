@@ -6,8 +6,8 @@ Created on 2017年11月23日
 '''
 @author: yhj
 '''
-from z_Tools import MyLogger
-from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+from background_program.z_Tools import MyLogger
+from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
 
 class in_out_times(FeatureCalculater):
