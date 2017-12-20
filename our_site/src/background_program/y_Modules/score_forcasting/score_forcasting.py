@@ -3,8 +3,6 @@ Created on 2017年12月17日
 
 @author: LI
 '''
-from sklearn.metrics import *
-from background_program.b_SampleProcessing.Dimension_Reduction.MyPca import MyPca
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import FeatureUnion
 
@@ -12,6 +10,9 @@ from sklearn.pipeline import FeatureUnion
 class score_forcasting():
     
     def __init__(self):
+        import warnings
+        
+        warnings.filterwarnings("ignore")
         self.label_name = 'score'
             
     def doit(self):
@@ -21,8 +22,6 @@ class score_forcasting():
         pre_processer = self.get_pre_processer()
         # 获取特征选择器
         feature_selector = self.get_feature_selector()
-#         # 获取特征降维器
-#         dimension_reductor = MyPca(self.X_train).pca
         # 获取分类器
         estimater = self.get_estimater()
         # 获取模型评估器
@@ -35,19 +34,20 @@ class score_forcasting():
              ('estimater', estimater),
              ]
             )
-        
+         
         """=============对训练集进行操作============"""
         pipeline.fit(self.X_train, self.Y_train)
-        
+         
         """=============对测试集进行操作============"""
         Y_pred = predict_result = pipeline.predict(self.X_test)
-        
+         
         result = []
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
-        
+         
         return result
-#         
+    
+#         from sklearn.metrics import *
 #         for i in range(len(Y_pred)):
 #             print(self.Y_test[i],Y_pred[i])
 #         print('explained_variance_score:',explained_variance_score(self.Y_test,Y_pred))
@@ -130,4 +130,4 @@ class score_forcasting():
 
 if __name__ == '__main__':
     t = score_forcasting()
-    t.doit()
+    print(t.doit())

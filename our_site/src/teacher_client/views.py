@@ -1,12 +1,15 @@
 from django.shortcuts import loader
 from django.http import HttpResponse
+from django.http.response import HttpResponseRedirect
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
 from student_client.models import Student
-from django.http.response import HttpResponseRedirect
+from our_site.my_logger import exception_handler
+from our_site.my_exceptions import not_login_exception
 # Create your views here.
- 
+
+@exception_handler
 def index(request, update=False):
     """
             教师端的主页
@@ -23,7 +26,7 @@ def index(request, update=False):
     try:
         context['teacher_name'] = request.session['teacher_name']
     except:
-        pass 
+        raise not_login_exception 
     
     """从数据库获得失联学生的学号"""
     context['student_nums'] = [i.student_num for i in Student.objects.filter(is_missing__exact=True)]
@@ -32,7 +35,7 @@ def index(request, update=False):
     template = loader.get_template('teacher_client/index.html')
     return HttpResponse(template.render(context, request))
     
-
+@exception_handler
 def score_forcasting(request, update=False):
     """
             成绩预测页面
@@ -51,7 +54,6 @@ def score_forcasting(request, update=False):
             pie_chart(), line_chart(), broken_line_chart()
             from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
             students_and_scores = score_forcasting().doit()
-            print(students_and_scores)
             for i in students_and_scores:
                 Student(student_num=i[0], score=i[1]).save()
         return HttpResponseRedirect('/teacher_client/score_forcasting')
@@ -73,6 +75,7 @@ def score_forcasting(request, update=False):
     
     return HttpResponse(template.render(context, request))
 
+@exception_handler
 def missing_warning(request, update=False):
     """
             失联预警页面
@@ -107,7 +110,8 @@ def missing_warning(request, update=False):
     template = loader.get_template('teacher_client/missing_warning.html')
     
     return HttpResponse(template.render(context, request))
- 
+
+@exception_handler
 def scholarship_forcasting(request, update=False):
     """
             奖学金预测页面
@@ -145,6 +149,7 @@ def scholarship_forcasting(request, update=False):
     
     return HttpResponse(template.render(context, request))
 
+@exception_handler
 def subsidy_forcasting(request):
     """
             助学金预测页面
@@ -170,7 +175,7 @@ def subsidy_forcasting(request):
     except:
         pass
     
-    students_and_subsidies = [[i.student_num, i.subsidy] for i in Student.objects.all()]
+    students_and_subsidies = [[i.student_num, i.subsidy] for i in Student.objects.order_by('subsidy')]
 
     """将数据渲染到页面上"""
     context = {
@@ -182,7 +187,16 @@ def subsidy_forcasting(request):
     
     return HttpResponse(template.render(context, request))
 
+
+def not_login(request):
+    template = loader.get_template('teacher_client/error_pages/not_login.html')
+    
+    return HttpResponse(template.render(None, request))
+
+
 """下面是画图的函数"""
+
+
 def broken_line_chart():
     """
     @author:yzh
@@ -193,10 +207,12 @@ def broken_line_chart():
     
     t = class_failing_warning()
     infos = t.doit()
+
     def autolabel(rects):
         for rect in rects:
             height = rect.get_height()
             plt.text(rect.get_x() + rect.get_width() / 4., 1.01 * height, "%s" % float(height))
+
     num = np.zeros(5)
     score = [x[1] for x in infos]
      
@@ -214,6 +230,7 @@ def broken_line_chart():
     save_path = sys.path[0] + '/teacher_client/static/teacher_client/images/broken_line_chart.png'
     plt.savefig(save_path)
     plt.close()
+
  
 def pie_chart():
     """
@@ -246,6 +263,7 @@ def pie_chart():
     plt.savefig(save_path)
 #     plt.show()
     plt.close()
+
     
 def line_chart():
     """
@@ -272,7 +290,7 @@ def line_chart():
     ax.set_xlabel('成绩')
     ax.set_ylabel('学生数量')
     plt.ylim(0, max(y) * 1.1)
-    ax.plot(x,y,linewidth =2 ,color = '#436EEE') 
+    ax.plot(x, y, linewidth=2 , color='#436EEE') 
     
     ax.fill(x, y, color='#00B2EE')
     save_path = sys.path[0] + '/teacher_client/static/teacher_client/images/line_chart.png'

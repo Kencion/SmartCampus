@@ -11,6 +11,9 @@ from sklearn.pipeline import FeatureUnion
 class scholarship_forcasting():
     
     def __init__(self):
+        import warnings
+        
+        warnings.filterwarnings("ignore")
         self.label_name = 'scholarship_amount'
             
     def doit(self):
