@@ -29,16 +29,48 @@ class max_min_month_consume(FeatureCalculater):
         year_tag=0
         first=2
         result[0][1].split('-')
-        if int(result[0][1][6:7])<9:
+        if int(result[0][1][5:7])<9:
             num=1
             first=1
         for re in result:
             re[1].split('-')
-            month=int(re[1][6:7])
-            year=int(re[1][0:4])-1
+            month=int(re[1][5:7])
+            year2=int(re[1][0:4])
             if re[0]!=student_num:
                 flag=2
                 num=0
+                first=2
+            elif int(year2)>int(year_tag) and month_tag<9:
+                year=year_tag-1
+                for i in range(7): 
+                    name=str(name_tag[i]+'_max_amount')
+                    sql = "update students set {0}={1} where student_num='{2}'"
+                    self.executer.execute(sql.format(name, float(max_count[i]),str(student_num) + (str)(year)))
+                    max_count[i]=0
+                    if int(min_count[i])==500000:
+                        min_count[i]=0
+                    name2=str(name_tag[i]+'_min_amount')
+                    sql = "update students set {0}={1} where student_num='{2}'"
+                    self.executer.execute(sql.format(name2, float(min_count[i]),str(student_num) + (str)(year)))
+                    min_count[i]=500000
+                count_num+=1
+                tag=1
+                first=2
+            elif int(year2)>int(year_tag) and month_tag>=9 and month>=9:
+                year=year_tag
+                for i in range(7): 
+                    name=str(name_tag[i]+'_max_amount')
+                    sql = "update students set {0}={1} where student_num='{2}'"
+                    self.executer.execute(sql.format(name, float(max_count[i]),str(student_num) + (str)(year)))
+                    max_count[i]=0
+                    if int(min_count[i])==500000:
+                        min_count[i]=0
+                    name2=str(name_tag[i]+'_min_amount')
+                    sql = "update students set {0}={1} where student_num='{2}'"
+                    self.executer.execute(sql.format(name2, float(min_count[i]),str(student_num) + (str)(year)))
+                    min_count[i]=500000
+                count_num+=1
+                tag=1
                 first=2
             elif month>=9:
                 if first==1:
@@ -113,7 +145,7 @@ class max_min_month_consume(FeatureCalculater):
                     min_count[i]=500000
                 count_num+=1
                 flag=0
-            month_tag=int(re[1][6:7])
+            month_tag=int(re[1][5:7])
             year_tag=int(re[1][0:4])
             if month<9 and first==2:
                 tag=0
