@@ -20,8 +20,8 @@ class mean_median_var(FeatureCalculater):
         result = self.executer.fetchone()
         earliestItem_date = result[0]
         lastestItem_date = result[1]  
-        print(earliestItem_date,lastestItem_date)
-        print(type(earliestItem_date),type(lastestItem_date))
+#         print(earliestItem_date,lastestItem_date)
+#         print(type(earliestItem_date),type(lastestItem_date))
         
         '''
                 获得 'card' 表中包含的学年
@@ -56,7 +56,7 @@ class mean_median_var(FeatureCalculater):
         sql = 'select distinct type from card' 
         self.executer.execute(sql)
         type_list=self.executer.fetchall()
-        print(type_list)
+#         print(type_list)
         
         for student_num in student_num_list:
             for one_type in type_list:
@@ -72,7 +72,7 @@ class mean_median_var(FeatureCalculater):
                     if np.isnan(mean)==False : 
                         mean,median,var =round(mean,3),round(median,3), round(var,3)
                         sql = 'update students set {1}={2},{3}={4},{5}={6} where student_num ="'"{0}"'"'
-                        print(sql.format(str(student_num[0])+str(year),"mean_of_"+str(one_type[0]),mean,"median_of_"+str(one_type[0]),median,"var_of_"+str(one_type[0]),var))
+#                         print(sql.format(str(student_num[0])+str(year),"mean_of_"+str(one_type[0]),mean,"median_of_"+str(one_type[0]),median,"var_of_"+str(one_type[0]),var))
                         self.executer.execute(sql.format(str(student_num[0])+str(year),"mean_of_"+str(one_type[0]),mean,"median_of_"+str(one_type[0]),median,"var_of_"+str(one_type[0]),var))
                   
         

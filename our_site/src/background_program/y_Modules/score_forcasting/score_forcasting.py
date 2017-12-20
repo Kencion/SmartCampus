@@ -130,4 +130,4 @@ class score_forcasting():
 
 if __name__ == '__main__':
     t = score_forcasting()
-    print(t.doit())
+    t.doit()

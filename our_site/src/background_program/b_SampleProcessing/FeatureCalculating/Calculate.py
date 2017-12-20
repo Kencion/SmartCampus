@@ -15,6 +15,13 @@ Created on 2017年11月21日
 # from b_SampleProcessing.FeatureCalculating.social_practice import *
 # from b_SampleProcessing.FeatureCalculating.subsidy import *
 # from b_SampleProcessing.FeatureCalculating.hornorary_title import *
+from background_program.b_SampleProcessing.FeatureCalculating.card.canteen_consumption_divide_by_consumption import canteen_amount_divide_by_consumption
+from background_program.b_SampleProcessing.FeatureCalculating.card.canteen_times import canteen_times
+from background_program.b_SampleProcessing.FeatureCalculating.card.Consumption import Consumption
+from background_program.b_SampleProcessing.FeatureCalculating.card.max_every_type import max_every_type
+from background_program.b_SampleProcessing.FeatureCalculating.card.mean_median_var import mean_median_var
+from background_program.b_SampleProcessing.FeatureCalculating.card.total_amount_every_type import total_amount_every_type
+from background_program.b_SampleProcessing.FeatureCalculating.card.transaction_times import transaction_times
 from tqdm import tqdm  
 
 claculaters1 = [  
@@ -32,7 +39,13 @@ claculaters1 = [
 #         social_practice1.social_practice1(),
 #         hornorary_rank.hornorary_rank(),
 #         hornorary_times.hornorary_times(),
-          
+            canteen_times,
+            Consumption,
+            max_every_type,
+            mean_median_var,
+            total_amount_every_type,
+            transaction_times,
+            canteen_amount_divide_by_consumption,
     ]
 
 # 下面是要执行学生个数次数的
@@ -83,10 +96,10 @@ def nTimes():
 
 
 if __name__ == '__main__':
-#     oneTime()
+    oneTime()
 #     nTimes()
-    for claculater in tqdm(claculaters1):
-            claculater.cluster()
-               
-    for claculater in tqdm(claculaters2):
-            claculater.cluster()
+#     for claculater in tqdm(claculaters1):
+#             claculater.cluster()
+#                
+#     for claculater in tqdm(claculaters2):
+#             claculater.cluster()
