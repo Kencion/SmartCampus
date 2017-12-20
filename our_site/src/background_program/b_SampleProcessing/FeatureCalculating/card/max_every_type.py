@@ -40,9 +40,9 @@ class max_every_type(FeatureCalculater):
             elif month>=9:
                 if first==1:
                     first=2
-                if tag==0 and num!=0:
+                if tag==0 and num!=0 and first==0:
                     year=int(re[1][0:4])-1
-                    print(str(student_num) + (str)(year)+"——————————————"+str(max_amount[4]))
+#                     print(str(student_num) + (str)(year)+"——————————————"+str(max_amount[4]))
                     for i in range(7): 
                         name=str(name_tag[i]+'_day_max_amount')
                         sql = "update students set {0}={1} where student_num='{2}'"
@@ -77,7 +77,7 @@ class max_every_type(FeatureCalculater):
                     year=int(year_tag)-1
                 else:
                     year=int(year_tag)
-                print(str(student_num) + (str)(year)+"----------"+str(max_amount[4]))
+#                 print(str(student_num) + (str)(year)+"----------"+str(max_amount[4]))
                 for i in range(7):
                     name=str(name_tag[i]+'_day_max_amount')
                     sql = "update students set {0}={1} where student_num='{2}'"
