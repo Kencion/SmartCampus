@@ -116,5 +116,5 @@ if __name__=='__main__':
     start=datetime.datetime.now()
     m.calculate()
     endtime = datetime.datetime.now()
-    print((endtime - start).seconds)
+#     print((endtime - start).seconds)
     

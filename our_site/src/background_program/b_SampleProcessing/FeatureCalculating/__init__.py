@@ -11,20 +11,17 @@
 这样跑下来大概需要 1h
 '''
 
-
 if __name__ == '__main__':
-    from z_Tools import MyLogger
-    from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+    from background_program.z_Tools import MyLogger
+    from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
     
     class start(FeatureCalculater):
-        '''
-                        获取主键         
-        '''
-        def setLevel(self):
-            pass
-            
+
         @MyLogger.myException
         def calculate(self):
+            '''
+                            获取主键         
+            '''
             from tqdm import tqdm
             sql = "select distinct student_num,student_name,grade,student_type from subsidy"
             self.executer.execute(sql)
