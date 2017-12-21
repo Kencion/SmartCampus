@@ -26,7 +26,7 @@ class max_min_month_consume(FeatureCalculater):
         tag=0
         num=0
         month_tag=0
-        year_tag=0
+        year_tag=2200
         first=2
         result[0][1].split('-')
         if int(result[0][1][5:7])<9:
@@ -40,55 +40,28 @@ class max_min_month_consume(FeatureCalculater):
                 flag=2
                 num=0
                 first=2
-            elif int(year2)>int(year_tag) and month_tag<9:
+            elif int(year2)>int(year_tag) and month_tag<9 and flag!=2:
                 year=year_tag-1
-                for i in range(7): 
-                    name=str(name_tag[i]+'_max_amount')
-                    sql = "update students set {0}={1} where student_num='{2}'"
-                    self.executer.execute(sql.format(name, float(max_count[i]),str(student_num) + (str)(year)))
-                    max_count[i]=0
-                    if int(min_count[i])==500000:
-                        min_count[i]=0
-                    name2=str(name_tag[i]+'_min_amount')
-                    sql = "update students set {0}={1} where student_num='{2}'"
-                    self.executer.execute(sql.format(name2, float(min_count[i]),str(student_num) + (str)(year)))
-                    min_count[i]=500000
-                count_num+=1
+                student_num2=str(student_num) + (str)(year)
+                max_count=self.SQL_deal_max(name_tag,max_count,student_num2)
+                min_count=self.SQL_deal_min(name_tag, min_count, student_num2)
                 tag=1
                 first=2
-            elif int(year2)>int(year_tag) and month_tag>=9 and month>=9:
+            elif int(year2)>int(year_tag) and month_tag>=9 and month>=9 and flag!=2:
                 year=year_tag
-                for i in range(7): 
-                    name=str(name_tag[i]+'_max_amount')
-                    sql = "update students set {0}={1} where student_num='{2}'"
-                    self.executer.execute(sql.format(name, float(max_count[i]),str(student_num) + (str)(year)))
-                    max_count[i]=0
-                    if int(min_count[i])==500000:
-                        min_count[i]=0
-                    name2=str(name_tag[i]+'_min_amount')
-                    sql = "update students set {0}={1} where student_num='{2}'"
-                    self.executer.execute(sql.format(name2, float(min_count[i]),str(student_num) + (str)(year)))
-                    min_count[i]=500000
-                count_num+=1
+                student_num2=str(student_num) + (str)(year)
+                max_count=self.SQL_deal_max(name_tag,max_count,student_num2)
+                min_count=self.SQL_deal_min(name_tag, min_count, student_num2)
                 tag=1
                 first=2
-            elif month>=9:
+            elif month>=9 and flag!=2:
                 if first==1:
                     first=2
                 if tag==0 and num!=0 and first==0:
                     year=int(re[1][0:4])-1
-                    for i in range(7): 
-                        name=str(name_tag[i]+'_max_amount')
-                        sql = "update students set {0}={1} where student_num='{2}'"
-                        self.executer.execute(sql.format(name, float(max_count[i]),str(student_num) + (str)(year)))
-                        max_count[i]=0
-                        if int(min_count[i])==500000:
-                            min_count[i]=0
-                        name2=str(name_tag[i]+'_min_amount')
-                        sql = "update students set {0}={1} where student_num='{2}'"
-                        self.executer.execute(sql.format(name2, float(min_count[i]),str(student_num) + (str)(year)))
-                        min_count[i]=500000
-                    count_num+=1
+                    student_num2=str(student_num) + (str)(year)
+                    max_count=self.SQL_deal_max(name_tag,max_count,student_num2)
+                    min_count=self.SQL_deal_min(name_tag, min_count, student_num2)
                     tag=1
                     first=2
             if re[0]==student_num:
@@ -132,26 +105,36 @@ class max_min_month_consume(FeatureCalculater):
                     year=int(year_tag)-1
                 else:
                     year=int(year_tag)
-                for i in range(7): 
-                    name=str(name_tag[i]+'_max_amount')
-                    sql = "update students set {0}={1} where student_num='{2}'"
-                    self.executer.execute(sql.format(name, float(max_count[i]),str(student_num) + (str)(year)))
-                    max_count[i]=0
-                    if int(min_count[i])==500000:
-                        min_count[i]=0
-                    name2=str(name_tag[i]+'_min_amount')
-                    sql = "update students set {0}={1} where student_num='{2}'"
-                    self.executer.execute(sql.format(name2, float(min_count[i]),str(student_num) + (str)(year)))
-                    min_count[i]=500000
-                count_num+=1
+                student_num2=str(student_num) + (str)(year)
+                max_count=self.SQL_deal_max(name_tag,max_count,student_num2)
+                min_count=self.SQL_deal_min(name_tag, min_count, student_num2)
+                year_tag=int(re[1][0:4])
                 flag=0
-            month_tag=int(re[1][5:7])
-            year_tag=int(re[1][0:4])
-            if month<9 and first==2:
+            if re[0]==student_num:
+                month_tag=int(re[1][5:7])
+                year_tag=int(re[1][0:4])
+            if month<7 and first==2:
                 tag=0
                 num=1
                 first=0
             student_num=re[0]
+        print("总共插了多少次数据"+str(count_num))
+    def SQL_deal_max(self,name_tag,max_count,student_num):
+        for i in range(7): 
+            name=str(name_tag[i]+'_max_amount')
+            sql = "update students set {0}={1} where student_num='{2}'"
+            self.executer.execute(sql.format(name, float(max_count[i]),str(student_num)))
+            max_count[i]=0
+        return max_count
+    def SQL_deal_min(self,name_tag,min_count,student_num):
+        for i in range(7): 
+            if int(min_count[i])==500000:
+                min_count[i]=0
+            name2=str(name_tag[i]+'_min_amount')
+            sql = "update students set {0}={1} where student_num='{2}'"
+            self.executer.execute(sql.format(name2, float(min_count[i]),str(student_num)))
+            min_count[i]=500000
+        return min_count
 if __name__=='__main__':
     import datetime
     p=max_min_month_consume()
