@@ -46,7 +46,7 @@ class FeatureCalculater:
         @retrun
         '''
         # 获得学生的数据
-        sql = 'SELECT {0} FROM 软件学院脱敏.students WHERE {1} is not null and {2} <> 0'.format(self.feature_name, self.feature_name, self.feature_name)
+        sql = 'SELECT {0} FROM 软件学院.students WHERE {1} is not null and {2} <> 0'.format(self.feature_name, self.feature_name, self.feature_name)
         count = self.executer.execute(sql)
         result = self.executer.fetchall()  # count是行数
         dataSet = numpy.array([i[0] for i in result]).reshape(count, 1)
@@ -61,7 +61,7 @@ class FeatureCalculater:
         types, maxx, minn = [[] for i in range(0, clusters)], [], []
         for i in range(len(labels)):
             types[labels[i]].append(dataSet[i][0])
-            sql = 'select student_num from 软件学院脱敏.students where {0}={1}'.format(self.feature_name, str((dataSet[i][0])))
+            sql = 'select student_num from 软件学院.students where {0}={1}'.format(self.feature_name, str((dataSet[i][0])))
             self.executer.execute(sql)
             student_nums = self.executer.fetchall()
             for student_num in student_nums:
@@ -70,11 +70,11 @@ class FeatureCalculater:
                 n_update = self.executer.execute(sql)
                 if n_update == 0:
                     try:
-                        sql = 'insert into 软件学院脱敏.students_rank(student_num) values({0})'.format(student_num)
+                        sql = 'insert into 软件学院.students_rank(student_num) values({0})'.format(student_num)
                         self.executer.execute(sql)
                     except:
                         pass
-                    sql = "update 软件学院脱敏.students_rank set {0} = {1} where student_num = {2}".format(self.feature_name, str(labels[i] + 1), student_num) 
+                    sql = "update 软件学院.students_rank set {0} = {1} where student_num = {2}".format(self.feature_name, str(labels[i] + 1), student_num) 
                     self.executer.execute(sql)
         
         # xxxxxx
