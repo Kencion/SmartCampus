@@ -10,12 +10,12 @@ from background_program.z_Tools import MyDataBase
 from numpy import mat
 import numpy as np
 
+
 class DataCarer():
     
     def __init__(self, label_name, school_year, usage="regression"):
         '''
-                        xxxx
-        @params label:xxx
+        @params label_name:xxx......
         @return 
         '''
         self.usages = ["regression", "classify"]
@@ -33,11 +33,11 @@ class DataCarer():
     def create_train_dataSet(self):
         '''
                         获取训练数据
-        @params label:标签列的列名
+        @params 
         @return numpy.mat X_train:特征,numpy.mat Y_train:标签
         '''
         """确定label是哪一列，并将其作为待预测对象"""
-        self.open_database()
+        self.open_database("软件学院")
         self.executer.execute("DESCRIBE {0}".format(self.table_name))
         columnName = self.executer.fetchall()
         index = -1
@@ -66,11 +66,11 @@ class DataCarer():
     def create_validate_dataSet(self):
         '''
                         获取测试数据
-        @params str column:设置把那一列当成结果来预测,str year:学年
+        @params 
         @return list[Student] students:学生列表,numpy.mat X_test:特征
         '''
         """确定label是哪一列，并将其作为待预测对象"""
-        self.open_database()
+        self.open_database("软件学院")
         self.executer.execute("DESCRIBE {0}".format(self.table_name))
         columnName = self.executer.fetchall()
         index = -1
@@ -93,9 +93,31 @@ class DataCarer():
         self.close_database()
         self.pre_process(X_test)
         return students, X_test
+    
+    def data_desensitization(self):
+        '''
+        Created on 2017年12月20日
+                        数据脱敏到“软件学院脱敏”数据库中
+        @author: Jack
+        @params 
+        @return 
+        '''
+        db = MyDataBase.MyDataBase("软件学院")
+        executer = db.getExcuter()
+        sql = "select * from students where 1=1"
+        
+        executer.execute(sql)
+        db.close()
+        
+        db = MyDataBase.MyDataBase("软件学院脱敏")
+        executer = db.getExcuter()
+        sql = "select * from students where 1=1"
+    
+        executer.execute(sql)
+        db.close()
 
-    def open_database(self):
-        self.db = MyDataBase.MyDataBase("软件学院")
+    def open_database(self, database_name):
+        self.db = MyDataBase.MyDataBase(database_name)
         self.executer = self.db.getExcuter()
         
     def close_database(self):
@@ -103,6 +125,13 @@ class DataCarer():
         self.db.close()
         
     def pre_process(self, X):
+        '''
+        Created on 2017年12月20日
+                        对数据进行初级的预处理
+        @author: Jack
+        @params 
+        @return 
+        '''
         from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
         
         MyImputer().transformer.fit_transform(X)

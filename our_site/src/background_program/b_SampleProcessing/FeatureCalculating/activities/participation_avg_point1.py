@@ -1,8 +1,8 @@
 '''
 @author: yhj
 '''
-from z_Tools import MyLogger
-from b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+from background_program.z_Tools import MyLogger
+from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
 
 class participation_avg_point1(FeatureCalculater):
@@ -32,15 +32,15 @@ class participation_avg_point1(FeatureCalculater):
             
     @MyLogger.myException
     def cluster(self):
-        sql="SELECT max(participation_avg_point) FROM students"
+        sql = "SELECT max(participation_avg_point) FROM students"
         self.executer.execute(sql)
-        result=self.executer.fetchone()[0]
-        max_num=int(result)
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='participation_avg_point', clusters=4, sql="SELECT participation_avg_point FROM students WHERE participation_avg_point != 0")
+        result = self.executer.fetchone()[0]
+        max_num = int(result)
+        maxx, minn, cent = FeatureCalculater.cluster(self, featureName='participation_avg_point', clusters=4, sql="SELECT participation_avg_point FROM students WHERE participation_avg_point != 0")
         maxx[len(maxx) - 1] = max_num
         
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write( "participation_avg_point字段" + '\n')
+            f.write("participation_avg_point字段" + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             print("write.....")
             for i in range(len(cent)):

@@ -1,6 +1,6 @@
 '''
-Created on 2017年11月27日
-把students表中的字符串字段改为数据
+Created on 2017年12月20日
+数据脱敏到“软件学院脱敏”数据库中
 @author: Jack
 '''
 
@@ -15,14 +15,17 @@ def doit():
     
     db = MyDataBase.MyDataBase("软件学院")
     executer = db.getExcuter()
-    sql = ""
-    with open('data_clean.sql', 'r', encoding='UTF-8') as f:
-        for line in f:
-            sql += line
+    sql = "select * from students where 1=1"
     
     executer.execute(sql)
     db.close()
 
+    db = MyDataBase.MyDataBase("软件学院")
+    executer = db.getExcuter()
+    sql = "select * from students where 1=1"
+    
+    executer.execute(sql)
+    db.close()
 
 if __name__ == '__main__':
     doit()
