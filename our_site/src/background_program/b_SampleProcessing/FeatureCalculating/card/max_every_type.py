@@ -24,7 +24,7 @@ class max_every_type(FeatureCalculater):
         tag=0
         num=0
         month_tag=0
-        year_tag=0
+        year_tag=2200
         first=2
         result[0][1].split('-')
         if int(result[0][1][5:7])<9:
@@ -38,35 +38,25 @@ class max_every_type(FeatureCalculater):
                 flag=2
                 num=0
                 first=2
-            elif int(year2)>int(year_tag) and month_tag<9:
+            elif int(year2)>int(year_tag) and month_tag<9 and flag!=2:
                 year=year_tag-1
-                for i in range(7): 
-                    name=str(name_tag[i]+'_day_max_amount')
-                    sql = "update students set {0}={1} where student_num='{2}'"
-                    self.executer.execute(sql.format(name, float(max_amount[i]),str(student_num) + (str)(year)))   
-                    max_amount[i]=0; 
+                student_num2=str(student_num) + (str)(year)
+                max_amount=self.SQL_deal(name_tag,max_amount,student_num2)  
                 tag=1
                 first=2
-            elif int(year2)>int(year_tag) and month_tag>=9 and month>=9:
+            elif int(year2)>int(year_tag) and month_tag>=9 and month>=9 and flag!=2:
                 year=year_tag
-                for i in range(7): 
-                    name=str(name_tag[i]+'_day_max_amount')
-                    sql = "update students set {0}={1} where student_num='{2}'"
-                    self.executer.execute(sql.format(name, float(max_amount[i]),str(student_num) + (str)(year)))   
-                    max_amount[i]=0; 
+                student_num2=str(student_num) + (str)(year)
+                max_amount=self.SQL_deal(name_tag,max_amount,student_num2)  
                 tag=1
                 first=2
-            elif month>=9:
+            elif month>=9 and flag!=2:
                 if first==1:
                     first=2
                 if tag==0 and num!=0 and first==0:
                     year=int(re[1][0:4])-1
-#                     print(str(student_num) + (str)(year)+"——————————————"+str(max_amount[4]))
-                    for i in range(7): 
-                        name=str(name_tag[i]+'_day_max_amount')
-                        sql = "update students set {0}={1} where student_num='{2}'"
-                        self.executer.execute(sql.format(name, float(max_amount[i]),str(student_num) + (str)(year)))   
-                        max_amount[i]=0; 
+                    student_num2=str(student_num) + (str)(year)
+                    max_amount=self.SQL_deal(name_tag,max_amount,student_num2) 
                     tag=1
                     first=2
             if re[0]==student_num:
@@ -96,20 +86,24 @@ class max_every_type(FeatureCalculater):
                     year=int(year_tag)-1
                 else:
                     year=int(year_tag)
-#                 print(str(student_num) + (str)(year)+"----------"+str(max_amount[4]))
-                for i in range(7):
-                    name=str(name_tag[i]+'_day_max_amount')
-                    sql = "update students set {0}={1} where student_num='{2}'"
-                    self.executer.execute(sql.format(name, float(max_amount[i]),str(student_num) + (str)(year)))   
-                    max_amount[i]=0; 
+                student_num2=str(student_num) + (str)(year)
+                max_amount=self.SQL_deal(name_tag,max_amount,student_num2)
                 flag=0
+                year_tag=int(re[1][0:4])
             month_tag=int(re[1][5:7])
             year_tag=int(re[1][0:4])
-            if month<9:
+            if month<7:
                 tag=0
                 num=1
                 first=0
             student_num=re[0]
+    def SQL_deal(self,name_tag,max_amount,student_num):
+        for i in range(7):
+            name=str(name_tag[i]+'_day_max_amount')
+            sql = "update students set {0}={1} where student_num='{2}'"
+            self.executer.execute(sql.format(name, float(max_amount[i]),str(student_num)))   
+            max_amount[i]=0; 
+        return max_amount
 if __name__=='__main__':
     import datetime
     m=max_every_type()
