@@ -8,7 +8,8 @@ from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater 
 
 
 class max_every_type(FeatureCalculater):
-        
+    def __init__(self):
+        FeatureCalculater.__init__(self)
     @MyLogger.myException
     def calculate(self):
         '''
@@ -104,11 +105,10 @@ class max_every_type(FeatureCalculater):
             self.executer.execute(sql.format(name, float(max_amount[i]),str(student_num)))   
             max_amount[i]=0; 
         return max_amount
-if __name__=='__main__':
-    import datetime
-    m=max_every_type()
-    start=datetime.datetime.now()
-    m.calculate()
-    endtime = datetime.datetime.now()
-#     print((endtime - start).seconds)
+    def cluster(self):
+        name_tag=['charge','exercise','snack','study','market','canteen','other']
+        for i in range(7):
+            feature_name=str(name_tag[i]+'_day_max_amount')
+            self.feature_name=feature_name
+            FeatureCalculater.cluster(self, clusters=4)
     

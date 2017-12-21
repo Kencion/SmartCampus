@@ -98,7 +98,7 @@ class FeatureCalculater:
 
         # 将聚类范围保存
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write("activity_avg_level字段" + '\n')
+            f.write(str(self.feature_name)+ '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             for i in range(len(cent)):
                 f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')

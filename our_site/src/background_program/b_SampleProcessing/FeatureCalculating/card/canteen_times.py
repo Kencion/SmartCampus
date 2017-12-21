@@ -7,7 +7,9 @@ from background_program.z_Tools import MyLogger
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
  
 class canteen_times(FeatureCalculater):
-    
+    def __init__(self):
+        FeatureCalculater.__init__(self, feature_name='canteen_times')
+     
     @MyLogger.myException
     def calculate(self):
         '''
@@ -33,17 +35,8 @@ class canteen_times(FeatureCalculater):
 #             print(stu_num)
 #         print("ok")
         
-    @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='canteen_times', clusters=4, sql="SELECT canteen_times FROM students WHERE canteen_times is not NULL")
-        maxx[len(maxx) - 1] = 100
-        
-        with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write( "canteen_times字段" + '\n')
-            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
-            print("write.....")
-            for i in range(len(cent)):
-                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
-            f.close()
+        FeatureCalculater.cluster(self, clusters=4)
+
 # times = canteen_times()
 # times.calculate()

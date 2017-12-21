@@ -7,7 +7,8 @@ from background_program.z_Tools import MyLogger
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
  
 class Consumption(FeatureCalculater):
-    
+    def __init__(self):
+        FeatureCalculater.__init__(self, feature_name='Consumption')
     @MyLogger.myException
     def calculate(self):
         '''
@@ -33,17 +34,8 @@ class Consumption(FeatureCalculater):
 #             print(stu_num)
 #         print("ok")
         
-    @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='Consumption', clusters=4, sql="SELECT Consumption FROM students WHERE Consumption is not NULL")
-        maxx[len(maxx) - 1] = 100
-        
-        with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write( "Consumption字段" + '\n')
-            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
-            print("write.....")
-            for i in range(len(cent)):
-                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
-            f.close()
+        FeatureCalculater.cluster(self, clusters=4)
+
 # times = Consumption()
 # times.calculate()
