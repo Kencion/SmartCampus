@@ -8,7 +8,8 @@ from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater 
 
 
 class max_min_month_consume(FeatureCalculater):
-        
+    def __init__(self):
+        FeatureCalculater.__init__(self) 
     @MyLogger.myException
     def calculate(self):
         '''
@@ -135,15 +136,16 @@ class max_min_month_consume(FeatureCalculater):
             self.executer.execute(sql.format(name2, float(min_count[i]),str(student_num)))
             min_count[i]=500000
         return min_count
-if __name__=='__main__':
-    import datetime
-    p=max_min_month_consume()
-    start=datetime.datetime.now()
-    p.calculate() 
-    endtime = datetime.datetime.now()
-    print((endtime - start).seconds)
-            
-                
+    def cluster(self):
+        name_tag=['charge','exercise','snack','study','market','canteen','other']
+        for i in range(7):
+            feature_name=str(name_tag[i]+'_min_amount')
+            self.feature_name=feature_name
+            FeatureCalculater.cluster(self, clusters=4)
+        for i in range(7):
+            feature_name=str(name_tag[i]+'_max_amount')
+            self.feature_name=feature_name
+            FeatureCalculater.cluster(self, clusters=4)
                 
                 
                 

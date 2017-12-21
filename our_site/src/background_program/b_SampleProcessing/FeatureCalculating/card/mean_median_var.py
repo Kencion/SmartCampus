@@ -11,7 +11,8 @@ import sys
 import time
 
 class mean_median_var(FeatureCalculater):
-   
+    def __init__(self):
+        FeatureCalculater.__init__(self)
     def calculate(self):
         
         print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime()),'准备中......')
@@ -114,7 +115,20 @@ class mean_median_var(FeatureCalculater):
         
         return mean,median,var
     
-
+    def cluster(self):
+        name_tag=['charge','exercise','snack','study','market','canteen','other']
+        for i in range(7):
+            feature_name=str("mean_of_"+name_tag[i])
+            self.feature_name=feature_name
+            FeatureCalculater.cluster(self, clusters=4)
+        for i in range(7):
+            feature_name=str("median_of_"+name_tag[i])
+            self.feature_name=feature_name
+            FeatureCalculater.cluster(self, clusters=4)
+        for i in range(7):
+            feature_name=str("var_of_"+name_tag[i])
+            self.feature_name=feature_name
+            FeatureCalculater.cluster(self, clusters=4)
 test =mean_median_var()
 test.calculate()
     
