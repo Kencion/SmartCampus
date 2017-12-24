@@ -1,10 +1,13 @@
-{% extends "teacher_client/base.html" %} {% block title%} 助学金预测 {%
-endblock%} {% block module_name %}助学金预测{% endblock %} {% block
-teacher_name %}{{teacher_name}}{% endblock %} {% block index_state %}{%
-endblock %} {% block score_forcasting %}{% endblock %} {% block
-missing_warning %}{% endblock %} {% block scholarship_forcasting %}{%
-endblock %} {% block subsidy_forcasting %}style="color:white;"{%
-endblock %} {% block content %} {% load static %}
+{% extends "teacher_client/base.html" %} 
+{% block title%} 助学金预测 {%endblock%} 
+{% block module_name %}助学金预测{% endblock %} 
+{% block teacher_name %}{{teacher_name}}{% endblock %} 
+{% block index_state %}{%endblock %} 
+{% block score_forcasting %}{% endblock %} 
+{% block missing_warning %}{% endblock %} 
+{% block scholarship_forcasting %}{%endblock %} 
+{% block subsidy_forcasting %}style="color:white;"{%endblock %} 
+{% block content %} {% load static %}
 <div
 	class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
 	<div style="width: 100%; height: 350px;">
@@ -17,8 +20,8 @@ endblock %} {% block content %} {% load static %}
 				{% for student_and_subsidy in students_and_subsidies %}
 				<li class="mdl-list__item"><span
 					class="mdl-list__item-primary-content">
-						{{student_and_subsidy.0}}===>{{student_and_subsidy.1}} </span></li> {% endfor
-				%}
+						{{student_and_subsidy.0}}===>{{student_and_subsidy.1}} </span></li> 
+				{% endfor%}
 			</ul>
 		</div>
 	</div>
@@ -81,4 +84,5 @@ endblock %} {% block content %} {% load static %}
 		</div>
 	</div>
 </div>
-{% endblock %} {% block update %}subsidy_forcasting{% endblock %}
+{% endblock %} 
+{% block update %}subsidy_forcasting{% endblock %}

@@ -1,7 +1,8 @@
 '''
 @author: jack
 '''
-from background_program.z_Tools import MyLogger
+
+from background_program.z_Tools.my_exceptions import my_exception_handler
 
  
 class FeatureCalculater:
@@ -10,9 +11,9 @@ class FeatureCalculater:
     '''
 
     def __init__(self, database="软件学院", feature_name=None):
-        from background_program.z_Tools import MyDataBase
+        from background_program.z_Tools.my_database import MyDataBase
         
-        self.db = MyDataBase.MyDataBase(database)
+        self.db = MyDataBase(database)
         self.executer = self.db.getExcuter()
         self.feature_name = feature_name
         self.school_year = ['2013', '2014', '2015', '2016', '2017', ]  # 一个同学一个学年作为一个记录
@@ -25,7 +26,7 @@ class FeatureCalculater:
         '''
         self.student_num = student_num  # 学号
          
-    @MyLogger.myException
+    @my_exception_handler
     def calculate(self):
         '''
                         所有子类都要实现这个函数
@@ -35,7 +36,7 @@ class FeatureCalculater:
         '''
         pass  
      
-    @MyLogger.myException
+    @my_exception_handler
     def cluster(self, feature_min=None, feature_max=None , clusters=1):
         from sklearn.cluster import KMeans
         import numpy
@@ -66,16 +67,16 @@ class FeatureCalculater:
             student_nums = self.executer.fetchall()
             for student_num in student_nums:
                 student_num = student_num[0]
-                sql = "update 软件学院脱敏.students_rank set {0} = {1} where student_num = {2}".format(self.feature_name, str(labels[i] + 1), student_num) 
+                sql = "update 软件学院.students_rank set {0} = {1} where student_num = {2}".format(self.feature_name, str(labels[i] + 1), student_num) 
                 n_update = self.executer.execute(sql)
-                if n_update == 0:
-                    try:
-                        sql = 'insert into 软件学院.students_rank(student_num) values({0})'.format(student_num)
-                        self.executer.execute(sql)
-                    except:
-                        pass
-                    sql = "update 软件学院.students_rank set {0} = {1} where student_num = {2}".format(self.feature_name, str(labels[i] + 1), student_num) 
-                    self.executer.execute(sql)
+#                 if n_update == 0:
+#                     try:
+#                         sql = 'insert into 软件学院.students_rank(student_num) values({0})'.format(student_num)
+#                         self.executer.execute(sql)
+#                     except:
+#                         pass
+#                     sql = "update 软件学院.students_rank set {0} = {1} where student_num = {2}".format(self.feature_name, str(labels[i] + 1), student_num) 
+#                     self.executer.execute(sql)
         
         # xxxxxx
         if feature_max is None and feature_min is None:
@@ -98,7 +99,7 @@ class FeatureCalculater:
 
         # 将聚类范围保存
         with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write(str(self.feature_name)+ '\n')
+            f.write(str(self.feature_name) + '\n')
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             for i in range(len(cent)):
                 f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')

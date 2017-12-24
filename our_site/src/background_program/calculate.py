@@ -8,15 +8,14 @@ Created on 2017年11月21日
 # warnings.filterwarnings("ignore")
  
 # 下面是只要执行一次的
-# from background_program.b_SampleProcessing.FeatureCalculating.activities import *
-# from background_program.b_SampleProcessing.FeatureCalculating.dorm_entrance import *
-# from background_program.b_SampleProcessing.FeatureCalculating.hornorary_title import *
-# from background_program.b_SampleProcessing.FeatureCalculating.library import *
-# from background_program.b_SampleProcessing.FeatureCalculating.scholarship import *
-# from background_program.b_SampleProcessing.FeatureCalculating.score import *
-# from background_program.b_SampleProcessing.FeatureCalculating.social_practice import *
-# from background_program.b_SampleProcessing.FeatureCalculating.subsidy import *
-# from background_program.b_SampleProcessing.FeatureCalculating.hornorary_title import *
+from background_program.b_SampleProcessing.FeatureCalculating.activities import *
+from background_program.b_SampleProcessing.FeatureCalculating.dorm_entrance import *
+from background_program.b_SampleProcessing.FeatureCalculating.library import *
+from background_program.b_SampleProcessing.FeatureCalculating.scholarship import *
+from background_program.b_SampleProcessing.FeatureCalculating.score import *
+from background_program.b_SampleProcessing.FeatureCalculating.social_practice import *
+from background_program.b_SampleProcessing.FeatureCalculating.subsidy import *
+from background_program.b_SampleProcessing.FeatureCalculating.hornorary_title import *
 from background_program.b_SampleProcessing.FeatureCalculating.card import *
 from tqdm import tqdm  
 
@@ -26,7 +25,7 @@ claculaters1 = [
 #         activity_num1.activity_num1(),
 #         participation_avg_point1.participation_avg_point1(),
 #         library_borrow_times1.library_borrow_times1(),
-#         library_entrance1.library_entrance1(),
+#         library_entrance.library_entrance(),
 #         failed_num1.failed_num1(),
 #         GPA1.GPA1(),
 #         score_rank1.score_rank1(),
@@ -35,13 +34,13 @@ claculaters1 = [
 #         social_practice1.social_practice1(),
 #         hornorary_rank.hornorary_rank(),
 #         hornorary_times.hornorary_times(),
-            canteen_times(),
-            Consumption(),
-            max_every_type(),
-            mean_median_var(),
-            total_amount_every_type(),
-            transaction_times(),
-            canteen_amount_divide_by_consumption(),
+#         canteen_times.canteen_times(),
+#         Consumption.Consumption(),
+#         max_every_type.max_every_type(),
+#         mean_median_var.mean_median_var(),
+#         total_amount_every_type.total_amount_every_type(),
+#         transaction_times.transaction_times(),
+#         canteen_consumption_divide_by_consumption.canteen_consumption_divide_by_consumption(),
     ]
 
 # 下面是要执行学生个数次数的
@@ -52,7 +51,7 @@ claculaters2 = [
 #     scholarship_rank.scholarship_rank(),
 #     subsidy_amount.subsidy_amount(),
 #     subsidy_rank.subsidy_rank(),
-#       in_out_times.in_out_times(),
+    in_out_times.in_out_times(),
     ]
 
 
@@ -66,8 +65,8 @@ def oneTime():
 
 
 def nTimes():
-    from background_program.z_Tools import MyDataBase
-    db = MyDataBase.MyDataBase("软件学院")
+    from background_program.z_Tools.my_database import MyDataBase
+    db = MyDataBase("软件学院")
     conn = db.getConn()
     executer = db.getExcuter()
     students = list()
@@ -93,10 +92,10 @@ def nTimes():
 
 if __name__ == '__main__':
 #     oneTime()
-#     nTimes()
-    for claculater in tqdm(claculaters1):
-            claculater.cluster()
-#   
+    nTimes()
+#     for claculater in tqdm(claculaters1):
+#             claculater.cluster()
+# #   
 #     for claculater in tqdm(claculaters2):
 #             claculater.cluster()
     pass

@@ -1,9 +1,12 @@
-{% extends "teacher_client/base.html" %} {% block title%} 主页 {%
-endblock%} {% block module_name %}主页{% endblock %} {% block teacher_name
-%}{{teacher_name}}{% endblock %} {% block index_state
-%}style="color:white;"{% endblock %} {% block score_forcasting %}{%
-endblock %} {% block missing_warning %}{% endblock %} {% block content
-%} {% load static %}
+{% extends "teacher_client/base.html" %} 
+{% block title%} 主页 {%endblock%} 
+{% block module_name %}主页{% endblock %} 
+{% block teacher_name%}{{teacher_name}}{% endblock %} 
+{% block index_state%}style="color:white;"{% endblock %} 
+{% block score_forcasting %}{%endblock %} 
+{% block missing_warning %}{% endblock %} 
+{% block content%} 
+{% load static %}
 <div
 	class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
 	<img width=100% height=100%
@@ -22,8 +25,8 @@ endblock %} {% block missing_warning %}{% endblock %} {% block content
 		<div class="mdl-card__supporting-text mdl-color-text--grey-600">
 			{% for student_num in student_nums %}
 			<li class="mdl-list__item"><span
-				class="mdl-list__item-primary-content"> {{student_num}} </span></li> {%
-			endfor %}
+				class="mdl-list__item-primary-content"> {{student_num}} </span></li> 
+				{% endfor %}
 		</div>
 		<div class="mdl-card__actions mdl-card--border">
 			<a href="/teacher_client/missing_warning"
@@ -45,4 +48,5 @@ endblock %} {% block missing_warning %}{% endblock %} {% block content
 		</div>
 	</div>
 </div>
-{% endblock %} {% block update %}{% endblock %}
+{% endblock %} 
+{% block update %}{% endblock %}

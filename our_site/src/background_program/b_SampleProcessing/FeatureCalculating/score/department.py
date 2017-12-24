@@ -3,12 +3,17 @@ Created on 2017年11月23日
 
 @author: jack
 '''
-from background_program.z_Tools import MyLogger
+
+from background_program.z_Tools.my_exceptions import my_exception_handler
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+
 
 class department(FeatureCalculater):
 
-    @MyLogger.myException
+    def __init__(self):
+        FeatureCalculater.__init__(self, feature_name='hornorary_rank')
+
+    @my_exception_handler
     def calculate(self):
         '''
                         计算学生的系别
@@ -19,17 +24,5 @@ class department(FeatureCalculater):
             department = self.executer.fetchone()[0]
             self.executer.execute("update students set hornorary_rank =%s where student_num=%s" , (department, student_num + school_year))
         
-    @MyLogger.myException
     def cluster(self):
-        maxx,minn,cent=FeatureCalculater.cluster(self,featureName='department', clusters=4, sql="SELECT department FROM students WHERE department != 0")
-        sql = "SELECT max(department) FROM students"
-        self.executer.execute(sql)
-        maxx[len(maxx) - 1] = self.executer.fetchone()[0]
-        
-        with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write( "department" + '\n')
-            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
-            print("write.....")
-            for i in range(len(cent)):
-                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
-            f.close()
+        FeatureCalculater.cluster(self, clusters=4)

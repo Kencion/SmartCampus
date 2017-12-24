@@ -1,20 +1,24 @@
-{% extends "teacher_client/base.html" %} {% block title%} 失联预警 {%
-endblock%} {% block module_name %}失联预警{% endblock %} {% block
-teacher_name %}{{teacher_name}}{% endblock %} {% block index_state %}{%
-endblock %} {% block score_forcasting %}{% endblock %} {% block
-missing_warning %}style="color:white;"{% endblock %} {% block
-scholarship_forcasting %}{% endblock %} {% block subsidy_forcasting %}{%
-endblock %} {% block content %} {% load static %}
+{% extends "teacher_client/base.html" %} 
+{% block title%} 失联预警 {%endblock%} 
+{% block module_name %}失联预警{% endblock %} 
+{% block teacher_name %}{{teacher_name}}{% endblock %} 
+{% block index_state %}{%endblock %} 
+{% block score_forcasting %}{% endblock %} 
+{% block missing_warning %}style="color:white;"{% endblock %} 
+{% block scholarship_forcasting %}{% endblock %} 
+{% block subsidy_forcasting %}{%endblock %} 
+{% block content %} 
+{% load static %}
 <div
 	class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
 	<ul class="demo-list-item mdl-list">
 		<li class="mdl-list__item"><span
-			class="mdl-list__item-primary-content"> 可能会失联的学生有: </span></li> {% for
-		student_num in student_nums %}
+			class="mdl-list__item-primary-content"> 可能会失联的学生有: </span></li> 
+			{% for student_num in student_nums %}
 		<li class="mdl-list__item"><span
-			class="mdl-list__item-primary-content"> {{student_num}} </span></li> {%
-		endfor %}
+			class="mdl-list__item-primary-content"> {{student_num}} </span></li> 
+			{%	endfor %}
 	</ul>
 </div>
 <div
@@ -71,4 +75,5 @@ endblock %} {% block content %} {% load static %}
 		</div>
 	</div>
 </div>
-{% endblock %} {% block update %}missing_warning{% endblock %}
+{% endblock %} 
+{% block update %}missing_warning{% endblock %}

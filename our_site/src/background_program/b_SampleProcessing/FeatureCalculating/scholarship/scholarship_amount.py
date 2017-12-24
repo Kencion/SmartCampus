@@ -3,13 +3,18 @@ Created on 2017年11月21日
 
 @author: jack
 '''
-from background_program.z_Tools import MyLogger
+
+from background_program.z_Tools.my_exceptions import my_exception_handler
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+from background_program.z_Tools.my_exceptions import feature_null_exception
 
 
 class scholarship_amount(FeatureCalculater):
+
+    def __init__(self):
+        FeatureCalculater.__init__(self, feature_name='scholarship_amount')
         
-    @MyLogger.myException
+    @my_exception_handler
     def calculate(self):
         '''
                         计算获得奖学金的金额
@@ -21,21 +26,9 @@ class scholarship_amount(FeatureCalculater):
             try:
                 scholarship_amount = self.executer.fetchone()[0]
             except:
-                scholarship_amount = 0
+                raise feature_null_exception
             sql = "update students set scholarship_amount ='{0}' where student_num='{1}'".format(str(scholarship_amount), student_num + school_year)
             self.executer.execute(sql)
-        
-    @MyLogger.myException
+    
     def cluster(self):
-        maxx, minn, cent = FeatureCalculater.cluster(self, featureName='scholarship_amount', clusters=2, sql="SELECT scholarship_amount FROM students WHERE scholarship_amount != 0")
-        sql = "SELECT max(scholarship_amount) FROM students"
-        self.executer.execute(sql)
-        maxx[len(maxx) - 1] = self.executer.fetchone()[0]
-        
-        with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write("scholarship_amount" + '\n')
-            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
-            print("write.....")
-            for i in range(len(cent)):
-                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
-            f.close()
+        FeatureCalculater.cluster(self, clusters=4)

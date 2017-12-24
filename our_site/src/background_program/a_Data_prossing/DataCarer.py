@@ -6,7 +6,7 @@ Created on 2017年7月22日
 Jack觉得有点乱，建议修改一下
 '''
 from background_program.b_SampleProcessing.Student import Student
-from background_program.z_Tools import MyDataBase
+from background_program.z_Tools.my_database import MyDataBase
 from numpy import mat
 import numpy as np
 
@@ -102,14 +102,14 @@ class DataCarer():
         @params 
         @return 
         '''
-        db = MyDataBase.MyDataBase("软件学院")
+        db = MyDataBase("软件学院")
         executer = db.getExcuter()
         sql = "select * from students where 1=1"
         
         executer.execute(sql)
         db.close()
         
-        db = MyDataBase.MyDataBase("软件学院脱敏")
+        db = MyDataBase("软件学院脱敏")
         executer = db.getExcuter()
         sql = "select * from students where 1=1"
     
@@ -117,7 +117,7 @@ class DataCarer():
         db.close()
 
     def open_database(self, database_name):
-        self.db = MyDataBase.MyDataBase(database_name)
+        self.db = MyDataBase(database_name)
         self.executer = self.db.getExcuter()
         
     def close_database(self):

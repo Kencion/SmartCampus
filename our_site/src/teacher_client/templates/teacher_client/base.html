@@ -53,8 +53,7 @@
 		<header
 			class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
 			<div class="mdl-layout__header-row">
-				<span class="mdl-layout-title">{% block module_name %}{%
-					endblock %}</span>
+				<span class="mdl-layout-title">{% block module_name %}{%endblock %}</span>
 				<div class="mdl-layout-spacer"></div>
 				<div
 					class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
@@ -105,24 +104,27 @@
 			</header>
 			<nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
 
-				<a {% block
-					index_state %}{% endblock %} class="mdl-navigation__link"
+				<a {% block	index_state %}{% endblock %} class="mdl-navigation__link"
 					href="{% url 'teacher_client:index'%}"><i
 					class="mdl-color-text--blue-grey-400 material-icons"
-					role="presentation">home</i>主页</a> <a {% block
-					score_forcasting %}{% endblock %} class="mdl-navigation__link"
+					role="presentation">home</i>主页</a> 
+					
+				<a {% block	score_forcasting %}{% endblock %} class="mdl-navigation__link"
 					href="{% url 'teacher_client:score_forcasting'%}"><i
 					class="mdl-color-text--blue-grey-400 material-icons"
-					role="presentation">home</i>成绩预测</a> <a {% block
-					missing_warning %}{% endblock %} class="mdl-navigation__link"
+					role="presentation">home</i>成绩预测</a> 
+					
+				<a {% block	missing_warning %}{% endblock %} class="mdl-navigation__link"
 					href="{% url 'teacher_client:missing_warning'%}"><i
 					class="mdl-color-text--blue-grey-400 material-icons"
-					role="presentation">home</i>失联预警</a> <a {% block
-					scholarship_forcasting %}{% endblock %} class="mdl-navigation__link"
+					role="presentation">home</i>失联预警</a> 
+					
+				<a {% block	scholarship_forcasting %}{% endblock %} class="mdl-navigation__link"
 					href="{% url 'teacher_client:scholarship_forcasting'%}"><i
 					class="mdl-color-text--blue-grey-400 material-icons"
-					role="presentation">home</i>奖学金预测</a> <a {% block
-					subsidy_forcasting %}{% endblock %} class="mdl-navigation__link"
+					role="presentation">home</i>奖学金预测</a> 
+					
+				<a {% block	subsidy_forcasting %}{% endblock %} class="mdl-navigation__link"
 					href="{% url 'teacher_client:subsidy_forcasting'%}"><i
 					class="mdl-color-text--blue-grey-400 material-icons"
 					role="presentation">home</i>助学金预测</a>
@@ -134,8 +136,7 @@
 			</nav>
 		</div>
 		<main class="mdl-layout__content mdl-color--grey-100">
-		<div class="mdl-grid demo-content">{% block content %} {%
-			endblock %}</div>
+		<div class="mdl-grid demo-content">{% block content %} {%endblock %}</div>
 		</main>
 	</div>
 	<a

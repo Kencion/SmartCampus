@@ -1,7 +1,8 @@
 '''
 @author: yhj
 '''
-from background_program.z_Tools import MyLogger
+
+from background_program.z_Tools.my_exceptions import my_exception_handler
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
 
@@ -10,7 +11,7 @@ class activity_last_time1(FeatureCalculater):
     def __init__(self):
         FeatureCalculater.__init__(self, feature_name='activity_last_time')
         
-    @MyLogger.myException
+    @my_exception_handler
     def calculate(self):
         '''
                 计算活动持续时间

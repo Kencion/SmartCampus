@@ -1,8 +1,8 @@
 '''
 @author: yhj
 '''
-from background_program.z_Tools import MyLogger
-from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+from background_program.z_Tools.my_exceptions import my_exception_handler
+from ..FeatureCalculater import FeatureCalculater
 
  
 class activity_avg_level1(FeatureCalculater):
@@ -10,7 +10,7 @@ class activity_avg_level1(FeatureCalculater):
     def __init__(self):
         FeatureCalculater.__init__(self, feature_name='activity_avg_level')
      
-    @MyLogger.myException
+    @my_exception_handler
     def calculate(self):
         '''
                 计算活动平均活跃度得分

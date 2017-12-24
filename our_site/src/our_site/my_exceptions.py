@@ -11,3 +11,4 @@ class not_login_exception(Exception):
 
 class page_not_found_exception(Exception):
     pass
+

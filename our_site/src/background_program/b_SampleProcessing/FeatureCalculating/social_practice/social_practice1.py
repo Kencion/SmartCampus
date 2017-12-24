@@ -5,12 +5,17 @@ Created on 2017年11月22日
 
 some error
 '''
-from background_program.z_Tools import MyLogger
+
+from background_program.z_Tools.my_exceptions import my_exception_handler
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
+
 class social_practice1(FeatureCalculater):
+
+    def __init__(self):
+        FeatureCalculater.__init__(self, feature_name='social_practice')
     
-    @MyLogger.myException
+    @my_exception_handler
     def calculate(self):
         '''
         实现将数据库表social_practice中原来无法处理的队员一列分离开来，插入到原来表中。
@@ -36,18 +41,6 @@ class social_practice1(FeatureCalculater):
             sql = "update students set social_practice = '" + str(is_social_practice_great) + "' where student_num = '" + str(stu_num) + str(year) + "'"
             # print(sql)
             self.executer.execute(sql)
-            
-    @MyLogger.myException
+    
     def cluster(self):
-        maxx, minn, cent = FeatureCalculater.cluster(self, featureName='social_practice', clusters=4, sql="SELECT social_practice FROM students WHERE social_practice != 0")
-        sql = "SELECT max(social_practice) FROM students"
-        self.executer.execute(sql)
-        maxx[len(maxx) - 1] = self.executer.fetchone()[0]
-        
-        with open(r"Cluster_Feature", "a", encoding='utf8') as f:
-            f.write("social_practice" + '\n')
-            f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
-            print("write.....")
-            for i in range(len(cent)):
-                f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
-            f.close()
+        FeatureCalculater.cluster(self, clusters=4)
