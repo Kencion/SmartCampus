@@ -11,6 +11,10 @@ class feature_null_exception(Exception):
     pass
 
 
+class database_not_found_exception(Exception):
+    pass
+
+
 def my_exception_handler(function):
     '''
             使用手册：

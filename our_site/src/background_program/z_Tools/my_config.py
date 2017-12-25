@@ -26,3 +26,4 @@ def get_database_user ():
 
 def get_database_pwd ():
     return ""
+
