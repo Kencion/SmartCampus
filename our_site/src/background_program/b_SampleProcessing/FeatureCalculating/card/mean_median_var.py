@@ -81,6 +81,8 @@ class mean_median_var(FeatureCalculater):
 #             print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), student_num[0])
             for one_type in type_list:
                 for year in school_year:
+                    if int(year) < grade:
+                        break 
                     sql = 'select abs(transaction_amount) from card where student_num = "'"{0}"'" and ((year(date)={1} and month(date)>8) or (year(date)={2} and month(date)<9)) and type="'"{3}"'"'
                     self.executer.execute(sql.format(student_num[0], int(year), int(year) + 1, one_type[0]))
                     result = self.executer.fetchall()
@@ -88,7 +90,7 @@ class mean_median_var(FeatureCalculater):
                     
                     if int(year) == grade :
                         sql ='select abs(transaction_amount) from card where student_num = "'"{0}"'" and year(date)={1} and month(date)<9 and type="'"{3}"'"'
-                        self.executer.execute(sql.format(student_num[0], int(year),  one_type[0]))
+                        self.executer.execute(sql.format(student_num[0], int(year), one_type[0]))
                         result.extend(self.executer.fetchall())
                     
                     
