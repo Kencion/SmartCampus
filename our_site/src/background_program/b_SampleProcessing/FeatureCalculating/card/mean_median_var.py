@@ -4,7 +4,7 @@ Created on 2017年12月19日
 @author: LI
 '''
 import numpy as np
-from background_program.z_Tools import MyLogger
+# from background_program.z_Tools.my_exceptions import my_exception_handlers
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 from numpy.core.numeric import NaN
 import sys
@@ -86,20 +86,13 @@ class mean_median_var(FeatureCalculater):
                     
                     if len(result) > 0:
                         mean, median, var = self.get_result(result)
-    #                     if student_num[0]=='24320152202846'  :
-    #                         print(sql.format(student_num[0],int(year),int(year)+1,one_type[0]))
-    #                         print(mean,median,var)
-    #                         print(result)
-    #                         print('----------------------------------')
                         mean, median, var = round(mean, 3), round(median, 3), round(var, 3)
                         sql = 'update students set {1}={2},{3}={4},{5}={6} where student_num ="'"{0}"'"'
-#                         print(sql.format(str(student_num[0])+str(year),"mean_of_"+str(one_type[0]),mean,"median_of_"+str(one_type[0]),median,"var_of_"+str(one_type[0]),var))
-                        self.executer.execute(sql.format(str(student_num[0]) + str(year), "mean_of_" + str(one_type[0]), mean, "median_of_" + str(one_type[0]), median, "var_of_" + str(one_type[0]), var))
+                        affectedRows=self.executer.execute(sql.format(str(student_num[0]) + str(year), "mean_of_" + str(one_type[0]), mean, "median_of_" + str(one_type[0]), median, "var_of_" + str(one_type[0]), var))
+                        if affectedRows == 0 :
+                            sql ='insert into students values(student_num="'"{1}"'",{2}={3},{4}={5},{6}={7})'
+                            self.executer.execute(sql.format(str(student_num[0]) + str(year),"mean_of_" + str(one_type[0]), mean, "median_of_" + str(one_type[0]), median, "var_of_" + str(one_type[0]), var))
                     
-#                     else :
-#                         print(sql.format(student_num[0],int(year),int(year)+1,one_type[0]))
-#                         sys.exit()  
-#                         
                  
 #         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '正常结束')
     
