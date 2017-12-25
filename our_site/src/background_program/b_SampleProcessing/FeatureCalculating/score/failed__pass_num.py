@@ -57,7 +57,10 @@ class failed_pass_num(FeatureCalculater):
                 # sql = "update students set failed_num = "+str(failed_num)+" where student_num = '"+stu_num+str(year)+"'"
                 sql = "update students set failed_pass_num = " + str(pass_num) + " where student_num = '" + stu_num + str(year) + "'"
 #                 print(sql)
-                self.executer.execute(sql)
-    
+                t = self.executer.execute(sql)
+                if t == 0:
+                    sql = "INSERT INTO students (student_num,failed_pass_num) VALUES (" + stu_num + str(year) +","+str(pass_num)+")"
+                    self.executer.execute(sql)
+                    print(sql)
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

@@ -26,16 +26,19 @@ class canteen_consumption_divide_by_consumption(FeatureCalculater):
              
             stu_num = i[0]
             
-            if i[1] != 0:
+            if i[1] is not None :
                 
                 canteen_consumption = i[1]
                 
-                if i[2] != 0:
-                    consumption = -1 * i[2]
-                    res = float(canteen_consumption) / float(consumption)
-                
-                    sql = "update students set canteen_amount_divide_by_consumption = " + str(res) + " where student_num = '" + str(stu_num) + "'"
-                    self.executer.execute(sql)
+                if i[2] is not None:
+                    if i[2] != 0:
+                        consumption = -1 * i[2]
+                        res = float(canteen_consumption) / float(consumption)
+                    
+                        sql = "update students set canteen_amount_divide_by_consumption = " + str(res) + " where student_num = '" + str(stu_num) + "'"
+                        self.executer.execute(sql)
+                    else:
+                        print("总消费额为0，学号是："+stu_num)
                 
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

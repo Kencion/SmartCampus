@@ -48,7 +48,12 @@ class score_rank1(FeatureCalculater):
                 if stu1 is not None and stu2 is not None: 
                     rank = int((rank1 + rank2) / 2)
                     sql = "update students set score_rank = " + str(rank) + " where student_num = '" + stu_num + str(year) + "'"
-                    self.executer.execute(sql)
+                    
+                    t = self.executer.execute(sql)
+                    if t == 0:
+                        sql = "INSERT INTO students (student_num,score_rank) VALUES (" + stu_num + str(year) +","+str(rank)+")"
+                        self.executer.execute(sql)
+                        print(sql)
     
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
