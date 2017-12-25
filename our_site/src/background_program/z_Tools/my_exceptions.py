@@ -37,9 +37,10 @@ def my_exception_handler(function):
 
     def wrapper(*args, **kwargs):
         if get_log_open():
+            import pymysql
             try:
                 return function(*args, **kwargs)
-            except feature_null_exception:
+            except pymysql.err.IntegrityError:
                 pass
             except:
                 info = sys.exc_info()

@@ -18,6 +18,7 @@ class FeatureCalculater:
         self.feature_name = feature_name
         self.school_year = ['2013', '2014', '2015', '2016', '2017', ]  # 一个同学一个学年作为一个记录
                  
+    @my_exception_handler                 
     def add_student(self, student_num):
         '''
                         添加学生
@@ -36,11 +37,10 @@ class FeatureCalculater:
         @params 
         @retrun
         '''
-        from tqdm import tqdm
         sql = "select distinct student_num,student_name,grade,student_type from subsidy"
         self.executer.execute(sql)
         result = self.executer.fetchall()
-        for re in tqdm(result):
+        for re in result:
             count = int(re[ 2])
             if str(re[3]) == '普通高校本科学生':
                 while count <= int(re[2]) + 8 and count <= 2016:

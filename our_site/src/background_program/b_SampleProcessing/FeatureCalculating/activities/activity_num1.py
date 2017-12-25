@@ -28,13 +28,13 @@ class activity_num1(FeatureCalculater):
                     sql = "update students set activity_num=activity_num+%s where student_num=%s"
                     num=self.executer.execute(sql, (int(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
                     if num==0:
-                        sql = "insert into students(student_num,activity_num) values(%s,%s)"
-                        self.executer.execute(sql, (str(re[0]) + (str)(int(re[1][0:4]) - 1),int(re[2])))
+                        self.add_student((str)(int(re[1][0:4]) - 1))
+                        self.executer.execute(sql, (int(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
                 else:
                     sql = "update students set activity_num=activity_num+%s where student_num=%s "
                     num=self.executer.execute(sql, (int(re[2]), str(re[0]) + (str)(re[1][0:4])))
                     if num==0:
-                        sql = "insert into students(student_num,activity_num) values(%s,%s)"
-                        self.executer.execute(sql, (str(re[0]) + (str)(int(re[1][0:4])),int(re[2])))
+                        self.add_student((str)(int(re[1][0:4]) - 1))
+                        self.executer.execute(sql, (int(re[2]), str(re[0]) + (str)(re[1][0:4])))
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)      
