@@ -16,20 +16,27 @@ class library_borrow_times1(FeatureCalculater):
         '''
                 计算图书馆借阅
         '''
-        from boto.sdb.db.sequence import double
         sql = "select student_num,DATE_FORMAT(borrow_date, '%Y-%m'),count(*) from library_borrow group by student_num,DATE_FORMAT(borrow_date, '%Y-%m')"
         self.executer.execute(sql)
         result = self.executer.fetchall()
         sql = "update students set library_borrow_times=0"
         self.executer.execute(sql)
         for re in result:
-            re[1].split('-')
-            if int(re[1][5:7]) < 9:
-                sql = "update students set library_borrow_times=library_borrow_times+%s where student_num=%s"
-                self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
+            if re is None:
+                pass
             else:
-                sql = "update students set library_borrow_times=library_borrow_times+%s where student_num=%s"
-                self.executer.execute(sql, (double(re[2]), str(re[0]) + (str)(re[1][0:4])))
-    
+                re[1].split('-')
+                if int(re[1][5:7]) < 9:
+                    sql = "update students set library_borrow_times=library_borrow_times+%s where student_num=%s"
+                    num=self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
+                    if num==0:
+                        sql = "insert into students(student_num,library_borrow_times) values(%s,%s)"
+                        self.executer.execute(sql, (str(re[0]) + (str)(int(re[1][0:4]) - 1),float(re[2])))
+                else:
+                    sql = "update students set library_borrow_times=library_borrow_times+%s where student_num=%s"
+                    num=self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(re[1][0:4])))
+                    if num==0:
+                        sql = "insert into students(student_num,library_borrow_times) values(%s,%s)"
+                        self.executer.execute(sql, (str(re[0]) + (str)(int(re[1][0:4])),float(re[2])))
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

@@ -100,11 +100,17 @@ class total_amount_every_type(FeatureCalculater):
                 first=0
             student_num=re[0]
     def SQL_deal(self,name_tag,count,student_num):
-        for i in range(7): 
-            name=str(name_tag[i]+'_total_amount')
-            sql = "update students set {0}={1} where student_num='{2}'"
-            self.executer.execute(sql.format(name, float(count[i]),str(student_num)))
-            count[i]=0
+        if student_num is None:
+            pass
+        else:
+            for i in range(7): 
+                name=str(name_tag[i]+'_total_amount')
+                sql = "update students set {0}={1} where student_num='{2}'"
+                num=self.executer.execute(sql.format(name, float(count[i]),str(student_num)))
+                if num==0:
+                    sql = "insert into students({0},{1}) values({2},{3})"
+                    self.executer.execute(sql.format("student_num",name, str(student_num),float(count[i])))   
+                count[i]=0
         return count
     def cluster(self):
         name_tag=['charge','exercise','snack','study','market','canteen','other']

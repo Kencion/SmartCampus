@@ -12,12 +12,17 @@ class avg_in_time(FeatureCalculater):
         
     @MyLogger.myException
     def calculate(self):
-        sql = "select student_num,avg(max_day_in_time) from dorm_entrance_handled where week_num='6' or week_num='7' group by student_num,DATE_FORMAT(date, '%Y') "
+        sql = "select student_num,avg(max_day_in_time) from dorm_entrance_handled where week_num='6' or week_num='7' group by student_num "
         self.executer.execute(sql)
         result = self.executer.fetchall() 
         for re in result:
-            sql = "update students set avg_in_time=%s where student_num=%s"
-            self.executer.execute(sql, (float(re[1]), re[0]))
-    
+            if re is None:
+                pass
+            else:
+                sql = "update students set avg_in_time=%s where student_num=%s"
+                num=self.executer.execute(sql, (float(re[1]), re[0]))
+                if num==0:
+                    sql="insert into students(student_num,avg_in_time) values(%s,%s)"
+                    num=self.executer.execute(sql, (re[0],float(re[1])))
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
