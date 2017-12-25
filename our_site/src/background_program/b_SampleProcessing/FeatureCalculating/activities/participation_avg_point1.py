@@ -20,13 +20,21 @@ class participation_avg_point1(FeatureCalculater):
         self.executer.execute(sql)
         result = self.executer.fetchall()
         for re in result:
-            re[1].split('-')
-            if int(re[1][6:7]) < 9:
-                sql = "update students set participation_avg_point=(participation_avg_point+%s)/2 where student_num=%s"
-                self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
+            if re is None:
+                pass
             else:
-                sql = "update students set participation_avg_point=(participation_avg_point+%s)/2 where student_num=%s "
-                self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(re[1][0:4])))
-            
+                re[1].split('-')
+                if int(re[1][6:7]) < 9:
+                    sql = "update students set participation_avg_point=(participation_avg_point+%s)/2 where student_num=%s"
+                    num=self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
+                    if num==0:
+                        sql = "insert into students(student_num,participation_avg_point) values(%s,%s)"
+                        self.executer.execute(sql, (str(re[0]) + (str)(int(re[1][0:4]) - 1),float(re[2])))
+                else:
+                    sql = "update students set participation_avg_point=(participation_avg_point+%s)/2 where student_num=%s "
+                    num=self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(re[1][0:4])))
+                    if num==0:
+                        sql = "insert into students(student_num,participation_avg_point) values(%s,%s)"
+                        self.executer.execute(sql, (str(re[0]) + (str)(int(re[1][0:4])),float(re[2])))
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4) 
