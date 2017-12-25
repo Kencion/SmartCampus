@@ -77,12 +77,20 @@ class mean_median_var(FeatureCalculater):
 #         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '任务开始......')
         ic = 1
         for student_num in student_num_list:
+            grade = int(str(student_num[0]).substring(4,4))
 #             print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), student_num[0])
             for one_type in type_list:
                 for year in school_year:
                     sql = 'select abs(transaction_amount) from card where student_num = "'"{0}"'" and ((year(date)={1} and month(date)>8) or (year(date)={2} and month(date)<9)) and type="'"{3}"'"'
                     self.executer.execute(sql.format(student_num[0], int(year), int(year) + 1, one_type[0]))
                     result = self.executer.fetchall()
+                    
+                    
+                    if int(year) == grade :
+                        sql ='select abs(transaction_amount) from card where student_num = "'"{0}"'" and year(date)={1} and month(date)<9 and type="'"{3}"'"'
+                        self.executer.execute(sql.format(student_num[0], int(year),  one_type[0]))
+                        result.extend(self.executer.fetchall())
+                    
                     
                     if len(result) > 0:
                         mean, median, var = self.get_result(result)
@@ -92,6 +100,7 @@ class mean_median_var(FeatureCalculater):
                         if affectedRows == 0 :
                             sql ='insert into students values(student_num="'"{1}"'",{2}={3},{4}={5},{6}={7})'
                             self.executer.execute(sql.format(str(student_num[0]) + str(year),"mean_of_" + str(one_type[0]), mean, "median_of_" + str(one_type[0]), median, "var_of_" + str(one_type[0]), var))
+                    
                     
                  
 #         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '正常结束')
