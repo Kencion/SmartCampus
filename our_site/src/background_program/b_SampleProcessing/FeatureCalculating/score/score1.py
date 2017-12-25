@@ -50,7 +50,12 @@ class score1(FeatureCalculater):
                 if((credit1 + credit2) != 0):
                     score = (score1 * credit1 + score2 * credit2) / (credit1 + credit2)
                     sql = "update students set score = " + str(score) + " where student_num = '" + stu_num + str(year) + "'"
-                    self.executer.execute(sql)
+                    
+                    t = self.executer.execute(sql)
+                    if t == 0:
+                        sql = "INSERT INTO students (student_num,score) VALUES (" + stu_num + str(year) +","+str(score)+")"
+                        self.executer.execute(sql)
+                        print(sql)
     
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
