@@ -18,19 +18,24 @@ class library_study_time(FeatureCalculater):
         '''
                         计算每一学年图书馆学习时间
         '''
-        student_num = str(self.student_num)
-        for school_year in self.school_year:
-            sql = "SELECT sum(seat_time),DATE_FORMAT(select_seat_time,'%m') FROM library_study_time where student_num = '" + student_num + "' AND DATE_FORMAT(select_seat_time,'%Y')=" + str(school_year)
-            self.executer.execute(sql)
-            try:
-                result = self.executer.fetchone()
-                library_study_time, month = result[0], result[1]
-                if int(month) < 9:
-                    school_year = int(school_year) - 1
-            except:
-                library_study_time = 0   
-            sql = "update students set library_study_time =" + str(library_study_time) + " where student_num='" + student_num + str(school_year) + "'"
-            self.executer.execute(sql)
+        sql = "SELECT DISTINCT student_num FROM library_study_time"
+        self.executer.execute(sql)
+        student_nums = [str(i[0]) for i in self.executer.fetchall()]
+        for student_num in student_nums:
+            for school_year in self.school_year:
+                sql = "SELECT sum(seat_time),DATE_FORMAT(select_seat_time,'%m') FROM library_study_time where student_num = '" + student_num + "' AND DATE_FORMAT(select_seat_time,'%Y')=" + str(school_year)
+                self.executer.execute(sql)
+                try:
+                    result = self.executer.fetchone()
+                    library_study_time, month = result[0], result[1]
+                    if int(month) < 9:
+                        school_year = int(school_year) - 1
+                    sql = "update students set library_study_time =" + str(library_study_time) + " where student_num='" + student_num + str(school_year) + "'"
+                    if self.executer.execute(sql) == 0:
+                        self.add_student(student_num + str(school_year))
+                        self.executer.execute(sql)
+                except:
+                    pass   
          
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

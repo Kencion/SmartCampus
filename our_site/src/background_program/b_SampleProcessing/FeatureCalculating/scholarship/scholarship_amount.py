@@ -19,16 +19,21 @@ class scholarship_amount(FeatureCalculater):
         '''
                         计算获得奖学金的金额
         '''
-        for school_year in self.school_year:
-            student_num = str(self.student_num)
-            sql = "SELECT amount FROM scholarship_handled where student_num ='{0}' AND left(grant_year,4)='{1}'".format(str(student_num) , school_year)
-            self.executer.execute(sql)
-            try:
-                scholarship_amount = self.executer.fetchone()[0]
-            except:
-                raise feature_null_exception
-            sql = "update students set scholarship_amount ='{0}' where student_num='{1}'".format(str(scholarship_amount), student_num + school_year)
-            self.executer.execute(sql)
+        sql = "SELECT DISTINCT student_num FROM scholarship_handled"
+        self.executer.execute(sql)
+        student_nums = [str(i[0]) for i in self.executer.fetchall()]
+        for student_num in student_nums:
+            for school_year in self.school_year:
+                sql = "SELECT amount FROM scholarship_handled where student_num ='{0}' AND left(grant_year,4)='{1}'".format(str(student_num) , school_year)
+                self.executer.execute(sql)
+                try:
+                    scholarship_amount = self.executer.fetchone()[0]
+                except:
+                    pass
+                sql = "update students set scholarship_amount ='{0}' where student_num='{1}'".format(str(scholarship_amount), student_num + school_year)
+                if self.executer.execute(sql) == 0:
+                        self.add_student(student_num + str(school_year))
+                        self.executer.execute(sql)
     
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

@@ -122,24 +122,36 @@ class max_min_month_consume(FeatureCalculater):
                 num = 1
                 first = 0
             student_num = re[0]
-        print("总共插了多少次数据" + str(count_num))
+#         print("总共插了多少次数据" + str(count_num))
 
     def SQL_deal_max(self, name_tag, max_count, student_num):
-        for i in range(7): 
-            name = str(name_tag[i] + '_max_amount')
-            sql = "update students set {0}={1} where student_num='{2}'"
-            self.executer.execute(sql.format(name, float(max_count[i]), str(student_num)))
-            max_count[i] = 0
+        if student_num is None:
+            pass
+        else:
+            for i in range(7): 
+                name = str(name_tag[i] + '_max_amount')
+                sql = "update students set {0}={1} where student_num='{2}'"
+                num=self.executer.execute(sql.format(name, float(max_count[i]), str(student_num)))
+                if num==0:
+                    sql = "insert into students({0},{1}) values({2},{3})"
+                    self.executer.execute(sql.format("student_num",name, str(student_num),float(max_count[i])))   
+                max_count[i] = 0
         return max_count
 
     def SQL_deal_min(self, name_tag, min_count, student_num):
-        for i in range(7): 
-            if int(min_count[i]) == 500000:
-                min_count[i] = 0
-            name2 = str(name_tag[i] + '_min_amount')
-            sql = "update students set {0}={1} where student_num='{2}'"
-            self.executer.execute(sql.format(name2, float(min_count[i]), str(student_num)))
-            min_count[i] = 500000
+        if student_num is None:
+            pass
+        else:
+            for i in range(7): 
+                if int(min_count[i]) == 500000:
+                    min_count[i] = 0
+                name2 = str(name_tag[i] + '_min_amount')
+                sql = "update students set {0}={1} where student_num='{2}'"
+                num=self.executer.execute(sql.format(name2, float(min_count[i]), str(student_num)))
+                if num==0:
+                    sql = "insert into students({0},{1}) values({2},{3})"
+                    self.executer.execute(sql.format("student_num",name2, str(student_num),float(min_count[i])))   
+                min_count[i] = 500000
         return min_count
 
     def cluster(self):
