@@ -1,7 +1,7 @@
 '''
 @author: yhj
 '''
-from background_program.z_Tools import MyLogger
+from background_program.z_Tools.my_exceptions import my_exception_handler
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
 
@@ -10,6 +10,7 @@ class avg_out_time(FeatureCalculater):
     def __init__(self):
         FeatureCalculater.__init__(self, feature_name='avg_out_time')
 
+    @my_exception_handler
     def calculate(self):
         
         # 分组计算每天出门的最早时间
@@ -75,10 +76,10 @@ class avg_out_time(FeatureCalculater):
                 pass
             else:
                 sql = "update students set avg_out_time=%s where student_num=%s"
-                num=self.executer.execute(sql, (float(re[1]), re[0]))
-                if num==0:
-                    sql="insert into students(student_num,avg_out_time) values(%s,%s)"
-                    self.executer.execute(sql, (re[0],float(re[1])))
+                num = self.executer.execute(sql, (float(re[1]), re[0]))
+                if num == 0:
+                    sql = "insert into students(student_num,avg_out_time) values(%s,%s)"
+                    self.executer.execute(sql, (re[0], float(re[1])))
     
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4) 

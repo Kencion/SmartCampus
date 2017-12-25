@@ -1,7 +1,7 @@
 '''
 @author: yhj
 '''
-from background_program.z_Tools import MyLogger
+from background_program.z_Tools.my_exceptions import my_exception_handler
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
 
@@ -10,7 +10,7 @@ class avg_in_time(FeatureCalculater):
     def __init__(self):
         FeatureCalculater.__init__(self, feature_name='avg_in_time')
         
-    @MyLogger.myException
+    @my_exception_handler
     def calculate(self):
         sql = "select student_num,avg(max_day_in_time) from dorm_entrance_handled where week_num='6' or week_num='7' group by student_num "
         self.executer.execute(sql)

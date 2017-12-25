@@ -23,6 +23,12 @@ claculaters = [
         activity_last_time1.activity_last_time1(),
         activity_num1.activity_num1(),
         participation_avg_point1.participation_avg_point1(),
+        avg_out_time.avg_out_time(),
+        avg_in_time.avg_in_time(),
+        avg_stay_out_time.avg_stay_out_time(),
+        in_out_times.in_out_times(),
+        hornorary_rank.hornorary_rank(),
+        hornorary_times.hornorary_times(),
         library_borrow_times1.library_borrow_times1(),
         library_entrance.library_entrance(),
         failed_num1.failed_num1(),
@@ -31,8 +37,6 @@ claculaters = [
         score1.score1(),
         is_social_practice_great1.is_social_practice_great1(),
         social_practice1.social_practice1(),
-        hornorary_rank.hornorary_rank(),
-        hornorary_times.hornorary_times(),
         canteen_times.canteen_times(),
         Consumption.Consumption(),
         max_every_type.max_every_type(),
@@ -46,7 +50,7 @@ claculaters = [
         scholarship_rank.scholarship_rank(),
         subsidy_amount.subsidy_amount(),
         subsidy_rank.subsidy_rank(),
-        in_out_times.in_out_times(),
+        
     ]
 
 
