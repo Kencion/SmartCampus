@@ -18,23 +18,40 @@ class FeatureCalculater:
         self.feature_name = feature_name
         self.school_year = ['2013', '2014', '2015', '2016', '2017', ]  # 一个同学一个学年作为一个记录
                  
-    def setStudentNum(self, student_num):
+    def add_student(self, student_num):
         '''
-                        设置学生学号
+                        添加学生
         @params string student_num:学生学号
         @retrun
         '''
-        self.student_num = student_num  # 学号
+        sql = "insert into students(student_num) values('{0}')".format(student_num)
+        self.executer.execute(sql)
          
     @my_exception_handler
     def calculate(self):
         '''
+                        获取学号
                         所有子类都要实现这个函数
                         特征值的计算
         @params 
         @retrun
         '''
-        pass  
+        from tqdm import tqdm
+        sql = "select distinct student_num,student_name,grade,student_type from subsidy"
+        self.executer.execute(sql)
+        result = self.executer.fetchall()
+        for re in tqdm(result):
+            count = int(re[ 2])
+            if str(re[3]) == '普通高校本科学生':
+                while count <= int(re[2]) + 8 and count <= 2016:
+                    sql = "insert into students(student_num,student_name,student_grade,student_type) values(%s,%s,%s,%s)"
+                    self.executer.execute(sql, (str(re[0]) + str(count), re[1], str(re[2]), re[3]))
+                    count = count + 1
+            else:
+                while count <= int(re[2]) + 8 and count <= 2016:
+                    sql = "insert into students(student_num,student_name,student_grade,student_type) values(%s,%s,%s,%s)"
+                    self.executer.execute(sql, (str(re[0]) + str(count), re[1], str(re[2]), re[3]))
+                    count = count + 1  
      
     @my_exception_handler
     def cluster(self, feature_min=None, feature_max=None , clusters=1):
@@ -67,7 +84,7 @@ class FeatureCalculater:
             student_nums = self.executer.fetchall()
             for student_num in student_nums:
                 student_num = student_num[0]
-                sql = "update 软件学院.students_rank set {0} = {1} where student_num = {2}".format(self.feature_name, str(labels[i] + 1), student_num) 
+                sql = "update 软件学院.students_int set {0} = {1} where student_num = {2}".format(self.feature_name, str(labels[i] + 1), student_num) 
                 n_update = self.executer.execute(sql)
 #                 if n_update == 0:
 #                     try:
