@@ -26,7 +26,7 @@ class activity_num1(FeatureCalculater):
                 pass
             else:
                 re[1].split('-')
-                if int(re[1][6:7]) < 9:
+                if int(re[1][5:7]) < 9:
                     sql = "update students set activity_num=activity_num+%s where student_num=%s"
                     num=self.executer.execute(sql, (int(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
                     if num==0:
