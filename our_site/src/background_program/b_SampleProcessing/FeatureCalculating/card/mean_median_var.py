@@ -75,7 +75,6 @@ class mean_median_var(FeatureCalculater):
         
 #         print()
 #         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '任务开始......')
-        ic = 1
         for student_num in student_num_list:
             grade = int(str(student_num[0]).substring(4,4))
 #             print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), student_num[0])
@@ -100,9 +99,8 @@ class mean_median_var(FeatureCalculater):
                         sql = 'update students set {1}={2},{3}={4},{5}={6} where student_num ="'"{0}"'"'
                         affectedRows=self.executer.execute(sql.format(str(student_num[0]) + str(year), "mean_of_" + str(one_type[0]), mean, "median_of_" + str(one_type[0]), median, "var_of_" + str(one_type[0]), var))
                         if affectedRows == 0 :
-                            sql ='insert into students values(student_num="'"{1}"'",{2}={3},{4}={5},{6}={7})'
-                            self.executer.execute(sql.format(str(student_num[0]) + str(year),"mean_of_" + str(one_type[0]), mean, "median_of_" + str(one_type[0]), median, "var_of_" + str(one_type[0]), var))
-                    
+                            self.add_student(str(student_num[0]) + str(year))
+                            self.executer.execute(sql)
                     
                  
 #         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '正常结束')
