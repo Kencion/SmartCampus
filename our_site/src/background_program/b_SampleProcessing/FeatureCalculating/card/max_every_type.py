@@ -111,8 +111,8 @@ class max_every_type(FeatureCalculater):
                 sql = "update students set {0}={1} where student_num='{2}'"
                 num=self.executer.execute(sql.format(name, float(max_amount[i]), str(student_num)))   
                 if num==0:
-                    sql = "insert into students({0},{1}) values({2},{3})"
-                    self.executer.execute(sql.format("student_num",name, str(student_num),float(max_amount[i])))   
+                    self.add_student(student_num)
+                    self.executer.execute(sql.format(name, float(max_amount[i]), str(student_num)))   
                 max_amount[i] = 0; 
         return max_amount
 

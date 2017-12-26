@@ -15,6 +15,8 @@ class activity_avg_level1(FeatureCalculater):
         '''
                 计算活动平均活跃度得分
         '''
+        sql = "update students set activity_avg_level=%s"
+        self.executer.execute(sql, float(0))
         sql = "select Stu_num,DATE_FORMAT(Start_time, '%Y-%m'),sum(Active_level)/count(*) from stu_in_activities group by stu_num,DATE_FORMAT(Start_time, '%Y-%m')"
         self.executer.execute(sql)
         result = self.executer.fetchall()
@@ -27,13 +29,17 @@ class activity_avg_level1(FeatureCalculater):
                     sql = "update students set activity_avg_level=(activity_avg_level+%s)/2 where student_num=%s"
                     num = self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
                     if num == 0:
-                        self.add_student(str(re[1][0:4]))
+                        self.add_student(str(re[0]) + (str)(int(re[1][0:4]) - 1))
+                        sql2 = "update students set activity_avg_level=%s where student_num=%s"
+                        self.executer.execute(sql2, (float(0),str(re[0]) + (str)(int(re[1][0:4]) - 1)))
                         self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
                 else:
                     sql = "update students set activity_avg_level=(activity_avg_level+%s)/2 where student_num=%s "
                     num = self.executer.execute(sql, (float(re[2]), str(re[0]) + str(re[1][0:4])))
                     if num == 0:
-                        self.add_student(str(re[1][0:4]))
+                        self.add_student(str(re[0]) + str(re[1][0:4]))
+                        sql2 = "update students set activity_avg_level=%s where student_num=%s"
+                        self.executer.execute(sql2, (float(0),str(re[0]) + (str)(int(re[1][0:4]))))
                         self.executer.execute(sql, (float(re[2]), str(re[0]) + str(re[1][0:4])))
     
     def cluster(self):

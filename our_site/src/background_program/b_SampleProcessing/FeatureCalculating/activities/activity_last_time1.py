@@ -32,12 +32,16 @@ class activity_last_time1(FeatureCalculater):
                     num = self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
                     if num == 0:
                         self.add_student(str(re[0]) + (str)(int(re[1][0:4]) - 1))
+                        sql2 = "update students set activity_last_time=%s where student_num=%s"
+                        self.executer.execute(sql2, (float(0),str(re[0]) + (str)(int(re[1][0:4]) - 1)))
                         self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
                 else:
                     sql = "update students set activity_last_time=activity_last_time+%s where student_num=%s "
                     num = self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(re[1][0:4])))
                     if num == 0:
-                        self.add_student(str(re[0]) + (str)(int(re[1][0:4]) - 1))
+                        self.add_student(str(re[0]) + (str)(int(re[1][0:4])))
+                        sql2 = "update students set activity_last_time=%s where student_num=%s"
+                        self.executer.execute(sql2, (float(0),str(re[0]) + (str)(int(re[1][0:4]))))
                         self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(re[1][0:4])))
 
     def cluster(self):

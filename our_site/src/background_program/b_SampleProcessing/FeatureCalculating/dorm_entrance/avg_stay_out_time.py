@@ -23,7 +23,7 @@ class avg_stay_out_time(FeatureCalculater):
                 num = self.executer.execute(sql, (float(re[1]), re[0]))
                 if num == 0:
                     self.add_student(re[0])
-                    num = self.executer.execute(sql, (float(re[1]), re[0]))
+                    self.executer.execute(sql, (float(re[1]), re[0]))
 
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

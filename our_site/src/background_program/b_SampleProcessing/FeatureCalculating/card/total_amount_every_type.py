@@ -111,8 +111,8 @@ class total_amount_every_type(FeatureCalculater):
                 sql = "update students set {0}={1} where student_num='{2}'"
                 num = self.executer.execute(sql.format(name, float(count[i]), str(student_num)))
                 if num == 0:
-                    sql = "insert into students({0},{1}) values({2},{3})"
-                    self.executer.execute(sql.format("student_num", name, str(student_num), float(count[i])))   
+                    self.add_student(student_num)
+                    self.executer.execute(sql.format(name, float(count[i]), str(student_num)))     
                 count[i] = 0
 
         return count

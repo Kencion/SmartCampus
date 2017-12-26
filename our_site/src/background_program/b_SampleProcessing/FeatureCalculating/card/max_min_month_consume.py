@@ -133,8 +133,8 @@ class max_min_month_consume(FeatureCalculater):
                 sql = "update students set {0}={1} where student_num='{2}'"
                 num=self.executer.execute(sql.format(name, float(max_count[i]), str(student_num)))
                 if num==0:
-                    sql = "insert into students({0},{1}) values({2},{3})"
-                    self.executer.execute(sql.format("student_num",name, str(student_num),float(max_count[i])))   
+                    self.add_student(student_num)
+                    self.executer.execute(sql.format(name, float(max_count[i]), str(student_num)))     
                 max_count[i] = 0
         return max_count
 
@@ -149,8 +149,8 @@ class max_min_month_consume(FeatureCalculater):
                 sql = "update students set {0}={1} where student_num='{2}'"
                 num=self.executer.execute(sql.format(name2, float(min_count[i]), str(student_num)))
                 if num==0:
-                    sql = "insert into students({0},{1}) values({2},{3})"
-                    self.executer.execute(sql.format("student_num",name2, str(student_num),float(min_count[i])))   
+                    self.add_student(student_num)
+                    self.executer.execute(sql.format(name2, float(min_count[i]), str(student_num)))     
                 min_count[i] = 500000
         return min_count
 
