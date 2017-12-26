@@ -20,7 +20,7 @@ class avg_out_time(FeatureCalculater):
         for r in re:
             if int(r[4]) == 0:
                 re[1].split('-')
-                if int(re[1][6:7]) < 9:
+                if int(re[1][5:7]) < 9:
                     sql = "insert into dorm_entrance_handled(student_num,date,min_day_out_time,week_num) values(%s,%s,%s,%s)"
                     self.executer.execute(sql, (r[0] + (str)(int(re[1][0:4]) - 1), r[2], r[3], int(7)))
                 else:
@@ -28,7 +28,7 @@ class avg_out_time(FeatureCalculater):
                     self.executer.execute(sql, (r[0] + (str)(int(re[1][0:4])), r[2], r[3], int(7)))
             else:
                 re[1].split('-')
-                if int(re[1][6:7]) < 9:
+                if int(re[1][5:7]) < 9:
                     sql = "insert into dorm_entrance_handled(student_num,date,min_day_out_time,week_num) values(%s,%s,%s,%s)"
                     self.executer.execute(sql, (r[0] + (str)(int(re[1][0:4]) - 1), r[2], r[3], int(r[4])))
                 else:
@@ -40,7 +40,7 @@ class avg_out_time(FeatureCalculater):
         re = self.executer.fetchall()
         for r in re:
             re[1].split('-')
-            if int(re[1][6:7]) < 9:
+            if int(re[1][5:7]) < 9:
                 sql = "update dorm_entrance_handled set max_day_in_time=%s where student_num=%s and date=%s"
                 self.executer.execute(sql, (float(r[3]), r[0] + (str)(int(re[1][0:4]) - 1), r[2]))
             else:
@@ -61,7 +61,7 @@ class avg_out_time(FeatureCalculater):
         result = self.executer.fetchall()
         for re in result:
             re[1].split('-')
-            if int(re[1][6:7]) < 9: 
+            if int(re[1][5:7]) < 9: 
                 sql = "update dorm_entrance_handled set max_day_in_time=%s where student_num=%s and date=%s"
                 self.executer.execute(sql, ((float(re[3]) + 86400), re[0] + (str)(int(re[1][0:4]) - 1), re[2]))
             else:
