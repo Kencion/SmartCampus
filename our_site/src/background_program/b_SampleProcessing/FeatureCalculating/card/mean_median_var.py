@@ -18,9 +18,6 @@ class mean_median_var(FeatureCalculater):
 
     def calculate(self):
         
-#         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '准备中......')
-#         print()
-#         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '获取最早时间、最晚时间......')
         '''
                 获取最早时间、最晚时间
         '''
@@ -29,11 +26,6 @@ class mean_median_var(FeatureCalculater):
         result = self.executer.fetchone()
         earliestItem_date = result[0]
         lastestItem_date = result[1]  
-#         print(earliestItem_date,lastestItem_date)
-#         print(type(earliestItem_date),type(lastestItem_date))
-        
-#         print()
-#         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '获得 表中包含的学年......')
         '''
                 获得 'card' 表中包含的学年
                 eg: 2014-06-04应该属于2013-2014学年
@@ -59,12 +51,8 @@ class mean_median_var(FeatureCalculater):
                 存放在student_num_list中
         '''    
         sql = 'select distinct student_num from card ' 
-#         sql = 'select distinct student_num from card where student_num =24320152202846' 
         self.executer.execute(sql)
         student_num_list = self.executer.fetchall()
-        
-#         print()
-#         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '获得type_list......')
         '''
                 获得所有的消费类型
                 存放在type_list中
@@ -73,11 +61,8 @@ class mean_median_var(FeatureCalculater):
         self.executer.execute(sql)
         type_list = self.executer.fetchall()
         
-#         print()
-#         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '任务开始......')
         for student_num in student_num_list:
             grade = int(str(student_num[0]).substring(4,4))
-#             print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), student_num[0])
             for one_type in type_list:
                 for year in school_year:
                     if int(year) < grade:
@@ -101,10 +86,6 @@ class mean_median_var(FeatureCalculater):
                         if affectedRows == 0 :
                             self.add_student(str(student_num[0]) + str(year))
                             self.executer.execute(sql)
-                    
-                 
-#         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '正常结束')
-    
     '''
         计算并返回输入参数 'datalist' 的平均值、中位数、方差 
     @param :
@@ -134,8 +115,3 @@ class mean_median_var(FeatureCalculater):
             feature_name = str("var_of_" + name_tag[i])
             self.feature_name = feature_name
             FeatureCalculater.cluster(self, clusters=4)
-
-
-# test = mean_median_var()
-# test.calculate()
-    
