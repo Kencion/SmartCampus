@@ -19,17 +19,17 @@ from background_program.b_SampleProcessing.FeatureCalculating.card import *
 from tqdm import tqdm  
 
 claculaters = [  
-#         activity_avg_level1.activity_avg_level1(),#
-#         activity_last_time1.activity_last_time1(),#
-#         activity_num1.activity_num1(),#
-#         participation_avg_point1.participation_avg_point1(),#
+#         activity_avg_level1.activity_avg_level1(),#!
+#         activity_last_time1.activity_last_time1(),#!
+#         activity_num1.activity_num1(),#!
+#         participation_avg_point1.participation_avg_point1(),#!
 #         
-#         avg_out_time.avg_out_time(),#?
-#         avg_in_time.avg_in_time(),#?
-#         avg_stay_out_time.avg_stay_out_time(),#?
+#         avg_out_time.avg_out_time(),#!
+        avg_in_time.avg_in_time(),#?
+        avg_stay_out_time.avg_stay_out_time(),#?
 #         in_out_times.in_out_times(),
 #         
-        library_borrow_times1.library_borrow_times1(),
+#         library_borrow_times1.library_borrow_times1(),#!
 #         library_entrance.library_entrance(),
 #         library_study_time.library_study_time(),
 #         library_week_study_time.library_week_study_time(),
@@ -55,10 +55,10 @@ claculaters = [
 # #         
 #         canteen_times.canteen_times(),#
 #         Consumption.Consumption(),#
-        max_min_month_consume.max_min_month_consume(),#
-        max_every_type.max_every_type(),#
+#         max_min_month_consume.max_min_month_consume(),#!
+#         max_every_type.max_every_type(),#!
 #         mean_median_var.mean_median_var(),#
-        total_amount_every_type.total_amount_every_type(),#
+#         total_amount_every_type.total_amount_every_type(),#!
 #         transaction_times.transaction_times(),#
 #         canteen_consumption_divide_by_consumption.canteen_consumption_divide_by_consumption(),#
         
