@@ -18,11 +18,21 @@ class department(FeatureCalculater):
         '''
                         计算学生的系别
         '''
-        student_num = str(self.student_num)
-        for school_year in self.school_year:
-            self.executer.execute("select department from score where student_num=%s", (student_num))
-            department = self.executer.fetchone()[0]
-            self.executer.execute("update students set hornorary_rank =%s where student_num=%s" , (department, student_num + school_year))
+        sql = "SELECT DISTINCT student_num FROM score"
+        self.executer.execute(sql)
+        student_nums = [str(i[0]) for i in self.executer.fetchall()]
+        for student_num in student_nums:
+            for school_year in self.school_year:
+                sql = "select department from score where student_num='{0}'".format(student_num)
+                self.executer.execute(sql)
+                try:
+                    department = self.executer.fetchone()[0]
+                except:
+                    pass
+                sql = "update students set hornorary_rank ={0} where student_num='{1}'".format(department, student_num + school_year)
+                if self.executer.execute(sql) == 0:
+                    self.add_student(student_num + str(school_year))
+                    self.executer.execute(sql)
         
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

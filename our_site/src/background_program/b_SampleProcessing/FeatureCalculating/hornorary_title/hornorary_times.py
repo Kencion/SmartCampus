@@ -18,8 +18,6 @@ class hornorary_times(FeatureCalculater):
         '''
                 计算一学年内获得荣誉次数
         '''
-        sql = "update students set hornorary_times=0"
-        self.executer.execute(sql)
         sql = "select student_num,left(grant_year,4),count(*) from hornorary_handled group by student_num,left(grant_year,4)"
         self.executer.execute(sql)
         result = self.executer.fetchall()

@@ -22,8 +22,6 @@ class hornorary_rank(FeatureCalculater):
     #
     # 之后会用数值代表这个，比如一个学生获得一次校级（5），一次院级（3），那就5+3=8
         '''
-        sql = "update students set hornorary_rank=0"
-        self.executer.execute(sql)
         sql = "select student_num,left(grant_year,4),grant_rank from hornorary_handled"
         self.executer.execute(sql)
         result = self.executer.fetchall()

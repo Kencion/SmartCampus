@@ -78,8 +78,8 @@ class avg_out_time(FeatureCalculater):
                 sql = "update students set avg_out_time=%s where student_num=%s"
                 num = self.executer.execute(sql, (float(re[1]), re[0]))
                 if num == 0:
-                    sql = "insert into students(student_num,avg_out_time) values(%s,%s)"
-                    self.executer.execute(sql, (re[0], float(re[1])))
+                    self.add_student(re[0])
+                    self.executer.execute(sql, (float(re[1]), re[0]))
     
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4) 

@@ -20,9 +20,10 @@ class avg_in_time(FeatureCalculater):
                 pass
             else:
                 sql = "update students set avg_in_time=%s where student_num=%s"
-                num=self.executer.execute(sql, (float(re[1]), re[0]))
-                if num==0:
-                    sql="insert into students(student_num,avg_in_time) values(%s,%s)"
-                    num=self.executer.execute(sql, (re[0],float(re[1])))
+                num = self.executer.execute(sql, (float(re[1]), re[0]))
+                if num == 0:
+                    self.add_student(re[0])
+                    num = self.executer.execute(sql, (float(re[1]), re[0]))
+
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

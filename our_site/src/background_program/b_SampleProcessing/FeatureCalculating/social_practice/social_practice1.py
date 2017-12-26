@@ -29,7 +29,6 @@ class social_practice1(FeatureCalculater):
             stu_num = str(i[0])
             year = int(i[1])
             month = int(i[2])
-            # print("month = "+str(month))
             if(month < 9):
                 year = year - 1
             School_key_projects_or_not = i[3]
@@ -39,7 +38,6 @@ class social_practice1(FeatureCalculater):
             else:
                 is_social_practice_great = 1
             sql = "update students set social_practice = '" + str(is_social_practice_great) + "' where student_num = '" + str(stu_num) + str(year) + "'"
-            # print(sql)
             self.executer.execute(sql)
     
     def cluster(self):

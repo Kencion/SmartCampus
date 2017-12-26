@@ -28,12 +28,12 @@ class scholarship_amount(FeatureCalculater):
                 self.executer.execute(sql)
                 try:
                     scholarship_amount = self.executer.fetchone()[0]
+                    sql = "update students set scholarship_amount ='{0}' where student_num='{1}'".format(str(scholarship_amount), student_num + school_year)
+                    if self.executer.execute(sql) == 0:
+                            self.add_student(student_num + str(school_year))
+                            self.executer.execute(sql)
                 except:
                     pass
-                sql = "update students set scholarship_amount ='{0}' where student_num='{1}'".format(str(scholarship_amount), student_num + school_year)
-                if self.executer.execute(sql) == 0:
-                        self.add_student(student_num + str(school_year))
-                        self.executer.execute(sql)
     
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

@@ -3,13 +3,16 @@ Created on 2017年12月19日
 
 @author: yzh
 '''
-from background_program.z_Tools import MyLogger
+from background_program.z_Tools.my_exceptions import my_exception_handler
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+
  
 class transaction_times(FeatureCalculater):
+
     def __init__(self):
         FeatureCalculater.__init__(self, feature_name='transaction_times')
-    @MyLogger.myException
+
+    @my_exception_handler
     def calculate(self):
         '''
                             计算总消费次数
@@ -19,7 +22,7 @@ class transaction_times(FeatureCalculater):
         self.executer.execute(sql)
         lastestItem_date = self.executer.fetchone()[0]
         if lastestItem_date.month < 9:
-            lyear = lastestItem_date.year -1
+            lyear = lastestItem_date.year - 1
         else:
             lyear = lastestItem_date.year
             
@@ -36,7 +39,7 @@ class transaction_times(FeatureCalculater):
             '''
             year1 = grade
             year2 = year1 + 1
-            sql = "select count(transaction_amount) from card where student_num = '" + str(stu_num) + "' and date between '" + str(year1) + "-09-01' and '"+ str(year2) +"-08-31' and transaction_amount<0" 
+            sql = "select count(transaction_amount) from card where student_num = '" + str(stu_num) + "' and date between '" + str(year1) + "-09-01' and '" + str(year2) + "-08-31' and transaction_amount<0" 
 #                 print(sql)
             self.executer.execute(sql)
             count = self.executer.fetchone()[0]
@@ -46,16 +49,15 @@ class transaction_times(FeatureCalculater):
 #                     print(sql)
                 t = self.executer.execute(sql)
                 if t == 0:
-                    sql = "INSERT INTO students (student_num,transaction_times) VALUES (" + stu_num + str(year1) +","+str(count)+")"
+                    sql = "INSERT INTO students (student_num,transaction_times) VALUES (" + stu_num + str(year1) + "," + str(count) + ")"
                     self.executer.execute(sql)
                     print(sql)
             else:
-                print("计算总消费次数这个学生这个学年有问题："+stu_num+"  "+str(year1))
+                print("计算总消费次数这个学生这个学年有问题：" + stu_num + "  " + str(year1))
                 
-                
-            for year1 in range(grade+1, lyear):
-                year2 = year1+1
-                sql = "select count(transaction_amount) from card where student_num = '" + str(stu_num) + "' and date between '" + str(year1) + "-09-01' and '"+ str(year2) +"-08-31' and transaction_amount<0" 
+            for year1 in range(grade + 1, lyear):
+                year2 = year1 + 1
+                sql = "select count(transaction_amount) from card where student_num = '" + str(stu_num) + "' and date between '" + str(year1) + "-09-01' and '" + str(year2) + "-08-31' and transaction_amount<0" 
 #                 print(sql)
                 self.executer.execute(sql)
                 count = self.executer.fetchone()[0]
@@ -65,11 +67,11 @@ class transaction_times(FeatureCalculater):
 #                     print(sql)
                     t = self.executer.execute(sql)
                     if t == 0:
-                        sql = "INSERT INTO students (student_num,transaction_times) VALUES (" + stu_num + str(year1) +","+str(count)+")"
+                        sql = "INSERT INTO students (student_num,transaction_times) VALUES (" + stu_num + str(year1) + "," + str(count) + ")"
                         self.executer.execute(sql)
                         print(sql)
                 else:
-                    print("计算总消费次数这个学生这个学年有问题："+stu_num+"  "+str(year1))
+                    print("计算总消费次数这个学生这个学年有问题：" + stu_num + "  " + str(year1))
 #             print(stu_num)
 #         print("ok")
         

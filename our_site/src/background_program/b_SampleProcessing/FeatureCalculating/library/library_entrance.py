@@ -23,11 +23,16 @@ class library_entrance(FeatureCalculater):
         student_nums = [str(i[0]) for i in self.executer.fetchall()]
         for student_num in student_nums:
             for school_year in self.school_year:
-                sql = "SELECT sum(seat_time) FROM library_study_time where student_num = " + student_num + " AND DAYOFYEAR(select_seat_time)=" + str(school_year)
-                self.executer.execute(sql)
-                library_study_time = self.executer.fetchone()[0]
-                sql = "update students set library_study_time ='" + str(library_study_time) + "' where student_num=" + student_num + " AND school_year =" + str(school_year)
-                self.executer.execute(sql)
+                try:
+                    sql = "SELECT sum(seat_time) FROM library_study_time where student_num = " + student_num + " AND DAYOFYEAR(select_seat_time)=" + str(school_year)
+                    self.executer.execute(sql)
+                    library_study_time = self.executer.fetchone()[0]
+                    sql = "update students set library_study_time ='" + str(library_study_time) + "' where student_num=" + student_num + str(school_year)
+                    if self.executer.execute(sql) == 0:
+                        self.add_student(student_num + str(school_year))
+                        self.executer.execute(sql)
+                except:
+                    pass
         
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

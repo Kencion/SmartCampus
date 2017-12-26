@@ -28,15 +28,16 @@ class library_borrow_times1(FeatureCalculater):
                 re[1].split('-')
                 if int(re[1][5:7]) < 9:
                     sql = "update students set library_borrow_times=library_borrow_times+%s where student_num=%s"
-                    num=self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
-                    if num==0:
-                        sql = "insert into students(student_num,library_borrow_times) values(%s,%s)"
-                        self.executer.execute(sql, (str(re[0]) + (str)(int(re[1][0:4]) - 1),float(re[2])))
+                    num = self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
+                    if num == 0:
+                        self.add_student(str(re[0]) + (str)(int(re[1][0:4]) - 1))
+                    num = self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(int(re[1][0:4]) - 1)))
                 else:
                     sql = "update students set library_borrow_times=library_borrow_times+%s where student_num=%s"
-                    num=self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(re[1][0:4])))
-                    if num==0:
-                        sql = "insert into students(student_num,library_borrow_times) values(%s,%s)"
-                        self.executer.execute(sql, (str(re[0]) + (str)(int(re[1][0:4])),float(re[2])))
+                    num = self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(re[1][0:4])))
+                    if num == 0:
+                        self.add_student(str(re[0]) + (str)(int(re[1][0:4])))
+                        self.executer.execute(sql, (float(re[2]), str(re[0]) + (str)(re[1][0:4])))
+
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
