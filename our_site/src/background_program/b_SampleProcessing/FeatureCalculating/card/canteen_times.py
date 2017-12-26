@@ -46,9 +46,9 @@ class canteen_times(FeatureCalculater):
                 sql = "update students set canteen_times = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
                 t = self.executer.execute(sql)
                 if t == 0:
-                    sql = "INSERT INTO students (student_num,canteen_times) VALUES (" + stu_num + str(year1) +","+str(count)+")"
+                    self.add_student(stu_num + str(year1))
                     self.executer.execute(sql)
-                    print(sql)
+#                   print(sql)
             else:
                     print("计算食堂消费次数这个学生这个学年可能有问题："+stu_num+"  "+str(year1))
                     
@@ -62,9 +62,9 @@ class canteen_times(FeatureCalculater):
                     sql = "update students set canteen_times = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
                     t = self.executer.execute(sql)
                     if t == 0:
-                        sql = "INSERT INTO students (student_num,canteen_times) VALUES (" + stu_num + str(year1) +","+str(count)+")"
+                        self.add_student(stu_num + str(year1))
                         self.executer.execute(sql)
-                        print(sql)
+#                         print(sql)
                 else:
                     print("计算食堂消费次数这个学生这个学年可能有问题："+stu_num+"  "+str(year1))
         

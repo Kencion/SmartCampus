@@ -47,9 +47,9 @@ class Consumption(FeatureCalculater):
                 sql = "update students set Consumption = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
                 t = self.executer.execute(sql)
                 if t == 0:
-                    sql = "INSERT INTO students (student_num,Consumption) VALUES (" + stu_num + str(year1) +","+str(count)+")"
+                    self.add_student(stu_num + str(year1))
                     self.executer.execute(sql)
-                    print(sql)
+#                         print(sql)
             else:
                 print("计算总消费额这个学生这个学年有问题："+stu_num+"  "+str(year1))
                     
@@ -62,9 +62,9 @@ class Consumption(FeatureCalculater):
                     sql = "update students set Consumption = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
                     t = self.executer.execute(sql)
                     if t == 0:
-                        sql = "INSERT INTO students (student_num,Consumption) VALUES (" + stu_num + str(year1) +","+str(count)+")"
+                        self.add_student(stu_num + str(year1))
                         self.executer.execute(sql)
-                        print(sql)
+#                         print(sql)
                 else:
                     print("计算总消费额这个学生这个学年有问题："+stu_num+"  "+str(year1))
         

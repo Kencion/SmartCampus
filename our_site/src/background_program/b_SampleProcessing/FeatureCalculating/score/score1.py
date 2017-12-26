@@ -19,11 +19,13 @@ class score1(FeatureCalculater):
                             从score表中取出信息，按照score表中的学号索取到students表的学号，再将成绩信息填充到students表中。
             score = (score1*学分1+score2*学分2)/(学分1+学分2)
         '''
+#         print("start")
         sql = "select distinct(stu_num),grade from score"
         self.executer.execute(sql)
         e = self.executer.fetchall()
         for i in e:
             stu_num = str(i[0])
+            
             grade = int(i[1])
             for year in range(grade, 2017):
                 score1 = 0
@@ -53,9 +55,11 @@ class score1(FeatureCalculater):
                     
                     t = self.executer.execute(sql)
                     if t == 0:
-                        sql = "INSERT INTO students (student_num,score) VALUES (" + stu_num + str(year) +","+str(score)+")"
+                        self.add_student(stu_num + str(year1))
                         self.executer.execute(sql)
-                        print(sql)
+#         print("ok")
     
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
+# score = score1()
+# score.calculate()

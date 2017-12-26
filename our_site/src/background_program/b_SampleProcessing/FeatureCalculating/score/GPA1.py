@@ -52,9 +52,9 @@ class GPA1(FeatureCalculater):
                     
                     t = self.executer.execute(sql)
                     if t == 0:
-                        sql = "INSERT INTO students (student_num,GPA) VALUES (" + stu_num + str(year) +","+str(GPA)+")"
+                        self.add_student(stu_num + str(year1))
                         self.executer.execute(sql)
-                        print(sql)
+    #                         print(sql)
 
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

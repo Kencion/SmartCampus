@@ -3,16 +3,16 @@ Created on 2017年11月29日
 
 @author: yzh
 '''
-from background_program.z_Tools import MyLogger
+from background_program.z_Tools.my_exceptions import my_exception_handler
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
 
-class Failed_failed_num(FeatureCalculater):
+class failed_failed_num(FeatureCalculater):
 
     def __init__(self):
         FeatureCalculater.__init__(self, feature_name='activity_avg_level')
 
-    @MyLogger.myException
+    @my_exception_handler
     def calculate(self):
         '''
                             计算failed_failed_num：挂科重修后任然没通过的数目

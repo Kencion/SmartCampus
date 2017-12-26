@@ -3,7 +3,7 @@ Created on 2017年11月29日
 
 @author: yzh
 '''
-from background_program.z_Tools import MyLogger
+from background_program.z_Tools.my_exceptions import my_exception_handler
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 
 
@@ -12,7 +12,7 @@ class failed_pass_num(FeatureCalculater):
     def __init__(self):
         FeatureCalculater.__init__(self, feature_name='failed_pass_num')
     
-    @MyLogger.myException
+    @my_exception_handler
     def calculate(self):
         '''
                             计算挂科重修过的数目
@@ -59,8 +59,8 @@ class failed_pass_num(FeatureCalculater):
 #                 print(sql)
                 t = self.executer.execute(sql)
                 if t == 0:
-                    sql = "INSERT INTO students (student_num,failed_pass_num) VALUES (" + stu_num + str(year) +","+str(pass_num)+")"
+                    self.add_student(stu_num + str(year1))
                     self.executer.execute(sql)
-                    print(sql)
+#                         print(sql)
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

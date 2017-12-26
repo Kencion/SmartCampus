@@ -51,9 +51,9 @@ class score_rank1(FeatureCalculater):
                     
                     t = self.executer.execute(sql)
                     if t == 0:
-                        sql = "INSERT INTO students (student_num,score_rank) VALUES (" + stu_num + str(year) +","+str(rank)+")"
+                        self.add_student(stu_num + str(year1))
                         self.executer.execute(sql)
-                        print(sql)
+    #                         print(sql)
     
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
