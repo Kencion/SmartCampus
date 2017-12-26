@@ -47,8 +47,7 @@ calculaters = [
 #         score_rank1.score_rank1(),
 #         score1.score1(),
 #          
-#          is_social_practice_great1.is_social_practice_great1(),#
-#          social_practice1.social_practice1(),#
+        is_social_practice_great1.is_social_practice_great1(),
 #         
 #         subsidy_amount.subsidy_amount(),
 #         subsidy_rank.subsidy_rank(),
@@ -56,13 +55,13 @@ calculaters = [
 #         hornorary_rank.hornorary_rank(),
 #         hornorary_times.hornorary_times(),
 #         
-        canteen_times.canteen_times(),#
-        Consumption.Consumption(),#
+#         canteen_times.canteen_times(),#
+#         Consumption.Consumption(),#
 #         max_min_month_consume.max_min_month_consume(),#
 #         max_every_type.max_every_type(),#
 #         mean_median_var.mean_median_var(),#
 #         total_amount_every_type.total_amount_every_type(),#
-        transaction_times.transaction_times(),#
+#         transaction_times.transaction_times(),#
 #         canteen_consumption_divide_by_consumption.canteen_consumption_divide_by_consumption(),#
         
     ]

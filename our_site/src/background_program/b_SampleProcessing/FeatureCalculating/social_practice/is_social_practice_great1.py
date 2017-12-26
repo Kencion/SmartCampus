@@ -37,6 +37,12 @@ class is_social_practice_great1(FeatureCalculater):
                 is_social_practice_great = 1
             sql = "update students set is_social_practice_great = '" + str(is_social_practice_great) + "' where student_num = '" + str(stu_num) + str(year) + "'"
             self.executer.execute(sql)
+            t = self.executer.execute(sql)
+            if t == 0:
+                self.add_student(str(stu_num) + str(year))
+                self.executer.execute(sql)
+            else:
+                print("计算是否是院级或者校级重点这个学生这个学年可能有问题：" + str(stu_num) + "  "+str(year))
    
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
