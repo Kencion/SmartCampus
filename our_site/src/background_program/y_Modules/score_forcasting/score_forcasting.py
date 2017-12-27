@@ -48,8 +48,10 @@ class score_forcasting():
         feature_selector.fit(self.X_train, self.Y_train)
         feature_index = dict()
         feature_scores = feature_selector.scores_
-        for i in range(len(feature_scores)):
-            feature_index[i] = feature_scores[i] 
+        with open('../feature_name', 'r') as f:
+            feature_names = f.readlines()
+            for i in range(len(feature_scores)):
+                feature_index[feature_names[i].strip()] = feature_scores[i] 
         
         return feature_index, result
     
