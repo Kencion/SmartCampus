@@ -4,6 +4,7 @@ Created on 2017年12月17日
 @author: LI
 @modify: Jack
 '''
+from math import isnan,isinf
 
 
 class score_forcasting():
@@ -142,5 +143,67 @@ class score_forcasting():
 
 
 if __name__ == '__main__':
-    t = score_forcasting()
-    print(t.doit())
+    t,q = score_forcasting().doit()
+    print(t)
+    
+    #!/usr/bin/env python
+    """
+    Masked wordcloud
+    ================
+    
+    Using a mask you can generate wordclouds in arbitrary shapes.
+    """
+    
+    from os import path
+    from PIL import Image
+    import numpy as np
+    import matplotlib.pyplot as plt
+    
+    from wordcloud import WordCloud, STOPWORDS
+    
+    d = path.dirname(__file__)
+    
+    # Read the whole text.
+    # text = open(path.join(d, 'alice.txt')).read()
+    text = ""
+    sum = 0
+    for i in t:
+        if not isnan(t[i]) and not isinf(t[i]):
+            sum += t[i]
+    for i in t:
+        if isnan(t[i]) or isinf(t[i]):
+            t[i] = 0
+        else:
+            t[i] = int(t[i]/sum *10000)
+    for i in t :
+        for j in range(t[i]):
+            text = text + "," + i
+    
+            
+    # read the mask image
+    # taken from,
+    # http://www.stencilry.org/stencils/movies/alice%20in%20wonderland/255fk.jpg
+    alice_mask = np.array(Image.open(path.join(d, "alice_mask.png")))
+     
+    # stopwords = set(STOPWORDS)
+    stopwords = {','}
+    print(stopwords)
+     
+    # stopwords.add("said")
+     
+    wc = WordCloud(background_color="white", max_words=2000, mask=alice_mask,
+                   stopwords=stopwords)
+    # generate word cloud
+    wc.generate(text)
+     
+    # store to file
+    # wc.to_file(path.join(d, "alice.png"))
+     
+    # show
+    plt.imshow(wc, interpolation='bilinear')
+    plt.axis("off")
+    # plt.figure()
+    # plt.imshow(alice_mask, cmap=plt.cm.gray, interpolation='bilinear')
+    # plt.axis("off")
+    plt.show()
+

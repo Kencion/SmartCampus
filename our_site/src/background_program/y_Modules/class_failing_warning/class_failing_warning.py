@@ -13,7 +13,7 @@ class class_failing_warning():
         import warnings
         
         warnings.filterwarnings("ignore")
-        self.label_name='score'
+        self.label_name = 'score'
             
     def doit(self):
         '''
@@ -57,7 +57,10 @@ class class_failing_warning():
 #             print(student.getStudent_num(), "----", score)
             result.append([student.getStudent_num(), score])
             
-        return result
+#         feature_selector.fit(self.X_train, self.Y_train)
+            
+        return feature_selector.get_feature_names(), result
+#         return result
     
     def get_data(self):
         '''
@@ -100,14 +103,15 @@ class class_failing_warning():
         from background_program.b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
         from background_program.b_SampleProcessing.FeatureSelection.MySelectPercentile import MySelectPercentile
         
-        feature_selector = FeatureUnion(
-            transformer_list=[
-                ('MySelectKBset', MySelectKBset().selector),
-                ('MySelectPercentile', MySelectPercentile().selector) 
-                ],
-                n_jobs=2)
-        
-        return feature_selector
+#         feature_selector = FeatureUnion(
+#             transformer_list=[
+#                 ('MySelectKBset', MySelectKBset().selector),
+#                 ('MySelectPercentile', MySelectPercentile().selector) 
+#                 ],
+#                 n_jobs=2)
+#          
+#         return feature_selector
+        return MySelectKBset().selector
         
     def get_estimater(self):
         '''
