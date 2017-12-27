@@ -35,9 +35,8 @@ class score_forcasting():
              ('estimater', estimater),
              ]
             )
-         
         """=============对训练集进行操作============"""
-        pipeline.fit(self.X_train, self.Y_train)
+        pipeline.fit(self.X_train, self.Y_train) 
          
         """=============对测试集进行操作============"""
         Y_pred = predict_result = pipeline.predict(self.X_test)
@@ -47,8 +46,12 @@ class score_forcasting():
             result.append([student.getStudent_num(), float(score)])
         
         feature_selector.fit(self.X_train, self.Y_train)
+        feature_index = dict()
+        feature_scores = feature_selector.scores_
+        for i in range(len(feature_scores)):
+            feature_index[i] = feature_scores[i] 
         
-        return feature_selector.get_support(), result
+        return feature_index, result
     
 #         from sklearn.metrics import *
 #         for i in range(len(Y_pred)):
@@ -71,7 +74,7 @@ class score_forcasting():
         from background_program.a_Data_prossing.DataCarer import DataCarer
         
         data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
-        self.X_train, self.Y_train = data_carer.create_train_dataSet()  
+        self.X_train, self.Y_train = data_carer.create_train_dataSet() 
         self.students, self.X_test = data_carer.create_validate_dataSet()
         
     def get_pre_processer(self):
@@ -111,7 +114,7 @@ class score_forcasting():
 #                 ('MySelectPercentile', MySelectPercentile().selector) 
 #                 ],
 #                 n_jobs=1)
-#         
+#          
 #         return featureSelector
         return MySelectKBset().selector
         

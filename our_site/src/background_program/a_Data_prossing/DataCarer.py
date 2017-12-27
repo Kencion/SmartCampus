@@ -23,9 +23,9 @@ class DataCarer():
         if usage not in self.usages:
             print('用法错误：%s' % usage)
         if usage == "regression":
-            self.table_name = "students"
+            self.table_name = "students_float"
         elif usage == "classify":
-            self.table_name = "students_rank"
+            self.table_name = "students_int"
         
         self.label_name = label_name
         self.school_year = school_year
@@ -52,7 +52,7 @@ class DataCarer():
         self.executer.execute("select * from {0}".format(self.table_name))
         dataSet = []
         for i in self.executer.fetchall():
-            student = Student(student_num=i[0], features=list(i[1:index]) + list(i[index + 1:]), label=i[index])
+            student = Student(student_num=i[0], features=list(i[2:index]) + list(i[index + 1:]), label=i[index])
             dataSet.append(student.getAll())
         dataSet = np.array(dataSet)
         self.close_database()
@@ -86,7 +86,7 @@ class DataCarer():
         self.executer.execute(sql.format(self.table_name, self.school_year))
         students, X_test = [], []
         for i in self.executer.fetchall():
-            student = Student(student_num=i[0], features=list(i[1:index]) + list(i[index + 1:]), label=i[index])
+            student = Student(student_num=i[0], features=list(i[2:index]) + list(i[index + 1:]), label=i[index])
             X_test.append(student.features)
             students.append(student)
         X_test = mat(X_test)
@@ -94,28 +94,6 @@ class DataCarer():
         self.pre_process(X_test)
         return students, X_test
     
-    def data_desensitization(self):
-        '''
-        Created on 2017年12月20日
-                        数据脱敏到“软件学院脱敏”数据库中
-        @author: Jack
-        @params 
-        @return 
-        '''
-        db = MyDataBase("软件学院")
-        executer = db.getExcuter()
-        sql = "select * from students where 1=1"
-        
-        executer.execute(sql)
-        db.close()
-        
-        db = MyDataBase("软件学院脱敏")
-        executer = db.getExcuter()
-        sql = "select * from students where 1=1"
-    
-        executer.execute(sql)
-        db.close()
-
     def open_database(self, database_name):
         self.db = MyDataBase(database_name)
         self.executer = self.db.getExcuter()
