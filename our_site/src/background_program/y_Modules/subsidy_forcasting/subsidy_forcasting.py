@@ -44,7 +44,7 @@ class subsidy_forcasting():
         for student, subsidy in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(subsidy)])
         
-        return result
+        return _, result
         
     def get_data(self):
         '''

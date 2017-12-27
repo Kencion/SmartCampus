@@ -32,7 +32,7 @@ class canteen_consumption_divide_by_consumption(FeatureCalculater):
                 
                 if i[2] is not None:
                     if i[2] != 0:
-                        consumption = -1 * i[2]
+                        consumption = i[2]
                         res = float(canteen_consumption) / float(consumption)
                     
                         sql = "update students set canteen_amount_divide_by_consumption = " + str(res) + " where student_num = '" + str(stu_num) + "'"

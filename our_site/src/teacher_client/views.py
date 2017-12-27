@@ -9,6 +9,7 @@ from our_site.my_logger import exception_handler
 from our_site.my_exceptions import not_login_exception
 # Create your views here.
 
+
 @exception_handler
 def index(request, update=False):
     """
@@ -34,6 +35,7 @@ def index(request, update=False):
     """将数据渲染到页面上"""
     template = loader.get_template('teacher_client/index.html')
     return HttpResponse(template.render(context, request))
+
     
 @exception_handler
 def score_forcasting(request, update=False):
@@ -53,7 +55,7 @@ def score_forcasting(request, update=False):
         if update:
             pie_chart(), line_chart(), broken_line_chart()
             from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
-            students_and_scores = score_forcasting().doit()
+            _, students_and_scores = score_forcasting().doit()
             for i in students_and_scores:
                 Student(student_num=i[0], score=i[1]).save()
         return HttpResponseRedirect('/teacher_client/score_forcasting')
@@ -74,6 +76,7 @@ def score_forcasting(request, update=False):
     template = loader.get_template('teacher_client/score_forcasting.html')
     
     return HttpResponse(template.render(context, request))
+
 
 @exception_handler
 def missing_warning(request, update=False):
@@ -96,7 +99,7 @@ def missing_warning(request, update=False):
             for i in missing_students:
                 Student(student_num=i, is_missing=True).save()
             
-            return HttpResponseRedirect('/teacher_client/score_forcasting')
+            return HttpResponseRedirect('/teacher_client/missing_warning')
     except:
         pass
     
@@ -110,6 +113,7 @@ def missing_warning(request, update=False):
     template = loader.get_template('teacher_client/missing_warning.html')
     
     return HttpResponse(template.render(context, request))
+
 
 @exception_handler
 def scholarship_forcasting(request, update=False):
@@ -130,7 +134,7 @@ def scholarship_forcasting(request, update=False):
             from background_program.y_Modules.scholarship_forcasting.scholarship_forcasting import scholarship_forcasting
 
 #             pie_chart(), line_chart(), broken_line_chart()
-            students_and_scholarships = scholarship_forcasting().doit()
+            _, students_and_scholarships = scholarship_forcasting().doit()
             for i in students_and_scholarships:
                 Student(student_num=i[0], scholarship=i[1]).save()
         return HttpResponseRedirect('/teacher_client/scholarship_forcasting')
@@ -148,6 +152,7 @@ def scholarship_forcasting(request, update=False):
     template = loader.get_template('teacher_client/scholarship_forcasting.html')
     
     return HttpResponse(template.render(context, request))
+
 
 @exception_handler
 def subsidy_forcasting(request):
@@ -168,7 +173,7 @@ def subsidy_forcasting(request):
             from background_program.y_Modules.subsidy_forcasting.subsidy_forcasting import subsidy_forcasting
 
 #             pie_chart(), line_chart(), broken_line_chart()
-            students_and_subsidies = subsidy_forcasting().doit()
+            _, students_and_subsidies = subsidy_forcasting().doit()
             for i in students_and_subsidies:
                 Student(student_num=i[0], subsidy=i[1]).save()
         return HttpResponseRedirect('/teacher_client/subsidy_forcasting')
@@ -184,6 +189,38 @@ def subsidy_forcasting(request):
         'students_and_subsidies':students_and_subsidies,
         }
     template = loader.get_template('teacher_client/subsidy_forcasting.html')
+    
+    return HttpResponse(template.render(context, request))
+
+
+@exception_handler
+def wired_person(request, update=False):
+    """
+            奇怪的人页面
+    @author: Jack
+    @return: 奇怪的人页面
+    """
+    try:
+        """如果需要更新数据"""
+        update = request.GET['update']
+        if update:
+            from background_program.y_Modules.missing_warning import missing_warning
+            missing_students = missing_warning.doit()
+            for i in missing_students:
+                Student(student_num=i, is_missing=True).save()
+            
+            return HttpResponseRedirect('/teacher_client/score_forcasting')
+    except:
+        pass
+    
+    missing_students = [i.student_num for i in Student.objects.filter(is_missing__exact=True)]
+    """将数据渲染到页面上"""
+    context = {
+        'module_name':'失联预警',
+        'teacher_name':request.session['teacher_name'],
+        'student_nums':missing_students,
+        }
+    template = loader.get_template('teacher_client/wired_person.html')
     
     return HttpResponse(template.render(context, request))
 

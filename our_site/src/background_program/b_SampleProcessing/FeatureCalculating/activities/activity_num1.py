@@ -43,4 +43,4 @@ class activity_num1(FeatureCalculater):
                         self.executer.execute(sql2, (int(re[2]),str(re[0]) + (str)(int(re[1][0:4]))))
                         self.executer.execute(sql, (int(re[2]), str(re[0]) + (str)(re[1][0:4])))
     def cluster(self):
-        FeatureCalculater.cluster(self, clusters=4)      
+        FeatureCalculater.cluster(self, clusters=2)      

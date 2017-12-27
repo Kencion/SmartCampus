@@ -8,6 +8,7 @@ from background_program.b_SampleProcessing.Dimension_Reduction.MyPca import MyPc
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import FeatureUnion
 
+
 class scholarship_forcasting():
     
     def __init__(self):
@@ -48,7 +49,7 @@ class scholarship_forcasting():
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), score])
         
-        return result
+        return _, result
         
     def get_data(self):
         '''
@@ -117,6 +118,7 @@ class scholarship_forcasting():
         @retrun    
         '''
         pass
+
 
 if __name__ == '__main__':
     t = scholarship_forcasting()

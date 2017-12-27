@@ -4,7 +4,6 @@ Created on 2017年12月19日
 @author: LI
 '''
 import numpy as np
-# from background_program.z_Tools.my_exceptions import my_exception_handlers
 from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
 from numpy.core.numeric import NaN
 import sys
@@ -44,8 +43,8 @@ class mean_median_var(FeatureCalculater):
             school_year.extend([eyear])
             eyear = eyear + 1  
         
-        print()
-        print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '获得student_num_list......')
+#         print()
+#         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '获得student_num_list......')
         '''
                 获得 'card' 表中包含的student_num的集合
                 存放在student_num_list中
@@ -62,30 +61,31 @@ class mean_median_var(FeatureCalculater):
         type_list = self.executer.fetchall()
         
         for student_num in student_num_list:
-            grade = int(str(student_num[0]).substring(4,4))
+       
+            grade = int(student_num[0][3:7])
+          
             for one_type in type_list:
                 for year in school_year:
                     if int(year) < grade:
                         break 
                     sql = 'select abs(transaction_amount) from card where student_num = "'"{0}"'" and ((year(date)={1} and month(date)>8) or (year(date)={2} and month(date)<9)) and type="'"{3}"'"'
                     self.executer.execute(sql.format(student_num[0], int(year), int(year) + 1, one_type[0]))
-                    result = self.executer.fetchall()
-                    
+                    result=list(self.executer.fetchall())
                     
                     if int(year) == grade :
-                        sql ='select abs(transaction_amount) from card where student_num = "'"{0}"'" and year(date)={1} and month(date)<9 and type="'"{3}"'"'
+                        sql = 'select abs(transaction_amount) from card where student_num = "'"{0}"'" and year(date)={1} and month(date)<9 and type="'"{2}"'"'
                         self.executer.execute(sql.format(student_num[0], int(year), one_type[0]))
-                        result.extend(self.executer.fetchall())
-                    
+                        result.extend(list(self.executer.fetchall()))
                     
                     if len(result) > 0:
                         mean, median, var = self.get_result(result)
                         mean, median, var = round(mean, 3), round(median, 3), round(var, 3)
                         sql = 'update students set {1}={2},{3}={4},{5}={6} where student_num ="'"{0}"'"'
-                        affectedRows=self.executer.execute(sql.format(str(student_num[0]) + str(year), "mean_of_" + str(one_type[0]), mean, "median_of_" + str(one_type[0]), median, "var_of_" + str(one_type[0]), var))
+                        affectedRows = self.executer.execute(sql.format(str(student_num[0]) + str(year), "mean_of_" + str(one_type[0]), mean, "median_of_" + str(one_type[0]), median, "var_of_" + str(one_type[0]), var))
                         if affectedRows == 0 :
                             self.add_student(str(student_num[0]) + str(year))
                             self.executer.execute(sql)
+
     '''
         计算并返回输入参数 'datalist' 的平均值、中位数、方差 
     @param :

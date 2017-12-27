@@ -42,31 +42,34 @@ class Consumption(FeatureCalculater):
             year2 = year1 + 1
             sql = "select sum(transaction_amount) from card where student_num = '" + str(stu_num) + "' and date between '" + str(year1) + "-07-01' and '" + str(year2) + "-08-31' and transaction_amount<0" 
             self.executer.execute(sql)
-            count = self.executer.fetchone()[0]
-            if count is not None:
-                sql = "update students set Consumption = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
-                t = self.executer.execute(sql)
-                if t == 0:
-                    self.add_student(stu_num + str(year1))
-                    self.executer.execute(sql)
-#                         print(sql)
-            else:
-                print("计算总消费额这个学生这个学年有问题："+stu_num+"  "+str(year1))
-                    
-            for year1 in range(grade+1, lyear):
-                year2 = year1 + 1
-                sql = "select sum(transaction_amount) from card where student_num = '" + str(stu_num) + "' and date between '" + str(year1) + "-09-01' and '" + str(year2) + "-08-31' and transaction_amount<0" 
-                self.executer.execute(sql)
-                count = self.executer.fetchone()[0]
+            try:
+                count = -1 * self.executer.fetchone()[0]
                 if count is not None:
                     sql = "update students set Consumption = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
                     t = self.executer.execute(sql)
                     if t == 0:
                         self.add_student(stu_num + str(year1))
                         self.executer.execute(sql)
-#                         print(sql)
+    #                         print(sql)
                 else:
                     print("计算总消费额这个学生这个学年有问题："+stu_num+"  "+str(year1))
+                        
+                for year1 in range(grade+1, lyear):
+                    year2 = year1 + 1
+                    sql = "select sum(transaction_amount) from card where student_num = '" + str(stu_num) + "' and date between '" + str(year1) + "-09-01' and '" + str(year2) + "-08-31' and transaction_amount<0" 
+                    self.executer.execute(sql)
+                    count = -1 * self.executer.fetchone()[0]
+                    if count is not None:
+                        sql = "update students set Consumption = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
+                        t = self.executer.execute(sql)
+                        if t == 0:
+                            self.add_student(stu_num + str(year1))
+                            self.executer.execute(sql)
+    #                         print(sql)
+                    else:
+                        print("计算总消费额这个学生这个学年有问题："+stu_num+"  "+str(year1))
+            except:
+                pass
         
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

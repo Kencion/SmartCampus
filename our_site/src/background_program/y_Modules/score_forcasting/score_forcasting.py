@@ -2,9 +2,8 @@
 Created on 2017年12月17日
 
 @author: LI
+@modify: Jack
 '''
-from sklearn.pipeline import Pipeline
-from sklearn.pipeline import FeatureUnion
 
 
 class score_forcasting():
@@ -16,6 +15,8 @@ class score_forcasting():
         self.label_name = 'score'
             
     def doit(self):
+        from sklearn.pipeline import Pipeline
+        
         # 获取数据
         self.get_data()
         # 获取数据预处理器
@@ -44,8 +45,10 @@ class score_forcasting():
         result = []
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
-         
-        return result
+        
+        feature_selector.fit(self.X_train, self.Y_train)
+        
+        return feature_selector.get_support(), result
     
 #         from sklearn.metrics import *
 #         for i in range(len(Y_pred)):
@@ -72,6 +75,8 @@ class score_forcasting():
         self.students, self.X_test = data_carer.create_validate_dataSet()
         
     def get_pre_processer(self):
+        from sklearn.pipeline import FeatureUnion
+        
         '''
                         获得特征预处理器
         @params 
@@ -82,30 +87,33 @@ class score_forcasting():
         
         pre_processer = FeatureUnion(
             transformer_list=[
-                ('MySelectKBset', MyImputer().transformer),
-                ('MySelectPercentile', MyMinMaxScaler().transformer) 
+                ('MyImputer', MyImputer().transformer),
+                ('MyMinMaxScaler', MyMinMaxScaler().transformer) 
                 ],
                 n_jobs=2)
         
         return pre_processer
         
     def get_feature_selector(self):
+        
         '''
                         获得特征选择器
         @params 
         @retrun    sklearn.某种类  featureSelector:特征选择器
         '''
+        from sklearn.pipeline import FeatureUnion
         from background_program.b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
         from background_program.b_SampleProcessing.FeatureSelection.MySelectPercentile import MySelectPercentile
         
-        featureSelector = FeatureUnion(
-            transformer_list=[
-                ('MySelectKBset', MySelectKBset().selector),
-                ('MySelectPercentile', MySelectPercentile().selector) 
-                ],
-                n_jobs=1)
-        
-        return featureSelector
+#         featureSelector = FeatureUnion(
+#             transformer_list=[
+#                 ('MySelectKBset', MySelectKBset().selector),
+#                 ('MySelectPercentile', MySelectPercentile().selector) 
+#                 ],
+#                 n_jobs=1)
+#         
+#         return featureSelector
+        return MySelectKBset().selector
         
     def get_estimater(self):
         '''
