@@ -60,8 +60,8 @@ calculaters = [
         max_every_type.max_every_type(),
         mean_median_var.mean_median_var(),
         total_amount_every_type.total_amount_every_type(),
-        transaction_times.transaction_times(),
-        canteen_consumption_divide_by_consumption.canteen_consumption_divide_by_consumption(),
+#         transaction_times.transaction_times(),
+#         canteen_consumption_divide_by_consumption.canteen_consumption_divide_by_consumption(),
         
     ]
 
@@ -110,9 +110,9 @@ def doit():
 #     clean_useless_data()
 #     
     # 聚类
-    for claculater in tqdm(calculaters):
-            claculater.cluster()
-            claculater.tearDown()
+    for calculater in tqdm(calculaters):
+            calculater.cluster()
+            calculater.tearDown()
     pass
 
 if __name__ == '__main__':
