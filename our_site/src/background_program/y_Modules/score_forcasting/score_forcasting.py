@@ -4,8 +4,8 @@ Created on 2017年12月17日
 @author: LI
 @modify: Jack
 '''
-from math import isnan,isinf
 from background_program.visualization.word_cloud import word_cloud
+
 
 class score_forcasting():
     
@@ -46,25 +46,9 @@ class score_forcasting():
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
         
-        feature_selector.fit(self.X_train, self.Y_train)
-        feature_index = dict()
-        feature_scores = feature_selector.scores_
-        with open('../feature_name', 'r') as f:
-            feature_names = f.readlines()
-            for i in range(len(feature_scores)):
-                feature_index[feature_names[i].strip()] = feature_scores[i] 
+        feature_scores = self.get_feature_scores()
         
-        return feature_index, result
-    
-#         from sklearn.metrics import *
-#         for i in range(len(Y_pred)):
-#             print(self.Y_test[i],Y_pred[i])
-#         print('explained_variance_score:',explained_variance_score(self.Y_test,Y_pred))
-#         print('mean_absolute_error:',mean_absolute_error(self.Y_test, Y_pred))
-#         print('mean_squared_error:',mean_squared_error(self.Y_test, Y_pred))
-#         print('mean_squared_log_error:',mean_squared_log_error(self.Y_test[:,0], Y_pred))
-#         print('median_absolute_error:',median_absolute_error(self.Y_test, Y_pred))
-#         print('r2_score:',r2_score(self.Y_test,Y_pred))
+        return feature_scores, result
         
     def get_data(self):
         '''
@@ -81,13 +65,12 @@ class score_forcasting():
         self.students, self.X_test = data_carer.create_validate_dataSet()
         
     def get_pre_processer(self):
-        from sklearn.pipeline import FeatureUnion
-        
         '''
                         获得特征预处理器
         @params 
         @retrun    sklearn.PreProcessing.xx preProcesser:特征预处理器
         '''
+        from sklearn.pipeline import FeatureUnion
         from background_program.b_SampleProcessing.PreProcessing.MyMinMaxScaler import MyMinMaxScaler
         from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
         
@@ -125,7 +108,7 @@ class score_forcasting():
         '''
                         获得预测器，这里是分类器
         @params 
-        @retrun    sklearn.某种类  estimater:预测器
+        @retrun    sklearn.xx estimater:预测器
         '''
         from background_program.c_Estimating.Regression.GeneralizedLinearModels.RidgeRegression import RidgeRegression
         
@@ -140,11 +123,28 @@ class score_forcasting():
         @retrun    
         '''
         pass
+    
+    def get_feature_scores(self):
+        '''
+                        获得每个特征得到的评分
+        @params 
+        @retrun    dict selected_features:每个特征的评分
+        '''
+        # 获取特征选择器
+        feature_selector = self.get_feature_selector()
+        
+        feature_selector.fit(self.X_train, self.Y_train)
+        feature_scores = dict()
+        f_scores = feature_selector.scores_
+        with open('../feature_name', 'r') as f:
+            feature_names = f.readlines()
+            for i in range(len(f_scores)):
+                feature_scores[feature_names[i].strip()] = f_scores[i] 
+        
+        return feature_scores
 
 
 if __name__ == '__main__':
-    t,q = score_forcasting().doit()
+    t, _ = score_forcasting().doit()
     wc = word_cloud()
     wc.wordcloud(t)
-
-

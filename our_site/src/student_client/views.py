@@ -35,7 +35,7 @@ def index(request):
     template = loader.get_template('student_client/index.html')
     return HttpResponse(template.render(context, request))
 def show_student_info(request):
-    from background_program.z_Tools.MyDataBase import MyDataBase
+    from background_program.z_Tools.my_database import MyDataBase
     student_num=request.session.get('student_num')
     db = MyDataBase("软件学院")
     executer = db.getExcuter()
@@ -69,7 +69,7 @@ def search_score(request):
     @author: 
     @return: 填一下
     """
-    from background_program.z_Tools.MyDataBase import MyDataBase
+    from background_program.z_Tools.my_database import MyDataBase
     
     try:
         student_num = request.session['student_num']  

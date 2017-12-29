@@ -1,12 +1,16 @@
-{%extends "student_client/base.html"%} {% block title %} Search {%
-endblock %} {% block module_name %}
+{%extends "student_client/base.html"%} 
+{% block title %} Search {%endblock %} 
+{% block module_name %}
 <span style="font-size: 24px; color: blue;">Search_score</span>
-{% endblock %} {% block content %} {% load static%}
+{% endblock %} 
+{% block content %} 
+{% load static%}
 <div
 	class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 	<form action="search_score" method="post"
 		style="margin-left: auto; height: 120px; margin-right: auto;">
-		{% csrf_token %} </Br> <font size="5" color="blue">student_num:&nbsp;</font><input
+		{% csrf_token %} 
+		</Br> <font size="5" color="blue">student_num:&nbsp;</font><input
 			style="width: 150px; font-size: 14px; color: red;" type="text"
 			name="student_num" value={{student_num}}> &nbsp;&nbsp;&nbsp;<font
 			size="5" color="blue">school_year:&nbsp;</font><input
@@ -86,5 +90,3 @@ endblock %} {% block module_name %}
 	</div>
 </div>
 {% endblock %}
-
-
