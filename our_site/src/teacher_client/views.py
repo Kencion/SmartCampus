@@ -52,15 +52,16 @@ def score_forcasting(request, update=False):
         pass
     
     """获取挂科的同学的学号"""    
-    from .my_modules.score_forcasting import get_students
-    students_and_scores, class_fail_student_nums = get_students()
+    from .my_modules.score_forcasting import get_all_students_and_scores, get_class_failed_students
+    students_and_scores = get_all_students_and_scores()
+    class_failed_students = get_class_failed_students()
 
     """将数据渲染到页面上"""
     context = {
         'module_name':'成绩预测',
         'teacher_name':request.session['teacher_name'],
         'students_and_scores':students_and_scores,
-        'class_fail_student_nums':class_fail_student_nums,
+        'class_fail_student_nums':class_failed_students,
         }
     template = loader.get_template('teacher_client/score_forcasting.html')
     

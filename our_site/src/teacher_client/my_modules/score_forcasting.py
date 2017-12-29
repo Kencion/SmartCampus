@@ -9,9 +9,8 @@ from background_program.y_Modules.score_forcasting.score_forcasting import score
 
 def get_lastest_data():
     """
-            获得所有学生的成绩预测结果，
-            并在数据mydatabase表student_client_Student中
-            将该学生的score字段设为预测结果
+            更新数据
+    @return 
     """
 #     pie_chart(), line_chart(), broken_line_chart()
     _, students_and_scores = score_forcasting().doit()
@@ -19,18 +18,19 @@ def get_lastest_data():
         Student(student_num=i[0], score=i[1]).save()
 
 
-def get_students():
-    students_and_scores = [[i.student_num, i.score] for i in Student.objects.all()]
-    """获取挂科的同学的学号"""    
-    class_fail_student_nums = [i.student_num for i in Student.objects.filter(score__lt=60.0)]
-    
-    return students_and_scores, class_fail_student_nums
-
 def get_all_students_and_scores():
+    """
+            获得所有学生的学号和成绩
+    @return list(list()) students_and_scores,
+    """
     students_and_scores = [[i.student_num, i.score] for i in Student.objects.all()]
     return students_and_scores
 
-def get_
+
+def get_class_failed_students():
+    class_failed_students = [i.student_num for i in Student.objects.filter(score__lt=60.0)]
+    return class_failed_students
+
     
 def get_feature_range():
-    _,class_fail_student_nums=get_students
+    class_fail_student_nums = get_class_failed_students()
