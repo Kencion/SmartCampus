@@ -28,9 +28,17 @@ def get_all_students_and_scores():
 
 
 def get_class_failed_students():
+    """
+            获得所有挂科学生的学号
+    @return list() class_failed_students,
+    """
     class_failed_students = [i.student_num for i in Student.objects.filter(score__lt=60.0)]
     return class_failed_students
 
     
 def get_feature_range():
+    """
+            获得90分以上、60分以下的学生的特征范围
+    @return list() class_failed_students,
+    """
     class_fail_student_nums = get_class_failed_students()
