@@ -22,7 +22,6 @@ class failed_pass_num(FeatureCalculater):
         self.executer.execute(sql)
         e = self.executer.fetchall()
         for i in e:
-#             print(str(i[0]))
             stu_num = str(i[0])
             grade = int(i[1])
             for year in range(grade, 2017):
@@ -35,32 +34,25 @@ class failed_pass_num(FeatureCalculater):
                 year1 = str(year) + '/' + str(year + 1) + '-1'
                 year2 = str(year) + '/' + str(year + 1) + '-2'
                 sql = "select substring_index(failed_num,'(',1),substring_index(failed_num,'(',-1) from score where stu_num = '" + stu_num + "' and school_year = '" + year1 + "'"   
-#                 print(sql)
                 self.executer.execute(sql)
                 stu1 = self.executer.fetchone()
-#                 print(stu1)
                 
                 if stu1 is not None :
                     failed_num1 = int(stu1[0])
                     pass_num1 = int(str(stu1[1])[:-1])
                 sql = "select substring_index(failed_num,'(',1),substring_index(failed_num,'(',-1) from score where stu_num = '" + stu_num + "' and school_year = '" + year2 + "'"   
-#                 print(sql)
                 self.executer.execute(sql)
                 stu2 = self.executer.fetchone()
-#                 print(stu2)
                 if stu2 is not None:
                     failed_num2 = int(stu2[0])
                     pass_num2 = int(str(stu2[1])[:-1])
                     
                 failed_num = failed_num1 + failed_num2
                 pass_num = pass_num1 + pass_num2
-                # sql = "update students set failed_num = "+str(failed_num)+" where student_num = '"+stu_num+str(year)+"'"
                 sql = "update students set failed_pass_num = " + str(pass_num) + " where student_num = '" + stu_num + str(year) + "'"
-#                 print(sql)
                 t = self.executer.execute(sql)
                 if t == 0:
                     self.add_student(stu_num + str(year1))
                     self.executer.execute(sql)
-#                         print(sql)
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

@@ -22,7 +22,7 @@ class DataCarer():
         self.usage = usage
         if usage not in self.usages:
             print('用法错误：%s' % usage)
-        if usage == "regression":
+        elif usage == "regression":
             self.table_name = "students_float"
         elif usage == "classify":
             self.table_name = "students_int"
@@ -93,15 +93,7 @@ class DataCarer():
         self.close_database()
         self.pre_process(X_test)
         return students, X_test
-    
-    def open_database(self, database_name):
-        self.db = MyDataBase(database_name)
-        self.executer = self.db.getExcuter()
-        
-    def close_database(self):
-        self.executer.close()
-        self.db.close()
-        
+
     def pre_process(self, X):
         '''
         Created on 2017年12月20日
@@ -113,4 +105,26 @@ class DataCarer():
         from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
         
         MyImputer().transformer.fit_transform(X)
-        pass
+        
+    def get_feature_range(self, feature_name, label_name, label_min, label_max):
+        self.open_database("软件学院")
+        sql = 'select min({0}),max({1}) from {2} where {3} between {4} and {5}'.\
+            format(feature_name, feature_name, 'students_float', \
+                   label_name, label_min, label_max)
+        try:
+            self.executer.execute(sql)
+            result = self.executer.fetchone()
+            feature_min, feature_max = result[0], result[1]
+            self.close_database
+            return feature_min, feature_max
+        except:
+            return 0, 0
+    
+    def open_database(self, database_name):
+        self.db = MyDataBase(database_name)
+        self.executer = self.db.getExcuter()
+        
+    def close_database(self):
+        self.executer.close()
+        self.db.close()
+        
