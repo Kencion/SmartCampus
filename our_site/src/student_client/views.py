@@ -44,7 +44,7 @@ def Search_student_info(request):
         sql="select * from students where student_num={0}".format(student_num)
         executer.execute(sql)
         student = list(executer.fetchone())
-        column_name=['学号','姓名','学生类别','学年参与活动数量','参与活动的平均活跃程度','活动持续时间','活动平均参与分','表彰级别'\
+        column_name=['学号','姓名','学生类别','学年参与活动数量','参与活动的平均活跃程度','活动持续时间','活动平均参与分','表彰级别',\
                      '平均每学年获荣誉次数','图书借阅次数','学年学习总时间','周末自习时间','GPA','成绩排名','助学金等级','助学金金额','挂科科目数',\
                      '重修通过的科目数量','重修未过的科目数量','社会实践参与总时间','社会实践参与是否重点','平均每日进出次数','学年','奖学金等级','奖学金金额',\
                      '成绩','周末平均最早出宿舍时间','平均周末最迟回宿舍时间','工作日平均在外时间','食堂总消费额','超市总消费额','其他类别总消费额','充值总额','小吃消费总额',\
@@ -57,11 +57,7 @@ def Search_student_info(request):
         result={}
         for i in range(len(student)):
             result[column_name[i]]=student[i]
-        context = {
-        'result':result,
-        }
-        template = loader.get_template('teacher_client/####.html')
-        return HttpResponse(template.render(context, request))
+        return result
     except:
         pass
     
@@ -70,16 +66,35 @@ def show_student_info(request):
     student_num=request.session.get('student_num')
     db = MyDataBase("软件学院")
     executer = db.getExcuter()
-    sql = "select student_name,student_type,activity_num,activity_avg_level,activity_last_time,library_borrow_times,library_study_time,student_grade,scholarship_amount,scholarship_rank,failed_num,failed_pass_num,failed_failed_num,score,score_rank,gpa from students where student_num like '{0}%'".format(student_num)
+#     sql = "select * from students where student_num like '{0}%'".format(student_num)
+#     executer.execute(sql)
+#     students_list = executer.fetchall()
+#     student_name=students_list[0][1]
+#     print(students_list)
+#     db.close 
+    sql="select * from students where student_num like '{0}%'".format(student_num)
     executer.execute(sql)
-    students_list = executer.fetchall()
-    student_name=students_list[0][0]
-    db.close 
+    student = executer.fetchone()
+    column_name=['学号','姓名','学生类别','学年参与活动数量','参与活动的平均活跃程度','活动持续时间','活动平均参与分','表彰级别',\
+                 '平均每学年获荣誉次数','图书借阅次数','学年学习总时间','周末自习时间','GPA','成绩排名','助学金等级','助学金金额','挂科科目数',\
+                 '重修通过的科目数量','重修未过的科目数量','社会实践参与总时间','社会实践参与是否重点','平均每日进出次数','学年','奖学金等级','奖学金金额',\
+                 '成绩','周末平均最早出宿舍时间','平均周末最迟回宿舍时间','工作日平均在外时间','食堂总消费额','超市总消费额','其他类别总消费额','充值总额','小吃消费总额',\
+                 '锻炼总消费额','学习消费总额','充值日平均消费额最大值','锻炼日消费最大值','小吃日消费最大值','学习日消费最大值','超市日消费最大值','餐厅日消费最大值','其他类别日消费最大值',\
+                 '充值月消费最大值','锻炼月消费最大值','小吃月消费最大值','学习月消费最大值','食堂月消费最大值','超市月消费最大值','其他类别月消费最大值','充值月消费最小值','锻炼月消费最小值','小吃月消费最小值',\
+                 '学习月消费最小值','食堂月消费最小值','超市月消费最小值','其他类别月消费最小值','总消费次数','食堂消费额占总消费额的比例','食堂消费次数','总消费额','食堂消费的中位数','超市消费的中位数','充值消费的中位数','小吃消费的中位数',\
+                 '锻炼消费的中位数','学习消费的中位数','其他类别消费的中位数','食堂消费的平均值','超市消费的平均值','充值消费的平均值','小吃消费的平均值',\
+                 '锻炼消费的平均值','学习消费的平均值','其他类别消费的平均值','食堂消费的方差','超市消费的方差','充值消费的方差','其他类别消费的方差','小吃消费的方差',\
+                 '锻炼消费的方差','学习消费的方差',]
+    result={}
+    for i in range(len(student)):
+        if student[i] is None:
+            result[column_name[i]]='None'
+        else:
+            result[column_name[i]]=student[i]
     template = loader.get_template('student_client/show_student_info.html')
     context = {
-        'student_num':student_num,
-        'student_name':student_name,
-        'result':students_list,
+        'UserName':student_num,
+        'result':result,
     }
     return HttpResponse(template.render(context, request))
 def Single_student(request):
@@ -91,6 +106,7 @@ def Single_student(request):
     
     template = loader.get_template('student_client/input.html')
     context = {
+        'UserName':request.session['student_num'],
         'student_num':request.session['student_num'] ,
     }
     return HttpResponse(template.render(context, request))
@@ -127,6 +143,7 @@ def search_score(request):
     else:
         template = loader.get_template('student_client/search_score.html')
         context = {
+            'UserName':student[0],
             'student_num':student[0],
             'student_name':student[1],
             'student_grade':student[2],
