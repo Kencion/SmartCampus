@@ -77,9 +77,9 @@ class score_forcasting():
         for feature_name in features_name:
             rangee = dict()
             for score_type, score_range in zip(scores_range.keys(), scores_range.values()):
-                rangee[score_type] = [data_carer.get_feature_range(
+                rangee[score_type] = data_carer.get_feature_range(
                                                 feature_name, label_name='score',
-                                                label_min=score_range[0], label_max=score_range[1])]
+                                                label_min=score_range[0], label_max=score_range[1])
 
             features_range[feature_name] = rangee
         
@@ -162,4 +162,4 @@ class score_forcasting():
 
 if __name__ == '__main__':
     t = score_forcasting()
-    print(t.predict())
+    print(t.get_features_range())
