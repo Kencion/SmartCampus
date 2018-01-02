@@ -10,57 +10,44 @@ from sklearn.pipeline import FeatureUnion
 class class_failing_warning():
     
     def __init__(self):
-        import warnings
-        
-        warnings.filterwarnings("ignore")
         self.label_name = 'score'
+        # 获取数据
+        self.get_data()
+        # 获取数据预处理器
+        self.pre_processer = self.get_pre_processer()
+        # 获取特征选择器
+        self.feature_selector = self.get_feature_selector()
+        # 获取分类器
+        self.estimater = self.get_estimater()
+        # 获取模型评估器
+        self.evalueter = self.get_model_evalueter()
             
-    def doit(self):
+    def predict(self):
         '''
                         这个函数需要改，我只是乱写在这，方便调用
         @params 
         @retrun
         '''
         from sklearn.pipeline import Pipeline
-        from background_program.b_SampleProcessing.Dimension_Reduction.MyPca import MyPca
         
-        # 获取数据
-        self.get_data()
-        # 获取数据预处理器
-        pre_processer = self.get_pre_processer()
-        # 获取特征选择器
-        feature_selector = self.get_feature_selector()
-        # 获取特征降维器
-        dimension_reductor = MyPca(self.X_train).pca
-        # 获取分类器
-        estimater = self.get_estimater()
-        # 获取模型评估器
-        evalueter = self.get_model_evalueter()
-        # 管道
         pipeline = Pipeline(
-            [('pre_processer', pre_processer),
-             ('feature_selector', feature_selector),
-             ('dimension_reductor', dimension_reductor),
-             ('estimater', estimater),
+            [('pre_processer', self.pre_processer),
+             ('feature_selector', self.feature_selector),
+             ('estimater', self.estimater),
              ]
             )
         
-        """=============对训练集进行操作============"""
         pipeline.fit(self.X_train, self.Y_train)
-        
-        """=============对测试集进行操作============"""
         predict_result = pipeline.predict(self.X_test)
-        # print("准确率", estimater.score(self.X_train, self.Y_train))
         
         result = []
         for student, score in zip(self.students, predict_result):
-#             print(student.getStudent_num(), "----", score)
             result.append([student.getStudent_num(), score])
             
-#         feature_selector.fit(self.X_train, self.Y_train)
-            
-        return feature_selector.get_feature_names(), result
-#         return result
+        return result
+    
+    def get_features_range(self):
+        pass
     
     def get_data(self):
         '''
@@ -135,4 +122,4 @@ class class_failing_warning():
 
 if __name__ == '__main__':
     t = class_failing_warning()
-    print(t.doit())
+    print(t.predict())

@@ -55,11 +55,8 @@ class score1(FeatureCalculater):
                     
                     t = self.executer.execute(sql)
                     if t == 0:
-                        self.add_student(stu_num + str(year1))
+                        self.add_student(stu_num + str(year))
                         self.executer.execute(sql)
-#         print("ok")
     
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
-# score = score1()
-# score.calculate()

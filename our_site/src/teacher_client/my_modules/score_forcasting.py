@@ -13,7 +13,7 @@ def get_lastest_data():
     @return 
     """
 #     pie_chart(), line_chart(), broken_line_chart()
-    _, students_and_scores = score_forcasting().doit()
+    students_and_scores = score_forcasting().predict()
     for i in students_and_scores:
         Student(student_num=i[0], score=i[1]).save()
 
@@ -36,9 +36,9 @@ def get_class_failed_students():
     return class_failed_students
 
     
-def get_feature_range():
+def get_features_range():
     """
             获得90分以上、60分以下的学生的特征范围
     @return list() class_failed_students,
     """
-    class_fail_student_nums = get_class_failed_students()
+    features_range = score_forcasting().get_features_range()

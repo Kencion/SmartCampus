@@ -54,9 +54,8 @@ class failed_num1(FeatureCalculater):
 
                 t = self.executer.execute(sql)
                 if t == 0:
-                    self.add_student(stu_num + str(year1))
+                    self.add_student(stu_num + str(year))
                     self.executer.execute(sql)
-#                         print(sql)
     
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
