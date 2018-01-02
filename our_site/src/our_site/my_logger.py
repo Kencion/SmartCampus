@@ -86,4 +86,4 @@ def exception_handler(function):
     return wrapper
 
 def get_log_open():
-    return True
+    return False

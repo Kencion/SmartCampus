@@ -7,7 +7,7 @@ from student_client.models import Student
 from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
 
 
-def get_lastest_data():
+def get_data_update():
     """
             更新数据
     @return 
