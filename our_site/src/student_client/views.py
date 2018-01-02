@@ -2,6 +2,7 @@ from django.shortcuts import render, loader
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from student_client.models import Student
+import json
 # Create your views here.
 
 def index(request):
@@ -65,16 +66,11 @@ def show_student_info(request):
     from background_program.z_Tools.my_database import MyDataBase
     student_num=request.session.get('student_num')
     db = MyDataBase("软件学院")
-    executer = db.getExcuter()
-#     sql = "select * from students where student_num like '{0}%'".format(student_num)
-#     executer.execute(sql)
-#     students_list = executer.fetchall()
-#     student_name=students_list[0][1]
-#     print(students_list)
-#     db.close 
+    executer = db.getExcuter() 
     sql="select * from students where student_num like '{0}%'".format(student_num)
     executer.execute(sql)
     student = executer.fetchone()
+    db.close
     column_name=['学号','姓名','学生类别','学年参与活动数量','参与活动的平均活跃程度','活动持续时间','活动平均参与分','表彰级别',\
                  '平均每学年获荣誉次数','图书借阅次数','学年学习总时间','周末自习时间','GPA','成绩排名','助学金等级','助学金金额','挂科科目数',\
                  '重修通过的科目数量','重修未过的科目数量','社会实践参与总时间','社会实践参与是否重点','平均每日进出次数','学年','奖学金等级','奖学金金额',\
@@ -96,7 +92,7 @@ def show_student_info(request):
         'UserName':student_num,
         'result':result,
     }
-    return HttpResponse(template.render(context, request))
+    return render(request,'student_client/show_student_info.html',{'result':json.dumps(result),})
 def Single_student(request):
     """
     @author: 

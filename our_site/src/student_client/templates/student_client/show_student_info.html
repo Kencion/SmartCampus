@@ -6,10 +6,12 @@
 {% block content %} 
 {% load static%}
 <div id="chartmain" style="width:1066px; height: 400px;">
-<h4>{{result}}</h4>
 </div>
 <script type="text/javascript">
-	alert({{result}})
+		var dic={{result|safe}};
+		for(i in dic) {
+        	alert(i + dic[i]);//注意，此处 i 为键值
+    	}
         var option = {
         	    tooltip: {
         	        trigger: 'item',
