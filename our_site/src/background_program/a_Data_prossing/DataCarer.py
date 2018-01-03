@@ -60,7 +60,7 @@ class DataCarer():
         dataSet = mat(dataSet)
     
         X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
-        self.pre_process(X_train)
+#         self.pre_process(X_train)
         return X_train, Y_train
         
     def create_validate_dataSet(self):
@@ -91,7 +91,7 @@ class DataCarer():
             students.append(student)
         X_test = mat(X_test)
         self.close_database()
-        self.pre_process(X_test)
+#         self.pre_process(X_test)
         return students, X_test
 
     def pre_process(self, X):

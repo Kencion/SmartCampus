@@ -4,7 +4,7 @@ Created on 2017年12月29日
 @author: Jack
 '''
 from student_client.models import Student
-from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
+from background_program.y_Modules.score_forcasting import score_forcasting
 
 
 def get_data_update():

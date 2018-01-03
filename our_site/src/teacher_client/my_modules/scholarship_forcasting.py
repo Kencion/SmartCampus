@@ -18,7 +18,7 @@ def get_data_update():
             将该学生的score字段设为预测结果
     """
 #     pie_chart(), line_chart(), broken_line_chart()
-    _, students_and_scholarships = scholarship_forcasting().doit()
+    students_and_scholarships = scholarship_forcasting().predict()
     for i in students_and_scholarships:
         Student(student_num=i[0], scholarship=i[1]).save()
 

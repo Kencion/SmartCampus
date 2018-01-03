@@ -5,7 +5,7 @@ Created on 2017年12月29日
 '''
 from student_client.models import Student
 from student_client.views import Search_student_info
-from background_program.y_Modules.missing_warning import missing_warning
+from background_program.y_Modules import missing_warning
 
 
 def get_data_update():
