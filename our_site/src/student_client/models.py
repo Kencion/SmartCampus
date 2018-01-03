@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 
+
 # Create your models here.
 class Student(models.Model):
     student_num = models.CharField(primary_key=True, max_length=50, editable=False)
@@ -8,9 +9,10 @@ class Student(models.Model):
     score = models.FloatField(max_length=10, default=0.0)
     scholarship = models.FloatField(max_length=10, default=0.0)
     subsidy = models.FloatField(max_length=10, default=0.0)
-    is_missing = models.BooleanField(default=False)
     have_scholarship = models.BooleanField(default=False)
     have_subsidy = models.BooleanField(default=False)
+    is_missing = models.BooleanField(default=False)
+    missing_reason = models.CharField(default='', max_length=100)
     update_time = models.DateTimeField(default=datetime.now(), blank=True)
     
     def get_by_student_num(self):

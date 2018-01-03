@@ -16,8 +16,8 @@
 	<ul class="demo-list-item mdl-list">
 		<li class="mdl-list__item"><span
 			class="mdl-list__item-primary-content"> 可能会失联的学生有: </span></li> 
-			{% for student_num,reason in student_nums.items %}
-				{{student_num}}==>{{reason}}<br/>
+			{% for student in missing_students %}
+				{{student.0}}#{{student.1}}==>{{student.2}}<br/>
 			{%	endfor %}
 	</ul>
 </div>

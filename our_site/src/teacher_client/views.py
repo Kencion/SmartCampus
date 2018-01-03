@@ -67,21 +67,21 @@ def missing_warning(request, update=False):
     @return: 失联预警页面
     """
     from .my_modules import missing_warning 
-#     try:
-#         update = request.GET['update']
-#         if update:  # 如果需要更新数据
-#             missing_warning.get_data_update()
-#             
-#         return HttpResponseRedirect('/teacher_client/missing_warning')
-#     except:
-#         pass
+    try:
+        update = request.GET['update']
+        if update:  # 如果需要更新数据
+            missing_warning.get_data_update()
+             
+        return HttpResponseRedirect('/teacher_client/missing_warning')
+    except:
+        pass
     
     missing_students = missing_warning.get_missing_students()
     
     context = {
         'module_name':'失联预警',
         'teacher_name':request.session['teacher_name'],
-        'student_nums':missing_students,
+        'missing_students':missing_students,
         }
     template = loader.get_template('teacher_client/missing_warning.html')
     

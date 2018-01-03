@@ -36,13 +36,12 @@ def index(request):
     template = loader.get_template('student_client/index.html')
     return HttpResponse(template.render(context, request))
 #传入username，返回学号对应的学生信息的键值对
-def Search_student_info(request):
+def Search_student_info(student_num):
     from background_program.z_Tools.my_database import MyDataBase
     try:
-        student_num = request.GET['user_name']
         db = MyDataBase("软件学院")
         executer = db.getExcuter()
-        sql="select * from students where student_num={0}".format(student_num)
+        sql="select * from students where student_num like '%{0}%'".format(student_num)
         executer.execute(sql)
         student = list(executer.fetchone())
         column_name=['学号','姓名','学生类别','学年参与活动数量','参与活动的平均活跃程度','活动持续时间','活动平均参与分','表彰级别',\
