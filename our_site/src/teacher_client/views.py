@@ -45,15 +45,11 @@ def score_forcasting(request, update=False):
     except:
         pass
     
-    """获取挂科的同学的学号"""    
-    students_and_scores = score_forcasting.get_all_students_and_scores()
-    class_failed_students = score_forcasting.get_class_failed_students()
-
     context = {
-        'module_name':'成绩预测',
         'teacher_name':request.session['teacher_name'],
-        'students_and_scores':students_and_scores,
-        'class_fail_student_nums':class_failed_students,
+        'precision':score_forcasting.get_precision(),
+        'students_and_scores':score_forcasting.get_all_students_and_scores(),
+        'class_fail_student_nums':score_forcasting.get_class_failed_students(),
         }
     template = loader.get_template('teacher_client/score_forcasting.html')
     
@@ -156,7 +152,7 @@ def wired_person(request, update=False):
     try:
         update = request.GET['update']
         if update:  # 如果需要更新数据
-            from background_program.y_Modules.missing_warning import missing_warning
+            from background_program.y_Modules import missing_warning
             missing_students = missing_warning.get_missing_students()
             for i in missing_students:
                 Student(student_num=i, is_missing=True).save()

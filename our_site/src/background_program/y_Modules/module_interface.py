@@ -36,7 +36,7 @@ class my_module():
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
         
-        return result
+        return 2, result
         
     def get_feature_scores(self):
         '''

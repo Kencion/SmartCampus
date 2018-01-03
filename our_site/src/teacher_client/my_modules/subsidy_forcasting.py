@@ -4,7 +4,7 @@ Created on 2017年12月29日
 @author: Jack
 '''
 from student_client.models import Student
-from background_program.y_Modules.subsidy_forcasting.subsidy_forcasting import subsidy_forcasting
+from background_program.y_Modules.subsidy_forcasting import subsidy_forcasting
 
 
 def get_data_update():
@@ -17,7 +17,8 @@ def get_data_update():
             并在数据mydatabase表student_client_Student中
             将该学生的subsidy字段设为预测结果
     """
-#     pie_chart(), line_chart(), broken_line_chart()
+    from .draw_pics import pie_chart, line_chart, broken_line_chart
+    pie_chart(), line_chart(), broken_line_chart()
     _, students_and_subsidies = subsidy_forcasting().doit()
     for i in students_and_subsidies:
         Student(student_num=i[0], subsidy=i[1]).save()

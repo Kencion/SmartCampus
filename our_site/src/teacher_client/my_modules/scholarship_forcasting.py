@@ -4,7 +4,7 @@ Created on 2017年12月29日
 @author: Jack
 '''
 from student_client.models import Student
-from background_program.y_Modules.scholarship_forcasting.scholarship_forcasting import scholarship_forcasting
+from background_program.y_Modules.scholarship_forcasting import scholarship_forcasting
 
 
 def get_data_update():
@@ -17,7 +17,8 @@ def get_data_update():
             并在数据mydatabase表student_client_Student中
             将该学生的score字段设为预测结果
     """
-#     pie_chart(), line_chart(), broken_line_chart()
+    from .draw_pics import pie_chart, line_chart, broken_line_chart
+    pie_chart(), line_chart(), broken_line_chart()
     students_and_scholarships = scholarship_forcasting().predict()
     for i in students_and_scholarships:
         Student(student_num=i[0], scholarship=i[1]).save()
