@@ -1,102 +1,94 @@
 {%extends "student_client/base.html"%} 
 {% block title %} HOME {%endblock %} 
 {% block module_name %}
-<span style="font-size: 24px; color: blue;">用户个人信息页</span>
+<span style="font-size: 24px; color: blue;">用户个人信息页</span>&nbsp&nbsp
+<span style="font-size: 24px; color: blue;">姓名:{{student_name}}&nbsp&nbsp学生类别:{{student_type}}&nbsp&nbsp学年:{{school_year}}</span>
 {% endblock %} 
 {% block content %} 
 {% load static%}
-<div id="chartmain" style="width:1066px; height: 400px;">
-</div>
-<script type="text/javascript">
+<div id = "main" style="width: 1200px;height: 800px;"></div>
+<script src='https://cdn.bootcss.com/echarts/3.7.0/echarts.simple.js'></script>
+ <script type="text/javascript" src ={%static 'student_client/js/echarts-wordcloud.min.js' %} ></script>
+  <script type="text/javascript">
 		var dic={{result|safe}};
+		var arr=new Array()
 		for(i in dic) {
-        	alert(i + dic[i]);//注意，此处 i 为键值
+			var temp={value:dic[i],name:i};
+			arr[i]=dic[i]*100
+		}
+		//for( i in arr){alert(i+arr[i])}
+    	var keywords = //arr;
+    	{
+    			"label": 1,
+    		    "emphasis": 1,
+    		    "yAxis": 1,
+    		    "name": 1,
+    		    "type": 1,
+    		    "gridIndex":1,
+    		    "normal": 1,
+    		    "itemStyle":1,
+    		    "min": 1,
+    		    "silent": 1
+    	};
+    	var data = [];
+    	for (var name in keywords) {
+    	    data.push({
+    	        name: name,
+    	        value:keywords[name]
+    	    })
     	}
-        var option = {
-        	    tooltip: {
-        	        trigger: 'item',
-        	        formatter: "{a} <br/>{b}: {c} ({d}%)"
-        	    },
-        	    legend: {
-        	        orient: 'vertical',
-        	        x: 'left',
-        	        data:['直达','营销广告','搜索引擎','邮件营销','联盟广告','视频广告','百度','谷歌','必应','其他']
-        	    },
-        	    series: [
-        	        {
-        	            name:'访问来源',
-        	            type:'pie',
-        	            selectedMode: 'single',
-        	            radius: [0, '30%'],
+    	for(i in data)
+    	{alert(data[name])}
+    	var maskImage = new Image();
+    	maskImage.src = '{%static 'student_client/images/love.jpg'%}';
+    	var option = {
+    	    title: {
+    	        text: '搜索指数',
+    	        x: 'center',
+    	        /*textStyle: {
+    	            fontSize: 23
+    	        }*/
 
-        	            label: {
-        	                normal: {
-        	                    position: 'inner'
-        	                }
-        	            },
-        	            labelLine: {
-        	                normal: {
-        	                    show: false
-        	                }
-        	            },
-        	            data:[
-        	                {value:335, name:'直达', selected:true},
-        	                {value:679, name:'营销广告'},
-        	                {value:1548, name:'搜索引擎'}
-        	            ]
-        	        },
-        	        {
-        	            name:'访问来源',
-        	            type:'pie',
-        	            radius: ['40%', '55%'],
-        	            label: {
-        	                normal: {
-        	                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
-        	                    backgroundColor: '#eee',
-        	                    borderColor: '#aaa',
-        	                    borderWidth: 1,
-        	                    borderRadius: 4,
-        	                    rich: {
-        	                        a: {
-        	                            color: '#999',
-        	                            lineHeight: 22,
-        	                            align: 'center'
-        	                        },
-        	                        hr: {
-        	                            borderColor: '#aaa',
-        	                            width: '100%',
-        	                            borderWidth: 0.5,
-        	                            height: 0
-        	                        },
-        	                        b: {
-        	                            fontSize: 16,
-        	                            lineHeight: 33
-        	                        },
-        	                        per: {
-        	                            color: '#eee',
-        	                            backgroundColor: '#334455',
-        	                            padding: [2, 4],
-        	                            borderRadius: 2
-        	                        }
-        	                    }
-        	                }
-        	            },
-        	            data:[
-        	                {value:335, name:'直达'},
-        	                {value:310, name:'邮件营销'},
-        	                {value:234, name:'联盟广告'},
-        	                {value:135, name:'视频广告'},
-        	                {value:1048, name:'百度'},
-        	                {value:251, name:'谷歌'},
-        	                {value:147, name:'必应'},
-        	                {value:102, name:'其他'}
-        	            ]
-        	        }
-        	    ]
-        	};
-        var myChart = echarts.init(document.getElementById('chartmain'));
-        myChart.setOption(option);
+    	    },
+    	    backgroundColor: '#F7F7F7',
+    	    series: [{
+    	        name: '搜索指数',
+    	        type: 'wordCloud',
+    	        sizeRange: [12, 80],
+    	        rotationRange: [-45, 90],
+    	        maskImage: maskImage,
+    	        textPadding: 0,
+    	        autoSize: {
+    	            enable: true,
+    	            minSize: 6
+    	        },
+    	        textStyle: {
+    	            normal: {
+    	                color: function() {
+    	                    return 'rgb(' + [
+    	                        Math.round(Math.random() * 160),
+    	                        Math.round(Math.random() * 160),
+    	                        Math.round(Math.random() * 160)
+    	                    ].join(',') + ')';
+    	                }
+    	            },
+    	            emphasis: {
+    	                shadowBlur: 10,
+    	                shadowColor: '#333'
+    	            }
+    	        },
+    	        data: data
+    	    }]
+    	};
+    	var myChart = echarts.init(document.getElementById('main'));
+    	maskImage.onload = function() {
+    	    myChart.setOption(option);
+    	};
+    	window.onresize = function() {
+    	    myChart.resize();
+    	}
     </script>
+
 <!--<div
 	class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid"
 	style="overflow: auto; height: 216px; width: 1066px;">
