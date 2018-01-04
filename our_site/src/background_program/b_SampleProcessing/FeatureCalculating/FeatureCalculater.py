@@ -16,7 +16,7 @@ class FeatureCalculater:
         self.db = MyDataBase(database)
         self.executer = self.db.getExcuter()
         self.feature_name = feature_name
-        self.school_year = ['2013', '2014', '2015', '2016', '2017', ]  # 一个同学一个学年作为一个记录
+        self.school_year = [ '2014', '2015', '2016', '2017', ]  # 一个同学一个学年作为一个记录
                  
     @my_exception_handler                 
     def add_student(self, student_num):
@@ -67,7 +67,7 @@ class FeatureCalculater:
         sql = 'SELECT {0} FROM students_float WHERE {1} is not null and {2} <> 0'.format(self.feature_name, self.feature_name, self.feature_name)
         count = self.executer.execute(sql)
         result = self.executer.fetchall()  # count是行数
-        dataSet2=list(result)
+        dataSet2 = list(result)
         dataSet = numpy.array([i[0] for i in result]).reshape(count, 1)
         
         # 聚类
@@ -81,9 +81,9 @@ class FeatureCalculater:
         print(len(dataSet_quene))
         for i in range(len(labels)):
             types[labels[i]].append(dataSet[i][0])
-            if len(dataSet_quene)>0:
+            if len(dataSet_quene) > 0:
                 for j in range(len(dataSet_quene)):
-                    if dataSet[i][0]==dataSet_quene[j]:
+                    if dataSet[i][0] == dataSet_quene[j]:
                         del dataSet_quene[j]
                         print(len(dataSet_quene))
                         sql = 'select student_num from students_float where {0}={1}'.format(self.feature_name, str((dataSet[i][0])))
@@ -126,6 +126,7 @@ class FeatureCalculater:
             f.write(str(0) + ':' + str(0) + ' ' + str(0) + ' ' + str(minn[0]) + '\n')  # 手动加入第一区间
             for i in range(len(cent)):
                 f.write(str(i + 1) + ':' + str(cent[i]) + ' ' + str(minn[i]) + ' ' + str(maxx[i]) + '\n')
+
     def tearDown(self):
         '''
         teardown

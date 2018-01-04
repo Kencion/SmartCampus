@@ -4,7 +4,17 @@ Created on 2017年12月29日
 @author: Jack
 '''
 from student_client.models import Student
-from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
+from background_program.y_Modules.score_forcasting import score_forcasting
+
+precision = 1.00
+
+
+def set_precision(precision):
+    precision = precision
+
+
+def get_precision():
+    return precision
 
 
 def get_data_update():
@@ -12,8 +22,13 @@ def get_data_update():
             更新数据
     @return 
     """
-#     pie_chart(), line_chart(), broken_line_chart()
-    students_and_scores = score_forcasting().predict()
+    from .draw_pics import pie_chart, line_chart, broken_line_chart
+    
+    pie_chart(), line_chart(), broken_line_chart()
+    
+    p, students_and_scores = score_forcasting().predict()
+    set_precision(p)
+    
     for i in students_and_scores:
         Student(student_num=i[0], score=i[1]).save()
 

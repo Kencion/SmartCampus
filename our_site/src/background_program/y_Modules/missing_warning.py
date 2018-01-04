@@ -8,6 +8,7 @@ Created on 2017年11月20日
 timeSlot = "BETWEEN '01:00:00' AND '04:00:00"
 # 在外面很晚的次数，高于这个次数就不好
 StayOutLateTimes = "5"
+
 # 超过1点出宿舍,并且超过1个小时没回来
 m_out_1_not_in_sql = "SELECT DISTINCT(student_num) FROM dorm_entrance WHERE in_out = '出门' AND DATE_FORMAT(record_time, '%H:%i') BETWEEN '01:00' AND '04:30'"
 # 超过1点才回宿舍次数超过3次

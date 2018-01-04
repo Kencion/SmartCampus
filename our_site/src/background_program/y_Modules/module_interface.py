@@ -1,13 +1,12 @@
 '''
-@author: LI Created on 2017年12月17日
-@modify: Jack Modify on 2018年1月2日
+@modify: Jack Modify on 2018年1月3日
 '''
 
 
-class score_forcasting():
+class my_module():
     
-    def __init__(self):
-        self.label_name = 'score'
+    def __init__(self, label_name):
+        self.label_name = label_name
         # 获取数据
         self.get_dataset()
         # 获取数据预处理器
@@ -37,7 +36,7 @@ class score_forcasting():
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
         
-        return result
+        return 2, result
         
     def get_feature_scores(self):
         '''
@@ -51,14 +50,14 @@ class score_forcasting():
         feature_selector.fit(self.X_train, self.Y_train)
         feature_scores = dict()
         f_scores = feature_selector.scores_
-        with open('../feature_name', 'r') as f:
+        with open('feature_name', 'r') as f:
             feature_names = f.readlines()
             for i in range(len(f_scores)):
                 feature_scores[feature_names[i].strip()] = f_scores[i] 
         
         return feature_scores   
     
-    def get_features_range(self):
+    def get_features_range(self, label_name, label_range):
         '''
                         获得每个特征的范围
         @params 
@@ -68,24 +67,23 @@ class score_forcasting():
         
         data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
         features_name = []
-        with open('../feature_name', 'r') as f:
+        with open('feature_name', 'r') as f:
             for feature_name in f.readlines():
                 features_name.append(feature_name.strip())
         
-        scores_range = {'A':[0, 60], 'B':[60, 90], 'C':[90, 100]}
         features_range = dict()
         for feature_name in features_name:
             rangee = dict()
-            for score_type, score_range in zip(scores_range.keys(), scores_range.values()):
+            for score_type, score_range in zip(label_range.keys(), label_range.values()):
                 rangee[score_type] = data_carer.get_feature_range(
-                                                feature_name, label_name='score',
+                                                feature_name, label_name=label_name,
                                                 label_min=score_range[0], label_max=score_range[1])
 
             features_range[feature_name] = rangee
         
         return features_range
          
-    def get_dataset(self):
+    def get_dataset(self, school_year='2016', usage='regression'):
         '''
                 获得训练数据和测试数据
         self.X_train=训练数据特征， self.Y_train=训练数据标签
@@ -95,7 +93,7 @@ class score_forcasting():
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
         
-        data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
+        data_carer = DataCarer(label_name=self.label_name, school_year=school_year, usage=usage)
         self.X_train, self.Y_train = data_carer.create_train_dataSet() 
         self.students, self.X_test = data_carer.create_validate_dataSet()
         
@@ -105,18 +103,7 @@ class score_forcasting():
         @params 
         @retrun    sklearn.PreProcessing.xx preProcesser:特征预处理器
         '''
-        from sklearn.pipeline import FeatureUnion
-        from background_program.b_SampleProcessing.PreProcessing.MyMinMaxScaler import MyMinMaxScaler
-        from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
-        
-        pre_processer = FeatureUnion(
-            transformer_list=[
-                ('MyImputer', MyImputer().transformer),
-                ('MyMinMaxScaler', MyMinMaxScaler().transformer) 
-                ],
-                n_jobs=2)
-        
-        return pre_processer
+        pass
         
     def get_feature_selector(self):
         
@@ -125,19 +112,7 @@ class score_forcasting():
         @params 
         @retrun    sklearn.某种类  featureSelector:特征选择器
         '''
-        from sklearn.pipeline import FeatureUnion
-        from background_program.b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
-        from background_program.b_SampleProcessing.FeatureSelection.MySelectPercentile import MySelectPercentile
-        
-#         featureSelector = FeatureUnion(
-#             transformer_list=[
-#                 ('MySelectKBset', MySelectKBset().selector),
-#                 ('MySelectPercentile', MySelectPercentile().selector) 
-#                 ],
-#                 n_jobs=1)
-#          
-#         return featureSelector
-        return MySelectKBset().selector
+        pass
         
     def get_estimater(self):
         '''
@@ -145,11 +120,7 @@ class score_forcasting():
         @params 
         @retrun    sklearn.xx estimater:预测器
         '''
-        from background_program.c_Estimating.Regression.GeneralizedLinearModels.RidgeRegression import RidgeRegression
-        
-        estimater = RidgeRegression().estimater
-        
-        return estimater
+        pass
     
     def get_model_evalueter(self):
         '''
@@ -158,8 +129,3 @@ class score_forcasting():
         @retrun    
         '''
         pass
-    
-
-if __name__ == '__main__':
-    t = score_forcasting()
-    print(t.get_features_range())

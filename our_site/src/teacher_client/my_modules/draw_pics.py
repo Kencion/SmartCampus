@@ -15,7 +15,7 @@ def broken_line_chart():
     @modify: jack把这个函数的名字由zhexian_fig改成了 broken_line_chart
     @return: 填一下
     """
-    from background_program.y_Modules.class_failing_warning.class_failing_warning import class_failing_warning
+    from background_program.y_Modules.class_failing_warning import class_failing_warning
     
     t = class_failing_warning()
     infos = t.doit()
@@ -50,7 +50,7 @@ def pie_chart():
     @modify: jack把这个函数的名字由bingzhuang_fig改成了 pie_chart
     @return: 填一下
     """
-    from background_program.y_Modules.class_failing_warning.class_failing_warning import class_failing_warning
+    from background_program.y_Modules.class_failing_warning import class_failing_warning
     t = class_failing_warning()
     infos = t.doit()
 #     print(infos)
@@ -82,7 +82,7 @@ def line_chart():
     @author: yzh
     @return: 填一下
     """
-    from background_program.y_Modules.score_forcasting.score_forcasting import score_forcasting
+    from background_program.y_Modules.score_forcasting import score_forcasting
     
     t = score_forcasting()
     infos = t.doit()
