@@ -102,7 +102,7 @@
     	        //textRotation: [0, 45, 90, -45],
     	        //rotationRange: [-45, 90],
     	        //shape: 'circle',
-    	       // textPadding: 0,
+    	        textPadding: 5,
     	       /* autoSize: {
     	            enable: true,
     	            minSize: 6
@@ -131,109 +131,7 @@
     	//maskImage.onload = function() {
     	    myChart.setOption(option);
     	//};
-    	/*var maskImage = new Image();
-    	maskImage.src = '{%static 'student_client/images/love.jpg'%}';
-    	var option = {
-    	    title: {
-    	        text: '搜索指数',
-    	        x: 'center',
-    	    },
-    	    backgroundColor: '#F7F7F7',
-    	    series: [{
-    	        name: '搜索指数',
-    	        type: 'wordCloud',
-
-    	        maskImage: maskImage,
-    	       
-    	        textStyle: {
-    	            normal: {
-    	                color: function() {
-    	                    return 'rgb(' + [
-    	                        Math.round(Math.random() * 255),
-    	                        Math.round(Math.random() * 240),
-    	                        Math.round(Math.random() * 160)
-    	                    ].join(',') + ')';
-    	                }
-    	            },
-    	            emphasis: {
-    	                shadowBlur: 10,
-    	                shadowColor: '#333'
-    	            }
-    	        },
-    	        data: data
-    	    }]
-    	};
-    	var myChart = echarts.init(document.getElementById('main'));
-    	maskImage.onload = function() {
-    	    myChart.setOption(option);
-    	};*/
     </script>
-
-<!--<div
-	class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid"
-	style="overflow: auto; height: 216px; width: 1066px;">
-	<h1 class="text" style="font-size: 18px; color: blue">{{student_name}}:你好</h1>
-	 <table border="1" align="center">
-		<tr>
-			<th>student_num</th>
-			<th>student_name</th>
-			<th>student_type</th>
-			<th>activity_num</th>
-			<th>activity_avg_level</th>
-			<th>activity_last_time</th>
-			<th>library_borrow_times</th>
-			<th>library_study_time</th>
-			<th>student_grade</th>
-			<th>scholarship_amount</th>
-			<th>scholarship_rank</th>
-			<th>failed_num</th>
-			<th>failed_pass_num</th>
-			<th>failed_failed_num</th>
-			<th>score</th>
-			<th>score_rank</th>
-			<th>gpa</th>
-		</tr>
-		{% for i in result %}
-		<tr>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{student_num}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.0}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.1}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.2}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.3}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.4}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.5}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.6}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.7}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.8}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.9}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.10}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.11}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.12}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.13}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.14}}</td>
-			<td
-				style="text-align: center; vertical-align: middle; font-weight: bold; color: blue;">{{i.15}}</td>
-		</tr>
-		{% endfor %}
-	</table>
-	
-</div>-->
 <div
 	class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing"
 	style="width: 525px; height: 300px;">
