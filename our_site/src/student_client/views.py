@@ -88,11 +88,13 @@ def show_student_info(request):
     j=0
     for i in range(len(student)):
         if i!=0 and i!=1 and i!=2 and i!=22:
+            column_name[j]=str(str(column_name[j])+":"+str(student[i]))
             if student[i] is None or int(student[i])==0:
-                result[column_name[j]]=float(1)
+                result[column_name[j]]=float(10000)
             else:
                 result[column_name[j]]=student[i]
             j=j+1
+    print(result)
     return render(request,'student_client/show_student_info.html',{'result':json.dumps(result),'UserName':UserName,'student_name':student_name,\
                                                                    'student_type':student_type,'school_year':school_year,})
 def Single_student(request):

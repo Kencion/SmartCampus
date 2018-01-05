@@ -12,62 +12,145 @@
   <script type="text/javascript">
 		var dic={{result|safe}};
 		var arr=new Array()
+		var JosnList = [];
 		for(i in dic) {
 			var temp={value:dic[i],name:i};
+			JosnList.push(temp)
 			arr[i]=dic[i]*100
 		}
-		//for( i in arr){alert(i+arr[i])}
-    	var keywords = //arr;
-    	{
-    			"label": 1,
-    		    "emphasis": 1,
-    		    "yAxis": 1,
-    		    "name": 1,
-    		    "type": 1,
-    		    "gridIndex":1,
-    		    "normal": 1,
-    		    "itemStyle":1,
-    		    "min": 1,
-    		    "silent": 1
-    	};
-    	var data = [];
-    	for (var name in keywords) {
-    	    data.push({
-    	        name: name,
-    	        value:keywords[name]
-    	    })
-    	}
-    	for(i in data)
-    	{alert(data[name])}
-    	var maskImage = new Image();
-    	maskImage.src = '{%static 'student_client/images/love.jpg'%}';
-    	var option = {
+		/*JosnList.push({
+		    name: "Jayfee",
+		    value: "666"
+		}, {
+		    name: "Nancy",
+		    value: "520"
+		}, {
+		    name: "生活资源",
+		    value: "999"
+		}, {
+		    name: "供热管理",
+		    value: "888"
+		}, {
+		    name: "供气质量",
+		    value: "777"
+		}, {
+		    name: "生活用水管理",
+		    value: "688"
+		}, {
+		    name: "一次供水问题",
+		    value: "588"
+		}, {
+		    name: "交通运输",
+		    value: "516"
+		}, {
+		    name: "城市交通",
+		    value: "515"
+		}, {
+		    name: "环境保护",
+		    value: "483"
+		}, {
+		    name: "房地产管理",
+		    value: "462"
+		}, {
+		    name: "城乡建设",
+		    value: "449"
+		}, {
+		    name: "社会保障与福利",
+		    value: "429"
+		}, {
+		    name: "社会保障",
+		    value: "407"
+		}, {
+		    name: "文体与教育管理",
+		    value: "406"
+		}, {
+		    name: "公共安全",
+		    value: "406"
+		});*/
+		//var maskImage = new Image();
+		//maskImage.src = '{%static 'student_client/images/love.jpg'%}';
+    	option = {
     	    title: {
-    	        text: '搜索指数',
+    	        text: '热点分析',
     	        x: 'center',
-    	        /*textStyle: {
+    	        textStyle: {
     	            fontSize: 23
-    	        }*/
+    	        }
 
     	    },
     	    backgroundColor: '#F7F7F7',
+    	    tooltip: {
+    	        show: true
+    	    },
+    	    /*toolbox: {
+    	        feature: {
+    	            saveAsImage: {
+    	                iconStyle: {
+    	                    normal: {
+    	                        color: '#FFFFFF'
+    	                    }
+    	                }
+    	            }
+    	        }
+    	    },*/
     	    series: [{
-    	        name: '搜索指数',
+    	        name: '特征分析',
     	        type: 'wordCloud',
-    	        sizeRange: [12, 80],
-    	        rotationRange: [-45, 90],
-    	        maskImage: maskImage,
-    	        textPadding: 0,
-    	        autoSize: {
+    	       // maskImage: maskImage,
+    	        //size: ['9%', '99%'],
+    	        //sizeRange: [6, 66],
+    	        //textRotation: [0, 45, 90, -45],
+    	        //rotationRange: [-45, 90],
+    	        //shape: 'circle',
+    	       // textPadding: 0,
+    	       /* autoSize: {
     	            enable: true,
     	            minSize: 6
-    	        },
+    	        },*/
     	        textStyle: {
     	            normal: {
     	                color: function() {
     	                    return 'rgb(' + [
     	                        Math.round(Math.random() * 160),
     	                        Math.round(Math.random() * 160),
+    	                        Math.round(Math.random() * 160)
+    	                    ].join(',') + ')';
+    	                }
+    	            },
+    	            /*emphasis: {
+    	                shadowBlur: 10,
+    	                shadowColor: '#333'
+    	            }*/
+    	        },
+    	      
+    	    }]
+    	};
+
+    	option.series[0].data = JosnList;
+    	var myChart = echarts.init(document.getElementById('main'));
+    	//maskImage.onload = function() {
+    	    myChart.setOption(option);
+    	//};
+    	/*var maskImage = new Image();
+    	maskImage.src = '{%static 'student_client/images/love.jpg'%}';
+    	var option = {
+    	    title: {
+    	        text: '搜索指数',
+    	        x: 'center',
+    	    },
+    	    backgroundColor: '#F7F7F7',
+    	    series: [{
+    	        name: '搜索指数',
+    	        type: 'wordCloud',
+
+    	        maskImage: maskImage,
+    	       
+    	        textStyle: {
+    	            normal: {
+    	                color: function() {
+    	                    return 'rgb(' + [
+    	                        Math.round(Math.random() * 255),
+    	                        Math.round(Math.random() * 240),
     	                        Math.round(Math.random() * 160)
     	                    ].join(',') + ')';
     	                }
@@ -83,10 +166,7 @@
     	var myChart = echarts.init(document.getElementById('main'));
     	maskImage.onload = function() {
     	    myChart.setOption(option);
-    	};
-    	window.onresize = function() {
-    	    myChart.resize();
-    	}
+    	};*/
     </script>
 
 <!--<div
