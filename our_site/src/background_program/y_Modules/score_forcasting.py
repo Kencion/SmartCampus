@@ -78,7 +78,38 @@ class score_forcasting(my_module):
         '''
         pass
     
+    def hhh(self):
+        '''
+                        数据的转换，转成echarts能识别的格式
+        @return: data,json格式
+        '''
+        info = self.get_features_range()
+        data = {}
+        name = 'name'
+        children = 'children'
+        
+        #获得当前类名
+        data[name] = self.__class__.__name__
+        list2 = []
+        temp = 0
+        
+        for key, value in info.items():
+            if temp < 20:
+                temp += 1
+                list1 = []
+                dic2 = {}
+                dic2[name] = key
+                for i in value:
+                    dic1 = {}
+                    dic1[name] = str(i) + ":" + str(value[i])
+                    list1.append(dic1)
+                dic2[children] = list1
+                list2.append(dic2)
+        data[children] = list2
+             
+        return data
+
 
 if __name__ == '__main__':
     t = score_forcasting()
-    print(t.predict())
+    

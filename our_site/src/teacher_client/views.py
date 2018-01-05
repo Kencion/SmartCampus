@@ -4,6 +4,7 @@ from django.http.response import HttpResponseRedirect
 from student_client.models import Student
 from our_site.my_logger import exception_handler
 from our_site.my_exceptions import not_login_exception
+import json
 
 
 @exception_handler
@@ -50,6 +51,7 @@ def score_forcasting(request, update=False):
         'precision':score_forcasting.get_precision(),
         'students_and_scores':score_forcasting.get_all_students_and_scores(),
         'class_fail_student_nums':score_forcasting.get_class_failed_students(),
+        'result':json.dumps(score_forcasting.get_jjj()),
         }
     template = loader.get_template('teacher_client/score_forcasting.html')
     

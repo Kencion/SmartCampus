@@ -57,3 +57,7 @@ def get_features_range():
     @return list() class_failed_students,
     """
     features_range = score_forcasting().get_features_range()
+
+    
+def get_jjj():
+    return score_forcasting().hhh()

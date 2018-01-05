@@ -67,7 +67,7 @@ class my_module():
         
         data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
         features_name = []
-        with open('feature_name', 'r') as f:
+        with open('C:\\Users\\95679\Desktop\\SmartCampus\\our_site\\src\\background_program\\y_Modules\\feature_name', 'r') as f:
             for feature_name in f.readlines():
                 features_name.append(feature_name.strip())
         
