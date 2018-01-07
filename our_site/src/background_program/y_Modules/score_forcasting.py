@@ -83,33 +83,40 @@ class score_forcasting(my_module):
                         数据的转换，转成echarts能识别的格式
         @return: data,json格式
         '''
+        import operator
+        
         info = self.get_features_range()
+#         print(info)
         data = {}
         name = 'name'
         children = 'children'
-        
+        list2 = []
         #获得当前类名
         data[name] = self.__class__.__name__
-        list2 = []
-        temp = 0
-        
-        for key, value in info.items():
-            if temp < 20:
-                temp += 1
-                list1 = []
-                dic2 = {}
-                dic2[name] = key
-                for i in value:
-                    dic1 = {}
-                    dic1[name] = str(i) + ":" + str(value[i])
-                    list1.append(dic1)
-                dic2[children] = list1
-                list2.append(dic2)
+        #获得特征的评分
+        d = self.get_feature_scores()
+        #对特征按照评分进行排序
+        d = sorted(d.items(),key = operator.itemgetter(1))
+        #取评分前十个存储
+        for d_index in range(len(d)-10,len(d)):
+            list1 = []
+            dic2 = {}
+            dic2[name] = d[d_index][0]
+            
+            for i in info[d[d_index][0]]:
+                dic1 = {}
+                dic1[name] = str(i) + ":" + str(info[d[d_index][0]][i])
+                list1.append(dic1)
+                
+            dic2[children] = list1
+            list2.append(dic2)
+            
         data[children] = list2
-             
+        
         return data
 
 
 if __name__ == '__main__':
     t = score_forcasting()
-    
+
+
