@@ -33,3 +33,6 @@ def get_students_and_subsidies():
     
     return students_and_subsidies
 
+
+def get_feature_scores_and_ranges():
+    return score_forcasting().hhh()

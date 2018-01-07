@@ -59,5 +59,5 @@ def get_features_range():
     features_range = score_forcasting().get_features_range()
 
     
-def get_jjj():
+def get_feature_scores_and_ranges():
     return score_forcasting().hhh()
