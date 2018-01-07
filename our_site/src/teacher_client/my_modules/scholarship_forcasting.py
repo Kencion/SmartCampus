@@ -32,6 +32,7 @@ def get_students_and_scholarships():
     students_and_scholarships = [[i.student_num, i.scholarship] for i in Student.objects.all()]
     
     return students_and_scholarships
+
     
 def get_feature_scores_and_ranges():
-    return score_forcasting().hhh()
+    return scholarship_forcasting().yzh_get_data()

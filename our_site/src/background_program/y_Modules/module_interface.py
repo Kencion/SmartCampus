@@ -50,10 +50,9 @@ class my_module():
         feature_selector.fit(self.X_train, self.Y_train)
         feature_scores = dict()
         f_scores = feature_selector.scores_
-        with open('feature_name', 'r') as f:
-            feature_names = f.readlines()
-            for i in range(len(f_scores)):
-                feature_scores[feature_names[i].strip()] = f_scores[i] 
+        from .feature_name import feature_name_ch
+        for i in range(len(f_scores)):
+            feature_scores[feature_name_ch[i].strip()] = f_scores[i] 
         
         return feature_scores   
     
@@ -67,9 +66,10 @@ class my_module():
         
         data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
         features_name = []
-        with open('C:\\Users\\qfWu\\Desktop\\SmartCampus\\our_site\\src\\background_program\\y_Modules\\feature_name', 'r') as f:
-            for feature_name in f.readlines():
-                features_name.append(feature_name.strip())
+        from .feature_name import feature_name_ch
+        
+        for feature_name in feature_name_ch:
+            features_name.append(feature_name.strip())
         
         features_range = dict()
         for feature_name in features_name:
@@ -129,3 +129,40 @@ class my_module():
         @retrun    
         '''
         pass
+    
+    def yzh_get_data(self):
+        '''
+                        数据的转换，转成echarts能识别的格式
+        @return: data,json格式
+        '''
+        import operator
+        
+        info = self.get_features_range()
+        data = {}
+        name = 'name'
+        children = 'children'
+        list2 = []
+        # 获得当前类名
+        data[name] = self.__class__.__name__
+        # 获得特征的评分
+        d = self.get_feature_scores()
+        # 对特征按照评分进行排序
+        d = sorted(d.items(), key=operator.itemgetter(1))
+        # 取评分前十个存储
+        for d_index in range(len(d) - 10, len(d)):
+            list1 = []
+            dic2 = {}
+            dic2[name] = d[d_index][0]
+            
+            for i in info[d[d_index][0]]:
+                dic1 = {}
+                dic1[name] = str(i) + ":" + str(info[d[d_index][0]][i])
+                list1.append(dic1)
+                
+            dic2[children] = list1
+            list2.append(dic2)
+            
+        data[children] = list2
+        
+        return data
+        
