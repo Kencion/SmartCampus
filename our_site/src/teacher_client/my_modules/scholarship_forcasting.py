@@ -33,3 +33,5 @@ def get_students_and_scholarships():
     
     return students_and_scholarships
     
+def get_feature_scores_and_ranges():
+    return score_forcasting().hhh()

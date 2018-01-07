@@ -4,7 +4,7 @@ from django.http.response import HttpResponseRedirect
 from student_client.models import Student
 from our_site.my_logger import exception_handler
 from our_site.my_exceptions import not_login_exception
-import json
+from .my_modules import data_process
 
 
 @exception_handler
@@ -51,11 +51,11 @@ def score_forcasting(request, update=False):
         'precision':score_forcasting.get_precision(),
         'students_and_scores':score_forcasting.get_all_students_and_scores(),
         'class_fail_student_nums':score_forcasting.get_class_failed_students(),
-        'result':json.dumps(score_forcasting.get_jjj()),
+        'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(score_forcasting.get_feature_scores_and_ranges(), request),
         }
-    template = loader.get_template('teacher_client/score_forcasting.html')
+    score_forcasting_page = loader.get_template('teacher_client/score_forcasting.html')
     
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(score_forcasting_page.render(context, request))
 
 
 @exception_handler
@@ -109,6 +109,7 @@ def scholarship_forcasting(request, update=False):
         'module_name':'成绩预测',
         'teacher_name':request.session['teacher_name'],
         'students_and_scores':students_and_scholarships,
+        'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(scholarship_forcasting.get_feature_scores_and_ranges(), request),
         }
     template = loader.get_template('teacher_client/scholarship_forcasting.html')
     
@@ -138,6 +139,7 @@ def subsidy_forcasting(request):
         'module_name':'助学金预测',
         'teacher_name':request.session['teacher_name'],
         'students_and_subsidies':students_and_subsidies,
+        'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(subsidy_forcasting.get_feature_scores_and_ranges(), request),
         }
     template = loader.get_template('teacher_client/subsidy_forcasting.html')
     
