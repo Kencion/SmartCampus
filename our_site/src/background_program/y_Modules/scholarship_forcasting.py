@@ -41,16 +41,9 @@ class scholarship_forcasting(my_module):
         @params 
         @retrun    sklearn.某种类  featureSelector:特征选择器
         '''
-        from sklearn.pipeline import FeatureUnion
         from background_program.b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
-        from background_program.b_SampleProcessing.FeatureSelection.MySelectPercentile import MySelectPercentile
         
-        featureSelector = FeatureUnion(
-            transformer_list=[
-                ('MySelectKBset', MySelectKBset().selector),
-                ('MySelectPercentile', MySelectPercentile().selector) 
-                ],
-                n_jobs=1)
+        featureSelector = MySelectKBset().selector
         
         return featureSelector
         

@@ -11,8 +11,8 @@
 {% block content %} {% load static %}
 <div
 	class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
-	<div style="width: 100%; height: 350px;">
 	{{feature_scores_and_ranges}}
+	<div style="width: 100%; height: 350px;">
 		<ul class="demo-list-item mdl-list">
 			<li class="mdl-list__item"><span
 				class="mdl-list__item-primary-content"> 助学金预测如下： </span></li>
@@ -27,12 +27,6 @@
 			</ul>
 		</div>
 	</div>
-	<img width=100% height=100%
-		src="{%static 'teacher_client/images/line_chart.png' %}" /> <img
-		width=100% height=100%
-		src="{%static 'teacher_client/images/pie_chart.png' %}" /> <img
-		width=100% height=100%
-		src="{%static 'teacher_client/images/broken_line_chart.png' %}" />
 </div>
 <div
 	class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
