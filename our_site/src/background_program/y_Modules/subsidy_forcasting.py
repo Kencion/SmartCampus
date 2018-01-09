@@ -15,7 +15,7 @@ class subsidy_forcasting(my_module):
         my_module.get_dataset(self, school_year='2016', usage='regression')
         
     def get_features_range(self):
-        features_range = my_module.get_features_range(self, label_name='subsidy_amount', label_range={'A':[0, 60], 'B':[60, 90], 'C':[90, 100]})
+        features_range = my_module.get_features_range(self, label_name='subsidy_amount', label_range={'没获得':[0, 0], '有获得':[1, 99999], })
         
         return features_range
          

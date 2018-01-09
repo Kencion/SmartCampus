@@ -24,18 +24,23 @@
 		<div class="mdl-card__supporting-text mdl-color-text--grey-600">
 			<div style="width: 100%; height: 350px;">
 				<div style="height: 80%; overflow: scroll; overflow-x: hidden;">
-					<ul class="demo-list-item mdl-list">
+					<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="width:300px;">
+					  <tbody>
+					  <thead>
+					      <td>学号</td>
+					    </thead>
 						{% for class_fail_student_num in class_fail_student_nums %}
-						<li class="mdl-list__item"><span
-							class="mdl-list__item-primary-content">
-								{{class_fail_student_num}} </span></li> {% endfor %}
-					</ul>
+					    <tr style="width:300px;" onclick="javascript:window.open('/teacher_client/student_info?student_num={{class_fail_student_num}}')">
+					      <td style="width:50%;text-overflow :ellipsis">{{class_fail_student_num}}</td>
+					    </tr>
+						{% endfor %}
+					  </tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 		<div class="mdl-card__actions mdl-card--border">
-			<a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read
-				More</a>
+			<a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">开除以上学生</a>
 		</div>
 	</div>
 	<div class="demo-separator mdl-cell--1-col"></div>
@@ -62,8 +67,7 @@
 		</div>
 		<div class="mdl-card__actions mdl-card--border">
 			<a href="#"
-				class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change
-				location</a>
+				class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">让老夫来认真瞧一瞧</a>
 			<div class="mdl-layout-spacer"></div>
 			<i class="material-icons">location_on</i>
 		</div>

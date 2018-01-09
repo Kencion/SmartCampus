@@ -50,7 +50,7 @@
 		<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">
 		  <tbody>
 			{% for student_num in student_nums %}
-		    <tr onclick="javascript:window.open('http://baidu.com')">
+		    <tr onclick="javascript:window.open('/teacher_client/student_info?student_num={{student_num.0}}')">
 		      <td>{{student_num.0}}</td>
 		    </tr>
 			{% endfor %}
