@@ -81,20 +81,22 @@ def get_single_student_info(student_num):
                  '锻炼消费的平均值','学习消费的平均值','其他类别消费的平均值','食堂消费的方差','超市消费的方差','充值消费的方差','其他类别消费的方差','小吃消费的方差',\
                  '锻炼消费的方差','学习消费的方差',]
     result={}
-    UserName=student[0][0:14]
-    student_name=student[1]
-    student_type=student[2]
-    school_year=student[22]
-    j=0
-    for i in range(len(student)):
-        if i!=0 and i!=1 and i!=2 and i!=22:
-            column_name[j]=str(str(column_name[j])+":"+str(student[i]))
-            if student[i] is None or int(student[i])==0:
-                result[column_name[j]]=float(10000)
-            else:
-                result[column_name[j]]=student[i]
-            j=j+1
-    return result
+    if student is None:
+        return None
+    else:
+        UserName=student[0][0:14]
+        student_name=student[1]
+        student_type=student[2]
+        school_year=student[22]
+        j=0
+        for i in range(len(student)):
+            if i!=0 and i!=1 and i!=2 and i!=22:
+                if student[i] is None or int(student[i])==0:
+                    result[column_name[j]]=float(0)
+                else:
+                    result[column_name[j]]=student[i]
+                j=j+1
+        return result
 def show_student_info(request):
     from background_program.z_Tools.my_database import MyDataBase
     student_num=request.session.get('student_num')
@@ -122,9 +124,8 @@ def show_student_info(request):
     j=0
     for i in range(len(student)):
         if i!=0 and i!=1 and i!=2 and i!=22:
-            column_name[j]=str(str(column_name[j])+":"+str(student[i]))
             if student[i] is None or int(student[i])==0:
-                result[column_name[j]]=float(10000)
+                result[column_name[j]]=float(0)
             else:
                 result[column_name[j]]=student[i]
             j=j+1
@@ -158,7 +159,7 @@ def search_score(request):
     @return: 填一下
     """
     from background_program.z_Tools.my_database import MyDataBase
-    
+    from .dataprocess import student_data
     try:
         student_num = request.session['student_num']  
     except:
@@ -167,14 +168,9 @@ def search_score(request):
     student_num = request.POST['student_num']
     year = request.POST['year']
     student_num = student_num + year
-    db = MyDataBase("软件学院")
-    executer = db.getExcuter()
-    sql = "select student_num,student_name,student_grade,score_rank,score from students where student_num='{0}'".format(student_num)
-    executer.execute(sql)
-    student = executer.fetchone()
-    db.close 
-    # print(student)
-    if student is None:
+    result=get_single_student_info(student_num)
+    context = dict()
+    if result is None:
         template = loader.get_template('student_client/input.html')
         context = {
             'title':"hello, my dear student, please input your student_num and school_year: ",
@@ -182,13 +178,6 @@ def search_score(request):
             }
         return HttpResponse(template.render(context, request))
     else:
+        context['student_info']=student_data.get_students_info(result,request)
         template = loader.get_template('student_client/search_score.html')
-        context = {
-            'UserName':student[0],
-            'student_num':student[0],
-            'student_name':student[1],
-            'student_grade':student[2],
-            'score_rank':student[3],
-            'score':student[4],
-        }
         return HttpResponse(template.render(context, request))

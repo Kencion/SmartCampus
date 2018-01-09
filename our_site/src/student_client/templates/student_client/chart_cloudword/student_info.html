@@ -1,6 +1,64 @@
 <div id = "main" style="width: 1200px;height: 800px;"></div>
-<script src='https://cdn.bootcss.com/echarts/3.7.0/echarts.simple.js'></script>
 {%load static%}
+<script src={%static 'student_client/js/echarts.js' %}></script>
+<script type="text/javascript" src ={%static 'student_client/js/echarts-wordcloud.min.js' %} ></script>
+<script type="text/javascript" src ={%static 'student_client/js/jquery-2.1.1.js' %} ></script>
+<script type="text/javascript"></script>
+ <script>  
+    $(function(){  
+        echartsCloud();//初始化echarts图  
+    })  
+function echartsCloud(){  
+    // 基于准备好的dom，初始化echarts实例  
+        var myChart = echarts.init(document.getElementById('main'));  
+        var dic={{result|safe}};
+		var arr=new Array()
+		var JosnList = [];
+		for(i in dic) {
+			var temp={value:dic[i],name:i};
+			JosnList.push(temp)
+			arr[i]=dic[i]*1
+		}
+		//var maskImage = new Image();
+    	//maskImage.src ="{% static 'student_client/images/1.png' %}";
+    myChart.setOption({  
+        title: {  
+            text: '学生个人信息云图'  
+        },  
+        tooltip: {},  
+        series: [{  
+            type : 'wordCloud',  //类型为字符云  
+                shape:'smooth',  //平滑  
+                gridSize : 2, //网格尺寸  
+                //maskImage: maskImage,
+                size : ['80%','80%'],  
+                //sizeRange : [ 50, 100 ],    
+                rotationRange : [ 46, 80 ], //旋转范围  
+                textStyle : {    
+                    normal : {  
+                        fontFamily:'sans-serif',  
+                        color : function() {    
+                            return 'rgb('    
+                                    + [ Math.round(Math.random() * 160),    
+                                            Math.round(Math.random() * 160),    
+                                            Math.round(Math.random() * 160) ]    
+                                            .join(',') + ')';    
+                        }    
+                    },    
+                    emphasis : {    
+                        shadowBlur : 5,  //阴影距离  
+                        shadowColor : '#333'  //阴影颜色  
+                    }    
+                },  
+                data:JosnList,  
+        }]  
+    });  
+   
+}    
+  
+  
+    </script> 
+<!--  <script src='https://cdn.bootcss.com/echarts/3.7.0/echarts.simple.js'></script>
  <script type="text/javascript" src ={%static 'student_client/js/echarts-wordcloud.min.js' %} ></script>
   <script type="text/javascript">
 		var dic={{result|safe}};
@@ -11,6 +69,8 @@
 			JosnList.push(temp)
 			arr[i]=dic[i]*100
 		}
+		var maskImage = new Image();
+    	maskImage.src ="{% static 'student_client/images/person.jpg' %}";
     	option = {
     	    title: {
     	        text: '热点分析',
@@ -27,7 +87,7 @@
     	    series: [{
     	        name: '特征分析',
     	        type: 'wordCloud',
-    	       // maskImage: maskImage,
+    	        maskImage: maskImage,
     	        //size: ['9%', '99%'],
     	        //sizeRange: [6, 66],
     	        //textRotation: [0, 45, 90, -45],
@@ -56,10 +116,9 @@
     	      
     	    }]
     	};
-
     	option.series[0].data = JosnList;
     	var myChart = echarts.init(document.getElementById('main'));
-    	//maskImage.onload = function() {
+    	maskImage.onload = function() {
     	    myChart.setOption(option);
-    	//};
-    </script>
+    	};
+    </script>-->
