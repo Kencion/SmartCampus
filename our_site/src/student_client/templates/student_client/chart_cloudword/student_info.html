@@ -1,0 +1,65 @@
+<div id = "main" style="width: 1200px;height: 800px;"></div>
+<script src='https://cdn.bootcss.com/echarts/3.7.0/echarts.simple.js'></script>
+{%load static%}
+ <script type="text/javascript" src ={%static 'student_client/js/echarts-wordcloud.min.js' %} ></script>
+  <script type="text/javascript">
+		var dic={{result|safe}};
+		var arr=new Array()
+		var JosnList = [];
+		for(i in dic) {
+			var temp={value:dic[i],name:i};
+			JosnList.push(temp)
+			arr[i]=dic[i]*100
+		}
+    	option = {
+    	    title: {
+    	        text: '热点分析',
+    	        x: 'center',
+    	        textStyle: {
+    	            fontSize: 23
+    	        }
+
+    	    },
+    	    backgroundColor: '#F7F7F7',
+    	    tooltip: {
+    	        show: true
+    	    },
+    	    series: [{
+    	        name: '特征分析',
+    	        type: 'wordCloud',
+    	       // maskImage: maskImage,
+    	        //size: ['9%', '99%'],
+    	        //sizeRange: [6, 66],
+    	        //textRotation: [0, 45, 90, -45],
+    	        //rotationRange: [-45, 90],
+    	        //shape: 'circle',
+    	        textPadding: 5,
+    	       /* autoSize: {
+    	            enable: true,
+    	            minSize: 6
+    	        },*/
+    	        textStyle: {
+    	            normal: {
+    	                color: function() {
+    	                    return 'rgb(' + [
+    	                        Math.round(Math.random() * 160),
+    	                        Math.round(Math.random() * 160),
+    	                        Math.round(Math.random() * 160)
+    	                    ].join(',') + ')';
+    	                }
+    	            },
+    	            /*emphasis: {
+    	                shadowBlur: 10,
+    	                shadowColor: '#333'
+    	            }*/
+    	        },
+    	      
+    	    }]
+    	};
+
+    	option.series[0].data = JosnList;
+    	var myChart = echarts.init(document.getElementById('main'));
+    	//maskImage.onload = function() {
+    	    myChart.setOption(option);
+    	//};
+    </script>
