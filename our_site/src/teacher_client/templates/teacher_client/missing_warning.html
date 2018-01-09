@@ -24,7 +24,7 @@
 			      <td>可能失联的原因</td>
 			    </thead>
 				{% for student in missing_students %}
-			    <tr onclick="javascript:window.open('http://baidu.com')">
+			    <tr onclick="javascript:window.open('/teacher_client/student_info?student_num={{student.0}}')">
 			      <td>{{student.0}}</td>
 			      <td>{{student.1}}</td>
 			      <td>{{student.2}}</td>

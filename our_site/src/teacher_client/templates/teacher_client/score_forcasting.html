@@ -51,7 +51,7 @@
 				      <td>成绩</td>
 				    </thead>
 					{% for student_and_score in students_and_scores %}
-				    <tr style="width:300px;" onclick="javascript:window.open('http://baidu.com')">
+				    <tr style="width:300px;" onclick="javascript:window.open('/teacher_client/student_info?student_num={{student_and_score.0}}')">
 				      <td style="width:50%;text-overflow :ellipsis">{{student_and_score.0}}</td>
 				      <td style="width:50%;text-overflow :ellipsis">{{student_and_score.1}}</td>
 				    </tr>
