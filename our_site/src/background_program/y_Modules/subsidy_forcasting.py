@@ -75,9 +75,11 @@ class subsidy_forcasting(my_module):
         @retrun data list类型数据
         '''
         info = self.predict()[1]
-        print(info)
+        
+        #获得助学金list
         subsidy_list = [x[1] for x in info]
-
+        
+        #统计获得和未获得助学金的人数
         subsidy = {'获得助学金':0,'未获得助学金':0}
         
         for index in subsidy_list:
@@ -86,17 +88,16 @@ class subsidy_forcasting(my_module):
             if index <= 0:
                 subsidy['未获得助学金'] += 1
         
-        print(subsidy)
         data = []
         for name in subsidy:
             dic = {}
             dic['name'] = name
             dic['value'] = subsidy[name]
             data.append(dic)
-        print(data)
+
         return data   
 
 
 if __name__ == '__main__':
     t = subsidy_forcasting()
-    t.get_pie_data()
+

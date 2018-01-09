@@ -132,7 +132,7 @@ class my_module():
     
     def get_tree_data(self):
         '''
-                        数据的转换，转成echarts能识别的格式
+                        数据的转换，转成echarts树形图能识别的格式
         @return: data,json格式
         '''
         import operator
