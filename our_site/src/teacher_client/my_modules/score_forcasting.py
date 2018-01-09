@@ -60,4 +60,4 @@ def get_features_range():
 
     
 def get_feature_scores_and_ranges():
-    return score_forcasting().yzh_get_data()
+    return score_forcasting().get_tree_data()

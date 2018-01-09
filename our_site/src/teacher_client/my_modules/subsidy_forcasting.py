@@ -35,4 +35,4 @@ def get_students_and_subsidies():
 
 
 def get_feature_scores_and_ranges():
-    return subsidy_forcasting().yzh_get_data()
+    return subsidy_forcasting().get_tree_data()

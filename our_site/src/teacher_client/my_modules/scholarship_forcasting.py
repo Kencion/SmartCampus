@@ -35,4 +35,4 @@ def get_students_and_scholarships():
 
     
 def get_feature_scores_and_ranges():
-    return scholarship_forcasting().yzh_get_data()
+    return scholarship_forcasting().get_tree_data()

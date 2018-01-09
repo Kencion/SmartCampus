@@ -68,7 +68,35 @@ class subsidy_forcasting(my_module):
         '''
         pass
 
+    def get_pie_data(self):
+        '''
+                        获得echarts画饼图需要的数据
+        @params 
+        @retrun data list类型数据
+        '''
+        info = self.predict()[1]
+        print(info)
+        subsidy_list = [x[1] for x in info]
+
+        subsidy = {'获得助学金':0,'未获得助学金':0}
+        
+        for index in subsidy_list:
+            if index > 0 :
+                subsidy['获得助学金'] += 1
+            if index <= 0:
+                subsidy['未获得助学金'] += 1
+        
+        print(subsidy)
+        data = []
+        for name in subsidy:
+            dic = {}
+            dic['name'] = name
+            dic['value'] = subsidy[name]
+            data.append(dic)
+        print(data)
+        return data   
+
 
 if __name__ == '__main__':
     t = subsidy_forcasting()
-    print(t.predict())
+    t.get_pie_data()
