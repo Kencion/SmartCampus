@@ -22,6 +22,7 @@ class library_week_study_time(FeatureCalculater):
         self.executer.execute(sql)
         student_nums = [str(i[0]) for i in self.executer.fetchall()]
         for student_num in student_nums:
+            self.school_year=self.get_school_year(student_num)
             for school_year in self.school_year:
                 sql = "SELECT sum(seat_time),DATE_FORMAT(select_seat_time,'%m') FROM library_study_time where student_num ='{0}' AND DATE_FORMAT(select_seat_time,'%Y')='{1}' AND DAYOFWEEK(select_seat_time) in (6,7)".format(student_num, str(school_year))
                 self.executer.execute(sql)

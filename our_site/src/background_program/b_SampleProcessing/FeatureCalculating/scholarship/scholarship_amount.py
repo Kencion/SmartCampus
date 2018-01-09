@@ -13,7 +13,7 @@ class scholarship_amount(FeatureCalculater):
 
     def __init__(self):
         FeatureCalculater.__init__(self, feature_name='scholarship_amount')
-        
+
     @my_exception_handler
     def calculate(self):
         '''
@@ -23,6 +23,7 @@ class scholarship_amount(FeatureCalculater):
         self.executer.execute(sql)
         student_nums = [str(i[0]) for i in self.executer.fetchall()]
         for student_num in student_nums:
+            self.school_year=self.get_school_year(student_num)
             for school_year in self.school_year:
                 sql = "SELECT amount FROM scholarship_handled where student_num ='{0}' AND left(grant_year,4)='{1}'".format(str(student_num) , school_year)
                 self.executer.execute(sql)
@@ -34,6 +35,6 @@ class scholarship_amount(FeatureCalculater):
                             self.executer.execute(sql)
                 except:
                     pass
-    
+
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

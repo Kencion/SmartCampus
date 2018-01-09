@@ -11,7 +11,7 @@ class in_out_times(FeatureCalculater):
 
     def __init__(self):
         FeatureCalculater.__init__(self, feature_name='in_out_times')
-        
+
     @my_exception_handler
     def calculate(self):
         '''
@@ -21,6 +21,7 @@ class in_out_times(FeatureCalculater):
         self.executer.execute(sql)
         student_nums = [str(i[0]) for i in self.executer.fetchall()]
         for student_num in student_nums:
+            self.school_year=self.get_school_year(student_num)
             for school_year in self.school_year:
                 self.executer.execute("select count(*),DATE_FORMAT(record_time,'%m') from dorm_entrance where student_num='{0}' and DATE_FORMAT(record_time,'%Y')='{1}'".format(student_num, school_year))
                 try:
@@ -34,6 +35,6 @@ class in_out_times(FeatureCalculater):
                 if self.executer.execute(sql) == 0:
                         self.add_student(student_num + str(school_year))
                         self.executer.execute(sql)
-    
+
     def cluster(self):
-        FeatureCalculater.cluster(self, clusters=4)    
+        FeatureCalculater.cluster(self, clusters=4)

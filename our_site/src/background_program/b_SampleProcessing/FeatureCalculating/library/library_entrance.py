@@ -22,6 +22,7 @@ class library_entrance(FeatureCalculater):
         self.executer.execute(sql)
         student_nums = [str(i[0]) for i in self.executer.fetchall()]
         for student_num in student_nums:
+            self.school_year=self.get_school_year(student_num)
             for school_year in self.school_year:
                 try:
                     sql = "SELECT sum(seat_time) FROM library_study_time where student_num = " + student_num + " AND DAYOFYEAR(select_seat_time)=" + str(school_year)

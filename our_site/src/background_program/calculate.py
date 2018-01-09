@@ -1,8 +1,5 @@
 '''
-Created on 2017年11月21日
-  
-@author: jack
-细化聚类流程
+@author: jack on 2017年11月21日
 '''
 # import warnings
 # warnings.filterwarnings("ignore")
@@ -19,43 +16,43 @@ from background_program.b_SampleProcessing.FeatureCalculating.card import *
 from tqdm import tqdm  
 
 calculaters = [  
-#         activity_avg_level1.activity_avg_level1(),
-#         activity_last_time1.activity_last_time1(),
-#         activity_num1.activity_num1(),
-#         participation_avg_point1.participation_avg_point1(),
-#           
-#         avg_out_time.avg_out_time(),
-#         avg_in_time.avg_in_time(),
-#         avg_stay_out_time.avg_stay_out_time(),
-#         in_out_times.in_out_times(),
-#           
-#         library_borrow_times1.library_borrow_times1(),
-#         library_entrance.library_entrance(),
-#         library_study_time.library_study_time(),
-#         library_week_study_time.library_week_study_time(),
-#           
-#         scholarship_amount.scholarship_amount(),
-#         scholarship_rank.scholarship_rank(),
-#           
-#         department.department(),
-#         school_year1.school_year1(),
-#         failed_num1.failed_num1(),
-#         failed_pass_num.failed_pass_num(),
-#         failed_failed_num.failed_failed_num(),
-#         GPA1.GPA1(),#
-#         score_rank1.score_rank1(),
-#         score1.score1(),
+        activity_avg_level1.activity_avg_level1(),
+        activity_last_time1.activity_last_time1(),
+        activity_num1.activity_num1(),
+        participation_avg_point1.participation_avg_point1(),
            
-#         is_social_practice_great1.is_social_practice_great1(),#
-#           
-#         subsidy_amount.subsidy_amount(),
-#         subsidy_rank.subsidy_rank(),
-#           
-#         hornorary_rank.hornorary_rank(),
-#         hornorary_times.hornorary_times(),
-#           
-#         canteen_times.canteen_times(),
-#         Consumption.Consumption(),
+        avg_out_time.avg_out_time(),
+        avg_in_time.avg_in_time(),
+        avg_stay_out_time.avg_stay_out_time(),
+        in_out_times.in_out_times(),
+           
+        library_borrow_times1.library_borrow_times1(),
+        library_entrance.library_entrance(),
+        library_study_time.library_study_time(),
+        library_week_study_time.library_week_study_time(),
+           
+        scholarship_amount.scholarship_amount(),
+        scholarship_rank.scholarship_rank(),
+           
+        department.department(),
+        school_year1.school_year1(),
+        failed_num1.failed_num1(),
+        failed_pass_num.failed_pass_num(),
+        failed_failed_num.failed_failed_num(),
+        GPA1.GPA1(),#
+        score_rank1.score_rank1(),
+        score1.score1(),
+           
+        is_social_practice_great1.is_social_practice_great1(),#
+           
+        subsidy_amount.subsidy_amount(),
+        subsidy_rank.subsidy_rank(),
+           
+        hornorary_rank.hornorary_rank(),
+        hornorary_times.hornorary_times(),
+           
+        canteen_times.canteen_times(),
+        Consumption.Consumption(),
         max_min_month_consume.max_min_month_consume(),
         max_every_type.max_every_type(),
         mean_median_var.mean_median_var(),
@@ -99,16 +96,16 @@ def clean_useless_data():
 
 
 def doit():
-#     # 先插入学号
-#     from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
-#     FeatureCalculater().calculate()
+    # 先插入学号
+    from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+    FeatureCalculater().calculate()
     
-#     # 计算特征值
-#     calculate()
+    # 计算特征值
+    calculate()
     
-#     # 把没用的数据清除掉
-#     clean_useless_data()
-#     
+    # 把没用的数据清除掉
+    clean_useless_data()
+     
     # 聚类
     for calculater in tqdm(calculaters):
             calculater.cluster()

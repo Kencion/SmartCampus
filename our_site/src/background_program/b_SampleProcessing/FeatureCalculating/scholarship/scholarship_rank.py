@@ -22,6 +22,7 @@ class scholarship_rank(FeatureCalculater):
         self.executer.execute(sql)
         student_nums = [str(i[0]) for i in self.executer.fetchall()]
         for student_num in student_nums:
+            self.school_year=self.get_school_year(student_num)
             for school_year in self.school_year:
                 sql = "SELECT scholarship_type FROM scholarship_handled where student_num ='{0}' AND left(grant_year,4)='{1}'".format(str(student_num) , str(school_year))
                 self.executer.execute(sql)

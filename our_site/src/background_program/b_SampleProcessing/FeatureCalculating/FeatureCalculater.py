@@ -16,8 +16,14 @@ class FeatureCalculater:
         self.db = MyDataBase(database)
         self.executer = self.db.getExcuter()
         self.feature_name = feature_name
-        self.school_year = [ '2014', '2015', '2016', '2017', ]  # 一个同学一个学年作为一个记录
-                 
+        self.this_year = 2017  # 一个同学一个学年作为一个记录
+            
+    def get_shool_year(self, student_num):
+        in_year = int(student_num[3:7])
+        school_year = [str(i) for i in range(in_year, self.this_year + 1)]
+        
+        return school_year
+         
     @my_exception_handler                 
     def add_student(self, student_num):
         '''
@@ -43,12 +49,12 @@ class FeatureCalculater:
         for re in result:
             count = int(re[ 2])
             if str(re[3]) == '普通高校本科学生':
-                while count <= int(re[2]) + 8 and count <= 2016:
+                while count <= int(re[2]) + 8 and count <= 2017:
                     sql = "insert into students(student_num,student_name,student_grade,student_type) values(%s,%s,%s,%s)"
                     self.executer.execute(sql, (str(re[0]) + str(count), re[1], str(re[2]), re[3]))
                     count = count + 1
             else:
-                while count <= int(re[2]) + 8 and count <= 2016:
+                while count <= int(re[2]) + 8 and count <= 2017:
                     sql = "insert into students(student_num,student_name,student_grade,student_type) values(%s,%s,%s,%s)"
                     self.executer.execute(sql, (str(re[0]) + str(count), re[1], str(re[2]), re[3]))
                     count = count + 1  

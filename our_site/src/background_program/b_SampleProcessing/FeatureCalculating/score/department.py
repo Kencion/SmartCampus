@@ -22,6 +22,7 @@ class department(FeatureCalculater):
         self.executer.execute(sql)
         student_nums = [str(i[0]) for i in self.executer.fetchall()]
         for student_num in student_nums:
+            self.school_year=self.get_school_year(student_num)
             for school_year in self.school_year:
                 sql = "select department from score where student_num='{0}'".format(student_num)
                 self.executer.execute(sql)
