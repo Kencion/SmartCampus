@@ -1,0 +1,17 @@
+{% extends "teacher_client/base.html" %} 
+{% block title%} 智慧校园-学生信息 {%endblock%} 
+{% block module_name %} 智慧校园-学生信息 {% endblock %} 
+{% block teacher_name %}{{teacher_name}}{% endblock %} 
+{% block index_state %}{%endblock %} 
+{% block score_forcasting %}{% endblock%} 
+{% block missing_warning %}{% endblock %} 
+{% block scholarship_forcasting %}{% endblock %} 
+{% block subsidy_forcasting %}{%endblock %} 
+{% block wired_person%}{%endblock %} 
+{% block content %} {% load static %}
+<div
+	class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" style="width:200%;" >
+	{{student_info_page}}
+</div>
+{% endblock %} 
+{% block update %}{% endblock %}

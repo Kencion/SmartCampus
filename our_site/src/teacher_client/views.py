@@ -173,7 +173,6 @@ def wired_person(request, update=False):
         pass
     
     missing_students = [i.student_num for i in Student.objects.filter(is_missing__exact=True)]
-    """将数据渲染到页面上"""
     context = {
         'module_name':'失联预警',
         'teacher_name':request.session['teacher_name'],
@@ -183,6 +182,21 @@ def wired_person(request, update=False):
     
     return HttpResponse(template.render(context, request))
 
+
+def student_info(request):
+    from student_client.dataprocess.student_data import get_students_info
+    from student_client.views import get_single_student_info
+    
+    student_num = request.GET['student_num']
+    
+    context = {
+        'module_name':'学生信息',
+        'student_info_page':get_students_info(get_single_student_info(student_num), request),
+        }
+    template = loader.get_template('teacher_client/student_info.html')
+    
+    return HttpResponse(template.render(context, request))
+    
 
 def not_login(request):
     template = loader.get_template('teacher_client/error_pages/not_login.html')

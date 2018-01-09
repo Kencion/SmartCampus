@@ -22,13 +22,20 @@
 			<h2 class="mdl-card__title-text">可能挂科的同学：</h2>
 		</div>
 			<div style="height: 300px; overflow: scroll; overflow-x: hidden;">
-				<ul class="demo-list-item mdl-list">
-					{% for student_and_subsidy in students_and_subsidies %}
-					<li class="mdl-list__item"><span
-						class="mdl-list__item-primary-content">
-							{{student_and_subsidy.0}}===>{{student_and_subsidy.1}} </span></li> 
-					{% endfor%}
-				</ul>
+				<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="width:300px;">
+					  <tbody>
+					  <thead>
+					      <td>学号</td>
+					      <td>奖学金</td>
+					    </thead>
+						{% for student_and_subsidy in students_and_subsidies %}
+					    <tr style="width:300px;" onclick="javascript:window.open('/teacher_client/student_info?student_num={{student_and_subsidy.0}}')">
+					      <td style="width:50%;text-overflow :ellipsis">{{student_and_subsidy.0}}</td>
+					      <td style="width:50%;text-overflow :ellipsis">{{student_and_subsidy.1}}</td>
+					    </tr>
+						{% endfor %}
+					  </tbody>
+					</table>
 			</div>
 		<div class="mdl-card__supporting-text mdl-color-text--grey-600">
 

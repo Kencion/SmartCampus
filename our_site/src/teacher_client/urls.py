@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^scholarship_forcasting$', views.scholarship_forcasting, name='scholarship_forcasting'),
     url(r'^subsidy_forcasting$', views.subsidy_forcasting, name='subsidy_forcasting'),
     url(r'^wired_person$', views.wired_person, name='wired_person'),
+    url(r'^student_info$', views.student_info, name='student_info'),
     url(r'^not_login$', views.not_login, name='not_login'),
 ]

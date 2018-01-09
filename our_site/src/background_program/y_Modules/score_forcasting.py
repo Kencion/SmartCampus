@@ -11,7 +11,7 @@ class score_forcasting(my_module):
         my_module.__init__(self, label_name='score')
             
     def get_features_range(self):
-        features_range = my_module.get_features_range(self, label_name='score', label_range={'A':[0, 60], 'B':[60, 90], 'C':[90, 100]})
+        features_range = my_module.get_features_range(self, label_name='score', label_range={'不及格':[0, 60], '60分-90分':[60, 90], '90分以上':[90, 100]})
         
         return features_range
          
