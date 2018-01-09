@@ -11,8 +11,9 @@ from .my_modules import data_process
 def index(request, update=False):
     """
     @author: Jack
-    @return 教师端的主页
+    @return 智慧校园教师端的主页
     """
+    from .my_modules import missing_warning 
     context = dict()
     try:
         context['teacher_name'] = request.GET['user_name']
@@ -25,37 +26,13 @@ def index(request, update=False):
     except:
         raise not_login_exception 
     
-    context['student_nums'] = [i.student_num for i in Student.objects.filter(is_missing__exact=True)]
+    context['student_nums'] = missing_warning.get_missing_students()
+    context['score_pie_chart'] = data_process.get_pie_page('score_pie_chart', request)
+    context['scholarship_pie_chart'] = data_process.get_pie_page('scholarship_pie_chart', request)
+    context['subsidy_pie_chart'] = data_process.get_pie_page('subsidy_pie_chart', request)
 
     template = loader.get_template('teacher_client/index.html')
     return HttpResponse(template.render(context, request))
-
-    
-@exception_handler
-def score_forcasting(request, update=False):
-    """
-    @author: Jack
-    @return: 成绩预测页面
-    """
-    from .my_modules import score_forcasting
-    try:
-        update = request.GET['update']
-        if update:  # 如果需要更新数据
-            score_forcasting.get_data_update()
-        return HttpResponseRedirect('/teacher_client/score_forcasting')
-    except:
-        pass
-    
-    context = {
-        'teacher_name':request.session['teacher_name'],
-        'precision':score_forcasting.get_precision(),
-        'students_and_scores':score_forcasting.get_all_students_and_scores(),
-        'class_fail_student_nums':score_forcasting.get_class_failed_students(),
-        'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(score_forcasting.get_feature_scores_and_ranges(), request),
-        }
-    score_forcasting_page = loader.get_template('teacher_client/score_forcasting.html')
-    
-    return HttpResponse(score_forcasting_page.render(context, request))
 
 
 @exception_handler
@@ -85,6 +62,34 @@ def missing_warning(request, update=False):
     
     return HttpResponse(template.render(context, request))
 
+    
+@exception_handler
+def score_forcasting(request, update=False):
+    """
+    @author: Jack
+    @return: 成绩预测页面
+    """
+    from .my_modules import score_forcasting
+    try:
+        update = request.GET['update']
+        if update:  # 如果需要更新数据
+            score_forcasting.get_data_update()
+        return HttpResponseRedirect('/teacher_client/score_forcasting')
+    except:
+        pass
+    
+    context = {
+        'teacher_name':request.session['teacher_name'],
+        'precision':score_forcasting.get_precision(),
+        'students_and_scores':score_forcasting.get_all_students_and_scores(),
+        'class_fail_student_nums':score_forcasting.get_class_failed_students(),
+        'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(score_forcasting.get_feature_scores_and_ranges(), request),
+        'score_pie_chart':data_process.get_pie_page('score_pie_chart', request),
+        }
+    score_forcasting_page = loader.get_template('teacher_client/score_forcasting.html')
+    
+    return HttpResponse(score_forcasting_page.render(context, request))
+
 
 @exception_handler
 def scholarship_forcasting(request, update=False):
@@ -110,6 +115,7 @@ def scholarship_forcasting(request, update=False):
         'teacher_name':request.session['teacher_name'],
         'students_and_scores':students_and_scholarships,
         'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(scholarship_forcasting.get_feature_scores_and_ranges(), request),
+        'scholarship_pie_chart':data_process.get_pie_page('scholarship_pie_chart', request),
         }
     template = loader.get_template('teacher_client/scholarship_forcasting.html')
     
@@ -140,6 +146,7 @@ def subsidy_forcasting(request):
         'teacher_name':request.session['teacher_name'],
         'students_and_subsidies':students_and_subsidies,
         'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(subsidy_forcasting.get_feature_scores_and_ranges(), request),
+        'subsidy_pie_chart':data_process.get_pie_page('subsidy_pie_chart', request),
         }
     template = loader.get_template('teacher_client/subsidy_forcasting.html')
     

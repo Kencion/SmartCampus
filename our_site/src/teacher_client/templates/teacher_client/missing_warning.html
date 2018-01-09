@@ -1,5 +1,5 @@
 {% extends "teacher_client/base.html" %} 
-{% block title%} 失联预警 {%endblock%} 
+{% block title%} 智慧校园-失联预警 {%endblock%} 
 {% block module_name %}失联预警{% endblock %} 
 {% block teacher_name %}{{teacher_name}}{% endblock %} 
 {% block index_state %}{%endblock %} 
@@ -18,6 +18,11 @@
 			class="mdl-list__item-primary-content"> 可能会失联的学生有: </span></li> 
 			<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">
 			  <tbody>
+			  <thead>
+			      <td>学号</td>
+			      <td>姓名</td>
+			      <td>可能失联的原因</td>
+			    </thead>
 				{% for student in missing_students %}
 			    <tr onclick="javascript:window.open('http://baidu.com')">
 			      <td>{{student.0}}</td>
