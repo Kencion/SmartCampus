@@ -36,3 +36,11 @@ def get_students_and_scholarships():
     
 def get_feature_scores_and_ranges():
     return scholarship_forcasting().get_tree_data()
+
+
+def get_pie_data():
+    """
+            获得90分以上、60分以下的学生的特征范围
+    @return list() class_failed_students,
+    """
+    return scholarship_forcasting().get_pie_data()

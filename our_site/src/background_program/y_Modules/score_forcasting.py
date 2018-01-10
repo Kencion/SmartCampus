@@ -111,7 +111,3 @@ class score_forcasting(my_module):
 
 if __name__ == '__main__':
     t = score_forcasting()
-
-    
-
-

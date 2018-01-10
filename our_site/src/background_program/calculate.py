@@ -96,9 +96,9 @@ def clean_useless_data():
 
 
 def doit():
-    # 先插入学号
-    from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
-    FeatureCalculater().calculate()
+#     # 先插入学号
+#     from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+#     FeatureCalculater().calculate()
     
     # 计算特征值
     calculate()

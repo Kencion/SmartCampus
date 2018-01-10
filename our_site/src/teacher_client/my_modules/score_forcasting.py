@@ -51,13 +51,17 @@ def get_class_failed_students():
     return class_failed_students
 
     
-def get_features_range():
+def get_feature_scores_and_ranges():
     """
             获得90分以上、60分以下的学生的特征范围
     @return list() class_failed_students,
     """
-    features_range = score_forcasting().get_features_range()
-
-    
-def get_feature_scores_and_ranges():
     return score_forcasting().get_tree_data()
+
+
+def get_pie_data():
+    """
+            获得90分以上、60分以下的学生的特征范围
+    @return list() class_failed_students,
+    """
+    return score_forcasting().get_pie_data()
