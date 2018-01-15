@@ -11,14 +11,15 @@ def doit():
     @params
     @return
     """
-    from background_program.z_Tools import MyDataBase
+    from background_program.z_Tools.my_database import MyDataBase
     
-    db = MyDataBase.MyDataBase("软件学院")
+    db = MyDataBase("软件学院")
     executer = db.getExcuter()
     sql = ""
     with open('data_clean.sql', 'r', encoding='UTF-8') as f:
-        for line in f:
-            sql += line
+        for line in f.readlines():
+            print(sql)
+            sql = sql + line
     
     executer.execute(sql)
     db.close()
