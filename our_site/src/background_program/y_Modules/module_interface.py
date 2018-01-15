@@ -143,18 +143,21 @@ class my_module():
         data = {}
         name = 'name'
         children = 'children'
+        value = 'value'
         list2 = []
         # 获得当前类名
-        data[name] = self.__class__.__name__
+        data[name] = ''
         # 获得特征的评分
         d = self.get_feature_scores()
         # 对特征按照评分进行排序
         d = sorted(d.items(), key=operator.itemgetter(1))
         # 取评分前十个存储
+
         for d_index in range(len(d) - 10, len(d)):
             list1 = []
             dic2 = {}
             dic2[name] = d[d_index][0]
+            dic2[value] = float(d[d_index][1])*2
             
             for i in info[d[d_index][0]]:
                 dic1 = {}
@@ -165,6 +168,6 @@ class my_module():
             list2.append(dic2)
             
         data[children] = list2
-        
+
         return data
         
