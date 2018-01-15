@@ -18,7 +18,7 @@ class FeatureCalculater:
         self.feature_name = feature_name
         self.this_year = 2017  # 一个同学一个学年作为一个记录
             
-    def get_shool_year(self, student_num):
+    def get_school_year(self, student_num):
         in_year = int(student_num[3:7])
         school_year = [str(i) for i in range(in_year, self.this_year + 1)]
         
