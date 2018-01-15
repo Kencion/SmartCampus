@@ -1,4 +1,4 @@
-feature_name_en = (
+features_name_en = (
 'student_num',
 'student_name',
 'student_type',
@@ -84,7 +84,7 @@ feature_name_en = (
 
     )
 
-feature_name_ch = ('学号',
+features_name_ch = ('学号',
 '学生名字',
 '学生类别',
 '参与活动数量',

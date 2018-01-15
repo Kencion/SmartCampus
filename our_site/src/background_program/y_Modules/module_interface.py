@@ -50,9 +50,9 @@ class my_module():
         feature_selector.fit(self.X_train, self.Y_train)
         feature_scores = dict()
         f_scores = feature_selector.scores_
-        from .feature_name import feature_name_ch
+        from .feature_name import features_name_ch
         for i in range(len(f_scores)):
-            feature_scores[feature_name_ch[i].strip()] = f_scores[i] 
+            feature_scores[features_name_ch[i].strip()] = f_scores[i] 
         
         return feature_scores   
     
@@ -65,21 +65,23 @@ class my_module():
         from background_program.a_Data_prossing.DataCarer import DataCarer
         
         data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
-        features_name = []
-        from .feature_name import feature_name_ch
-        
-        for feature_name in feature_name_ch:
-            features_name.append(feature_name.strip())
+
+        from .feature_name import features_name_ch, features_name_en
+
+        fs_name, fs_name_ch = [], []
+        for f_name, f_name_ch in zip(features_name_en, features_name_ch):
+            fs_name.append(f_name.strip())
+            fs_name_ch.append(f_name_ch.strip())
         
         features_range = dict()
-        for feature_name in features_name:
+        for f_name, f_name_ch in zip(fs_name, fs_name_ch):
             rangee = dict()
             for score_type, score_range in zip(label_range.keys(), label_range.values()):
                 rangee[score_type] = data_carer.get_feature_range(
-                                                feature_name, label_name=label_name,
+                                                f_name, label_name=label_name,
                                                 label_min=score_range[0], label_max=score_range[1])
 
-            features_range[feature_name] = rangee
+            features_range[f_name_ch] = rangee
         
         return features_range
          
