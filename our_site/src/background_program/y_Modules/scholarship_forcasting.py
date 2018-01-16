@@ -25,7 +25,7 @@ class scholarship_forcasting(my_module):
         @retrun    sklearn.PreProcessing.xx preProcesser:特征预处理器
         '''
         from sklearn.pipeline import FeatureUnion
-        from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
+        from background_program.b_Sample_processing.PreProcessing.MyImputer import MyImputer
         
         pre_processer = FeatureUnion(
             transformer_list=[
@@ -41,7 +41,7 @@ class scholarship_forcasting(my_module):
         @params 
         @retrun    sklearn.某种类  featureSelector:特征选择器
         '''
-        from background_program.b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
+        from background_program.b_Sample_processing.Feature_selection.MySelectKBest import MySelectKBset
         
         featureSelector = MySelectKBset().selector
         

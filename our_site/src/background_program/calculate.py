@@ -4,15 +4,15 @@
 # import warnings
 # warnings.filterwarnings("ignore")
  
-from background_program.b_SampleProcessing.FeatureCalculating.activities import *
-from background_program.b_SampleProcessing.FeatureCalculating.dorm_entrance import *
-from background_program.b_SampleProcessing.FeatureCalculating.library import *
-from background_program.b_SampleProcessing.FeatureCalculating.scholarship import *
-from background_program.b_SampleProcessing.FeatureCalculating.score import *
-from background_program.b_SampleProcessing.FeatureCalculating.social_practice import *
-from background_program.b_SampleProcessing.FeatureCalculating.subsidy import *
-from background_program.b_SampleProcessing.FeatureCalculating.hornorary_title import *
-from background_program.b_SampleProcessing.FeatureCalculating.card import *
+from background_program.b_Sample_processing.Feature_calculating.activities import *
+from background_program.b_Sample_processing.Feature_calculating.dorm_entrance import *
+from background_program.b_Sample_processing.Feature_calculating.library import *
+from background_program.b_Sample_processing.Feature_calculating.scholarship import *
+from background_program.b_Sample_processing.Feature_calculating.score import *
+from background_program.b_Sample_processing.Feature_calculating.social_practice import *
+from background_program.b_Sample_processing.Feature_calculating.subsidy import *
+from background_program.b_Sample_processing.Feature_calculating.hornorary_title import *
+from background_program.b_Sample_processing.Feature_calculating.card import *
 from tqdm import tqdm  
 
 calculaters = [  
@@ -20,20 +20,20 @@ calculaters = [
 #         activity_last_time1.activity_last_time1(),
 #         activity_num1.activity_num1(),
 #         participation_avg_point1.participation_avg_point1(),
-#            
+#             
 #         avg_out_time.avg_out_time(),
 #         avg_in_time.avg_in_time(),
 #         avg_stay_out_time.avg_stay_out_time(),
 #         in_out_times.in_out_times(),
-#            
+#             
 #         library_borrow_times1.library_borrow_times1(),
 #         library_entrance.library_entrance(),
 #         library_study_time.library_study_time(),
 #         library_week_study_time.library_week_study_time(),
-#            
+#             
 #         scholarship_amount.scholarship_amount(),
 #         scholarship_rank.scholarship_rank(),
-#            
+#             
 #         department.department(),
 #         school_year1.school_year1(),
 #         failed_num1.failed_num1(),
@@ -42,10 +42,10 @@ calculaters = [
 #         GPA1.GPA1(),#
 #         score_rank1.score_rank1(),
 #         score1.score1(),
-#            
+#             
 #         is_social_practice_great1.is_social_practice_great1(),#
-#            
-        subsidy_amount.subsidy_amount(),
+#             
+#         subsidy_amount.subsidy_amount(),
 #         subsidy_rank.subsidy_rank(),
 #            
 #         hornorary_rank.hornorary_rank(),
@@ -96,7 +96,7 @@ def clean_useless_data():
 
 def doit():
 #     # 先插入学号
-#     from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+#     from background_program.b_Sample_processing.Feature_calculating.FeatureCalculater import FeatureCalculater
 #     FeatureCalculater().calculate()
 #     
     # 计算特征值
@@ -104,8 +104,6 @@ def doit():
      
     # 把没用的数据清除掉
     clean_useless_data()
-#     from background_program.a_Data_prossing.data_clean import data_clean 
-#     data_clean.doit()
     
 #     # 聚类
 #     for calculater in tqdm(calculaters):

@@ -5,7 +5,7 @@ Created on 2017年7月22日
 @author: LI
 Jack觉得有点乱，建议修改一下
 '''
-from background_program.b_SampleProcessing.Student import Student
+from background_program.b_Sample_processing.Student import Student
 from background_program.z_Tools.my_database import MyDataBase
 from numpy import mat
 import numpy as np
@@ -102,7 +102,7 @@ class DataCarer():
         @params 
         @return 
         '''
-        from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
+        from background_program.b_Sample_processing.PreProcessing.MyImputer import MyImputer
         
         MyImputer().transformer.fit_transform(X)
         
