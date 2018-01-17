@@ -1,0 +1,20 @@
+Classification	分类器 	 
+‘accuracy’	精度分类评分，用于多标记分类中
+‘average_precision’	从预测分数计算平均精确度，使用于二分类或者多标签分类任务
+‘f1’  在多分类和多标签的情况下，是每类f1得分的加权平均
+‘f1_micro’	同f1,只是具体参数不同
+‘f1_macro’	同上
+‘f1_weighted’	同上
+‘f1_samples’	同上
+‘neg_log_loss’	对数损失
+‘precision’ etc.	计算精度，精确度直观地表示分类器不能标记为否定的样本的能力
+‘recall’ etc.	召回，召回直观地是分类器找到所有正样本的能力
+‘roc_auc’	此实现仅二分类任务或多标签分类任务 
+ 
+Regression	 回归 
+‘explained_variance’	解释方差回归分数函数，最可能的分数是1.0，较低的值更差 
+‘neg_mean_absolute_error’	平均绝对误差回归损失，最好的值是0.0
+‘neg_mean_squared_error’	均方误差回归损失，最佳值为0.0
+‘neg_mean_squared_log_error’	均方对数误差回归损失，最佳值为0.0	 
+‘neg_median_absolute_error’	中位数绝对误差回归损失 ，最佳值为0.0
+‘r2’	R2（决定系数）回归分数函数。最佳分数是1.0，可能是负值（因为模型可能会更差）

@@ -23,9 +23,6 @@ class Select_Params(object):
     """
     def GSCV(self):
         self.gs.fit(self.X_train,self.Y_train)
-        #使用KFold和rkfold10折交叉验证
-#         kfold = model_selection.KFold(n_splits=10, random_state=1)
-#         rkfold=model_selection.RepeatedKFold(n_splits=10, random_state=1)
         best_parameters = self.gs.best_estimator_.get_params()
         return best_parameters
     """

@@ -38,7 +38,7 @@ class DecisionTree(object):
         estimator=DecisionTreeClassifier(criterion=obj.criterion,max_depth=obj.max_depth,\
                                          min_samples_split=obj.min_samples_split,min_samples_leaf=obj.min_samples_leaf,\
                                          max_features=obj.max_features)
-        #评估标准还可以完善。。。。cv参数可以在Select_params里调，scoring参数根据预测可以进行选择,但是没法用GSCV进行自动调参
+        #评估标准还可以完善，目前实现比较简单，选择同一标准衡量即可，scoring参数的调整可以参照scoring参数说明文档
         score1=sp.cross_val_score_model(estimator,self.X_train,self.Y_train,cv=10,scoring="accuracy")
         score2=sp.cross_validate_model(estimator, self.X_train, self.Y_train,cv=10)
 #         print((score1+score2)/2)
