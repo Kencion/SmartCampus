@@ -15,6 +15,10 @@ class DecisionTree(object):
     def __init__(self,X_train,Y_train):
         self.X_train=X_train
         self.Y_train=Y_train
+    """
+        计算各个算法的得分表现
+    @retrun（返回值解释）score float 该算法的最后得分，根据得分高低评估该算法对预测的表现
+    """
     def Calcute_count(self):
         #对应算法需要调整的参数列表
         param_grid = {"max_depth": [1,2,4],
