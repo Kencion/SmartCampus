@@ -5,7 +5,6 @@ Created on 2017年12月29日
 '''
 from student_client.models import Student
 from teacher_client.models import my_module
-import json
 
 
 def get_precision():
@@ -25,9 +24,9 @@ def get_data_update():
     for i in students_and_scores:
         Student(student_num=i[0], score=i[1]).save()
     
-#     my_module(module_name='score_forcasting', feature_scores_and_ranges='', pie_data='').save()
-#     get_feature_scores_and_ranges(update=True)
-#     get_pie_data(update=True)
+    my_module(module_name='score_forcasting', feature_scores_and_ranges='', pie_data='').save()
+    get_feature_scores_and_ranges(update=True)
+    get_pie_data(update=True)
 
 
 def get_all_students_and_scores():
@@ -55,13 +54,16 @@ def get_feature_scores_and_ranges(update=False):
     """
     from background_program.y_Modules.score_forcasting import score_forcasting
     
-    if update:
+    try:
+        feature_scores_and_ranges = eval(my_module.objects.filter(module_name='score_forcasting')[0].feature_scores_and_ranges)
+        if update:
+            feature_scores_and_ranges = score_forcasting().get_tree_data()
+            my_module.objects.filter(module_name='score_forcasting').update(feature_scores_and_ranges=feature_scores_and_ranges)
+    except:
         feature_scores_and_ranges = score_forcasting().get_tree_data()
-#         my_module.objects.filter(module_name='score_forcasting').update(feature_scores_and_ranges=feature_scores_and_ranges)
-    
-    else:
-#         return my_module.objects.filter(module_name='score_forcasting')[0].feature_scores_and_ranges
-        return score_forcasting().get_tree_data()
+        my_module.objects.filter(module_name='score_forcasting').update(feature_scores_and_ranges=feature_scores_and_ranges)
+        
+    return feature_scores_and_ranges
 
 
 def get_pie_data(update=False):
@@ -71,10 +73,13 @@ def get_pie_data(update=False):
     """
     from background_program.y_Modules.score_forcasting import score_forcasting
     
-    if update:
+    try:
+        pie_data = eval(my_module.objects.filter(module_name='score_forcasting')[0].pie_data)
+        if update:
+            pie_data = score_forcasting().get_pie_data()
+            my_module.objects.filter(module_name='score_forcasting').update(pie_data=pie_data)
+    except:
         pie_data = score_forcasting().get_pie_data()
-#         my_module.objects.filter(module_name='score_forcasting').update(pie_data=pie_data)
-    
-    else:
-#         return my_module.objects.filter(module_name='score_forcasting')[0].pie_data
-        return score_forcasting().get_pie_data()
+        my_module.objects.filter(module_name='score_forcasting').update(pie_data=pie_data)
+        
+    return pie_data

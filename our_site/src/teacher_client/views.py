@@ -68,7 +68,7 @@ def missing_warning(request, update=False):
 
     
 @exception_handler
-def score_forcasting(request, update=False):
+def score_forcasting(request):
     """
     @return: 成绩预测_页面
     """
@@ -95,14 +95,13 @@ def score_forcasting(request, update=False):
 
 
 @exception_handler
-def scholarship_forcasting(request, update=False):
+def scholarship_forcasting(request):
     """
     @return: 奖学金预测_页面
     """
     from .my_modules import scholarship_forcasting 
     try:
-        update = request.GET['update']
-        if update:  # 如果需要更新数据
+        if request.GET['update']:  # 如果需要更新数据
             scholarship_forcasting.get_data_update()
             
         return HttpResponseRedirect('/teacher_client/scholarship_forcasting')
@@ -130,8 +129,7 @@ def subsidy_forcasting(request):
     """
     from .my_modules import subsidy_forcasting 
     try:
-        update = request.GET['update']
-        if update:  # 如果需要更新数据
+        if request.GET['update']:  # 如果需要更新数据
             subsidy_forcasting.get_data_update()
             
         return HttpResponseRedirect('/teacher_client/subsidy_forcasting')

@@ -97,5 +97,6 @@ class scholarship_forcasting(my_module):
 
 
 if __name__ == '__main__':
-    t = scholarship_forcasting()
+    pass
+#     t = scholarship_forcasting()
 

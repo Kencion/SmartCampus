@@ -138,7 +138,7 @@ class my_module():
         @return: data,json格式
         '''
         import operator
-        
+
         info = self.get_features_range()
         data = {}
         name = 'name'
@@ -152,13 +152,14 @@ class my_module():
         # 对特征按照评分进行排序
         d = sorted(d.items(), key=operator.itemgetter(1))
         # 取评分前十个存储
-
         for d_index in range(len(d) - 10, len(d)):
             list1 = []
             dic2 = {}
             dic2[name] = d[d_index][0]
-            dic2[value] = float(d[d_index][1])*2
-            
+            if d[d_index][1] == float("inf"):
+                dic2[value] = 9999
+            else:
+                dic2[value] = float(d[d_index][1]) 
             for i in info[d[d_index][0]]:
                 dic1 = {}
                 dic1[name] = str(i) + ":" + str(info[d[d_index][0]][i])
@@ -168,6 +169,5 @@ class my_module():
             list2.append(dic2)
             
         data[children] = list2
-
-        return data
         
+        return data
