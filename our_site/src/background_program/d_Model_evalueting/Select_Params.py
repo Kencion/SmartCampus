@@ -33,11 +33,17 @@ class Select_Params(object):
     @retrun（返回值解释）results.mean():float:该算法多组得分的平均值
     """
     def cross_val_score_model(self,estimator,X,Y,cv=10,scoring="accuracy"):
-        results = model_selection.cross_val_score(estimator,X,Y,cv=10,scoring="accuracy")#cv一定要有值
-        return results.mean()
-    def cross_validate_model(self,estimator,X, Y, cv=10,return_train_score="False"):
-        test_score=model_selection.cross_validate(estimator,X,Y, cv=10,return_train_score="False")
-        return test_score['test_score'].mean()
+        kfold = model_selection.KFold(n_splits=10, random_state=1)
+        rkfold=model_selection.RepeatedKFold(n_splits=10, random_state=1)
+        results = model_selection.cross_val_score(estimator,X,Y,cv=kfold,scoring="accuracy")#cv一定要有值
+        results2 = model_selection.cross_val_score(estimator,X,Y,cv=rkfold,scoring="accuracy")
+        return (results.mean()+results2.mean())/2
+    def cross_validate_model(self,estimator,X, Y, cv=10):
+        kfold = model_selection.KFold(n_splits=10, random_state=1)
+        rkfold=model_selection.RepeatedKFold(n_splits=10, random_state=1)
+        test_score=model_selection.cross_validate(estimator,X,Y, cv=kfold)
+        test_score2=model_selection.cross_validate(estimator,X,Y, cv=rkfold)
+        return (test_score['test_score'].mean()+test_score2['test_score'].mean())/2
 if __name__=='__main__':
     iris = datasets.load_iris()
     param_grid = {"max_depth": [3,4],
