@@ -2,7 +2,7 @@
 <div style="width: 100%; padding: 0; margin: 0; height: 600px;"
 	id="mainnn"></div>
 <script>
-	 var myChart = echarts.init(document.getElementById('mainnn'));
+	var myChart = echarts.init(document.getElementById('mainnn'));
 	myChart.showLoading();
 	var data={{result|safe}};
 	myChart.hideLoading();
@@ -20,11 +20,11 @@
                 type: 'tree',
 
                 data: [data],
-
-                top: '1%',
-                left: '7%',
-                bottom: '1%',
-                right: '20%',
+				
+                top: '5%',
+                left: '1%',
+                bottom: '5%',
+                right: '27%',
 
                 symbolSize: 7,
 
@@ -33,7 +33,7 @@
                         position: 'left',
                         verticalAlign: 'middle',
                         align: 'right',
-                        fontSize: 9
+                        fontSize: 12
                     }
                 },
 
@@ -43,6 +43,7 @@
                             position: 'right',
                             verticalAlign: 'middle',
                             align: 'left'
+                           
                         }
                     }
                 },

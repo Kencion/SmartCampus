@@ -4,17 +4,11 @@ Created on 2017年12月29日
 @author: Jack
 '''
 from student_client.models import Student
-from background_program.y_Modules.score_forcasting import score_forcasting
-
-precision = 1.00
-
-
-def set_precision(precision):
-    precision = precision
+from teacher_client.models import my_module
 
 
 def get_precision():
-    return precision
+    return 1
 
 
 def get_data_update():
@@ -22,15 +16,17 @@ def get_data_update():
             更新数据
     @return 
     """
-    from .draw_pics import pie_chart, line_chart, broken_line_chart
+    from background_program.y_Modules.score_forcasting import score_forcasting
     
-    pie_chart(), line_chart(), broken_line_chart()
-    
-    p, students_and_scores = score_forcasting().predict()
-    set_precision(p)
+    # 获取准确率，并且保存预测结果
+    precision, students_and_scores = score_forcasting().predict()
     
     for i in students_and_scores:
         Student(student_num=i[0], score=i[1]).save()
+    
+    my_module(module_name='score_forcasting', feature_scores_and_ranges='', pie_data='').save()
+    get_feature_scores_and_ranges(update=True)
+    get_pie_data(update=True)
 
 
 def get_all_students_and_scores():
@@ -51,17 +47,39 @@ def get_class_failed_students():
     return class_failed_students
 
     
-def get_feature_scores_and_ranges():
+def get_feature_scores_and_ranges(update=False):
     """
             获得90分以上、60分以下的学生的特征范围
     @return list() class_failed_students,
     """
-    return score_forcasting().get_tree_data()
+    from background_program.y_Modules.score_forcasting import score_forcasting
+    
+    try:
+        feature_scores_and_ranges = eval(my_module.objects.filter(module_name='score_forcasting')[0].feature_scores_and_ranges)
+        if update:
+            feature_scores_and_ranges = score_forcasting().get_tree_data()
+            my_module.objects.filter(module_name='score_forcasting').update(feature_scores_and_ranges=feature_scores_and_ranges)
+    except:
+        feature_scores_and_ranges = score_forcasting().get_tree_data()
+        my_module.objects.filter(module_name='score_forcasting').update(feature_scores_and_ranges=feature_scores_and_ranges)
+        
+    return feature_scores_and_ranges
 
 
-def get_pie_data():
+def get_pie_data(update=False):
     """
             获得90分以上、60分以下的学生的特征范围
     @return list() class_failed_students,
     """
-    return score_forcasting().get_pie_data()
+    from background_program.y_Modules.score_forcasting import score_forcasting
+    
+    try:
+        pie_data = eval(my_module.objects.filter(module_name='score_forcasting')[0].pie_data)
+        if update:
+            pie_data = score_forcasting().get_pie_data()
+            my_module.objects.filter(module_name='score_forcasting').update(pie_data=pie_data)
+    except:
+        pie_data = score_forcasting().get_pie_data()
+        my_module.objects.filter(module_name='score_forcasting').update(pie_data=pie_data)
+        
+    return pie_data

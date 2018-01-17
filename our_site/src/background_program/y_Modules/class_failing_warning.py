@@ -25,8 +25,8 @@ class class_failing_warning(my_module):
         @params 
         @retrun    sklearn.PreProcessing.xx preProcesser:特征预处理器
         '''
-        from background_program.b_SampleProcessing.PreProcessing.MyMinMaxScaler import MyMinMaxScaler
-        from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
+        from background_program.b_Sample_processing.PreProcessing.MyMinMaxScaler import MyMinMaxScaler
+        from background_program.b_Sample_processing.PreProcessing.MyImputer import MyImputer
         
         pre_processer = FeatureUnion(
             transformer_list=[
@@ -43,8 +43,8 @@ class class_failing_warning(my_module):
         @params 
         @retrun    sklearn.某种类  featureSelector:特征选择器
         '''
-        from background_program.b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
-        from background_program.b_SampleProcessing.FeatureSelection.MySelectPercentile import MySelectPercentile
+        from background_program.b_Sample_processing.Feature_selection.MySelectKBest import MySelectKBset
+        from background_program.b_Sample_processing.Feature_selection.MySelectPercentile import MySelectPercentile
         
 #         feature_selector = FeatureUnion(
 #             transformer_list=[

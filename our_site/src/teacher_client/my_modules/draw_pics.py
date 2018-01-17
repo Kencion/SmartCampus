@@ -1,6 +1,6 @@
 '''
 Created on 2017年12月29日
-
+用matplotlib画图
 @author: yzh
 '''
 
