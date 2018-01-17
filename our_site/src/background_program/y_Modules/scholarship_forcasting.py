@@ -25,7 +25,7 @@ class scholarship_forcasting(my_module):
         @retrun    sklearn.PreProcessing.xx preProcesser:特征预处理器
         '''
         from sklearn.pipeline import FeatureUnion
-        from background_program.b_SampleProcessing.PreProcessing.MyImputer import MyImputer
+        from background_program.b_Sample_processing.PreProcessing.MyImputer import MyImputer
         
         pre_processer = FeatureUnion(
             transformer_list=[
@@ -41,7 +41,7 @@ class scholarship_forcasting(my_module):
         @params 
         @retrun    sklearn.某种类  featureSelector:特征选择器
         '''
-        from background_program.b_SampleProcessing.FeatureSelection.MySelectKBest import MySelectKBset
+        from background_program.b_Sample_processing.Feature_selection.MySelectKBest import MySelectKBset
         
         featureSelector = MySelectKBset().selector
         
@@ -66,8 +66,37 @@ class scholarship_forcasting(my_module):
         @retrun    
         '''
         pass
+    
+    def get_pie_data(self):
+        '''
+                        获得echarts画饼图需要的数据
+        @params 
+        @retrun data list类型数据
+        '''
+        info = self.predict()[1]
+        
+        #获得奖学金获奖名单
+        scholarship_list = [x[1] for x in info]
+        scholarship = {'获得奖学金':0,'未获得奖学金':0}
+        
+        #统计获得和未获得奖学金的人数
+        for index in scholarship_list:
+            if index > 0 :
+                scholarship['获得奖学金'] += 1
+            if index <= 0:
+                scholarship['未获得奖学金'] += 1
+        
+        data = []
+        for name in scholarship:
+            dic = {}
+            dic['name'] = name
+            dic['value'] = scholarship[name]
+            data.append(dic)
+
+        return data   
 
 
 if __name__ == '__main__':
-    t = scholarship_forcasting()
-    print(t.predict())
+    pass
+#     t = scholarship_forcasting()
+

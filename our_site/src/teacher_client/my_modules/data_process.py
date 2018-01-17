@@ -19,8 +19,11 @@ def get_feature_scores_and_ranges_page(feature_scores_and_ranges, request):
     return feature_scores_and_ranges_page.render(context, request)
 
                             
-def get_pie_page(chart_name, request):
+def get_pie_page(chart_name, my_data, request):
     pie_page = loader.get_template('teacher_client/charts/pie_chart.html')
-    context = {'chart_name':chart_name}
+    context = {
+        'chart_name':chart_name,
+        'my_data':my_data,
+               }
     
     return pie_page.render(context, request)

@@ -50,9 +50,9 @@ class my_module():
         feature_selector.fit(self.X_train, self.Y_train)
         feature_scores = dict()
         f_scores = feature_selector.scores_
-        from .feature_name import feature_name_ch
+        from .feature_name import features_name_ch
         for i in range(len(f_scores)):
-            feature_scores[feature_name_ch[i].strip()] = f_scores[i] 
+            feature_scores[features_name_ch[i].strip()] = f_scores[i] 
         
         return feature_scores   
     
@@ -65,21 +65,23 @@ class my_module():
         from background_program.a_Data_prossing.DataCarer import DataCarer
         
         data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
-        features_name = []
-        from .feature_name import feature_name_ch
-        
-        for feature_name in feature_name_ch:
-            features_name.append(feature_name.strip())
+
+        from .feature_name import features_name_ch, features_name_en
+
+        fs_name, fs_name_ch = [], []
+        for f_name, f_name_ch in zip(features_name_en, features_name_ch):
+            fs_name.append(f_name.strip())
+            fs_name_ch.append(f_name_ch.strip())
         
         features_range = dict()
-        for feature_name in features_name:
+        for f_name, f_name_ch in zip(fs_name, fs_name_ch):
             rangee = dict()
             for score_type, score_range in zip(label_range.keys(), label_range.values()):
                 rangee[score_type] = data_carer.get_feature_range(
-                                                feature_name, label_name=label_name,
+                                                f_name, label_name=label_name,
                                                 label_min=score_range[0], label_max=score_range[1])
 
-            features_range[feature_name] = rangee
+            features_range[f_name_ch] = rangee
         
         return features_range
          
@@ -130,20 +132,21 @@ class my_module():
         '''
         pass
     
-    def yzh_get_data(self):
+    def get_tree_data(self):
         '''
-                        数据的转换，转成echarts能识别的格式
+                        数据的转换，转成echarts树形图能识别的格式
         @return: data,json格式
         '''
         import operator
-        
+
         info = self.get_features_range()
         data = {}
         name = 'name'
         children = 'children'
+        value = 'value'
         list2 = []
         # 获得当前类名
-        data[name] = self.__class__.__name__
+        data[name] = ''
         # 获得特征的评分
         d = self.get_feature_scores()
         # 对特征按照评分进行排序
@@ -153,7 +156,10 @@ class my_module():
             list1 = []
             dic2 = {}
             dic2[name] = d[d_index][0]
-            
+            if d[d_index][1] == float("inf"):
+                dic2[value] = 9999
+            else:
+                dic2[value] = float(d[d_index][1]) 
             for i in info[d[d_index][0]]:
                 dic1 = {}
                 dic1[name] = str(i) + ":" + str(info[d[d_index][0]][i])
@@ -165,4 +171,3 @@ class my_module():
         data[children] = list2
         
         return data
-        

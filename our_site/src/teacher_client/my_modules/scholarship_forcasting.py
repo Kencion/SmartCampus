@@ -4,6 +4,7 @@ Created on 2017年12月29日
 @author: Jack
 '''
 from student_client.models import Student
+from teacher_client.models import my_module
 from background_program.y_Modules.scholarship_forcasting import scholarship_forcasting
 
 
@@ -17,11 +18,13 @@ def get_data_update():
             并在数据mydatabase表student_client_Student中
             将该学生的score字段设为预测结果
     """
-    from .draw_pics import pie_chart, line_chart, broken_line_chart
-    pie_chart(), line_chart(), broken_line_chart()
-    students_and_scholarships = scholarship_forcasting().predict()
+    _, students_and_scholarships = scholarship_forcasting().predict()
     for i in students_and_scholarships:
         Student(student_num=i[0], scholarship=i[1]).save()
+        
+    my_module(module_name='scholarship_forcasting', feature_scores_and_ranges='', pie_data='').save()
+    get_feature_scores_and_ranges(update=True)
+    get_pie_data(update=True)
 
 
 def get_students_and_scholarships():
@@ -34,5 +37,35 @@ def get_students_and_scholarships():
     return students_and_scholarships
 
     
-def get_feature_scores_and_ranges():
-    return scholarship_forcasting().yzh_get_data()
+def get_feature_scores_and_ranges(update=False):
+    """
+            获得90分以上、60分以下的学生的特征范围
+    @return list() class_failed_students,
+    """
+    try:
+        feature_scores_and_ranges = eval(my_module.objects.filter(module_name='scholarship_forcasting')[0].feature_scores_and_ranges)
+        if update:
+            feature_scores_and_ranges = scholarship_forcasting().get_tree_data()
+            my_module.objects.filter(module_name='scholarship_forcasting').update(feature_scores_and_ranges=feature_scores_and_ranges)
+    except:
+        feature_scores_and_ranges = scholarship_forcasting().get_tree_data()
+        my_module.objects.filter(module_name='scholarship_forcasting').update(feature_scores_and_ranges=feature_scores_and_ranges)
+        
+    return feature_scores_and_ranges
+
+
+def get_pie_data(update=False):
+    """
+            获得90分以上、60分以下的学生的特征范围
+    @return list() class_failed_students,
+    """
+    try:
+        pie_data = eval(my_module.objects.filter(module_name='scholarship_forcasting')[0].pie_data)
+        if update:
+            pie_data = scholarship_forcasting().get_pie_data()
+            my_module.objects.filter(module_name='scholarship_forcasting').update(pie_data=pie_data)
+    except:
+        pie_data = scholarship_forcasting().get_pie_data()
+        my_module.objects.filter(module_name='scholarship_forcasting').update(pie_data=pie_data)
+        
+    return pie_data
