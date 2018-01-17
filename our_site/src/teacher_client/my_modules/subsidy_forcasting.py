@@ -18,11 +18,13 @@ def get_data_update():
             并在数据mydatabase表student_client_Student中
             将该学生的subsidy字段设为预测结果
     """
-    _, students_and_subsidies = subsidy_forcasting().predict()
+    precision, students_and_subsidies = subsidy_forcasting().predict()
     for i in students_and_subsidies:
         Student(student_num=i[0], subsidy=i[1]).save()
         
-    my_module(module_name='subsidy_forcasting', feature_scores_and_ranges='', pie_data='').save()
+        
+    my_module.objects.filter(module_name='scholarship_forcasting').delete()
+    my_module(module_name='subsidy_forcasting', precision=precision, feature_scores_and_ranges='', pie_data='').save()
     get_feature_scores_and_ranges(update=True)
     get_pie_data(update=True)
 
@@ -35,6 +37,16 @@ def get_students_and_subsidies():
     students_and_subsidies = [[i.student_num, i.subsidy] for i in Student.objects.order_by('subsidy')]
     
     return students_and_subsidies
+
+
+def  get_precision():
+    precision = 0
+    try:
+        precision = my_module.objects.filter(module_name='scholarship_forcasting')[0].precision
+    except:
+        pass
+     
+    return precision
 
 
 def get_feature_scores_and_ranges(update=False):

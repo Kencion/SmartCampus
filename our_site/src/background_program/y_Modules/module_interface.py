@@ -1,6 +1,9 @@
 '''
 @modify: Jack Modify on 2018年1月3日
 '''
+from sklearn.metrics import *
+from numpy import mat
+from sklearn.model_selection import train_test_split
 
 
 class my_module():
@@ -36,7 +39,10 @@ class my_module():
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
         
-        return 2, result
+        # precision
+        predict_result_t = pipeline.predict(self.X_validate)
+        precision = explained_variance_score(self.Y_validate, predict_result_t)
+        return precision, result
         
     def get_feature_scores(self):
         '''
@@ -89,14 +95,24 @@ class my_module():
         '''
                 获得训练数据和测试数据
         self.X_train=训练数据特征， self.Y_train=训练数据标签
-        self.X_test=测试数据特征， self.Y_test=测试数据标签
+        self.X_test=测试数据特征
         @params string student_num:学生学号
         @retrun
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
         
         data_carer = DataCarer(label_name=self.label_name, school_year=school_year, usage=usage)
-        self.X_train, self.Y_train = data_carer.create_train_dataSet() 
+        
+        X_train, Y_train = data_carer.create_train_dataSet()
+         
+        self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
+        X_train, Y_train, test_size=0.2, random_state=3)
+        
+        self.X_train = mat(self.X_train, dtype=float)
+        self.X_validate = mat(self.X_validate, dtype=float)
+        self.Y_train = mat(self.Y_train, dtype=float)
+        self.Y_validate = mat(self.Y_validate, dtype=float)
+        
         self.students, self.X_test = data_carer.create_validate_dataSet()
         
     def get_pre_processer(self):

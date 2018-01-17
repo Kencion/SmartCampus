@@ -113,6 +113,7 @@ def scholarship_forcasting(request):
     context = {
         'module_name':'成绩预测',
         'teacher_name':request.session['teacher_name'],
+        'precision':scholarship_forcasting.get_precision(),
         'students_and_scores':students_and_scholarships,
         'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(scholarship_forcasting.get_feature_scores_and_ranges(), request),
         'scholarship_pie_chart':data_process.get_pie_page('scholarship_pie_chart', scholarship_forcasting.get_pie_data(), request),
@@ -141,6 +142,7 @@ def subsidy_forcasting(request):
     context = {
         'module_name':'助学金预测',
         'teacher_name':request.session['teacher_name'],
+        'precision':subsidy_forcasting.get_precision(),
         'students_and_subsidies':students_and_subsidies,
         'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(subsidy_forcasting.get_feature_scores_and_ranges(), request),
         'subsidy_pie_chart':data_process.get_pie_page('subsidy_pie_chart', subsidy_forcasting.get_pie_data(), request),

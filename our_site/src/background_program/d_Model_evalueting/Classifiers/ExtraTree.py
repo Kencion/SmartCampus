@@ -1,12 +1,16 @@
 '''
 Created on 2018年1月17日
 
-@author: YHJ
+@author: jack
 '''
 from sklearn.model_selection import GridSearchCV
+from sklearn import model_selection
+from sklearn.linear_model import LinearRegression
+from sklearn import svm, datasets
 from sklearn.tree import DecisionTreeClassifier
 from background_program.d_Model_evalueting.Config import Config
 from background_program.d_Model_evalueting.Select_Params import Select_Params
+import sklearn
 
 
 class DecisionTree(object):
@@ -15,11 +19,12 @@ class DecisionTree(object):
         self.X_train = X_train
         self.Y_train = Y_train
 
+    """
+        计算各个算法的得分表现
+    @retrun（返回值解释）score float 该算法的最后得分，根据得分高低评估该算法对预测的表现
+    """
+
     def Calcute_count(self):
-        """
-        x计算各个算法的得分表现
-        @retrun（返回值解释）score float 该算法的最后得分，根据得分高低评估该算法对预测的表现
-        """
         # 对应算法需要调整的参数列表
         param_grid = {"max_depth": [1, 2, 4],
                   "max_features": [1, 3],
@@ -42,3 +47,9 @@ class DecisionTree(object):
         score2 = sp.cross_validate_model(estimator, self.X_train, self.Y_train, cv=10, return_train_score="False")
         print((score1 + score2) / 2)
         return (score1 + score2) / 2
+
+
+if __name__ == '__main__':
+    iris = datasets.load_iris()
+    l = DecisionTree(iris.data, iris.target)
+    l.Calcute_count()
