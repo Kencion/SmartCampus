@@ -76,6 +76,7 @@ train_G = tf.train.AdamOptimizer(LR_G).minimize(
     G_loss, var_list=tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='Generator'))
 
 sess = tf.Session()
+writer = tf.summary.FileWriter('./visual',sess.graph)
 sess.run(tf.global_variables_initializer())
 
 plt.ion()  # something about continuous plotting
@@ -98,5 +99,5 @@ for step in range(100000):
         for i in G_paintings[0]:
             print(i)
         print('+++++++++++++++++++')
-
+writer.close()
 print('程序结束')
