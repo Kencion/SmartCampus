@@ -7,10 +7,6 @@ from student_client.models import Student
 from teacher_client.models import my_module
 
 
-def get_precision():
-    return 1
-
-
 def get_data_update():
     """
             更新数据
@@ -20,11 +16,12 @@ def get_data_update():
     
     # 获取准确率，并且保存预测结果
     precision, students_and_scores = score_forcasting().predict()
-    
     for i in students_and_scores:
         Student(student_num=i[0], score=i[1]).save()
     
-    my_module(module_name='score_forcasting', feature_scores_and_ranges='', pie_data='').save()
+    
+    my_module.objects.filter(module_name='score_forcasting').delete()
+    my_module(module_name='score_forcasting', precision=precision, feature_scores_and_ranges='', pie_data='').save()
     get_feature_scores_and_ranges(update=True)
     get_pie_data(update=True)
 
@@ -45,6 +42,16 @@ def get_class_failed_students():
     """
     class_failed_students = [i.student_num for i in Student.objects.filter(score__lt=60.0)]
     return class_failed_students
+
+
+def  get_precision():
+    precision = 0
+    try:
+        precision = my_module.objects.filter(module_name='score_forcasting')[0].precision
+    except:
+        pass
+     
+    return precision
 
     
 def get_feature_scores_and_ranges(update=False):

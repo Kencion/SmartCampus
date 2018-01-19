@@ -77,6 +77,7 @@ class score_forcasting(my_module):
         @retrun    
         '''
         pass
+
     def get_pie_data(self):
         '''
                         获得echarts画饼图需要的数据
@@ -86,16 +87,16 @@ class score_forcasting(my_module):
         info = self.predict()[1]
         score_list = [x[1] for x in info]
 
-        score = {'60分以下':0,'60分-70分':0,'70分-80分':0,'80分-90分':0,'90分及以上':0}
+        score = {'60分以下':0, '60分-70分':0, '70分-80分':0, '80分-90分':0, '90分及以上':0}
         
         for index in score_list:
             if index < 60:
                 score['60分以下'] += 1
-            if index <70 and index >= 60:
+            if index < 70 and index >= 60:
                 score['60分-70分'] += 1
-            if index <80 and index >= 70:
+            if index < 80 and index >= 70:
                 score['70分-80分'] += 1
-            if index <90 and index >= 80:
+            if index < 90 and index >= 80:
                 score['80分-90分'] += 1
             if index <= 100 and index >= 90:
                 score['90分-100分'] += 1
@@ -110,4 +111,5 @@ class score_forcasting(my_module):
 
 
 if __name__ == '__main__':
-    t = score_forcasting()
+    tt, t = score_forcasting().predict()
+    print(tt)
