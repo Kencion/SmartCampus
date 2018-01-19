@@ -3,7 +3,7 @@ Created on 2017年12月28日
 
 @author: YHJ
 '''
-from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+from background_program.b_Sample_processing.Feature_calculating.FeatureCalculater import FeatureCalculater
 from sklearn import model_selection
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import LogisticRegression
