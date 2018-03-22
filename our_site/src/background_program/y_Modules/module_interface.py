@@ -1,7 +1,6 @@
 '''
 @modify: Jack Modify on 2018年1月3日
 '''
-from sklearn.metrics import *
 from numpy import mat
 from sklearn.model_selection import train_test_split
 
@@ -18,8 +17,6 @@ class my_module():
         self.feature_selector = self.get_feature_selector()
         # 获取分类器
         self.estimater = self.get_estimater()
-        # 获取模型评估器
-        self.evalueter = self.get_model_evalueter()
             
     def predict(self):
         from sklearn.pipeline import Pipeline
@@ -40,8 +37,10 @@ class my_module():
             result.append([student.getStudent_num(), float(score)])
         
         # precision
-        predict_result_t = pipeline.predict(self.X_validate)
-        precision = explained_variance_score(self.Y_validate, predict_result_t)
+        predict_result = pipeline.predict(self.X_validate)
+        model_evalueter = self.get_model_evalueter(y_true=[i[0] for i in self.Y_validate.getA()], y_predict=[i[0] for i in predict_result])
+        precision = model_evalueter
+        print(precision)
         return precision, result
         
     def get_feature_scores(self):

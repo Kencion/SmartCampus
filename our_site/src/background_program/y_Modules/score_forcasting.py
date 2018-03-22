@@ -70,13 +70,22 @@ class score_forcasting(my_module):
         
         return estimater
     
-    def get_model_evalueter(self):
+    def get_model_evalueter(self, y_true, y_predict):
         '''
-                        获得模型评估器，主要是评估算法正确率
+                        获得模型评估器，这里用roc曲线下的面积，即auc来评价
         @params 
         @retrun    
         '''
-        pass
+        from sklearn.metrics import roc_auc_score
+        import numpy as np
+        
+        print(y_true)
+        print(y_predict)
+        
+        model_evalueter = roc_auc_score(np.array(y_true), np.array(y_predict))
+        print(1)
+        
+        return model_evalueter
 
     def get_pie_data(self):
         '''
