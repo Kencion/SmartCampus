@@ -18,12 +18,12 @@ def get_data_update():
             并在数据mydatabase表student_client_Student中
             将该学生的score字段设为预测结果
     """
-    precision, students_and_scholarships = scholarship_forcasting().predict()
+    evaluate_score, students_and_scholarships = scholarship_forcasting().predict()
     for i in students_and_scholarships:
         Student(student_num=i[0], scholarship=i[1]).save()
         
     my_module.objects.filter(module_name='scholarship_forcasting').delete()
-    my_module(module_name='scholarship_forcasting', precision=precision, feature_scores_and_ranges='', pie_data='').save()
+    my_module(module_name='scholarship_forcasting', evaluate_score=evaluate_score, feature_scores_and_ranges='', pie_data='').save()
     get_feature_scores_and_ranges(update=True)
     get_pie_data(update=True)
 
@@ -38,14 +38,14 @@ def get_students_and_scholarships():
     return students_and_scholarships
 
 
-def  get_precision():
-    precision = 0
+def  get_evaluate_score():
+    evaluate_score = 0
     try:
-        precision = my_module.objects.filter(module_name='scholarship_forcasting')[0].precision
+        evaluate_score = my_module.objects.filter(module_name='scholarship_forcasting')[0].evaluate_score
     except:
         pass
      
-    return precision
+    return evaluate_score
 
     
 def get_feature_scores_and_ranges(update=False):

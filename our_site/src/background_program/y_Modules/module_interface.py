@@ -36,12 +36,12 @@ class my_module():
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
         
-        # precision
+        # evaluete_score
         predict_result = pipeline.predict(self.X_validate)
-        model_evalueter = self.get_model_evalueter(y_true=[i[0] for i in self.Y_validate.getA()], y_predict=[i[0] for i in predict_result])
-        precision = model_evalueter
-        print(precision)
-        return precision, result
+        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.getA()], y_predict=[i[0] for i in predict_result])
+        evaluete_score = model_evalueter.get_evaluate_score()
+        print(evaluete_score)
+        return evaluete_score, result
         
     def get_feature_scores(self):
         '''
@@ -139,7 +139,7 @@ class my_module():
         '''
         pass
     
-    def get_model_evalueter(self):
+    def get_model_evaluater(self):
         '''
                         获得模型评估器，主要是评估算法正确率
         @params 

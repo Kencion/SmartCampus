@@ -70,20 +70,15 @@ class score_forcasting(my_module):
         
         return estimater
     
-    def get_model_evalueter(self, y_true, y_predict):
+    def get_model_evaluater(self, y_true, y_predict):
         '''
                         获得模型评估器，这里用roc曲线下的面积，即auc来评价
         @params 
         @retrun    
         '''
-        from sklearn.metrics import roc_auc_score
-        import numpy as np
+        from background_program.d_Model_evaluating.Regression import my_explained_variance_score
         
-        print(y_true)
-        print(y_predict)
-        
-        model_evalueter = roc_auc_score(np.array(y_true), np.array(y_predict))
-        print(1)
+        model_evalueter = my_explained_variance_score(y_true, y_predict)
         
         return model_evalueter
 
