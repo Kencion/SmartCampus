@@ -104,4 +104,5 @@ class subsidy_forcasting(my_module):
 
 if __name__ == '__main__':
     t = subsidy_forcasting()
+    print(t.predict())
 

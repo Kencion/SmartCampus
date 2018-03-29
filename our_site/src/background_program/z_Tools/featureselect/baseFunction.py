@@ -4,7 +4,7 @@ Created on 2018年3月24日
 @author: LI
 '''
 import random as RD
-import BeeGroup as BG
+import background_program.z_Tools.featureselect.BeeGroup as BG
 import math
 
 def random(xlb,xub):
@@ -16,7 +16,7 @@ def random(xlb,xub):
     
     return RD.uniform(xlb,xub)
 
-def initilize(xFoodNumber,xD,xlb,xub):
+def initilize(xFoodNumber,xD,xlb,xub,xmodule):
     '''
         初始化参数
     '''
@@ -65,13 +65,17 @@ def initilize(xFoodNumber,xD,xlb,xub):
     
     return NectarSource,EmployedBee,OnLooker,BestSource
 
-def calculationTruefit(xbee):
+def calculationTruefit(xbee,xmodule,xX_train,xX_validate):
     '''
         计算真实的函数值
     '''
-    truefit=0.5+(math.sin(math.sqrt(xbee.code[0]*xbee.code[0]+xbee.code[1]*xbee.code[1]))*math.sin(math.sqrt(xbee.code[0]*xbee.code[0]+xbee.code[1]*xbee.code[1]))-0.5)\
-    /((1+0.001*(xbee.code[0]*xbee.code[0]+xbee.code[1]*xbee.code[1]))*(1+0.001*(xbee.code[0]*xbee.code[0]+xbee.code[1]*xbee.code[1])));  
-  
+#     truefit=0.5+(math.sin(math.sqrt(xbee.code[0]*xbee.code[0]+xbee.code[1]*xbee.code[1]))*math.sin(math.sqrt(xbee.code[0]*xbee.code[0]+xbee.code[1]*xbee.code[1]))-0.5)\
+#     /((1+0.001*(xbee.code[0]*xbee.code[0]+xbee.code[1]*xbee.code[1]))*(1+0.001*(xbee.code[0]*xbee.code[0]+xbee.code[1]*xbee.code[1])));  
+    newX_train=[]
+    newX_validate=[]
+    for i in range(0,len(xX_train)):
+        
+    truefit,result=xmodule.predict()
     return truefit;  
 
 def calculationFitness(xtruefit):
@@ -107,7 +111,7 @@ def evalueSource():
     '''
     pass
 
-def sendEmployedBees(xFoodNumber,xD,xNectarSource,xEmployedBee,xlb,xub):
+def sendEmployedBees(xFoodNumber,xD,xNectarSource,xEmployedBee,xlb,xub,xmodule):
     for i in range(0,int(xFoodNumber)):
         param2change=int(random(0,xD))
         
@@ -147,7 +151,7 @@ def sendEmployedBees(xFoodNumber,xD,xNectarSource,xEmployedBee,xlb,xub):
         
     return xNectarSource,xEmployedBee
 
-def sendOnlookerBees(xFoodNumber,xD,xNectarSource,xOnLooker,xlb,xub):
+def sendOnlookerBees(xFoodNumber,xD,xNectarSource,xOnLooker,xlb,xub,xmodule):
     '''
         观察蜂与采蜜蜂交流信息，采蜜蜂更改信息
     '''
@@ -198,7 +202,7 @@ def sendOnlookerBees(xFoodNumber,xD,xNectarSource,xOnLooker,xlb,xub):
       
     return xNectarSource,xOnLooker
 
-def sendScoutBees(xFoodNumber,xD,xNectarSource,xlb,xub,xlimit):
+def sendScoutBees(xFoodNumber,xD,xNectarSource,xlb,xub,xlimit,xmodule):
     '''
         判断是否有侦查蜂的出现，有则重新生成蜜源
     '''

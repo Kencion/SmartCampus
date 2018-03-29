@@ -38,7 +38,9 @@ class my_module():
         
         # evaluete_score
         predict_result = pipeline.predict(self.X_validate)
-        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.getA()], y_predict=[i[0] for i in predict_result])
+        print(type(predict_result))
+        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.getA()],
+                                                    y_predict=[i for i in predict_result])
         evaluete_score = model_evalueter.get_evaluate_score()
         print(evaluete_score)
         return evaluete_score, result
