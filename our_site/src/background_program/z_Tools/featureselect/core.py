@@ -8,11 +8,11 @@ import matplotlib.pyplot as plt
 import background_program.z_Tools.featureselect.BeeGroup as BG
 import background_program.z_Tools.featureselect.baseFunction as baseFunction
 from pylab import *  
-import background_program.y_Modules.class_failing_warning as class_failing_warning
+import background_program.y_Modules.class_failing_warning as cfw
 
 
 class myABC():
-    def __init__(self,xNP=40,xlimit=20,xmaxCycle=10000,xD=2,xlb=-100,xub=100):
+    def __init__(self,xNP=40,xlimit=20,xmaxCycle=1000,xD=2,xlb=-100,xub=100):
         '''
         NP 种群的规模，采蜜蜂+观察蜂 
         FoodNumber=NP/2 食物的数量，为采蜜蜂的数量  
@@ -36,6 +36,7 @@ class myABC():
         self.BestSource=None
         self.X_train=None
         self.X_validate=None
+        self.X_test=None
         
     
     def run(self):
@@ -44,27 +45,28 @@ class myABC():
         
         self.NectarSource,self.EmployedBee,self.OnLooker,self.BestSource = \
                                         baseFunction.initilize(self.FoodNumber,self.D,self.lb,self.ub,
-                                        self.module,self.X_train,self.X_validate) 
+                                        self.module,self.X_train,self.X_validate,self.X_test) 
         self.BestSource=baseFunction.MemorizeBestSource(self.FoodNumber,self.NectarSource,self.BestSource)
         process=[]
         
         #主要循环
         gen =0
         while gen<self.maxCycle :
+            print(gen)
             self.NectarSource,self.EmployedBee=\
                                 baseFunction.sendEmployedBees(self.FoodNumber,self.D,self.NectarSource,
                                                               self.EmployedBee,self.lb,self.ub,
-                                                              self.module,self.X_train,self.X_validate)
+                                                              self.module,self.X_train,self.X_validate,self.X_test)
             self.NectarSource=baseFunction.calculateProbabilities(self.FoodNumber,self.NectarSource)  
             self.NectarSource,self.OnLooker=\
                                 baseFunction.sendOnlookerBees(self.FoodNumber,self.D,self.NectarSource,
                                                               self.OnLooker,self.lb,self.ub,self.module,
-                                                              self.X_train,self.X_validate)  
+                                                              self.X_train,self.X_validate,self.X_test)  
             self.BestSource=baseFunction.MemorizeBestSource(self.FoodNumber,self.NectarSource,self.BestSource) 
             self.NectarSource=\
                                 baseFunction.sendScoutBees(self.FoodNumber,self.D,self.NectarSource,
                                                            self.lb,self.ub,self.limit,self.module,
-                                                           self.X_train,self.X_validate)  
+                                                           self.X_train,self.X_validate,self.X_test)  
             self.BestSource=baseFunction.MemorizeBestSource(self.FoodNumber,self.NectarSource,self.BestSource)
            
             f.write(str(self.BestSource.trueFit)) 
@@ -84,11 +86,13 @@ class myABC():
         
 if __name__=='__main__':
     item=myABC()
-    testmodule=class_failing_warning.class_failing_warning()
-    oldDataset = test.X_train
-    D=len(oldDataset[0]) #获取原数据集的特征数，即维度
+    testmodule=cfw.class_failing_warning()
+    oldDataset = testmodule.X_train
+    D=oldDataset.shape[1] #获取原数据集的特征数，即维度
     item.D=D
     item.module=testmodule
     item.X_train=testmodule.X_train
     item.X_validate=testmodule.X_validate
+    item.X_test=testmodule.X_test
+    
     item.run()
