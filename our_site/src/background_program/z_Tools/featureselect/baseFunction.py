@@ -40,7 +40,7 @@ def initilize(xFoodNumber,xD,xlb,xub,xmodule,xX_train,xX_validate,xX_test):
         BestSource.setcode(code)
         
         #蜜源初始化
-        NectarSource[i].settrueFit(calculationTruefit(NectarSource[i],xmodule,xX_train,xX_validate,xX_test))
+        NectarSource[i].settrueFit(calculationTruefit(NectarSource[i],xD,xmodule,xX_train,xX_validate,xX_test))
         NectarSource[i].setfitness(calculationFitness(NectarSource[i].gettrueFit())) 
         NectarSource[i].setrfitness(0)
         NectarSource[i].settrail(0)
@@ -67,7 +67,7 @@ def initilize(xFoodNumber,xD,xlb,xub,xmodule,xX_train,xX_validate,xX_test):
     
     return NectarSource,EmployedBee,OnLooker,BestSource
 
-def calculationTruefit(xbee,xmodule,xX_train,xX_validate,xX_test):
+def calculationTruefit(xbee,xD,xmodule,xX_train,xX_validate,xX_test):
     '''
         计算真实的函数值
     '''
@@ -76,6 +76,13 @@ def calculationTruefit(xbee,xmodule,xX_train,xX_validate,xX_test):
 #     print(type(xX_train))
 #     print(xX_train.shape[1])
 #     print(len(xbee.code))
+    if xbee.code.count(1)==0: #不允许一个1都没有
+        for i in range(0,10):
+            param2change=int(random(0,xD))
+            xbee.code[param2change]=1
+    
+    
+    
     newX_train=np.zeros([xX_train.shape[0],1])
     for index in range(0,xX_train.shape[1]):
         if xbee.code[index]==1:#将index为1的特征加入新的集合
@@ -163,7 +170,7 @@ def sendEmployedBees(xFoodNumber,xD,xNectarSource,xEmployedBee,xlb,xub,xmodule,x
             
             xEmployedBee[i].setcode(oldcode)
               
-            xEmployedBee[i].settrueFit(calculationTruefit(xEmployedBee[i],xmodule,xX_train,xX_validate,xX_test))  
+            xEmployedBee[i].settrueFit(calculationTruefit(xEmployedBee[i],xD,xmodule,xX_train,xX_validate,xX_test))  
             xEmployedBee[i].setfitness(calculationFitness(xEmployedBee[i].gettrueFit()))
             
             #贪心选择策略
@@ -215,7 +222,7 @@ def sendOnlookerBees(xFoodNumber,xD,xNectarSource,xOnLooker,xlb,xub,xmodule,xX_t
                 xOnLooker[i].setcode(xNectarSource[i].getcode())
                 oldcode=xOnLooker[i].getcode()
                 oldcode[param2change]= (oldcode[param2change]+1)%2
-                xOnLooker[i].settrueFit(calculationTruefit(xOnLooker[i],xmodule,xX_train,xX_validate,xX_test))  
+                xOnLooker[i].settrueFit(calculationTruefit(xOnLooker[i],xD,xmodule,xX_train,xX_validate,xX_test))  
                 xOnLooker[i].setfitness(calculationFitness(xOnLooker[i].gettrueFit()))
                   
                 #贪心选择策略
@@ -253,7 +260,7 @@ def sendScoutBees(xFoodNumber,xD,xNectarSource,xlb,xub,xlimit,xmodule,xX_train,x
             code.append(xlb+R*(xub-xlb))
         xNectarSource[maxtrialindex].setcode(code)  
         xNectarSource[maxtrialindex].settrail(0)  
-        xNectarSource[maxtrialindex].settrueFit(calculationTruefit(xNectarSource[maxtrialindex],xmodule,xX_train,xX_validate,xX_test))  
+        xNectarSource[maxtrialindex].settrueFit(calculationTruefit(xNectarSource[maxtrialindex],xD,xmodule,xX_train,xX_validate,xX_test))  
         xNectarSource[maxtrialindex].setfitness(calculationFitness(xNectarSource[maxtrialindex].gettrueFit()))  
     return xNectarSource
 

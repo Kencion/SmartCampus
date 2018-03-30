@@ -9,10 +9,12 @@ import background_program.z_Tools.featureselect.BeeGroup as BG
 import background_program.z_Tools.featureselect.baseFunction as baseFunction
 from pylab import *  
 import background_program.y_Modules.class_failing_warning as cfw
+import warnings
+
 
 
 class myABC():
-    def __init__(self,xNP=40,xlimit=20,xmaxCycle=1000,xD=2,xlb=-100,xub=100):
+    def __init__(self,xNP=40,xlimit=160,xmaxCycle=1000,xD=2,xlb=-100,xub=100):
         '''
         NP 种群的规模，采蜜蜂+观察蜂 
         FoodNumber=NP/2 食物的数量，为采蜜蜂的数量  
@@ -48,7 +50,8 @@ class myABC():
                                         self.module,self.X_train,self.X_validate,self.X_test) 
         self.BestSource=baseFunction.MemorizeBestSource(self.FoodNumber,self.NectarSource,self.BestSource)
         process=[]
-        
+        print(self.BestSource.code)
+        print(str(self.BestSource.code))
         #主要循环
         gen =0
         while gen<self.maxCycle :
@@ -68,7 +71,11 @@ class myABC():
                                                            self.lb,self.ub,self.limit,self.module,
                                                            self.X_train,self.X_validate,self.X_test)  
             self.BestSource=baseFunction.MemorizeBestSource(self.FoodNumber,self.NectarSource,self.BestSource)
-           
+            indexi=[]
+            for i in self.BestSource.code:
+                if i==1:
+                    indexi.append(i)
+            f.write(str(indexi)+"    ")
             f.write(str(self.BestSource.trueFit)) 
             f.write('\n')
             process.append(self.BestSource.trueFit) 
@@ -85,6 +92,7 @@ class myABC():
         
         
 if __name__=='__main__':
+    warnings.filterwarnings("ignore")
     item=myABC()
     testmodule=cfw.class_failing_warning()
     oldDataset = testmodule.X_train
