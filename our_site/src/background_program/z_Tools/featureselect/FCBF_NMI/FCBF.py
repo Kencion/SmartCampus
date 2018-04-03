@@ -87,15 +87,16 @@ class FCBF():
         return NMI
 if __name__=="__main__":
     import datetime
-    starttime = datetime.datetime.now()
     fcbf=FCBF()
     dc=DataCarer.DataCarer('score','2016',"classify")
     X_train, Y_train=dc.create_train_dataSet()
     X_train=np.array(X_train)
 #     X_train=np.array([[1,2,3,4,1,1],[2,3,3,3,1,1],[1,4,5,3,1,1],[1,2,3,4,1,1],[2,3,3,3,1,1],[1,4,5,3,1,1],[1,1,3,3,4,4],[2,0,1,2,3,4]])
 #     Y_train=np.array([1,2,4,1,2,4,2,1])
-    print(type(Y_train))
-    print(type(Y_train))
-    fcbf.FCBF_realize(X_train, Y_train)
-    endtime = datetime.datetime.now()
-    print((endtime - starttime).seconds)
+    
+    #将Y_train转换为一维的nparray类型
+    Y_train=np.array(Y_train).reshape(len(Y_train),)
+    Feature_Names,Feature_Values_pandas,Feature_Values_np=fcbf.FCBF_realize(X_train, Y_train)
+    print(Feature_Values_pandas)
+    #将Y_train重新转换为二维的nparray类型
+    Y_train=np.array(Y_train).reshape(len(Y_train),1)
