@@ -1,5 +1,4 @@
 fea_name= [
-'student_type',
 'activity_num',
 'activity_avg_level',
 'activity_last_time',
@@ -22,7 +21,6 @@ fea_name= [
 'student_grade',
 'scholarship_rank',
 'scholarship_amount',
-'score',
 'avg_out_time',
 'avg_in_time',
 'avg_stay_out_time',

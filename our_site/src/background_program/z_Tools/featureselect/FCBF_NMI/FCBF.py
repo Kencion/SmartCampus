@@ -3,6 +3,7 @@ Created on 2018年4月3日
 @author: YHJ
 '''
 from background_program.z_Tools.featureselect.FCBF_NMI import  features_name
+from background_program.a_Data_Prossing import DataCarer
 import math
 import numpy as np
 import pandas as pd
@@ -20,6 +21,7 @@ class FCBF():
         '''
     def FCBF_realize(self,X_train,Y_train):
         #从制定文件获取属性名称，存为columns=["a","b","c"]形式
+        #获取的属性列不包括类标签和非数值型特征(student_type,student_num)
         columns=features_name.fea_name
         F=np.array(X_train.T)#初始化F
         data = DataFrame(X_train,columns=columns)
@@ -55,6 +57,7 @@ class FCBF():
         Feature_Names=list(S_result.columns)
         Feature_Values_pandas=S_result
         Feature_Values_np=np.array(S_result)
+        print(Feature_Names)
         return Feature_Names,Feature_Values_pandas,Feature_Values_np
             
     #计算每个属性与类标签之间的归一化互信息NMI的值
@@ -82,8 +85,17 @@ class FCBF():
         mini=min(math.log(len(A_ids),2)+eps,math.log(len(B_ids),2)+eps)
         NMI=MI/mini
         return NMI
-# if __name__=="__main__":
-#     fcbf=FCBF()
+if __name__=="__main__":
+    import datetime
+    starttime = datetime.datetime.now()
+    fcbf=FCBF()
+    dc=DataCarer.DataCarer('score','2016',"classify")
+    X_train, Y_train=dc.create_train_dataSet()
+    X_train=np.array(X_train)
 #     X_train=np.array([[1,2,3,4,1,1],[2,3,3,3,1,1],[1,4,5,3,1,1],[1,2,3,4,1,1],[2,3,3,3,1,1],[1,4,5,3,1,1],[1,1,3,3,4,4],[2,0,1,2,3,4]])
 #     Y_train=np.array([1,2,4,1,2,4,2,1])
-#     fcbf.FCBF_realize(X_train, Y_train)
+    print(type(Y_train))
+    print(type(Y_train))
+    fcbf.FCBF_realize(X_train, Y_train)
+    endtime = datetime.datetime.now()
+    print((endtime - starttime).seconds)
