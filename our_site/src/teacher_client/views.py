@@ -9,7 +9,7 @@ from django.http.response import HttpResponseRedirect
 from student_client.models import Student
 from our_site.my_logger import exception_handler
 from our_site.my_exceptions import not_login_exception
-from .my_modules import data_process
+from .my_modules.processer import data_page_processer
 
 
 @exception_handler
@@ -32,9 +32,9 @@ def index(request, update=False):
         raise not_login_exception 
     
     context['student_nums'] = missing_warning.get_missing_students()
-    context['score_pie_chart'] = data_process.get_pie_page('score_pie_chart', score_forcasting.get_pie_data(), request)
-    context['scholarship_pie_chart'] = data_process.get_pie_page('scholarship_pie_chart', scholarship_forcasting.get_pie_data(), request)
-    context['subsidy_pie_chart'] = data_process.get_pie_page('subsidy_pie_chart', subsidy_forcasting.get_pie_data(), request)
+    context['score_pie_chart'] = data_page_processer().get_pie_page('score_pie_chart', score_forcasting.get_pie_data(), request)
+    context['scholarship_pie_chart'] = data_page_processer().get_pie_page('scholarship_pie_chart', scholarship_forcasting.get_pie_data(), request)
+    context['subsidy_pie_chart'] = data_page_processer().get_pie_page('subsidy_pie_chart', subsidy_forcasting.get_pie_data(), request)
 
     template = loader.get_template('teacher_client/index.html')
     return HttpResponse(template.render(context, request))
@@ -85,8 +85,8 @@ def score_forcasting(request):
        'evaluate_score':score_forcasting.get_evaluate_score(),
        'students_and_scores':score_forcasting.get_all_students_and_scores(),
        'class_fail_student_nums':score_forcasting.get_class_failed_students(),
-       'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(score_forcasting.get_feature_scores_and_ranges(), request),
-       'score_pie_chart':data_process.get_pie_page('score_pie_chart', score_forcasting.get_pie_data(), request),
+       'feature_scores_and_ranges':data_page_processer().get_feature_scores_and_ranges_page(score_forcasting.get_feature_scores_and_ranges(), request),
+       'score_pie_chart':data_page_processer().get_pie_page('score_pie_chart', score_forcasting.get_pie_data(), request),
        }
         
     score_forcasting_page = loader.get_template('teacher_client/score_forcasting.html')
@@ -115,8 +115,8 @@ def scholarship_forcasting(request):
         'teacher_name':request.session['teacher_name'],
         'evaluate_score':scholarship_forcasting.get_evaluate_score(),
         'students_and_scores':students_and_scholarships,
-        'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(scholarship_forcasting.get_feature_scores_and_ranges(), request),
-        'scholarship_pie_chart':data_process.get_pie_page('scholarship_pie_chart', scholarship_forcasting.get_pie_data(), request),
+        'feature_scores_and_ranges':data_page_processer().get_feature_scores_and_ranges_page(scholarship_forcasting.get_feature_scores_and_ranges(), request),
+        'scholarship_pie_chart':data_page_processer().get_pie_page('scholarship_pie_chart', scholarship_forcasting.get_pie_data(), request),
         }
     template = loader.get_template('teacher_client/scholarship_forcasting.html')
     
@@ -144,8 +144,8 @@ def subsidy_forcasting(request):
         'teacher_name':request.session['teacher_name'],
         'evaluate_score':subsidy_forcasting.get_evaluate_score(),
         'students_and_subsidies':students_and_subsidies,
-        'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(subsidy_forcasting.get_feature_scores_and_ranges(), request),
-        'subsidy_pie_chart':data_process.get_pie_page('subsidy_pie_chart', subsidy_forcasting.get_pie_data(), request),
+        'feature_scores_and_ranges':data_page_processer().get_feature_scores_and_ranges_page(subsidy_forcasting.get_feature_scores_and_ranges(), request),
+        'subsidy_pie_chart':data_page_processer().get_pie_page('subsidy_pie_chart', subsidy_forcasting.get_pie_data(), request),
         }
     template = loader.get_template('teacher_client/subsidy_forcasting.html')
     
