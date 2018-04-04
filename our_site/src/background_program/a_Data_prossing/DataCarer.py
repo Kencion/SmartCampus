@@ -54,6 +54,7 @@ class DataCarer():
         for i in self.executer.fetchall():
             student = Student(student_num=i[0], features=list(i[2:index]) + list(i[index + 1:]), label=i[index])
             dataSet.append(student.getAll())
+#         print(dataSet)
         dataSet = np.array(dataSet)
         self.close_database()
         
