@@ -37,9 +37,15 @@ class in_out_times(FeatureCalculater):
                 if self.executer.execute(sql) == 0:
                         self.add_student(student_num + str(school_year))
                         self.executer.execute(sql)
-
+    def add(self):
+        sql = "SELECT left(student_num,14),avg(in_out_times) from students where in_out_times!=0 group by student_num"
+        self.executer.execute(sql)
+        result = self.executer.fetchall() 
+        for re in result:
+            sql="update students set in_out_times=%s where left(student_num,14)=%s"
+            self.executer.execute(sql, (float(re[1]), re[0]))
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
 if __name__=="__main__":
     hr=in_out_times()
-    hr.calculate()
+    hr.add()
