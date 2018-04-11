@@ -5,8 +5,8 @@ Created on 2017年11月21日
 '''
 
 from background_program.z_Tools.my_exceptions import my_exception_handler
-from ..FeatureCalculater import FeatureCalculater
-
+#from ..FeatureCalculater import FeatureCalculater
+from background_program.b_Sample_processing.Feature_calculating.FeatureCalculater import FeatureCalculater
 
 class library_week_study_time(FeatureCalculater):
 
@@ -18,6 +18,8 @@ class library_week_study_time(FeatureCalculater):
         '''
                         计算每一学年周末图书馆学习时间
         '''
+        sql = "update students set library_week_study_time=%s"
+        self.executer.execute(sql, float(0))
         sql = "SELECT DISTINCT student_num FROM library_study_time"
         self.executer.execute(sql)
         student_nums = [str(i[0]) for i in self.executer.fetchall()]
@@ -36,3 +38,6 @@ class library_week_study_time(FeatureCalculater):
         
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
+if __name__=="__main__":
+    hr=library_week_study_time()
+    hr.calculate()
