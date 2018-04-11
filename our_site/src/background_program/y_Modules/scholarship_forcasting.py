@@ -107,13 +107,6 @@ class scholarship_forcasting(my_module):
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
-#     pass
     tt, t = scholarship_forcasting().predict()
     print(tt)
     print(t)
-
-=======
-    pass
-#     t = scholarship_forcasting()
->>>>>>> b412c0820c4a3065e680fb93d8cf684b99986b78

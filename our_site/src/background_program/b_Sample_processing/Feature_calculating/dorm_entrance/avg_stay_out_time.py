@@ -2,8 +2,8 @@
 @author: yhj
 '''
 from background_program.z_Tools.my_exceptions import my_exception_handler
-from ..FeatureCalculater import FeatureCalculater
-
+#from ..FeatureCalculater import FeatureCalculater
+from background_program.b_Sample_processing.Feature_calculating.FeatureCalculater import FeatureCalculater
 
 class avg_stay_out_time(FeatureCalculater):
 
@@ -25,5 +25,15 @@ class avg_stay_out_time(FeatureCalculater):
                     self.add_student(re[0])
                     self.executer.execute(sql, (float(re[1]), re[0]))
 
+    def add(self):
+        sql = "SELECT left(student_num,14),avg(avg_stay_out_time) from students where avg_stay_out_time!=0 group by student_num"
+        self.executer.execute(sql)
+        result = self.executer.fetchall() 
+        for re in result:
+            sql="update students set avg_stay_out_time=%s where left(student_num,14)=%s"
+            self.executer.execute(sql, (float(re[1]), re[0]))
     def cluster(self):
-        FeatureCalculater.cluster(self, clusters=4)
+        FeatureCalculater.cluster(self, clusters=4) 
+if __name__=="__main__":
+    hr=avg_stay_out_time()
+    hr.add()
