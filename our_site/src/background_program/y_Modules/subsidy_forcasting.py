@@ -103,10 +103,14 @@ class subsidy_forcasting(my_module):
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
+    
     tt, t = subsidy_forcasting().predict()
     
     print()
     print(t)
+=======
     t = subsidy_forcasting()
     print(t.predict())
+>>>>>>> b412c0820c4a3065e680fb93d8cf684b99986b78
 
