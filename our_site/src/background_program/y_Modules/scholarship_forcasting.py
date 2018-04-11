@@ -11,17 +11,11 @@ class scholarship_forcasting(my_module):
         my_module.__init__(self, label_name='scholarship_amount')
             
     def get_features_range(self):
-        '''
-        @retrun    特征范围
-        '''
         features_range = my_module.get_features_range(self, label_name='scholarship_amount', label_range={'没获得':[0, 0], '有获得':[1, 99999], })
         
         return features_range
     
     def get_data(self):
-        '''
-        get train,test,validation dataSet
-        '''
         my_module.get_dataset(self, school_year='2016', usage='regression')
         
     def get_pre_processer(self):
@@ -65,17 +59,13 @@ class scholarship_forcasting(my_module):
         
         return estimater
     
-    def get_model_evaluater(self, y_true, y_predict):
+    def get_model_evalueter(self):
         '''
-                        获得模型评估器，这里用roc曲线下的面积，即auc来评价
+                        获得模型评估器，主要是评估算法正确率
         @params 
         @retrun    
         '''
-        from background_program.d_Model_evaluating.Regression import my_explained_variance_score
-        
-        model_evalueter = my_explained_variance_score(y_true, y_predict)
-        
-        return model_evalueter
+        pass
     
     def get_pie_data(self):
         '''
@@ -85,11 +75,11 @@ class scholarship_forcasting(my_module):
         '''
         info = self.predict()[1]
         
-        # 获得奖学金获奖名单
+        #获得奖学金获奖名单
         scholarship_list = [x[1] for x in info]
-        scholarship = {'获得奖学金':0, '未获得奖学金':0}
+        scholarship = {'获得奖学金':0,'未获得奖学金':0}
         
-        # 统计获得和未获得奖学金的人数
+        #统计获得和未获得奖学金的人数
         for index in scholarship_list:
             if index > 0 :
                 scholarship['获得奖学金'] += 1
@@ -107,13 +97,6 @@ class scholarship_forcasting(my_module):
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
-#     pass
-    tt, t = scholarship_forcasting().predict()
-    print(tt)
-    print(t)
-
-=======
     pass
 #     t = scholarship_forcasting()
->>>>>>> b412c0820c4a3065e680fb93d8cf684b99986b78
+

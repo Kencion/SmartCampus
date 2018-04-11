@@ -60,17 +60,13 @@ class subsidy_forcasting(my_module):
         
         return estimater
     
-    def get_model_evaluater(self, y_true, y_predict):
+    def get_model_evalueter(self):
         '''
-                        获得模型评估器，这里用roc曲线下的面积，即auc来评价
+                        获得模型评估器，主要是评估算法正确率
         @params 
         @retrun    
         '''
-        from background_program.d_Model_evaluating.Regression import my_explained_variance_score
-        
-        model_evalueter = my_explained_variance_score(y_true, y_predict)
-        
-        return model_evalueter
+        pass
 
     def get_pie_data(self):
         '''
@@ -103,14 +99,5 @@ class subsidy_forcasting(my_module):
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
-    
-    tt, t = subsidy_forcasting().predict()
-    
-    print()
-    print(t)
-=======
     t = subsidy_forcasting()
-    print(t.predict())
->>>>>>> b412c0820c4a3065e680fb93d8cf684b99986b78
 

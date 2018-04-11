@@ -43,8 +43,8 @@ calculaters = [
 #         score_rank1.score_rank1(),
 #         score1.score1(),
 #             
-#         is_social_practice_great1.is_social_practice_great1(),
-#         social_practice_time.social_practice_time(),
+#         is_social_practice_great1.is_social_practice_great1(),#
+#             
 #         subsidy_amount.subsidy_amount(),
 #         subsidy_rank.subsidy_rank(),
 #            

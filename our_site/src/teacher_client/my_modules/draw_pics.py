@@ -111,20 +111,3 @@ def line_chart():
     # plt.show()
     plt.close()
 
-
-from PIL import Image
-import numpy as np  
-import matplotlib.pyplot as plt  
-  
-x=[0,1]  
-y=[0,1]  
-plt.figure()  
-plt.plot(x,y) 
-plt.axis('off')
-plt.savefig("demo.png")
-image1=Image.open('demo.png')
-im2 = image1.rotate(10)
-
-plt.imshow(im2)
-plt.axis('off')
-plt.show()
