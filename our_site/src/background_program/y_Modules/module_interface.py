@@ -1,7 +1,7 @@
 '''
 @modify: Jack Modify on 2018年1月3日
 '''
-from numpy import mat
+import numpy as np
 from sklearn.model_selection import train_test_split
 
 
@@ -44,7 +44,7 @@ class my_module():
         # evaluete_score
         predict_result = pipeline.predict(self.X_validate)
 #         print(type(predict_result))
-        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.getA()],
+        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
                                                     y_predict=[i for i in predict_result])
         evaluete_score = model_evalueter.get_evaluate_score()
 #         print(evaluete_score)
@@ -114,10 +114,10 @@ class my_module():
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
         X_train, Y_train, test_size=0.2, random_state=3)
         
-        self.X_train = mat(self.X_train, dtype=float)
-        self.X_validate = mat(self.X_validate, dtype=float)
-        self.Y_train = mat(self.Y_train, dtype=float)
-        self.Y_validate = mat(self.Y_validate, dtype=float)
+        self.X_train = np.array(self.X_train)
+        self.X_validate = np.array(self.X_validate)
+        self.Y_train = np.array(self.Y_train)
+        self.Y_validate = np.array(self.Y_validate)
         
         self.students, self.X_test = data_carer.create_validate_dataSet()
         
