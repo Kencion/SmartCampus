@@ -113,23 +113,17 @@ def scholarship_forcasting(request):
     context = {
         'module_name':'成绩预测',
         'teacher_name':request.session['teacher_name'],
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         'precision':scholarship_forcasting.get_precision(),
         'students_and_scholarships':students_and_scholarships,
         'feature_scores_and_ranges':data_process.get_feature_scores_and_ranges_page(scholarship_forcasting.get_feature_scores_and_ranges(), request),
         'scholarship_pie_chart':data_process.get_pie_page('scholarship_pie_chart', scholarship_forcasting.get_pie_data(), request),
-=======
-=======
->>>>>>> f46dd8042985092799eec7aa3b3bddacdc474ac6
+
         'evaluate_score':scholarship_forcasting.get_evaluate_score(),
         'students_and_scores':students_and_scholarships,
         'feature_scores_and_ranges':data_page_processer().get_feature_scores_and_ranges_page(scholarship_forcasting.get_feature_scores_and_ranges(), request),
         'scholarship_pie_chart':data_page_processer().get_pie_page('scholarship_pie_chart', scholarship_forcasting.get_pie_data(), request),
-<<<<<<< HEAD
->>>>>>> b412c0820c4a3065e680fb93d8cf684b99986b78
-=======
->>>>>>> f46dd8042985092799eec7aa3b3bddacdc474ac6
+
         }
     template = loader.get_template('teacher_client/scholarship_forcasting.html')
     
