@@ -1,8 +1,7 @@
 '''
 @modify: Jack Modify on 2018年1月3日
 '''
-from sklearn.metrics import *
-from numpy import mat
+import numpy as np
 from sklearn.model_selection import train_test_split
 
 
@@ -18,16 +17,20 @@ class my_module():
         self.feature_selector = self.get_feature_selector()
         # 获取分类器
         self.estimater = self.get_estimater()
-        # 获取模型评估器
-        self.evalueter = self.get_model_evalueter()
             
     def predict(self):
+        
         from sklearn.pipeline import Pipeline
         
         # 管道
+#         pipeline = Pipeline(
+#             [('pre_processer', self.pre_processer),
+#              ('feature_selector', self.feature_selector),
+#              ('estimater', self.estimater),
+#              ]
+#             )
         pipeline = Pipeline(
             [('pre_processer', self.pre_processer),
-             ('feature_selector', self.feature_selector),
              ('estimater', self.estimater),
              ]
             )
@@ -39,10 +42,14 @@ class my_module():
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
         
-        # precision
-        predict_result_t = pipeline.predict(self.X_validate)
-        precision = explained_variance_score(self.Y_validate, predict_result_t)
-        return precision, result
+        # evaluete_score
+        predict_result = pipeline.predict(self.X_validate)
+#         print(type(predict_result))
+        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
+                                                    y_predict=[i for i in predict_result])
+        evaluete_score = model_evalueter.get_evaluate_score()
+#         print(evaluete_score)
+        return evaluete_score, result
         
     def get_feature_scores(self):
         '''
@@ -50,6 +57,8 @@ class my_module():
         @params 
         @retrun    dict selected_features:每个特征的评分
         '''
+        
+        
         # 获取特征选择器
         feature_selector = self.get_feature_selector()
         
@@ -99,21 +108,24 @@ class my_module():
         @params string student_num:学生学号
         @retrun
         '''
+
         from background_program.a_Data_prossing.DataCarer import DataCarer
-        
+
         data_carer = DataCarer(label_name=self.label_name, school_year=school_year, usage=usage)
         
+        #这里输出了未发现那个特征值。再看看？
         X_train, Y_train = data_carer.create_train_dataSet()
-         
+
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
         X_train, Y_train, test_size=0.2, random_state=3)
         
-        self.X_train = mat(self.X_train, dtype=float)
-        self.X_validate = mat(self.X_validate, dtype=float)
-        self.Y_train = mat(self.Y_train, dtype=float)
-        self.Y_validate = mat(self.Y_validate, dtype=float)
+        self.X_train = np.array(self.X_train)
+        self.X_validate = np.array(self.X_validate)
+        self.Y_train = np.array(self.Y_train)
+        self.Y_validate = np.array(self.Y_validate)
         
         self.students, self.X_test = data_carer.create_validate_dataSet()
+
         
     def get_pre_processer(self):
         '''
@@ -140,7 +152,7 @@ class my_module():
         '''
         pass
     
-    def get_model_evalueter(self):
+    def get_model_evaluater(self):
         '''
                         获得模型评估器，主要是评估算法正确率
         @params 

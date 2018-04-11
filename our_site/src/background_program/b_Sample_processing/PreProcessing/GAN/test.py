@@ -35,7 +35,7 @@ PAINT_POINTS = np.vstack([np.linspace(-1, 1, ART_COMPONENTS) for _ in range(MINI
 
 
 def get_real_data():  # painting from the famous artist (real target)
-    from background_program.a_Data_prossing.DataCarer import DataCarer
+    from background_program.a_Data_Prossing import DataCarer
     X, Y = DataCarer(label_name='score', school_year='2016', usage="classify").create_train_dataSet()
     data = np.hstack((X, Y))
     result = np.array(data)

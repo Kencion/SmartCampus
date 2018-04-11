@@ -1,6 +1,6 @@
 {% extends "teacher_client/base.html" %} 
 {% block title%} 智慧校园-奖学金预测 {%endblock%} 
-{% block module_name %}奖学金预测(可信度:{{precision}}){% endblock %} 
+{% block module_name %}奖学金预测(可信度:{{evaluate_score}}){% endblock %} 
 {% block teacher_name %}{{teacher_name}}{% endblock %} 
 {% block index_state %}{%endblock %} 
 {% block score_forcasting %}{% endblock %} 
@@ -36,10 +36,10 @@
 						      <td>学号</td>
 						      <td>奖学金</td>
 						    </thead>
-							{% for student_and_score in students_and_scores %}
+							{% for students_and_scholarship in students_and_scholarships %}
 						    <tr style="width:300px;" onclick="javascript:window.open('/teacher_client/student_info?student_num={{student_and_score.0}}')">
-						      <td style="width:50%;text-overflow :ellipsis">{{student_and_score.0}}</td>
-						      <td style="width:50%;text-overflow :ellipsis">{{student_and_score.1}}</td>
+						      <td style="width:50%;text-overflow :ellipsis">{{students_and_scholarship.0}}</td>
+						      <td style="width:50%;text-overflow :ellipsis">{{students_and_scholarship.1}}</td>
 						    </tr>
 							{% endfor %}
 						  </tbody>

@@ -70,13 +70,17 @@ class score_forcasting(my_module):
         
         return estimater
     
-    def get_model_evalueter(self):
+    def get_model_evaluater(self, y_true, y_predict):
         '''
-                        获得模型评估器，主要是评估算法正确率
+                        获得模型评估器，这里用roc曲线下的面积，即auc来评价
         @params 
         @retrun    
         '''
-        pass
+        from background_program.d_Model_evaluating.Regression import my_explained_variance_score
+        
+        model_evalueter = my_explained_variance_score(y_true, y_predict)
+        
+        return model_evalueter
 
     def get_pie_data(self):
         '''
@@ -113,3 +117,4 @@ class score_forcasting(my_module):
 if __name__ == '__main__':
     tt, t = score_forcasting().predict()
     print(tt)
+    print(t)
