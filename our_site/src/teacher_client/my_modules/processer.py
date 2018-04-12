@@ -51,7 +51,7 @@ class data_processer():
             try:
                 evaluate_score = self.dj_module.objects.filter(module_name=self.module_name)[0].evaluate_score
             except:
-                evaluate_score = self.bk_module.get_evaluate_score()
+                evaluate_score = self.bk_module.evaluate_score
                 self.dj_module.objects.filter(module_name=self.module_name).update(evaluate_score=evaluate_score)
             
         return evaluate_score
@@ -73,7 +73,7 @@ class data_processer():
         # 获得当前类名
         data[name] = ''
         # 获得特征的评分
-        d = self.get_feature_scores()
+        d = self.bk_module.get_feature_scores()
         # 对特征按照评分进行排序
         d = sorted(d.items(), key=operator.itemgetter(1))
         # 取评分前十个存储
@@ -104,13 +104,13 @@ class data_processer():
         """
         
         if data_update:
-            f_s_and_r = self.get_tree_data(self.bk_module)
+            f_s_and_r = self.get_tree_data()
             self.dj_module.objects.filter(module_name=self.module_name).update(feature_scores_and_ranges=f_s_and_r)
         else:
             try:
                 f_s_and_r = eval(self.dj_module.objects.filter(module_name=self.module_name)[0].feature_scores_and_ranges)
             except:
-                f_s_and_r = self.get_tree_data(self.bk_module)
+                f_s_and_r = self.get_tree_data()
                 self.dj_module.objects.filter(module_name=self.module_name).update(feature_scores_and_ranges=f_s_and_r)
             
         return f_s_and_r

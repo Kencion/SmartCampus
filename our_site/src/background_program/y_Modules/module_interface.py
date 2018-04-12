@@ -17,6 +17,8 @@ class my_module():
         self.feature_selector = self.get_feature_selector()
         # 获取分类器
         self.estimater = self.get_estimater()
+        
+        self.evaluate_score = 0
             
     def predict(self):
         from sklearn.pipeline import Pipeline
@@ -43,11 +45,9 @@ class my_module():
         
         # evaluete_score
         predict_result = pipeline.predict(self.X_validate)
-#         print(type(predict_result))
-        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
+        evaluete_score = self.get_evaluate_score(y_true=[i[0] for i in self.Y_validate.tolist()],
                                                     y_predict=[i for i in predict_result])
-        evaluete_score = model_evalueter.get_evaluate_score()
-#         print(evaluete_score)
+        self.evaluate_score = evaluete_score
         return evaluete_score, result
         
     def get_feature_scores(self):
