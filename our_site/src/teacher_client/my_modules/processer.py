@@ -151,20 +151,20 @@ class data_processer():
             return False
 
         the_list = [x[1] for x in self.bk_module.predict()[1]]
-
+        print(condition)
         for i in the_list:
             for ct, cd in zip(counter, condition):
                 if is_between(i, cd[0], cd[1]):
                     counter[ct] += 1
                     break
-
+        print(the_list)
         pie_data = []
         for name in counter:
             dic = {
                 'name': name,
                 'value': counter[name], }
             pie_data.append(dic)
-
+        print(pie_data)
         return pie_data
 
     def get_feature_scores_and_ranges(self, data_update=False):

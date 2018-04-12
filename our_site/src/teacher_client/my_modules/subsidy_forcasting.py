@@ -65,8 +65,8 @@ def get_pie_data(data_update=False):
     @return pie_data
     """
     
-    pie_data = Data_processer.get_pie_data(counter={'获得助学金': 0, '未获得助学金': 0},
-                                           condition=[(0, 1), (1, 2)],
+    pie_data = Data_processer.get_pie_data(counter={'未获得助学金': 0, '获得助学金': 0},
+                                           condition=[(-9999999,0.0000001),(0.0000001,9999999)],
                                            data_update=data_update)
     
     return pie_data
