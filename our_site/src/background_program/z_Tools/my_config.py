@@ -10,7 +10,7 @@ def get_version():
     return 'v 0.9.0'
 
 def get_log_open():
-    return True
+    return False
 
 def get_log_file():
     return "/log.log"

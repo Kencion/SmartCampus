@@ -8,7 +8,7 @@ from teacher_client.models import my_module
 from background_program.y_Modules.subsidy_forcasting import subsidy_forcasting
 from .processer import data_processer
 
-module_name = 'scholarship_forcasting'
+module_name = 'subsidy_forcasting'
 Data_processer = data_processer(module_name, my_module, subsidy_forcasting)
 
 
@@ -24,8 +24,15 @@ def get_data_update():
     for i in students_and_subsidies:
         Student(student_num=i[0], subsidy=i[1]).save()
         
-    my_module.objects.filter(module_name).delete()
-    my_module(module_name, evaluate_score=evaluate_score, feature_scores_and_ranges='', pie_data='').save()
+    try:
+        my_module.objects.filter(module_name).delete()
+    except:
+        pass
+    my_module(
+        module_name, 
+        evaluate_score=evaluate_score, 
+        feature_scores_and_ranges='', 
+        pie_data='').save()
     get_feature_scores_and_ranges(data_update=True)
     get_pie_data(data_update=True)
 
@@ -35,7 +42,7 @@ def get_students_and_subsidies():
             获得所有学生的学号和成绩
     @return list(list()) students_and_scores,
     """
-    students_and_subsidies = [[i.student_num, i.subsidy] for i in Student.objects.order_by('subsidy')]
+    students_and_subsidies = [[i.student_num, i.subsidy] for i in Student.objects.order_by('-subsidy')]
     
     return students_and_subsidies
 
@@ -65,8 +72,8 @@ def get_pie_data(data_update=False):
     @return pie_data
     """
     
-    pie_data = Data_processer.get_pie_data(counter={'获得助学金': 0, '未获得助学金': 0},
-                                           condition=[(0, 1), (1, 2)],
+    pie_data = Data_processer.get_pie_data(counter={'未获得助学金': 0, '获得助学金': 0},
+                                           condition=[(-9999999,0.0000001),(0.0000001,9999999)],
                                            data_update=data_update)
     
     return pie_data

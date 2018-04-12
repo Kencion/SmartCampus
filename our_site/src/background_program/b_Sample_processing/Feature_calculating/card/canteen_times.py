@@ -17,7 +17,6 @@ class canteen_times(FeatureCalculater):
         '''
                             计算食堂消费次数
         '''
-        
         sql = 'select max(date) from card'
         self.executer.execute(sql)
         lastestItem_date = self.executer.fetchone()[0]
@@ -25,7 +24,6 @@ class canteen_times(FeatureCalculater):
             lyear = lastestItem_date.year -1
         else:
             lyear = lastestItem_date.year
-        
         sql = "select distinct(student_num) from card"
         self.executer.execute(sql)
         e = self.executer.fetchall()
@@ -52,7 +50,7 @@ class canteen_times(FeatureCalculater):
                     print("计算食堂消费次数这个学生这个学年可能有问题："+stu_num+"  "+str(year1))
                     
                     
-            for year1 in range(grade+1, lyear):
+            for year1 in range(grade+1, lyear+1):
                 year2 = year1 + 1
                 sql = "select count(transaction_amount) from card where student_num = '" + str(stu_num) + "' and date between '" + str(year1) + "-09-01' and '" + str(year2) + "-08-31' and type = 'canteen'" 
                 self.executer.execute(sql)
@@ -60,12 +58,14 @@ class canteen_times(FeatureCalculater):
                 if count != 0:
                     sql = "update students set canteen_times = " + str(count) + " where student_num = '" + stu_num + str(year1) + "'"
                     t = self.executer.execute(sql)
+
                     if t == 0:
                         self.add_student(stu_num + str(year1))
                         self.executer.execute(sql)
 #                         print(sql)
                 else:
                     print("计算食堂消费次数这个学生这个学年可能有问题："+stu_num+"  "+str(year1))
+
         
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
