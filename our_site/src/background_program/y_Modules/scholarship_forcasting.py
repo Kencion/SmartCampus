@@ -59,25 +59,17 @@ class scholarship_forcasting(my_module):
         
         return estimater
     
-<<<<<<< HEAD
-    def get_evaluate_score(self, y_true, y_predict):
-=======
-    def get_model_evalueter(self):
->>>>>>> 0f353f2a3edc38fa102fadc4eacbc540362c5ba7
+    def get_model_evaluater(self, y_true, y_predict):
         '''
-                        获得模型评估器，主要是评估算法正确率
+                        获得模型评估器，这里用roc曲线下的面积，即auc来评价
         @params 
         @retrun    
         '''
-<<<<<<< HEAD
-        from background_program.d_Model_evaluating.Regression import my_explained_variance_score
+        from background_program.d_Model_evalueting.Regression import adjusted_mutual_info_score
         
-        evaluate_score = my_explained_variance_score(y_true, y_predict)
+        model_evalueter = adjusted_mutual_info_score(y_true, y_predict)
         
-        return evaluate_score
-=======
-        pass
->>>>>>> 0f353f2a3edc38fa102fadc4eacbc540362c5ba7
+        return model_evalueter
     
     def get_pie_data(self):
         '''
@@ -87,11 +79,11 @@ class scholarship_forcasting(my_module):
         '''
         info = self.predict()[1]
         
-        #获得奖学金获奖名单
+        # 获得奖学金获奖名单
         scholarship_list = [x[1] for x in info]
-        scholarship = {'获得奖学金':0,'未获得奖学金':0}
+        scholarship = {'获得奖学金':0, '未获得奖学金':0}
         
-        #统计获得和未获得奖学金的人数
+        # 统计获得和未获得奖学金的人数
         for index in scholarship_list:
             if index > 0 :
                 scholarship['获得奖学金'] += 1
@@ -106,7 +98,6 @@ class scholarship_forcasting(my_module):
             data.append(dic)
 
         return data   
-    
     
 
 if __name__ == '__main__':

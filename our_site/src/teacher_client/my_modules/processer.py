@@ -51,7 +51,7 @@ class data_processer():
             try:
                 evaluate_score = self.dj_module.objects.filter(module_name=self.module_name)[0].evaluate_score
             except:
-                evaluate_score = self.bk_module.evaluate_score
+                evaluate_score = 0  # self.bk_module.get_evaluate_score()
                 self.dj_module.objects.filter(module_name=self.module_name).update(evaluate_score=evaluate_score)
             
         return evaluate_score
@@ -104,7 +104,7 @@ class data_processer():
         """
         
         if data_update:
-            f_s_and_r = self.get_tree_data()
+            f_s_and_r = self.get_tree_data(self.bk_module)
             self.dj_module.objects.filter(module_name=self.module_name).update(feature_scores_and_ranges=f_s_and_r)
         else:
             try:

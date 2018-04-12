@@ -18,13 +18,8 @@ class my_module():
         self.feature_selector = self.get_feature_selector()
         # 获取分类器
         self.estimater = self.get_estimater()
-<<<<<<< HEAD
         
         self.evaluate_score = 0
-=======
-        # 获取模型评估器
-        self.evalueter = self.get_model_evalueter()
->>>>>>> 0f353f2a3edc38fa102fadc4eacbc540362c5ba7
             
     def predict(self):
         from sklearn.pipeline import Pipeline
@@ -43,20 +38,14 @@ class my_module():
         result = []
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
-        
-<<<<<<< HEAD
+
         # evaluete_score
         predict_result = pipeline.predict(self.X_validate)
-        evaluete_score = self.get_evaluate_score(y_true=[i[0] for i in self.Y_validate.tolist()],
+        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
                                                     y_predict=[i for i in predict_result])
-        self.evaluate_score = evaluete_score
+        evaluete_score = model_evalueter.get_evaluate_score()
+#         print(evaluete_score)
         return evaluete_score, result
-=======
-        # precision
-        predict_result_t = pipeline.predict(self.X_validate)
-        precision = explained_variance_score(self.Y_validate, predict_result_t)
-        return precision, result
->>>>>>> 0f353f2a3edc38fa102fadc4eacbc540362c5ba7
         
     def get_feature_scores(self):
         '''
@@ -162,42 +151,3 @@ class my_module():
         '''
         pass
     
-    def get_tree_data(self):
-        '''
-                        数据的转换，转成echarts树形图能识别的格式
-        @return: data,json格式
-        '''
-        import operator
-
-        info = self.get_features_range()
-        data = {}
-        name = 'name'
-        children = 'children'
-        value = 'value'
-        list2 = []
-        # 获得当前类名
-        data[name] = ''
-        # 获得特征的评分
-        d = self.get_feature_scores()
-        # 对特征按照评分进行排序
-        d = sorted(d.items(), key=operator.itemgetter(1))
-        # 取评分前十个存储
-        for d_index in range(len(d) - 10, len(d)):
-            list1 = []
-            dic2 = {}
-            dic2[name] = d[d_index][0]
-            if d[d_index][1] == float("inf"):
-                dic2[value] = 9999
-            else:
-                dic2[value] = float(d[d_index][1]) 
-            for i in info[d[d_index][0]]:
-                dic1 = {}
-                dic1[name] = str(i) + ":" + str(info[d[d_index][0]][i])
-                list1.append(dic1)
-                
-            dic2[children] = list1
-            list2.append(dic2)
-            
-        data[children] = list2
-        
-        return data
