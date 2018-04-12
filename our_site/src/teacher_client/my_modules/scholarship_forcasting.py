@@ -26,8 +26,15 @@ def get_data_update():
     for i in students_and_scholarships:
         Student(student_num=i[0], scholarship=i[1]).save()
         
-    my_module.objects.filter(module_name='scholarship_forcasting').delete()
-    my_module(module_name='scholarship_forcasting', evaluate_score=evaluate_score, feature_scores_and_ranges='', pie_data='').save()
+    try:
+        my_module.objects.filter(module_name).delete()
+    except:
+        pass
+    my_module(
+        module_name='scholarship_forcasting',
+        evaluate_score=evaluate_score,
+        feature_scores_and_ranges='',
+        pie_data='').save()
     get_feature_scores_and_ranges(data_update=True)
     get_pie_data(data_update=True)
 
@@ -37,7 +44,7 @@ def get_students_and_scholarships():
             获得所有学生的学号和成绩
     @return list(list()) all_students
     """
-    students_and_scholarships = [[i.student_num, i.scholarship] for i in Student.objects.all()]
+    students_and_scholarships = [[i.student_num, i.scholarship] for i in Student.objects.order_by('-scholarship')]
     
     return students_and_scholarships
 
@@ -66,8 +73,8 @@ def get_pie_data(data_update=False):
             获得90分以上、60分以下的学生的特征范围
     @return list() class_failed_students,
     """
-    pie_data = Data_processer.get_pie_data(counter={'获得奖学金': 0, '未获得奖学金': 0}, 
-                                           condition=[(0,1),(1,2)],
+    pie_data = Data_processer.get_pie_data(counter={'获得奖学金': 0, '未获得奖学金': 0},
+                                           condition=[(0, 1), (1, 2)],
                                            data_update=data_update)
     
     return pie_data

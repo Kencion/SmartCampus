@@ -22,8 +22,10 @@ def get_data_update():
     evaluate_score, students_and_scores = score_forcasting().predict()
     for i in students_and_scores:
         Student(student_num=i[0], score=i[1]).save()
-    
-    my_module.objects.filter(module_name).delete()
+    try:
+        my_module.objects.filter(module_name).delete()
+    except:
+        pass
     my_module(
         module_name=module_name,
         evaluate_score=evaluate_score,
@@ -38,7 +40,7 @@ def get_all_students_and_scores():
             获得所有学生的学号和成绩
     @return list(list()) students_and_scores,
     """
-    students_and_scores = [[i.student_num, i.score] for i in Student.objects.all()]
+    students_and_scores = [[i.student_num, i.score] for i in Student.objects.order_by('-score')]
     return students_and_scores
 
 
