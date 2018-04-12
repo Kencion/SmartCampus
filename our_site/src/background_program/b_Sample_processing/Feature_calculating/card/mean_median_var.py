@@ -64,7 +64,7 @@ class mean_median_var(FeatureCalculater):
             for one_type in type_list:
                 for year in school_year:
                     if int(year) < grade:
-                        break 
+                        continue 
                     sql = 'select abs(transaction_amount) from card where student_num = "'"{0}"'" and ((year(date)={1} and month(date)>8) or (year(date)={2} and month(date)<9)) and type="'"{3}"'"'
                     self.executer.execute(sql.format(student_num[0], int(year), int(year) + 1, one_type[0]))
                     result = list(self.executer.fetchall())
@@ -79,9 +79,9 @@ class mean_median_var(FeatureCalculater):
                         mean, median, var = round(mean, 3), round(median, 3), round(var, 3)
                         sql = 'update students set {1}={2},{3}={4},{5}={6} where student_num ="'"{0}"'"'
                         affectedRows = self.executer.execute(sql.format(str(student_num[0]) + str(year), "mean_of_" + str(one_type[0]), mean, "median_of_" + str(one_type[0]), median, "var_of_" + str(one_type[0]), var))
-                        if affectedRows == 0 :
-                            self.add_student(str(student_num[0]) + str(year))
-                            self.executer.execute(sql)
+#                         if affectedRows == 0 :
+#                             self.add_student(str(student_num[0]) + str(year))
+#                             self.executer.execute(sql)
 
     '''
         计算并返回输入参数 'datalist' 的平均值、中位数、方差 
