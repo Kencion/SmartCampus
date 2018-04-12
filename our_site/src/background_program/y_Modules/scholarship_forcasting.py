@@ -11,17 +11,11 @@ class scholarship_forcasting(my_module):
         my_module.__init__(self, label_name='scholarship_amount')
             
     def get_features_range(self):
-        '''
-        @retrun    特征范围
-        '''
         features_range = my_module.get_features_range(self, label_name='scholarship_amount', label_range={'没获得':[0, 0], '有获得':[1, 99999], })
         
         return features_range
     
     def get_data(self):
-        '''
-        get train,test,validation dataSet
-        '''
         my_module.get_dataset(self, school_year='2016', usage='regression')
         
     def get_pre_processer(self):
@@ -65,17 +59,25 @@ class scholarship_forcasting(my_module):
         
         return estimater
     
+<<<<<<< HEAD
     def get_evaluate_score(self, y_true, y_predict):
+=======
+    def get_model_evalueter(self):
+>>>>>>> 0f353f2a3edc38fa102fadc4eacbc540362c5ba7
         '''
-                        获得模型评估器，这里用roc曲线下的面积，即auc来评价
+                        获得模型评估器，主要是评估算法正确率
         @params 
         @retrun    
         '''
+<<<<<<< HEAD
         from background_program.d_Model_evaluating.Regression import my_explained_variance_score
         
         evaluate_score = my_explained_variance_score(y_true, y_predict)
         
         return evaluate_score
+=======
+        pass
+>>>>>>> 0f353f2a3edc38fa102fadc4eacbc540362c5ba7
     
     def get_pie_data(self):
         '''
@@ -110,3 +112,4 @@ class scholarship_forcasting(my_module):
 if __name__ == '__main__':
     pass
 #     t = scholarship_forcasting()
+

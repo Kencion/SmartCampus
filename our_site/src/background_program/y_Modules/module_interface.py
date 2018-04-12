@@ -1,7 +1,8 @@
 '''
 @modify: Jack Modify on 2018年1月3日
 '''
-import numpy as np
+from sklearn.metrics import *
+from numpy import mat
 from sklearn.model_selection import train_test_split
 
 
@@ -17,21 +18,21 @@ class my_module():
         self.feature_selector = self.get_feature_selector()
         # 获取分类器
         self.estimater = self.get_estimater()
+<<<<<<< HEAD
         
         self.evaluate_score = 0
+=======
+        # 获取模型评估器
+        self.evalueter = self.get_model_evalueter()
+>>>>>>> 0f353f2a3edc38fa102fadc4eacbc540362c5ba7
             
     def predict(self):
         from sklearn.pipeline import Pipeline
         
         # 管道
-#         pipeline = Pipeline(
-#             [('pre_processer', self.pre_processer),
-#              ('feature_selector', self.feature_selector),
-#              ('estimater', self.estimater),
-#              ]
-#             )
         pipeline = Pipeline(
             [('pre_processer', self.pre_processer),
+             ('feature_selector', self.feature_selector),
              ('estimater', self.estimater),
              ]
             )
@@ -43,12 +44,19 @@ class my_module():
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
         
+<<<<<<< HEAD
         # evaluete_score
         predict_result = pipeline.predict(self.X_validate)
         evaluete_score = self.get_evaluate_score(y_true=[i[0] for i in self.Y_validate.tolist()],
                                                     y_predict=[i for i in predict_result])
         self.evaluate_score = evaluete_score
         return evaluete_score, result
+=======
+        # precision
+        predict_result_t = pipeline.predict(self.X_validate)
+        precision = explained_variance_score(self.Y_validate, predict_result_t)
+        return precision, result
+>>>>>>> 0f353f2a3edc38fa102fadc4eacbc540362c5ba7
         
     def get_feature_scores(self):
         '''
@@ -114,10 +122,10 @@ class my_module():
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
         X_train, Y_train, test_size=0.2, random_state=3)
         
-        self.X_train = np.array(self.X_train)
-        self.X_validate = np.array(self.X_validate)
-        self.Y_train = np.array(self.Y_train)
-        self.Y_validate = np.array(self.Y_validate)
+        self.X_train = mat(self.X_train, dtype=float)
+        self.X_validate = mat(self.X_validate, dtype=float)
+        self.Y_train = mat(self.Y_train, dtype=float)
+        self.Y_validate = mat(self.Y_validate, dtype=float)
         
         self.students, self.X_test = data_carer.create_validate_dataSet()
         
@@ -146,7 +154,7 @@ class my_module():
         '''
         pass
     
-    def get_model_evaluater(self):
+    def get_model_evalueter(self):
         '''
                         获得模型评估器，主要是评估算法正确率
         @params 

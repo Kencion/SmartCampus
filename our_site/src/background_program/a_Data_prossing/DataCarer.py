@@ -34,7 +34,7 @@ class DataCarer():
         '''
                         获取训练数据
         @params 
-        @return numpy.array X_train:特征,numpy.array Y_train:标签
+        @return numpy.mat X_train:特征,numpy.mat Y_train:标签
         '''
         """确定label是哪一列，并将其作为待预测对象"""
         self.open_database("软件学院")
@@ -54,13 +54,12 @@ class DataCarer():
         for i in self.executer.fetchall():
             student = Student(student_num=i[0], features=list(i[2:index]) + list(i[index + 1:]), label=i[index])
             dataSet.append(student.getAll())
-#         print(dataSet)
         dataSet = np.array(dataSet)
         self.close_database()
         
         dataSet = mat(dataSet)
     
-        X_train, Y_train = np.array(dataSet[:, :-1]), np.array(dataSet[:, -1])
+        X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
 #         self.pre_process(X_train)
         return X_train, Y_train
         
@@ -90,7 +89,7 @@ class DataCarer():
             student = Student(student_num=i[0], features=list(i[2:index]) + list(i[index + 1:]), label=i[index])
             X_test.append(student.features)
             students.append(student)
-        X_test = np.array(X_test)
+        X_test = mat(X_test)
         self.close_database()
 #         self.pre_process(X_test)
         return students, X_test
