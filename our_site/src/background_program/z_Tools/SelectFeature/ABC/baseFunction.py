@@ -4,7 +4,7 @@ Created on 2018年3月24日
 @author: LI
 '''
 import random as RD
-import background_program.z_Tools.featureselect.ABC.BeeGroup as BG
+import background_program.z_Tools.SelectFeature.ABC.BeeGroup as BG
 import math
 import numpy as np
 import xxsubtype
@@ -26,13 +26,13 @@ def initilize(xFoodNumber,xD,xlb,xub,xmodule,xX_train,xX_validate,xX_test):
     EmployedBee=[]#采蜜蜂
     OnLooker=[]#观察蜂
     BestSource =BG.BeeGroup()#记录最好蜜源
-
-    for iBeeGroupe(0,int(xFoodNumber)):
+ 
+    for i in range(0,int(xFoodNumber)):
         NectarSource.append(BG.BeeGroup())
-        EmployedBee.aBeeGroup.BeeGroup())
-        OnLooker.appeBeeGroupeGroup())
+        EmployedBee.append(BG.BeeGroup())
+        OnLooker.append(BG.BeeGroup())
         code=[]
-    BeeGroupj in range(0,xD):
+        for j in range(0,xD):
             code.append(int(random(xlb,xub))%2)
         NectarSource[i].setcode(code) 
         EmployedBee[i].setcode(code) 
