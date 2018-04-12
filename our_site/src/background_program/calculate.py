@@ -39,7 +39,7 @@ calculaters = [
 #         failed_num1.failed_num1(),
 #         failed_pass_num.failed_pass_num(),
 #         failed_failed_num.failed_failed_num(),
-#         GPA1.GPA1(),#
+#          GPA1.GPA1(),
 #         score_rank1.score_rank1(),
 #         score1.score1(),
 #             

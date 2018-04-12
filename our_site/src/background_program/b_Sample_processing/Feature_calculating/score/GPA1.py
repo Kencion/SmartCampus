@@ -49,7 +49,6 @@ class GPA1(FeatureCalculater):
                 if((credit1 + credit2) != 0):
                     GPA = (GPA1 * credit1 + GPA2 * credit2) / (credit1 + credit2)
                     sql = "update students set GPA = " + str(GPA) + " where student_num = '" + stu_num + str(year) + "'"
-                    
                     t = self.executer.execute(sql)
                     if t == 0:
                         self.add_student(stu_num + str(year))

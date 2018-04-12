@@ -4,7 +4,6 @@ changed on 2018年4月11日
 @author: yzh
 '''
 
-
 from background_program.z_Tools.my_exceptions import my_exception_handler
 from ..FeatureCalculater import FeatureCalculater
 
@@ -51,16 +50,19 @@ class social_practice_time(FeatureCalculater):
                 Stu_type = info.split(',')[2]
                 Team_leader_or_not = '0'
                 
-                sql = "INSERT IGNORE INTO social_practice (Serial_num, Stu_num,Stu_name,Stu_type,\
-College,Grade,Department,Practice_name,Start_time,Finish_time,Practice_place,Keywords,\
-Introduction,School_key_projects_or_not,College_key_projects_or_not,Team_members,Team_leader_or_not)\
-VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format\
-(Serial_num, Stu_num,Stu_name,Stu_type,College,Grade,Department,Practice_name,Start_time,Finish_time,\
-Practice_place,Keywords,Introduction,School_key_projects_or_not,College_key_projects_or_not,\
-Team_members,Team_leader_or_not)
-
+                sql = ("INSERT IGNORE INTO social_practice (Serial_num, Stu_num,Stu_name,"
+                       "Stu_type,College,Grade,Department,Practice_name,Start_time,Finish_time,"
+                       "Practice_place,Keywords,Introduction,School_key_projects_or_not,"
+                       "College_key_projects_or_not,Team_members,Team_leader_or_not)VALUES('{}',"
+                       "'{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}',"
+                       "'{}','{}');").format("Serial_num, Stu_num, Stu_name, Stu_type, College,"
+                                             "Grade, Department, Practice_name, Start_time,"
+                                            "Finish_time, Practice_place,Keywords, Introduction,"
+                                            "School_key_projects_or_not, College_key_projects_or_not,"
+                                            "Team_members, Team_leader_or_not")
+    
                 self.executer.execute(sql)
-                 
+              
     @my_exception_handler
     def calculate(self):
         '''
@@ -68,8 +70,7 @@ Team_members,Team_leader_or_not)
                 思路：从social_practice表中获取student_num以及学年（根据start_time来划分），实践时间。
                 然后根据student_num关键字填入students表中。
         '''
-        sql = "select Stu_num,DATE_FORMAT(Start_time,'%Y'),DATE_FORMAT(Start_time,'%c'),\
-        unix_timestamp(Finish_time)-unix_timestamp(Start_time) from social_practice"
+        sql = "select Stu_num,DATE_FORMAT(Start_time,'%Y'),DATE_FORMAT(Start_time,'%c'),unix_timestamp(Finish_time)-unix_timestamp(Start_time) from social_practice"
         self.executer.execute(sql)
         e = self.executer.fetchall()
         
@@ -92,7 +93,7 @@ Team_members,Team_leader_or_not)
                 self.executer.execute(sql)
                 
             else:
-                print("计算社会实践时间这个学生这个学年可能有问题：" + str(stu_num) + "  "+str(year))
+                print("计算社会实践时间这个学生这个学年可能有问题：" + str(stu_num) + "  " + str(year))
         
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)

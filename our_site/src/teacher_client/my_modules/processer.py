@@ -84,30 +84,31 @@ class data_processer():
         '''
         import operator
 
-        info = self.bk_module.get_features_range()
+        features_range = self.bk_module.get_features_range()
         data = {}
         name = 'name'
         children = 'children'
         value = 'value'
         list2 = []
+        
         # 获得当前类名
         data[name] = ''
-        # 获得特征的评分
-        d = self.bk_module.get_feature_scores()
-        # 对特征按照评分进行排序
-        d = sorted(d.items(), key=operator.itemgetter(1))
+        
+        # 获得特征的评分并对特征按照评分进行排序
+        feature_scores = sorted(self.bk_module.get_feature_scores().items(), key=operator.itemgetter(1))
+        
         # 取评分前十个存储
-        for d_index in range(len(d) - 10, len(d)):
+        for d_index in range(len(feature_scores) - 10, len(feature_scores)):
             list1 = []
             dic2 = {}
-            dic2[name] = d[d_index][0]
-            if d[d_index][1] == float("inf"):
+            dic2[name] = feature_scores[d_index][0]
+            if feature_scores[d_index][1] == float("inf"):
                 dic2[value] = 9999
             else:
-                dic2[value] = float(d[d_index][1])
-            for i in info[d[d_index][0]]:
+                dic2[value] = float(feature_scores[d_index][1])
+            for i in features_range[feature_scores[d_index][0]]:
                 dic1 = {}
-                dic1[name] = str(i) + ":" + str(info[d[d_index][0]][i])
+                dic1[name] = str(i) + ":" + str(features_range[feature_scores[d_index][0]][i])
                 list1.append(dic1)
 
             dic2[children] = list1
