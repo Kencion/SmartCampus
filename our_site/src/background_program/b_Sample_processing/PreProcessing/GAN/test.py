@@ -39,6 +39,7 @@ PAINT_POINTS = np.vstack([np.linspace(-1, 1, ART_COMPONENTS) for _ in range(MINI
 def get_real_data():  # painting from the famous artist (real target)
     from background_program.a_Data_prossing.DataCarer import DataCarer
     X, Y = DataCarer(label_name='score', school_year='2016', usage="regression").create_train_dataSet()
+    X, Y=np.array(X),np.array(Y)
     data = np.hstack((X, Y))
     data = data.astype(float)
 
@@ -57,9 +58,11 @@ def get_minibatch_data(xdata):
     data = []
     for index in randomIndex :
         data.append(xdata[index])
+#         print(data)
     data = np.array(data) 
     datamin,datamax=[],[]
     for i in range(data.shape[1]):
+        print(data[0,i])
         max=data[0,i]
         min=data[0,i]
         for j in range(1,data.shape[0]):
