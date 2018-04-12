@@ -29,7 +29,7 @@ class FCBF():
 #         data.drop('a',axis=1, inplace=True)
 #         data.drop([data.columns[0]],axis=1, inplace=True)
         NMI=[]
-        t=0.0
+        t=-10000.0
         for x in F:
             #计算每个属性特征与类别的归一化信息
             NMI.append(self.calcute_NMI(x, Y_train))
@@ -58,6 +58,7 @@ class FCBF():
         Feature_Values_pandas=S_result
         Feature_Values_np=np.array(S_result)
         print(Feature_Names)
+        print(len(Feature_Names))
         return Feature_Names,Feature_Values_pandas,Feature_Values_np
             
     #计算每个属性与类标签之间的归一化互信息NMI的值

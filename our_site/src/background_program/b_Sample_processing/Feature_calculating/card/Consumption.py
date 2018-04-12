@@ -73,4 +73,3 @@ class Consumption(FeatureCalculater):
         
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
-

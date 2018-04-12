@@ -7,7 +7,6 @@ Created on 2017年12月19日
 from background_program.z_Tools.my_exceptions import my_exception_handler
 from ..FeatureCalculater import FeatureCalculater
 
- 
 class canteen_consumption_divide_by_consumption(FeatureCalculater):
 
     def __init__(self):
