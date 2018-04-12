@@ -81,3 +81,5 @@ class score_forcasting(my_module):
         model_evalueter = adjusted_mutual_info_score(y_true, y_predict)
 
         return model_evalueter
+if __name__=='__main__':
+    i = score_forcasting().predict()

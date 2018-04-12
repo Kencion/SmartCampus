@@ -5,8 +5,8 @@ Created on 2018年3月24日
 '''
 import matplotlib.pyplot as plt
 #引用种群的定义
-import background_program.z_Tools.featureselect.ABC.BeeGroup as BGt 
-import background_program.z_Tools.featureselect.ABC.baseFunction
+import background_program.z_Tools.SelectFeature.ABC.BeeGroup as BGt 
+import background_program.z_Tools.SelectFeature.ABC.baseFunction as baseFunction
 from pylab import *  
 import background_program.y_Modules.class_failing_warning as cfw
 import warnings
