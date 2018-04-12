@@ -4,8 +4,8 @@ Created on 2017年11月23日
 '''
 
 from background_program.z_Tools.my_exceptions import my_exception_handler
-from ..FeatureCalculater import FeatureCalculater
-
+#from ..FeatureCalculater import FeatureCalculater
+from background_program.b_Sample_processing.Feature_calculating.FeatureCalculater import FeatureCalculater
 
 class in_out_times(FeatureCalculater):
 
@@ -17,6 +17,8 @@ class in_out_times(FeatureCalculater):
         '''
                 计算一学年进出宿舍次数
         '''
+        sql = "update students set in_out_times=%s"
+        self.executer.execute(sql, float(0))
         sql = "SELECT DISTINCT student_num FROM dorm_entrance"
         self.executer.execute(sql)
         student_nums = [str(i[0]) for i in self.executer.fetchall()]
@@ -36,5 +38,15 @@ class in_out_times(FeatureCalculater):
                         self.add_student(student_num + str(school_year))
                         self.executer.execute(sql)
 
+    def add(self):
+        sql = "SELECT left(student_num,14),avg(in_out_times) from students where in_out_times!=0 group by student_num"
+        self.executer.execute(sql)
+        result = self.executer.fetchall() 
+        for re in result:
+            sql="update students set in_out_times=%s where left(student_num,14)=%s"
+            self.executer.execute(sql, (float(re[1]), re[0]))
     def cluster(self):
         FeatureCalculater.cluster(self, clusters=4)
+if __name__=="__main__":
+    hr=in_out_times()
+    hr.add() 
