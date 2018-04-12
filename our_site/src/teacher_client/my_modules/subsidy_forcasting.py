@@ -16,8 +16,6 @@ def get_data_update():
     """
             更新数据
     @return 
-    """
-    """
             获得所有学生的成绩预测记过，
             并在数据mydatabase表student_client_Student中
             将该学生的subsidy字段设为预测结果
@@ -28,8 +26,8 @@ def get_data_update():
         
     my_module.objects.filter(module_name).delete()
     my_module(module_name, evaluate_score=evaluate_score, feature_scores_and_ranges='', pie_data='').save()
-    get_feature_scores_and_ranges(update=True)
-    get_pie_data(update=True)
+    get_feature_scores_and_ranges(data_update=True)
+    get_pie_data(data_update=True)
 
 
 def get_students_and_subsidies():
@@ -67,6 +65,8 @@ def get_pie_data(data_update=False):
     @return pie_data
     """
     
-    pie_data = Data_processer.get_pie_data(data_update)
+    pie_data = Data_processer.get_pie_data(counter={'获得助学金': 0, '未获得助学金': 0},
+                                           condition=[(0, 1), (1, 2)],
+                                           data_update=data_update)
     
     return pie_data

@@ -1,7 +1,6 @@
 '''
 @modify: Jack Modify on 2018年1月3日
 '''
-from sklearn.metrics import *
 from numpy import mat
 from sklearn.model_selection import train_test_split
 
@@ -20,6 +19,8 @@ class my_module():
         self.estimater = self.get_estimater()
         
         self.evaluate_score = 0
+        
+        self.predict_result = None
             
     def predict(self):
         from sklearn.pipeline import Pipeline
@@ -30,7 +31,7 @@ class my_module():
              ('feature_selector', self.feature_selector),
              ('estimater', self.estimater),
              ]
-            )
+            ) 
         
         pipeline.fit(self.X_train, self.Y_train) 
         predict_result = pipeline.predict(self.X_test)
@@ -43,9 +44,17 @@ class my_module():
         predict_result = pipeline.predict(self.X_validate)
         model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
                                                     y_predict=[i for i in predict_result])
-        evaluete_score = model_evalueter.get_evaluate_score()
-#         print(evaluete_score)
-        return evaluete_score, result
+        self.evaluete_score = model_evalueter.get_evaluate_score()
+        self.predict_result = result
+        
+        return self.evaluete_score, result
+    
+    def get_evaluate_score(self):
+        '''
+        @return: evaluate_score
+        '''
+        
+        return self.evaluate_score
         
     def get_feature_scores(self):
         '''
@@ -69,7 +78,7 @@ class my_module():
         '''
                         获得每个特征的范围
         @params 
-        @retrun 问龙天
+        @retrun 每个特征的范围
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
         
@@ -96,7 +105,7 @@ class my_module():
          
     def get_dataset(self, school_year='2016', usage='regression'):
         '''
-                获得训练数据和测试数据
+                        获得训练数据和测试数据
         self.X_train=训练数据特征， self.Y_train=训练数据标签
         self.X_test=测试数据特征
         @params string student_num:学生学号

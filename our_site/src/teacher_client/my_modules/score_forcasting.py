@@ -29,8 +29,8 @@ def get_data_update():
         evaluate_score=evaluate_score,
         feature_scores_and_ranges='',
         pie_data='').save()
-    get_feature_scores_and_ranges(update=True)
-    get_pie_data(update=True)
+    get_feature_scores_and_ranges(data_update=True)
+    get_pie_data(data_update=True)
 
 
 def get_all_students_and_scores():
@@ -77,6 +77,8 @@ def get_pie_data(data_update=False):
     @return pie_data
     """
     
-    pie_data = Data_processer.get_pie_data(data_update)
+    pie_data = Data_processer.get_pie_data(counter={'60分以下': 0, '60分-70分': 0, '70分-80分': 0, '80分-90分': 0, '90分及以上': 0},
+                                           condition=[(0, 60), (60, 70), (70, 80), (80, 90), (90, 101)],
+                                           data_update=data_update)
     
     return pie_data
