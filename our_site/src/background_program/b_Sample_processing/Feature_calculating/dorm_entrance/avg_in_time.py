@@ -35,4 +35,4 @@ class avg_in_time(FeatureCalculater):
         FeatureCalculater.cluster(self, clusters=4)
 if __name__=="__main__":
     hr=avg_in_time()
-    hr.add() 
+    hr.calculate()

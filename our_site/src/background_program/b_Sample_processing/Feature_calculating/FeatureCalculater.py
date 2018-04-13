@@ -47,6 +47,7 @@ class FeatureCalculater:
         self.executer.execute(sql)
         result = self.executer.fetchall()
         student_types = ['普通高校本科学生', '硕士研究生', '交流生', '普通进修生', '硕士专业学位研究生']
+        student_type=0
         for re in result:
             count = int(re[2])
             for s_i in range(len(student_types)):
