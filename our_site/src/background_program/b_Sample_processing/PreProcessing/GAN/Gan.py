@@ -54,6 +54,7 @@ class Gan():
             max=data[0,i]
             min=data[0,i]
             for j in range(1,data.shape[0]):
+#                 print(data[j,i])
                 if max<data[j,i]:
                     max=data[j,i]
                 if min>data[j,i]:
@@ -105,6 +106,8 @@ class Gan():
         
         plt.ion()  # something about continuous plotting
         
+        print(type(self.all_data))
+        print(self.all_data)
         artist_paintings,datamin,datamax =  self.get_minibatch_data(self.all_data)  # real painting from artist
         G_ideas = np.random.randn(self.MINIBATCH_SIZE, self.N_IDEAS)
         G_paintings, pa0, Dl = sess.run([G_out, prob_artist0, D_loss, train_D, train_G],  # train and get results
@@ -121,7 +124,7 @@ class Gan():
             G_paintings, pa0, Dl = sess.run([G_out, prob_artist0, D_loss, train_D, train_G],  # train and get results
                                             {G_in: G_ideas, real_art: artist_paintings})[:3]
         
-            if step >99900:
+            if step >99000:
     #         print('D',tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='Discriminator'))
     #         print('G',tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='Generator'))
 #          
