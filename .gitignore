@@ -21,3 +21,4 @@
 .settings/org.eclipse.wst.jsdt.ui.superType.container
 our_site/src/teacher_client/views.py
 our_site/src/background_program/a_Data_prossing/raw_data/厦大软件学院/软件学院.sql
+our_site/src/background_program/b_Sample_processing/Feature_calculating/score/score_int_to_two.py
