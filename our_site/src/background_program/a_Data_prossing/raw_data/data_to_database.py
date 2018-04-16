@@ -4,9 +4,9 @@ Created on 2017年11月30日
 @author: Jack
 '''
 def dataToDataBase():
-    from background_program.z_Tools import MyDataBase
+    from background_program.z_Tools import my_database
     
-    db = MyDataBase.MyDataBase("软件学院")
+    db = my_database.MyDataBase("软件学院")
     executer = db.getExcuter()
     sql = ""
     with open('软件学院.sql', 'r', encoding='UTF-8') as f:

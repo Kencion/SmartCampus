@@ -73,13 +73,9 @@ def get_pie_data(data_update=False):
             获得90分以上、60分以下的学生的特征范围
     @return list() class_failed_students,
     """
-<<<<<<< HEAD
-    pie_data = Data_processer.get_pie_data(counter={'获得奖学金': 0, '未获得奖学金': 0},
-                                           condition=[(0, 1), (1, 2)],
-=======
+
     pie_data = Data_processer.get_pie_data(counter={'未获得奖学金': 0, '获得奖学金': 0}, 
                                            condition=[(-9999999,0.0000001),(0.0000001,9999999)],
->>>>>>> ea00f896ec4f0ff787cae0fe70a3957c46f6e6e0
                                            data_update=data_update)
     
     return pie_data
