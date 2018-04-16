@@ -121,7 +121,7 @@ class Gan():
             G_paintings, pa0, Dl = sess.run([G_out, prob_artist0, D_loss, train_D, train_G],  # train and get results
                                             {G_in: G_ideas, real_art: artist_paintings})[:3]
         
-            if step >99998:
+            if step >99900:
     #         print('D',tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='Discriminator'))
     #         print('G',tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='Generator'))
 #          
@@ -134,7 +134,7 @@ class Gan():
 #                 elif  G_paintings[0,len(G_paintings[0])-1]<30:
 #                     G_paintings[0,len(G_paintings[0])-1]=36
 #                 
-                lista.append(abs(G_paintings[0,len(G_paintings[0])-1]*(datamax[i]-datamin[i])+datamin[i]))
+                lista.append(abs(G_paintings[0,len(G_paintings[0])-1]*(datamax[len(G_paintings[0])-1]-datamin[len(G_paintings[0])-1])+datamin[len(G_paintings[0])-1]))
                 self.final_gan_data.append(lista.copy())
 #                   
 #                 str1=''
@@ -149,3 +149,8 @@ class Gan():
         self.final_gan_data=np.array(self.final_gan_data)
         sess.close()
         print('Gan结束')
+
+if __name__ =='__main__':
+    ts=Gan()
+    ts.run()
+    print(ts.final_gan_data[:,-1])

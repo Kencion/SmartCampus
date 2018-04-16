@@ -93,25 +93,26 @@ class handleMissingData():
             ganitem.all_data = ganitem.all_data.astype(float)
             ganitem.ART_COMPONENTS=ganitem.all_data.shape[1]
             ganitem.run()
-            print(ganitem.final_gan_data)
-            gan_data=ganitem.final_gan_data
+#             print(ganitem.final_gan_data)
+#             gan_data=ganitem.final_gan_data
             print('---------------------------')
             
             '''
             将gan网络生成的数据与原表的子集合并成新表
             '''
             print('+++++++++++++++++++++++++++')
-            Mixeddata=np.vstack((ganitem.all_data,ganitem.final_gan_data))
+            Mixeddata=ganitem.all_data
+#             Mixeddata=np.vstack((ganitem.all_data,ganitem.final_gan_data))
             print(Mixeddata.shape[0])
             print(Mixeddata.shape[1])
             X_train=mat(Mixeddata[:,:-1])
             Y_train=mat(Mixeddata[:,-1])
             Y_train=Y_train.T
             print(Y_train)
-            print(X_train.shape[0])
-            print(X_train.shape[1])
-            print(Y_train.shape[0])
-            print(Y_train.shape[1])
+#             print(X_train.shape[0])
+#             print(X_train.shape[1])
+#             print(Y_train.shape[0])
+#             print(Y_train.shape[1])
             self.module.X_train, self.module.X_validate,self.module.Y_train, self.module.Y_validate = train_test_split(
                 X_train, Y_train, test_size=0.2, random_state=3)
                 
@@ -127,8 +128,24 @@ class handleMissingData():
             print('+++++++++++++++++++++++++++')  
                 
             '''
+                    回填第i列(更新 realdata)
+            '''
+            index=0
+            for j in defectRowIndex:
+                self.realdata[j,i]=result[index]
+                index +=1
+            print(index-1)
             
-            ''' 
+            
+            '''
+                        更新tempdata
+            '''
+            adddata=[]
+            for k in self.realdata:
+                adddata.append([self.realdata[k,i]])
+            adddata = np.array(adddata)
+            self.tempdata = np.hstack((self.tempdata,adddata))
+            
 if __name__ == '__main__':
     test=handleMissingData()
     test.work()
