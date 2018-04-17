@@ -8,7 +8,6 @@ import math
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
-from numpy import s_
 class FCBF():
     def __init__(self):
         pass

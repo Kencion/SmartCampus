@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.decomposition import PCA
-from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+from background_program.b_Sample_processing.Feature_calculating.FeatureCalculater import FeatureCalculater
 
 class MyPca(FeatureCalculater): 
     
