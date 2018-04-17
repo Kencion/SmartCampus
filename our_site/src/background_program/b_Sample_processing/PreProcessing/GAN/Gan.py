@@ -33,6 +33,7 @@ class Gan():
         self.ART_COMPONENTS = 79  # it could be total point G can draw in the canvas
         self.PAINT_POINTS = np.vstack([np.linspace(-1, 1, self.ART_COMPONENTS) for _ in range(self.MINIBATCH_SIZE)])
         self.all_data,self.ART_COMPONENTS = self.get_real_data()
+        self.final_gan_data=[]
     def get_real_data(self):  # painting from the famous artist (real target)
         from background_program.a_Data_prossing.DataCarer import DataCarer
         X, Y = DataCarer(label_name='score', school_year='2016', usage="regression").create_train_dataSet()
@@ -53,6 +54,7 @@ class Gan():
             max=data[0,i]
             min=data[0,i]
             for j in range(1,data.shape[0]):
+#                 print(data[j,i])
                 if max<data[j,i]:
                     max=data[j,i]
                 if min>data[j,i]:
@@ -75,6 +77,7 @@ class Gan():
     def run(self):
         tf.set_random_seed(1)
         np.random.seed(1)
+        self.final_gan_data.clear()
         
         with tf.variable_scope('Generator'):
             G_in = tf.placeholder(tf.float32, [None, self.N_IDEAS])  # random ideas (could from normal distribution)
@@ -103,6 +106,8 @@ class Gan():
         
         plt.ion()  # something about continuous plotting
         
+        print(type(self.all_data))
+        print(self.all_data)
         artist_paintings,datamin,datamax =  self.get_minibatch_data(self.all_data)  # real painting from artist
         G_ideas = np.random.randn(self.MINIBATCH_SIZE, self.N_IDEAS)
         G_paintings, pa0, Dl = sess.run([G_out, prob_artist0, D_loss, train_D, train_G],  # train and get results
@@ -119,29 +124,36 @@ class Gan():
             G_paintings, pa0, Dl = sess.run([G_out, prob_artist0, D_loss, train_D, train_G],  # train and get results
                                             {G_in: G_ideas, real_art: artist_paintings})[:3]
         
-            if step >9010:
+            if step >99000:
     #         print('D',tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='Discriminator'))
     #         print('G',tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='Generator'))
-         
+#          
                 lista=[] 
                 for i in range(len(G_paintings[0])-1):
                     lista.append(abs(G_paintings[0,i]*(datamax[i]-datamin[i])+datamin[i]))
-                
-                if G_paintings[0,len(G_paintings[0])-1]>99:
-                    G_paintings[0,len(G_paintings[0])-1]=95
-                elif  G_paintings[0,len(G_paintings[0])-1]<30:
-                    G_paintings[0,len(G_paintings[0])-1]=36
-                lista.append(abs(G_paintings[0,len(G_paintings[0])-1]*(datamax[i]-datamin[i])+datamin[i]))
-                   
-                str1=''
-                for i in range(0,len(lista)-1):
-                    str1=str1+str(lista[i])+','
-                str1= str1+str(lista[len(lista)-1])    
-                   
-                sql = 'insert into gan_float values({0})'
-    #         print(str(step)+' '+sql.format(str1))
-                dataset.executer.execute(sql.format(str1))
- 
+#                 
+#                 if G_paintings[0,len(G_paintings[0])-1]>99:
+#                     G_paintings[0,len(G_paintings[0])-1]=95
+#                 elif  G_paintings[0,len(G_paintings[0])-1]<30:
+#                     G_paintings[0,len(G_paintings[0])-1]=36
+#                 
+                lista.append(abs(G_paintings[0,len(G_paintings[0])-1]*(datamax[len(G_paintings[0])-1]-datamin[len(G_paintings[0])-1])+datamin[len(G_paintings[0])-1]))
+                self.final_gan_data.append(lista.copy())
+#                   
+#                 str1=''
+#                 for i in range(0,len(lista)-1):
+#                     str1=str1+str(lista[i])+','
+#                 str1= str1+str(lista[len(lista)-1])    
+#                    
+#                 sql = 'insert into gan_float values({0})'
+#                 print(str(step)+' '+sql.format(str1))
+#                 print(sql.format(str1))
+#                 dataset.executer.execute(sql.format(str1))
+        self.final_gan_data=np.array(self.final_gan_data)
+        sess.close()
         print('Gan结束')
 
-Gan().run()
+if __name__ =='__main__':
+    ts=Gan()
+    ts.run()
+    print(ts.final_gan_data[:,-1])

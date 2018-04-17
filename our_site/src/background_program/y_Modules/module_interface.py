@@ -3,6 +3,7 @@
 '''
 from numpy import mat
 from sklearn.model_selection import train_test_split
+import numpy as np
 
 
 class my_module():
@@ -160,3 +161,28 @@ class my_module():
         '''
         pass
     
+    def predict2(self):
+        from sklearn.pipeline import Pipeline
+        
+        # 管道
+        pipeline = Pipeline(
+            [('pre_processer', self.pre_processer),
+             ('feature_selector', self.feature_selector),
+             ('estimater', self.estimater),
+             ]
+            ) 
+        
+        pipeline.fit(self.X_train, self.Y_train) 
+        predict_result = pipeline.predict(self.X_test)
+         
+        result = np.array(predict_result.copy())
+#         for student, score in zip(self.students, predict_result):
+#             result.append([student.getStudent_num(), float(score)])
+
+        # evaluete_score
+        predict_result = pipeline.predict(self.X_validate)
+        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
+                                                    y_predict=[i for i in predict_result])
+        self.evaluete_score = model_evalueter.get_evaluate_score()
+        
+        return self.evaluete_score, result

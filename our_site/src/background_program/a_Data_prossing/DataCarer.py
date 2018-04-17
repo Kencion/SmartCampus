@@ -23,9 +23,9 @@ class DataCarer():
         if usage not in self.usages:
             print('用法错误：%s' % usage)
         elif usage == "regression":
-            self.table_name = "students_float"
+            self.table_name = "students_float_copy"
         elif usage == "classify":
-            self.table_name = "students_int"
+            self.table_name = "students_int_copy"
         
         self.label_name = label_name
         self.school_year = school_year
