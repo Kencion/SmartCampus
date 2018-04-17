@@ -22,6 +22,7 @@ class my_module():
         self.evaluate_score = 0
         
         self.predict_result = None
+        self.labellist=None
             
     def predict(self):
         from sklearn.pipeline import Pipeline
@@ -35,6 +36,7 @@ class my_module():
             ) 
         
         pipeline.fit(self.X_train, self.Y_train) 
+        
         predict_result = pipeline.predict(self.X_test)
          
         result = []
@@ -117,7 +119,7 @@ class my_module():
         data_carer = DataCarer(label_name=self.label_name, school_year=school_year, usage=usage)
         
         X_train, Y_train = data_carer.create_train_dataSet()
-         
+        self.labellist=data_carer.labellist.copy()
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
         X_train, Y_train, test_size=0.2, random_state=3)
         
@@ -173,6 +175,10 @@ class my_module():
             ) 
         
         pipeline.fit(self.X_train, self.Y_train) 
+        ree=pipeline.named_steps['feature_selector'].get_support()
+        for i in range(len(ree)):
+            if ree[i]==True:
+                print(self.labellist[i])
         predict_result = pipeline.predict(self.X_test)
          
         result = np.array(predict_result.copy())
