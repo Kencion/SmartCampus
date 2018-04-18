@@ -29,22 +29,25 @@ class DataCarer():
         
         self.label_name = label_name
         self.school_year = school_year
+        self.labellist=[]
 
     def create_train_dataSet(self):
         '''
                         获取训练数据
         @params 
         @return numpy.mat X_train:特征,numpy.mat Y_train:标签
+                list labellist:特征项名称的集合
         '''
         """确定label是哪一列，并将其作为待预测对象"""
         self.open_database("软件学院")
         self.executer.execute("DESCRIBE {0}".format(self.table_name))
         columnName = self.executer.fetchall()
         index = -1
-        for i in range(len(columnName)):
+        for i in range(2,len(columnName)):
             if str(columnName[i][0]) == self.label_name :
                 index = i
-                break
+            else:
+                self.labellist.append(columnName[i][0])
         if index == -1:
             print('异常：未发现' + self.label_name)
            
