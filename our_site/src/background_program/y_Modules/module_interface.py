@@ -5,11 +5,13 @@ from numpy import mat
 from sklearn.model_selection import train_test_split
 import numpy as np
 from sklearn.externals import joblib
+from sklearn.metrics import accuracy_score
 
 
 class my_module():
     
     def __init__(self, label_name):
+        self.labellist=[]
         self.label_name = label_name
         # 获取数据
         self.get_dataset()
@@ -23,7 +25,7 @@ class my_module():
         self.evaluate_score = 0
         
         self.predict_result = None
-        self.labellist=None
+        
             
     def predict(self):
         from sklearn.pipeline import Pipeline
@@ -121,8 +123,9 @@ class my_module():
         
         X_train, Y_train = data_carer.create_train_dataSet()
         self.labellist=data_carer.labellist.copy()
+        print(self.labellist)
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
-        X_train, Y_train, test_size=0.2, random_state=3)
+        X_train, Y_train, test_size=0.6, random_state=5)
         
         self.X_train = mat(self.X_train, dtype=float)
         self.X_validate = mat(self.X_validate, dtype=float)
@@ -177,6 +180,9 @@ class my_module():
         
         pipeline.fit(self.X_train, self.Y_train) 
         ree=pipeline.named_steps['feature_selector'].get_support()
+        print(len(self.labellist))
+        print(len(ree))
+        print(ree)
         for i in range(len(ree)):
             if ree[i]==True:
                 print(self.labellist[i])
@@ -188,10 +194,11 @@ class my_module():
 
         # evaluete_score
         predict_result = pipeline.predict(self.X_validate)
-        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
-                                                    y_predict=[i for i in predict_result])
-        self.evaluete_score = model_evalueter.get_evaluate_score()
-        
+        self.evaluete_score = accuracy_score([i[0] for i in self.Y_validate.tolist()],
+                                                    [i for i in predict_result])
+#         self.evaluete_score = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
+#                                                     y_predict=[i for i in predict_result])
+#         self.evaluete_score = model_evalueter.get_evaluate_score()
         return self.evaluete_score, result
     
     def persistence_model(self):
