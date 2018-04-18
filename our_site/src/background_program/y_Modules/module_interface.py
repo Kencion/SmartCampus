@@ -4,6 +4,7 @@
 from numpy import mat
 from sklearn.model_selection import train_test_split
 import numpy as np
+from sklearn.externals import joblib
 
 
 class my_module():
@@ -36,7 +37,7 @@ class my_module():
         
         pipeline.fit(self.X_train, self.Y_train) 
         predict_result = pipeline.predict(self.X_test)
-         
+        print()
         result = []
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
@@ -186,3 +187,9 @@ class my_module():
         self.evaluete_score = model_evalueter.get_evaluate_score()
         
         return self.evaluete_score, result
+    
+    def persistence_model(self):
+        joblib.dump(self.estimater,'train_model')
+    
+    def load_model(self):
+        self.estimater = joblib('train_model')
