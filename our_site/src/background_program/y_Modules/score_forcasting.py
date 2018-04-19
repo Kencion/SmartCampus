@@ -5,7 +5,6 @@
 from background_program.y_Modules.module_interface import my_module
 
 
-
 class score_forcasting(my_module):
 
     def __init__(self):
@@ -61,7 +60,7 @@ class score_forcasting(my_module):
 
     def get_estimater(self):
         '''
-                        获得预测器，这里是分类器
+        获得预测器，这里是分类器
         @params 
         @retrun    sklearn.xx estimater:预测器
         '''
@@ -73,7 +72,7 @@ class score_forcasting(my_module):
 
     def get_model_evaluater(self, y_true, y_predict):
         '''
-                        获得模型评估器，这里用roc曲线下的面积，即auc来评价
+        获得模型评估器，这里用roc曲线下的面积，即auc来评价
         @params 
         @retrun    
         '''
@@ -84,9 +83,7 @@ class score_forcasting(my_module):
         return model_evalueter
 
 
-    
 if __name__ == '__main__':
     t, tt = score_forcasting().predict()
-    print(t)
-    print(tt)
-
+    # for i in tt:
+    #     print(i)
