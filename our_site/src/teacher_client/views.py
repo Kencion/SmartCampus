@@ -154,6 +154,32 @@ def subsidy_forcasting(request):
 
 
 @exception_handler
+def graduate_forcasting(request):
+    """
+    @return: 毕业预测_页面
+    """
+    from .my_modules import graduate_forcasting
+    try:
+        if request.GET['update']:  # 如果需要更新数据
+            score_forcasting.get_data_update()
+        return HttpResponseRedirect('/teacher_client/graduate_forcasting')
+    except:
+        pass
+    
+    context = {
+       'teacher_name':request.session['teacher_name'],
+       'evaluate_score':graduate_forcasting.get_evaluate_score(),
+       'students_and_graduates':graduate_forcasting.get_all_students_and_graduates(),
+       'feature_scores_and_ranges':Data_page_processer.get_feature_scores_and_ranges_page(graduate_forcasting.get_feature_scores_and_ranges(), request),
+       'score_pie_chart':Data_page_processer.get_pie_page('graduate_pie_chart', graduate_forcasting.get_pie_data(), request),
+       }
+        
+    graduate_forcasting_page = loader.get_template('teacher_client/graduate_forcasting.html')
+    
+    return HttpResponse(graduate_forcasting_page.render(context, request))
+
+
+@exception_handler
 def wired_person(request, update=False):
     """
     @return: 奇怪的人_页面

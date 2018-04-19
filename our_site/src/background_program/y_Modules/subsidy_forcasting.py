@@ -14,7 +14,7 @@ class subsidy_forcasting(my_module):
         my_module.__init__(self, label_name='subsidy_amount')
 
     def get_dataset(self):
-        my_module.get_dataset(self, school_year='2016', usage='classify')
+        my_module.get_dataset(self, school_year='2016', usage='classification')
 
     def get_features_range(self):
         features_range = my_module.get_features_range(
