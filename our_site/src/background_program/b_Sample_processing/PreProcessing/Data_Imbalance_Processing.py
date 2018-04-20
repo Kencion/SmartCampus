@@ -3,7 +3,7 @@ Created on 2017年11月29日
    
 @author: yhj
 '''
-from background_program.b_SampleProcessing.FeatureCalculating.FeatureCalculater import FeatureCalculater
+from background_program.b_Sample_processing.Feature_calculating.FeatureCalculater import FeatureCalculater
 import random
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
