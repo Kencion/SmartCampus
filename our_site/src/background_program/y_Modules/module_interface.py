@@ -195,3 +195,29 @@ class my_module():
 
     def load_model(self):
         self.estimater = joblib('train_model')
+        
+    def predictbyLi(self):
+        from sklearn.pipeline import Pipeline
+
+        # 管道
+        pipeline = Pipeline(
+            [('pre_processer', self.pre_processer),
+             ('feature_selector', self.feature_selector),
+             ('estimater', self.estimater),
+             ]
+        )
+
+        pipeline.fit(self.X_train, self.Y_train)
+        ree = pipeline.named_steps['feature_selector'].get_support()
+        for i in range(len(ree)):
+            if ree[i]==True:
+                print(self.labellist[i])
+        predict_result = pipeline.predict(self.X_test)
+
+        result = np.array(predict_result.copy())
+
+        predict_result = pipeline.predict(self.X_validate)
+        y_true=[i[0] for i in self.Y_validate.tolist()]
+        y_predict=[i for i in predict_result]
+
+        return y_true,y_predict, result
