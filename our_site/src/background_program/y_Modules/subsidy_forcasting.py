@@ -4,6 +4,7 @@ Created on 2017年12月17日
 @author: jack
 '''
 from background_program.y_Modules.module_interface import my_module
+from sklearn.metrics import accuracy_score
 
 
 
@@ -78,4 +79,6 @@ class subsidy_forcasting(my_module):
     
 if __name__ =='__main__':
     h=subsidy_forcasting()
-    print(h.predict2())
+    yr,yp,result = h.predictbyLi()
+    print( accuracy_score(yr,yp))
+    print(result)
