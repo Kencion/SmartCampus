@@ -6,13 +6,15 @@ Created on 2017年12月17日
 from background_program.y_Modules.module_interface import my_module
 
 
+
+
 class subsidy_forcasting(my_module):
 
     def __init__(self):
         my_module.__init__(self, label_name='subsidy_amount')
 
     def get_dataset(self):
-        my_module.get_dataset(self, school_year='2016', usage='regression')
+        my_module.get_dataset(self, school_year='2016', usage='classification')
 
     def get_features_range(self):
         features_range = my_module.get_features_range(
@@ -67,8 +69,13 @@ class subsidy_forcasting(my_module):
         @params 
         @retrun    
         '''
-        from background_program.d_Model_evalueting.Regression import adjusted_mutual_info_score
+        from background_program.d_Model_evalueting.Classification import f1_score
 
-        model_evalueter = adjusted_mutual_info_score(y_true, y_predict)
+        model_evalueter = f1_score(y_true, y_predict)
+        print(model_evalueter)
 
         return model_evalueter
+    
+if __name__ =='__main__':
+    h=subsidy_forcasting()
+    print(h.predict2())

@@ -1,23 +1,25 @@
 '''
-@author: LI Created on 2017年12月17日
-@modify: Jack Modify on 2018年1月3日
+Forcasting weather a student can graduate or not
+
+Created on 2018年4月20日
+
+@author: Jack
 '''
 from background_program.y_Modules.module_interface import my_module
 
 
-class score_forcasting(my_module):
+class graduate_forcasting(my_module):
 
     def __init__(self):
-        my_module.__init__(self, label_name='score')
+        my_module.__init__(self, label_name='graduate')
 
     def get_features_range(self):
-        features_range = my_module.get_features_range(self, label_name='score', label_range={
-                                                      '不及格': [0, 60], '60分-90分': [60, 90], '90分以上': [90, 100]})
+        features_range = my_module.get_features_range(self, label_name='graduate', label_range={'可以毕业': [0, 1], '不可以毕业': [1, 2]})
 
         return features_range
 
     def get_dataset(self):
-        my_module.get_dataset(self, school_year='2016', usage='regression')
+        my_module.get_dataset(self, school_year='2016', usage='classification')
 
     def get_pre_processer(self):
         '''
@@ -76,14 +78,14 @@ class score_forcasting(my_module):
         @params 
         @retrun    
         '''
-        from background_program.d_Model_evalueting.Regression import adjusted_mutual_info_score
+        from background_program.d_Model_evalueting.Classification import accuracy_score
 
-        model_evalueter = adjusted_mutual_info_score(y_true, y_predict)
+        model_evalueter = accuracy_score(y_true, y_predict)
 
         return model_evalueter
 
 
 if __name__ == '__main__':
-    t, tt = score_forcasting().predict()
-    # for i in tt:
-    #     print(i)
+    t, tt = graduate_forcasting().predict()
+    for i in tt:
+        print(i)

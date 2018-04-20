@@ -6,17 +6,13 @@ Created on 2018年3月15日
 
 
 class accuracy_score():
-    from sklearn.metrics import accuracy_score
-
-    def __init__(self, y_pred, y_true):
-        pass
     
-    def xx(self):
-        y_pred = [0, 2, 1, 3]
-        y_true = [0, 1, 2, 3]
-        print(accuracy_score(y_true, y_pred))
-        
-        print(accuracy_score(y_true, y_pred, normalize=False))
+    def __init__(self, y_pred, y_true):
+        from sklearn.metrics import accuracy_score
+        self.evaluate_score = accuracy_score(y_pred, y_true)
+    
+    def get_evaluate_score(self):
+        return self.evaluate_score
 
         
 class average_precision_score():

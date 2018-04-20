@@ -140,15 +140,15 @@ class Gan():
                 lista.append(abs(G_paintings[0,len(G_paintings[0])-1]*(datamax[len(G_paintings[0])-1]-datamin[len(G_paintings[0])-1])+datamin[len(G_paintings[0])-1]))
                 self.final_gan_data.append(lista.copy())
 #                   
-#                 str1=''
-#                 for i in range(0,len(lista)-1):
-#                     str1=str1+str(lista[i])+','
-#                 str1= str1+str(lista[len(lista)-1])    
-#                    
-#                 sql = 'insert into gan_float values({0})'
-#                 print(str(step)+' '+sql.format(str1))
-#                 print(sql.format(str1))
-#                 dataset.executer.execute(sql.format(str1))
+                str1=''
+                for i in range(0,len(lista)-1):
+                    str1=str1+str(lista[i])+','
+                str1= str1+str(lista[len(lista)-1])    
+                    
+                sql = 'insert into gan_float_2 values({0})'
+                print(str(step)+' '+sql.format(str1))
+                print(sql.format(str1))
+                dataset.executer.execute(sql.format(str1))
         self.final_gan_data=np.array(self.final_gan_data)
         sess.close()
         print('Gan结束')

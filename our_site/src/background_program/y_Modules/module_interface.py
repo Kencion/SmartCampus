@@ -4,11 +4,13 @@
 from numpy import mat
 from sklearn.model_selection import train_test_split
 import numpy as np
+from sklearn.externals import joblib
 
 
 class my_module():
-    
+
     def __init__(self, label_name):
+        self.labellist = []
         self.label_name = label_name
         # 获取数据
         self.get_dataset()
@@ -18,25 +20,25 @@ class my_module():
         self.feature_selector = self.get_feature_selector()
         # 获取分类器
         self.estimater = self.get_estimater()
-        
+
         self.evaluate_score = 0
-        
+
         self.predict_result = None
-            
+
     def predict(self):
         from sklearn.pipeline import Pipeline
-        
+
         # 管道
         pipeline = Pipeline(
             [('pre_processer', self.pre_processer),
              ('feature_selector', self.feature_selector),
              ('estimater', self.estimater),
              ]
-            ) 
-        
-        pipeline.fit(self.X_train, self.Y_train) 
+        )
+
+        pipeline.fit(self.X_train, self.Y_train)
+
         predict_result = pipeline.predict(self.X_test)
-         
         result = []
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
@@ -44,19 +46,19 @@ class my_module():
         # evaluete_score
         predict_result = pipeline.predict(self.X_validate)
         model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
-                                                    y_predict=[i for i in predict_result])
+                                                   y_predict=[i for i in predict_result])
         self.evaluete_score = model_evalueter.get_evaluate_score()
         self.predict_result = result
-        
+
         return self.evaluete_score, result
-    
+
     def get_evaluate_score(self):
         '''
         @return: evaluate_score
         '''
-        
+
         return self.evaluate_score
-        
+
     def get_feature_scores(self):
         '''
                         获得每个特征得到的评分
@@ -65,16 +67,16 @@ class my_module():
         '''
         # 获取特征选择器
         feature_selector = self.get_feature_selector()
-        
+
         feature_selector.fit(self.X_train, self.Y_train)
         feature_scores = dict()
         f_scores = feature_selector.scores_
         from .feature_name import features_name_ch
         for i in range(len(f_scores)):
-            feature_scores[features_name_ch[i].strip()] = f_scores[i] 
-        
-        return feature_scores   
-    
+            feature_scores[features_name_ch[i].strip()] = f_scores[i]
+
+        return feature_scores
+
     def get_features_range(self, label_name, label_range):
         '''
                         获得每个特征的范围
@@ -82,8 +84,9 @@ class my_module():
         @retrun 每个特征的范围
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
-        
-        data_carer = DataCarer(label_name=self.label_name, school_year='2016', usage="regression")
+
+        data_carer = DataCarer(label_name=self.label_name,
+                               school_year='2016', usage="regression")
 
         from .feature_name import features_name_ch, features_name_en
 
@@ -91,19 +94,19 @@ class my_module():
         for f_name, f_name_ch in zip(features_name_en, features_name_ch):
             fs_name.append(f_name.strip())
             fs_name_ch.append(f_name_ch.strip())
-        
+
         features_range = dict()
         for f_name, f_name_ch in zip(fs_name, fs_name_ch):
             rangee = dict()
             for score_type, score_range in zip(label_range.keys(), label_range.values()):
                 rangee[score_type] = data_carer.get_feature_range(
-                                                f_name, label_name=label_name,
-                                                label_min=score_range[0], label_max=score_range[1])
+                    f_name, label_name=label_name,
+                    label_min=score_range[0], label_max=score_range[1])
 
             features_range[f_name_ch] = rangee
-        
+
         return features_range
-         
+
     def get_dataset(self, school_year='2016', usage='regression'):
         '''
                         获得训练数据和测试数据
@@ -113,21 +116,22 @@ class my_module():
         @retrun
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
-        
-        data_carer = DataCarer(label_name=self.label_name, school_year=school_year, usage=usage)
-        
+
+        data_carer = DataCarer(label_name=self.label_name,
+                               school_year=school_year, usage=usage)
+
         X_train, Y_train = data_carer.create_train_dataSet()
-         
+        self.labellist = data_carer.labellist.copy()
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
-        X_train, Y_train, test_size=0.2, random_state=3)
-        
+            X_train, Y_train, test_size=0.6, random_state=5)
+
         self.X_train = mat(self.X_train, dtype=float)
         self.X_validate = mat(self.X_validate, dtype=float)
         self.Y_train = mat(self.Y_train, dtype=float)
         self.Y_validate = mat(self.Y_validate, dtype=float)
-        
+
         self.students, self.X_test = data_carer.create_validate_dataSet()
-        
+
     def get_pre_processer(self):
         '''
                         获得特征预处理器
@@ -135,16 +139,15 @@ class my_module():
         @retrun    sklearn.PreProcessing.xx preProcesser:特征预处理器
         '''
         pass
-        
+
     def get_feature_selector(self):
-        
         '''
                         获得特征选择器
         @params 
         @retrun    sklearn.某种类  featureSelector:特征选择器
         '''
         pass
-        
+
     def get_estimater(self):
         '''
                         获得预测器，这里是分类器
@@ -152,7 +155,7 @@ class my_module():
         @retrun    sklearn.xx estimater:预测器
         '''
         pass
-    
+
     def get_model_evalueter(self):
         '''
                         获得模型评估器，主要是评估算法正确率
@@ -160,29 +163,35 @@ class my_module():
         @retrun    
         '''
         pass
-    
+
     def predict2(self):
         from sklearn.pipeline import Pipeline
-        
+
         # 管道
         pipeline = Pipeline(
             [('pre_processer', self.pre_processer),
              ('feature_selector', self.feature_selector),
              ('estimater', self.estimater),
              ]
-            ) 
-        
-        pipeline.fit(self.X_train, self.Y_train) 
+        )
+
+        pipeline.fit(self.X_train, self.Y_train)
+        ree = pipeline.named_steps['feature_selector'].get_support()
         predict_result = pipeline.predict(self.X_test)
-         
+
         result = np.array(predict_result.copy())
 #         for student, score in zip(self.students, predict_result):
 #             result.append([student.getStudent_num(), float(score)])
 
         # evaluete_score
         predict_result = pipeline.predict(self.X_validate)
-        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
-                                                    y_predict=[i for i in predict_result])
-        self.evaluete_score = model_evalueter.get_evaluate_score()
-        
+        self.evaluete_score = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
+                                                    y_predict=[i for i in predict_result]).get_evaluate_score()
+
         return self.evaluete_score, result
+
+    def persistence_model(self):
+        joblib.dump(self.estimater, 'train_model')
+
+    def load_model(self):
+        self.estimater = joblib('train_model')

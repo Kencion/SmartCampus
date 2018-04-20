@@ -17,7 +17,22 @@ class handleMissingData():
         self.nullIndexList=None
         self.tempdata=None
         self.nullIndexList=self.find_null_index(self.realdata)
-          
+        self.label=self.get_label()
+
+    
+    def get_label(self):
+        
+        dataset =FeatureCalculater.FeatureCalculater()
+        sql='describe students_final'
+        dataset.executer.execute(sql)
+        labels=dataset.executer.fetchall()
+        
+        label1= []
+        for i in labels:
+            label1.append(i[0])
+
+        return label1
+        
     def find_null_index(self,xdata):
         '''
         xdata: 输入数据集
@@ -60,19 +75,22 @@ class handleMissingData():
     def work(self):
         pp=0     
         for i in self.nullIndexList:
+            label1=self.label.copy()
+            label2=self.label.copy()
             pp+=1
             self.tempdata = np.copy(self.realdata)
             summ=0
             count=0
-            for i2 in self.nullIndexList[pp:]:
-                for j1 in range(len(self.tempdata)):
-                    if self.tempdata[j1,i2] != None:
-                        summ +=self.tempdata[j1,i2]
-                        count +=1
-
-                for j2 in range(len(self.tempdata)):
-                    if self.tempdata[j2,i2] == None:
-                        self.tempdata[j2,i2]=summ/float(count)
+            for i2 in self.nullIndexList:
+                if i2 != i:
+                    for j1 in range(len(self.tempdata)):
+                        if self.tempdata[j1,i2] != None:
+                            summ +=self.tempdata[j1,i2]
+                            count +=1
+    
+                    for j2 in range(len(self.tempdata)):
+                        if self.tempdata[j2,i2] == None:
+                            self.tempdata[j2,i2]=summ/float(count)
             
                 
                         
@@ -95,22 +113,28 @@ class handleMissingData():
             compeleteRow=np.array(compeleteRow)
             defectRow=np.array(defectRow)
             compeleteRow=np.hstack((compeleteRow,np.mat(compeleteRow[:,i]).T))
-            compeleteRow=np.delete(compeleteRow,i,axis=1)
+            label1.append(label1[i])
+            compeleteRow=np.delete(compeleteRow,self.nullIndexList,axis=1)
+            for uu in range(len(self.nullIndexList)):
+                label1.pop(self.nullIndexList[len(self.nullIndexList)-1-uu])
             data_step1=compeleteRow
             data_step1=np.delete(data_step1, [0,1], axis=1)
+            label1.pop(1)
+            label1.pop(0)
             data_step1=np.array(data_step1)
-            defectRow=np.delete(defectRow,i,axis=1)
+            defectRow=np.delete(defectRow,self.nullIndexList,axis=1)
+            for uu in range(len(self.nullIndexList)):
+                label2.pop(self.nullIndexList[len(self.nullIndexList)-1-uu])
             defectRow=np.delete(defectRow,[0,1],axis=1)  
-            print(defectRow.shape[0])
-            print(defectRow.shape[1])          
+            label2.pop(1)
+            label2.pop(0)
+
             
-#             colunm_i=np.array(colunm_i)
-        #     print(compeleteRow.shape[1])
-        #     print(colunm_i.shape[1])
-#         #     
-#             data_step1=np.hstack((compeleteRow,colunm_i))
-#             data_step1=np.delete(data_step1, [0,1], axis=1)
-#             compeleteRow=np.delete(compeleteRow, [0,1], axis=1)
+            print('(((((((')
+            print(label1[len(label1)-1])
+            print(len(label1))
+            print(len(label2))
+            print(')))))')
             print('*************************')
             '''
             先用gan网络生成数据
@@ -120,16 +144,16 @@ class handleMissingData():
             ganitem.all_data=data_step1
 #             ganitem.all_data = ganitem.all_data.astype(float)
             ganitem.ART_COMPONENTS=ganitem.all_data.shape[1]
-            ganitem.run()
-            print(ganitem.final_gan_data[:,-1])
+#             ganitem.run()
+#             print(ganitem.final_gan_data[:,-1])
             print('---------------------------')
             
             '''
             将gan网络生成的数据与原表的子集合并成新表
             '''
             print('+++++++++++++++++++++++++++')
-#             Mixeddata=ganitem.all_data
-            Mixeddata=np.vstack((ganitem.all_data,ganitem.final_gan_data))
+            Mixeddata=ganitem.all_data
+#             Mixeddata=np.vstack((ganitem.all_data,ganitem.final_gan_data))
             print(Mixeddata.shape[0])
             print(Mixeddata.shape[1])
             X_train=mat(Mixeddata[:,:-1])
@@ -150,6 +174,7 @@ class handleMissingData():
             self.module.X_test=mat(defectRow, dtype=float)
             
             evaluete_score, result=self.module.predict2()
+            self.module.persistence_model()
             print(evaluete_score)
             print(result)
             print('+++++++++++++++++++++++++++')  
@@ -162,7 +187,7 @@ class handleMissingData():
                 self.realdata[j,i]=result[index]
                 index +=1
             print(index-1)
-            
+            break
             
             
 if __name__ == '__main__':
