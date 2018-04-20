@@ -36,7 +36,7 @@ def get_data_update():
         m = my_module(module_name=module_name)
     m.evaluate_score = evaluate_score
     m.save()
-
+    
     get_feature_scores_and_ranges(data_update=True)
     get_pie_data(data_update=True)
 
