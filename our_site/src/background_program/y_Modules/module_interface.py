@@ -104,7 +104,7 @@ class my_module():
                     label_min=score_range[0], label_max=score_range[1])
 
             features_range[f_name_ch] = rangee
-
+            
         return features_range
 
     def get_dataset(self, school_year='2016', usage='regression'):
@@ -210,14 +210,14 @@ class my_module():
         pipeline.fit(self.X_train, self.Y_train)
         ree = pipeline.named_steps['feature_selector'].get_support()
         for i in range(len(ree)):
-            if ree[i]==True:
+            if ree[i] == True:
                 print(self.labellist[i])
         predict_result = pipeline.predict(self.X_test)
 
         result = np.array(predict_result.copy())
 
         predict_result = pipeline.predict(self.X_validate)
-        y_true=[i[0] for i in self.Y_validate.tolist()]
-        y_predict=[i for i in predict_result]
+        y_true = [i[0] for i in self.Y_validate.tolist()]
+        y_predict = [i for i in predict_result]
 
-        return y_true,y_predict, result
+        return y_true, y_predict, result

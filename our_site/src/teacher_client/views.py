@@ -86,7 +86,7 @@ def score_forcasting(request):
        'evaluate_score':score_forcasting.get_evaluate_score(),
        'students_and_scores':score_forcasting.get_all_students_and_scores(),
        'class_fail_student_nums':score_forcasting.get_class_failed_students(),
-       'feature_scores_and_ranges':Data_page_processer.get_feature_scores_and_ranges_page(score_forcasting.get_feature_scores_and_ranges(), request),
+       'feature_scores_and_ranges':Data_page_processer.get_feature_ranges_tree_page(score_forcasting.get_feature_scores_and_ranges(), request),
        'score_pie_chart':Data_page_processer.get_pie_page('score_pie_chart', score_forcasting.get_pie_data(), request),
        }
         
@@ -116,7 +116,7 @@ def scholarship_forcasting(request):
         'teacher_name':request.session['teacher_name'],
         'evaluate_score':scholarship_forcasting.get_evaluate_score(),
         'students_and_scores':students_and_scholarships,
-        'feature_scores_and_ranges':Data_page_processer.get_feature_scores_and_ranges_page(scholarship_forcasting.get_feature_scores_and_ranges(), request),
+        'feature_scores_and_ranges':Data_page_processer.get_feature_ranges_tree_page(scholarship_forcasting.get_feature_scores_and_ranges(), request),
         'scholarship_pie_chart':Data_page_processer.get_pie_page('scholarship_pie_chart', scholarship_forcasting.get_pie_data(), request),
         }
     template = loader.get_template('teacher_client/scholarship_forcasting.html')
@@ -145,7 +145,7 @@ def subsidy_forcasting(request):
         'teacher_name':request.session['teacher_name'],
         'evaluate_score':subsidy_forcasting.get_evaluate_score(),
         'students_and_subsidies':students_and_subsidies,
-        'feature_scores_and_ranges':Data_page_processer.get_feature_scores_and_ranges_page(subsidy_forcasting.get_feature_scores_and_ranges(), request),
+        'feature_scores_and_ranges':Data_page_processer.get_feature_ranges_tree_page(subsidy_forcasting.get_feature_scores_and_ranges(), request),
         'subsidy_pie_chart':Data_page_processer.get_pie_page('subsidy_pie_chart', subsidy_forcasting.get_pie_data(), request),
         }
     template = loader.get_template('teacher_client/subsidy_forcasting.html')
@@ -156,6 +156,7 @@ def subsidy_forcasting(request):
 @exception_handler
 def graduate_forcasting(request):
     """
+    @author: jack
     @return: 毕业预测_页面
     """
     from .my_modules import graduate_forcasting
@@ -170,8 +171,15 @@ def graduate_forcasting(request):
        'teacher_name':request.session['teacher_name'],
        'evaluate_score':graduate_forcasting.get_evaluate_score(),
        'students_and_graduates':graduate_forcasting.get_all_students_and_graduates(),
-       'feature_scores_and_ranges':Data_page_processer.get_feature_scores_and_ranges_page(graduate_forcasting.get_feature_scores_and_ranges(), request),
-       'graduate_pie_chart':Data_page_processer.get_pie_page('graduate_pie_chart', graduate_forcasting.get_pie_data(), request),
+       
+       'feature_scores_and_ranges':Data_page_processer.get_feature_ranges_radar_page(
+           graduate_forcasting.get_feature_scores_and_ranges(),
+           request),
+       
+       'graduate_pie_chart':Data_page_processer.get_pie_page(
+           'graduate_pie_chart',
+           graduate_forcasting.get_pie_data(),
+           request),
        }
         
     graduate_forcasting_page = loader.get_template('teacher_client/graduate_forcasting.html')

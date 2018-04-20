@@ -13,14 +13,14 @@ class data_page_processer():
     combine data and page
     '''
 
-    def get_feature_scores_and_ranges_page(self, feature_scores_and_ranges, request):
+    def get_feature_ranges_tree_page(self, feature_scores_and_ranges, request):
         '''
         @param feature_scores_and_ranges:
         @return: feature_scores_and_ranges_page
         '''
 
         feature_scores_and_ranges_page = loader.get_template(
-            'teacher_client/charts/feature_scores_and_ranges.html')
+            'teacher_client/charts/feature_ranges_tree_chart.html')
         context = {'result': json.dumps(feature_scores_and_ranges)}
 
         return feature_scores_and_ranges_page.render(context, request)
@@ -38,6 +38,21 @@ class data_page_processer():
         }
 
         return pie_page.render(context, request)
+    
+    def get_feature_ranges_radar_page(self, types, top_10_features, top_10_feature_range, request):
+        '''
+        @param feature_scores_and_ranges:
+        @return: feature_scores_and_ranges_page
+        '''
+
+        radar_page = loader.get_template(
+            'teacher_client/charts/feature_ranges_radar_chart.html')
+        context = {'types':json.dumps(types),
+                   'top_10_features':json.dumps(top_10_features),
+                   'top_10_feature_range':json.dumps(top_10_feature_range),
+                   }
+
+        return radar_page.render(context, request)
 
 
 class data_processer():
@@ -54,7 +69,27 @@ class data_processer():
         self.dj_module = dj_module
         self.bk_module = bk_module()
 
+    def get_radar_data(self):
+        import operator
+        
+        top_10_features = sorted(
+            self.bk_module.get_feature_scores().items(), key=operator.itemgetter(1))[-10:]
+            
+        top_10_feature_range = []
+        features_range = self.bk_module.get_features_range()
+        for feature in top_10_features:
+            top_10_feature_range.append(features_range[feature[0]])
+        
+        types = [t for t in top_10_feature_range[0].keys()]
+        
+        print(types)
+        print(top_10_features)
+        print(top_10_feature_range)
+        
+        return  types, top_10_features, top_10_feature_range
+
     def get_tree_data(self):
+        self.get_radar_data()
         '''
         数据的转换，转成echarts树形图能识别的格式
         @author: yzh
@@ -153,14 +188,17 @@ class data_processer():
 
         return pie_data
 
-    def get_feature_scores_and_ranges(self, data_update=False):
+    def get_feature_scores_and_ranges(self, disp_type, data_update=False):
         """
         获得90分以上、60分以下的学生的特征范围
         @return feature_scores_and_ranges
         """
 
         if data_update:
-            f_s_and_r = self.get_tree_data()
+            if disp_type == 'tree':
+                f_s_and_r = self.get_tree_data()
+            else:
+                f_s_and_r = self.get_radar_data()
             try:
                 m = self.dj_module.objects.get(module_name=self.module_name)
             except:
@@ -173,7 +211,6 @@ class data_processer():
                 f_s_and_r = eval(self.dj_module.objects.get(
                     module_name=self.module_name).feature_scores_and_ranges)
             except:
-                f_s_and_r = self.get_feature_scores_and_ranges(
-                    data_update=True)
+                f_s_and_r = self.get_feature_scores_and_ranges(disp_type, data_update=True)
 
         return f_s_and_r
