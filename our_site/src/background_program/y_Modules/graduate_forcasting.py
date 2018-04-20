@@ -66,9 +66,9 @@ class graduate_forcasting(my_module):
         @params 
         @retrun    sklearn.xx estimater:预测器
         '''
-        from background_program.c_Estimating.Regression.GeneralizedLinearModels.RidgeRegression import RidgeRegression
+        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
 
-        estimater = RidgeRegression().estimater
+        estimater = MyDecesionTree().estimater
 
         return estimater
 

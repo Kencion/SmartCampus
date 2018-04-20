@@ -29,7 +29,7 @@ def get_data_update():
         except:
             student = Student(student_num=i[0])
 
-        student.score = i[1]
+        student.graduate = i[1]
         student.save()
 
     try:
