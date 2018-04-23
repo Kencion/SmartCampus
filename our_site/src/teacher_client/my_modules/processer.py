@@ -70,11 +70,10 @@ class data_processer():
         self.bk_module = bk_module()
  
     def get_radar_data(self):
-        import operator
          
         # 排名前10的特征名
-        top_10_features = sorted(
-            self.bk_module.get_feature_scores().items(), key=operator.itemgetter(1))[-10:]
+        top_10_features = self.bk_module.get_feature_scores()[-10:]
+            
         top_10_features = [f[0] for f in top_10_features]
          
         features_range = self.bk_module.get_features_range()
@@ -85,18 +84,20 @@ class data_processer():
             types.append(t + '-0')
             types.append(t + '-1')
             types.remove(t)
-         
+        
         # 排名前10的特征的范围
         top_10_feature_range = dict()
         for t in types:
             top_10_feature_range[t] = []
             for f in top_10_features:
                 top_10_feature_range[t].append(features_range[f][t[:-2]][int(t[-1])])
+                
+            
+        print(top_10_feature_range)
          
         return  types, top_10_features, top_10_feature_range
  
     def get_tree_data(self):
-        self.get_radar_data()
         '''
         数据的转换，转成echarts树形图能识别的格式
         @author: yzh

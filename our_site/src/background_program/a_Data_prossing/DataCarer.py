@@ -23,7 +23,7 @@ class DataCarer():
         if usage not in self.usages:
             print('用法错误：%s' % usage)
         elif usage == "regression":
-            self.table_name = "students_float_copy"
+            self.table_name = "students_float"
         elif usage == "classification":
             self.table_name = "students_int"
         
@@ -59,7 +59,7 @@ class DataCarer():
             dataSet.append(student.getAll())
         dataSet = np.array(dataSet)
         self.close_database()
-        
+    
         dataSet = mat(dataSet)
     
         X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])

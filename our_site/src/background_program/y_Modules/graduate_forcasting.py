@@ -46,18 +46,8 @@ class graduate_forcasting(my_module):
         @params 
         @retrun    sklearn.某种类  featureSelector:特征选择器
         '''
-        from sklearn.pipeline import FeatureUnion
         from background_program.b_Sample_processing.Feature_selection.MySelectKBest import MySelectKBset
-        from background_program.b_Sample_processing.Feature_selection.MySelectPercentile import MySelectPercentile
 
-#         featureSelector = FeatureUnion(
-#             transformer_list=[
-#                 ('MySelectKBset', MySelectKBset().selector),
-#                 ('MySelectPercentile', MySelectPercentile().selector)
-#                 ],
-#                 n_jobs=1)
-#
-#         return featureSelector
         return MySelectKBset().selector
 
     def get_estimater(self):
@@ -86,6 +76,8 @@ class graduate_forcasting(my_module):
 
 
 if __name__ == '__main__':
-    t, tt = graduate_forcasting().predict()
-    for i in tt:
+#     t, tt = score_forcasting().predict()
+    t = graduate_forcasting().get_feature_scores()
+    for i in t:
         print(i)
+

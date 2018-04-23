@@ -19,7 +19,6 @@ def get_data_update():
     @param
     @return
     """
-
     # 获取准确率，并且保存预测结果
     evaluate_score, students_and_graduates = graduate_forcasting().predict()
 
@@ -36,12 +35,13 @@ def get_data_update():
         m = my_module.objects.get(module_name=module_name)
     except:
         m = my_module(module_name=module_name)
+    
     m.evaluate_score = evaluate_score
     m.save()
 
     get_feature_scores_and_ranges(data_update=True)
     get_pie_data(data_update=True)
-
+    
 
 def get_all_students_and_graduates():
     """
@@ -51,6 +51,15 @@ def get_all_students_and_graduates():
     students_and_graduates = [[i.student_num, i.graduate]
                               for i in Student.objects.order_by('-graduate')]
     return students_and_graduates
+
+
+def get_graduate_fail_students():
+    '''
+    获取预测结果为无法顺利毕业的学生
+    '''
+    graduate_fail_students = [
+        i.student_num for i in Student.objects.filter(score__lt=1.0)]
+    return graduate_fail_students
 
 
 def get_evaluate_score():

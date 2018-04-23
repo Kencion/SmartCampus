@@ -83,6 +83,7 @@ class score_forcasting(my_module):
 
 
 if __name__ == '__main__':
-    t, tt = score_forcasting().predict()
-
-
+#     t, tt = score_forcasting().predict()
+    t = score_forcasting().get_feature_scores()
+    for i in t:
+        print(i)

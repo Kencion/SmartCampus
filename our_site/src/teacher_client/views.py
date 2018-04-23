@@ -10,6 +10,7 @@ from student_client.models import Student
 from our_site.my_logger import exception_handler
 from our_site.my_exceptions import not_login_exception
 from .my_modules.processer import data_page_processer
+from audioop import reverse
 
 Data_page_processer = data_page_processer()
 
@@ -173,6 +174,7 @@ def graduate_forcasting(request):
        'teacher_name':request.session['teacher_name'],
        'evaluate_score':graduate_forcasting.get_evaluate_score(),
        'students_and_graduates':graduate_forcasting.get_all_students_and_graduates(),
+       'graduate_fail_students':graduate_forcasting.get_graduate_fail_students(),
        
        'feature_scores_and_ranges':Data_page_processer.get_feature_ranges_radar_page(
            types, top_10_features, top_10_feature_range,

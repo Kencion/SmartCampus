@@ -1,6 +1,7 @@
 '''
 @modify: Jack Modify on 2018年1月3日
 '''
+import math
 from numpy import mat
 from sklearn.model_selection import train_test_split
 import numpy as np
@@ -65,15 +66,26 @@ class my_module():
         @params 
         @retrun    dict selected_features:每个特征的评分
         '''
+        import operator
+        from .feature_name import features_name_ch
+        
         # 获取特征选择器
         feature_selector = self.get_feature_selector()
 
         feature_selector.fit(self.X_train, self.Y_train)
-        feature_scores = dict()
         f_scores = feature_selector.scores_
-        from .feature_name import features_name_ch
+        
+        feature_scores = dict()
         for i in range(len(f_scores)):
-            feature_scores[features_name_ch[i].strip()] = f_scores[i]
+            print(f_scores[i])
+            if math.isinf(f_scores[i]):
+                feature_scores[features_name_ch[i].strip()] = 999999
+            elif math.isnan(f_scores[i]):
+                pass
+            else:
+                feature_scores[features_name_ch[i].strip()] = f_scores[i]
+        feature_scores = sorted(
+            feature_scores.items(), key=operator.itemgetter(1))
 
         return feature_scores
 
