@@ -71,9 +71,9 @@ def get_feature_scores_and_ranges(data_update=False):
     @return feature_scores_and_ranges
     """
 
-    feature_scores_and_ranges = Data_processer.get_feature_scores_and_ranges('radar', data_update)
+    types, top_10_features, top_10_feature_range = Data_processer.get_feature_scores_and_ranges('radar', data_update)
     
-    return feature_scores_and_ranges
+    return types, top_10_features, top_10_feature_range 
 
 
 def get_pie_data(data_update=False):

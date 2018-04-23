@@ -167,13 +167,15 @@ def graduate_forcasting(request):
     except:
         pass
     
+    types, top_10_features, top_10_feature_range = graduate_forcasting.get_feature_scores_and_ranges()
+    
     context = {
        'teacher_name':request.session['teacher_name'],
        'evaluate_score':graduate_forcasting.get_evaluate_score(),
        'students_and_graduates':graduate_forcasting.get_all_students_and_graduates(),
        
        'feature_scores_and_ranges':Data_page_processer.get_feature_ranges_radar_page(
-           graduate_forcasting.get_feature_scores_and_ranges(),
+           types, top_10_features, top_10_feature_range,
            request),
        
        'graduate_pie_chart':Data_page_processer.get_pie_page(
