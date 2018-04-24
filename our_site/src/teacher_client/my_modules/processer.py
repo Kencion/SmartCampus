@@ -72,7 +72,7 @@ class data_processer():
     def get_radar_data(self):
          
         # 排名前10的特征名
-        top_10_features = self.bk_module.get_feature_scores()[-10:]
+        top_10_features = self.bk_module.get_feature_scores()[-30:]
             
         top_10_features = [f[0] for f in top_10_features]
          

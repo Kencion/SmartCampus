@@ -77,7 +77,6 @@ class my_module():
         
         feature_scores = dict()
         for i in range(len(f_scores)):
-            print(f_scores[i])
             if math.isinf(f_scores[i]):
                 feature_scores[features_name_ch[i].strip()] = 999999
             elif math.isnan(f_scores[i]):
