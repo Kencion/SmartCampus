@@ -1,6 +1,6 @@
 features_name_en = (
-'student_num',
-'student_name',
+# 'student_num',
+# 'student_name',
 'student_type',
 'activity_num',
 'activity_avg_level',
@@ -84,8 +84,9 @@ features_name_en = (
 
     )
 
-features_name_ch = ('学号',
-'学生名字',
+features_name_ch = (
+# '学号',
+# '学生名字',
 '学生类别',
 '参与活动数量',
 '参与活动的平均活跃程度',

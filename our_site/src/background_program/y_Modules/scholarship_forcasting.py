@@ -17,7 +17,7 @@ class scholarship_forcasting(my_module):
         return features_range
 
     def get_data(self):
-        my_module.get_dataset(self, school_year='2016', usage='regression')
+        my_module.get_dataset(self, school_year='2016', usage='classification')
 
     def get_pre_processer(self):
         '''
@@ -54,9 +54,9 @@ class scholarship_forcasting(my_module):
         @params
         @retrun    sklearn.某种类  estimater:预测器
         '''
-        from background_program.c_Estimating.Regression.GeneralizedLinearModels.RidgeRegression import RidgeRegression
+        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
 
-        estimater = RidgeRegression().estimater
+        estimater = MyDecesionTree().estimater
 
         return estimater
 
@@ -66,9 +66,9 @@ class scholarship_forcasting(my_module):
         @params
         @retrun
         '''
-        from background_program.d_Model_evalueting.Regression import adjusted_mutual_info_score
+        from background_program.d_Model_evalueting.Classification import accuracy_score
 
-        model_evalueter = adjusted_mutual_info_score(y_true, y_predict)
+        model_evalueter = accuracy_score(y_true, y_predict)
 
         return model_evalueter
     

@@ -2,12 +2,16 @@
 Created on 2017年11月21日
 @author: jack
 '''
+
+
 class Student():
     '''
               学生类，要画像的对象
     '''
+
     def __init__(self, student_num, features=None, label="1"):
         self.student_num = student_num
+#         self.school_year = school_year
         try:
             self.features = list(features)
         except:
@@ -36,6 +40,6 @@ class Student():
         @params 
         @retrun list[[]] features_and_labels:[特征,标签]
         '''
-        features_and_labels=self.features+[self.label]
+        features_and_labels = self.features + [self.label]
         return features_and_labels
     

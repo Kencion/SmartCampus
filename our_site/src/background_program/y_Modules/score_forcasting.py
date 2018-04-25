@@ -72,18 +72,18 @@ class score_forcasting(my_module):
 
     def get_model_evaluater(self, y_true, y_predict):
         '''
-        获得模型评估器，这里用roc曲线下的面积，即auc来评价
+        获得模型评估器，这里用r2_score来评价
         @params 
         @retrun    
         '''
-        from background_program.d_Model_evalueting.Regression import adjusted_mutual_info_score
+        from background_program.d_Model_evalueting.Regression import r2_score
 
-        model_evalueter = adjusted_mutual_info_score(y_true, y_predict)
-
+        model_evalueter = r2_score(y_true, y_predict)
         return model_evalueter
 
 
 if __name__ == '__main__':
-    t, tt = score_forcasting().predict()
-    # for i in tt:
-    #     print(i)
+#     t, tt = score_forcasting().predict()
+    t = score_forcasting().get_feature_scores()
+    for i in t:
+        print(i)

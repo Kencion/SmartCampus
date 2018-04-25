@@ -1,0 +1,46 @@
+比较重要特征的范围
+<div style="width: 100%; padding: 0; margin: 0; height: 600px;"
+	id="radar"></div>
+<script>
+	var myChart = echarts.init(document.getElementById('radar'));
+	myChart.showLoading(); 
+	var types = {{types|safe}};
+	var top_10_features = {{top_10_features|safe}};
+	var top_10_feature=new Array();
+	for(var i in top_10_features){
+		top_10_feature.push({name:top_10_features[i]});
+	}
+	var top_10_feature_range={{top_10_feature_range|safe}};
+	var my_data=new Array();
+	for(var i in top_10_feature_range){
+		my_data.push({value:top_10_feature_range[i],name:i});
+	}
+	myChart.hideLoading();
+	myChart.setOption(option = {
+		    title: {
+		        text: ''
+		    },
+		    tooltip: {},
+		    legend: {
+		        data: types
+		    },
+		    radar: {
+		        // shape: 'circle',
+		        name: {
+		            textStyle: {
+		                color: '#fff',
+		                backgroundColor: '#999',
+		                borderRadius: 3,
+		                padding: [3, 5]
+		           }
+		        },
+		        indicator: top_10_feature
+		    },
+		    series: [{
+		        name: '预算 vs 开销（Budget vs spending）',
+		        type: 'radar',
+		        // areaStyle: {normal: {}},
+		        data : my_data
+		    }]
+		});
+</script>

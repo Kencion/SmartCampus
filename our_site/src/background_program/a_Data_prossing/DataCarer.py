@@ -23,13 +23,13 @@ class DataCarer():
         if usage not in self.usages:
             print('用法错误：%s' % usage)
         elif usage == "regression":
-            self.table_name = "students_float_copy"
+            self.table_name = "students_float"
         elif usage == "classification":
             self.table_name = "students_int"
         
         self.label_name = label_name
         self.school_year = school_year
-        self.labellist=[]
+        self.labellist = []
 
     def create_train_dataSet(self):
         '''
@@ -43,7 +43,7 @@ class DataCarer():
         self.executer.execute("DESCRIBE {0}".format(self.table_name))
         columnName = self.executer.fetchall()
         index = -1
-        for i in range(2,len(columnName)):
+        for i in range(2, len(columnName)):
             if str(columnName[i][0]) == self.label_name :
                 index = i
             else:
@@ -59,7 +59,7 @@ class DataCarer():
             dataSet.append(student.getAll())
         dataSet = np.array(dataSet)
         self.close_database()
-        
+    
         dataSet = mat(dataSet)
     
         X_train, Y_train = mat(dataSet[:, :-1]), mat(dataSet[:, -1])
@@ -111,9 +111,8 @@ class DataCarer():
         
     def get_feature_range(self, feature_name, label_name, label_min, label_max):
         self.open_database("软件学院")
-        sql = 'select min({0}),max({1}) from {2} where {3} between {4} and {5}'.\
-            format(feature_name, feature_name, 'students_float', \
-                   label_name, label_min, label_max)
+        sql = 'select min({0}),max({0}) from {1} where {2} >= {3} and {2} < {4}'.\
+            format(feature_name, 'students_float', label_name, label_min, label_max)
         try:
             self.executer.execute(sql)
             result = self.executer.fetchone()
