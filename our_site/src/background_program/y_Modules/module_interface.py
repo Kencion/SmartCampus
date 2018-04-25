@@ -130,11 +130,11 @@ class my_module():
 
         data_carer = DataCarer(label_name=self.label_name,
                                school_year=school_year, usage=usage)
+        self.labellist = data_carer.labellist.copy()
 
         X_train, Y_train = data_carer.create_train_dataSet()
-        self.labellist = data_carer.labellist.copy()
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
-            X_train, Y_train, test_size=0.6, random_state=5)
+            X_train, Y_train, test_size=0.8, random_state=5)
 
         self.X_train = mat(self.X_train, dtype=float)
         self.X_validate = mat(self.X_validate, dtype=float)
