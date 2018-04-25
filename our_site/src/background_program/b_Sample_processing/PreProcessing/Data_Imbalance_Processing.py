@@ -60,10 +60,10 @@ class Data_Imbalance_Processing(FeatureCalculater):
     int proportion：表示需要其他类别增加的数量
     """
     def _get_proportion(self,feature):
-        sql="select count(*) from students_rank"
+        sql="select count(*) from students_int"
         self.executer.execute(sql)
         total_num=self.executer.fetchone()[0]
-        sql="select "+feature+",count(*) from students_rank group by "+feature+""
+        sql="select "+feature+",count(*) from students_int group by "+feature+""
         self.executer.execute(sql)
         result=self.executer.fetchall()
         lists = [[] for i in range(len(result))]
@@ -85,10 +85,10 @@ class Data_Imbalance_Processing(FeatureCalculater):
     int num:该类别样本所占的数量
     """
     def _get_samples(self,feature,value):
-        sql="select * from students_rank where {0}={1}"
+        sql="select * from students_int where {0}={1}"
         self.executer.execute(sql.format(feature, value))
         samples=self.executer.fetchall()
-        sql="select count(*) from students_rank where {0}={1}"
+        sql="select count(*) from students_int where {0}={1}"
         self.executer.execute(sql.format(feature, value))
         num=self.executer.fetchone()[0]
         samples=[i[1:] for i in samples]
@@ -116,9 +116,12 @@ class Data_Imbalance_Processing(FeatureCalculater):
                 n+=1
             else:
                 new_dataSet = np.vstack((new_dataSet, dataSet))
+        for data in new_dataSet:
+            print(data)
         return new_dataSet
 if __name__=='__main__':
     a=np.array([[1,2,3],[4,5,6],[2,3,1],[2,1,2],[2,3,4],[2,3,4]])#没有用的数据，单纯生成对象参数
     dip=Data_Imbalance_Processing(a,N=100)
     lists,proportion=dip._get_proportion('score')#分类属性
     dip._get_data(lists, proportion,'score')
+    print("Over")

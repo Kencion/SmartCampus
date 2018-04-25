@@ -8,7 +8,7 @@ from background_program.b_Sample_processing.PreProcessing import Features_Analys
 class Exchange_Data(FeatureCalculater):
     def Add_Datas(self):
         Feature_names=Features_Analyse.fea_names
-        sql="select * from students_int limit 10"
+        sql="select * from students_int"
         self.executer.execute(sql)
         result=self.executer.fetchall()
         for i in range(len(Feature_names)):

@@ -3,10 +3,15 @@ Created on 2018年4月19日
 
 @author:YHJ
 '''
-class Feature_Analyse():
+import numpy as np
+from background_program.b_Sample_processing.Feature_calculating.FeatureCalculater import FeatureCalculater
+class Feature_Analyse(FeatureCalculater):
     def load_data_set(self):
-        data_set = [[1, 2, 3], [2,3,4], [3,4,5],
-            [5,4,3]]
+        sql="select * from Analyse_int"
+        self.executer.execute(sql)
+        result=self.executer.fetchall()
+        data_set=np.array(result)
+        print(data_set)
         return data_set
 
 
@@ -159,7 +164,6 @@ if __name__ == "__main__":
     """
     fa=Feature_Analyse()
     data_set = fa.load_data_set()
-    # print(data_set)
     L, support_data = fa.generate_L(data_set, k=3, min_support=0.2)
     big_rules_list = fa.generate_big_rules(L, support_data, min_conf=0.7)
     for item in big_rules_list:
