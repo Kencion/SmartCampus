@@ -74,4 +74,4 @@ class scholarship_forcasting(my_module):
     
 if __name__ == '__main__':
     t = scholarship_forcasting()
-    print(t.predict())
+    print(t.get_feature_scores())
