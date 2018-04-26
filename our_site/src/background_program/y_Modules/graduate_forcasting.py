@@ -11,7 +11,7 @@ from background_program.y_Modules.module_interface import my_module
 class graduate_forcasting(my_module):
 
     def __init__(self):
-        my_module.__init__(self, 
+        my_module.__init__(self,
                            label_name='graduate')
 
     def get_features_range(self):
@@ -22,8 +22,8 @@ class graduate_forcasting(my_module):
         return features_range
 
     def get_dataset(self):
-        my_module.get_dataset(self, 
-                              school_year='2016', 
+        my_module.get_dataset(self,
+                              school_year='2016',
                               usage='classification')
 
     def get_pre_processer(self):
@@ -61,11 +61,25 @@ class graduate_forcasting(my_module):
         @params 
         @retrun    sklearn.xx estimater:预测器
         '''
-        from background_program.c_Estimating.Classification import My_SVM
+        from background_program.c_Estimating.Ensemble import My_VotingClassifier
+        from background_program.c_Estimating.Classification import My_Cart 
+        from background_program.c_Estimating.Classification import My_ID3
+        from background_program.c_Estimating.Classification import My_GaussianNB 
+        from background_program.c_Estimating.Classification import My_SVM 
 
-        estimater = My_SVM().estimater
+        My_Cart = My_Cart().estimater
+        My_ID3 = My_ID3().estimater
+        My_GaussianNB = My_GaussianNB().estimater
+        My_SVM = My_SVM().estimater
+        
+        VotingClassifier = My_VotingClassifier(
+                            estimators=[('My_Cart', My_Cart),
+                                        ('My_ID3', My_ID3),
+                                        ('My_GaussianNB', My_GaussianNB),],
+#                                         ('My_SVM', My_SVM)],
+                            weights=None).estimater
 
-        return estimater
+        return VotingClassifier
 
     def get_model_evaluater(self, y_true, y_predict):
         '''
@@ -73,9 +87,9 @@ class graduate_forcasting(my_module):
         @params 
         @retrun    
         '''
-        from background_program.d_Model_evalueting.Classification import accuracy_score
+        from background_program.d_Model_evalueting.Classification import recall_score
 
-        model_evalueter = accuracy_score(y_true, y_predict)
+        model_evalueter = recall_score(y_true, y_predict)
 
         return model_evalueter
 
@@ -84,6 +98,6 @@ if __name__ == '__main__':
     t, tt = graduate_forcasting().predict()
 #     t = graduate_forcasting().get_feature_scores()
     print(t)
-#     for i in tt:
-#         print(i)
+    for i in tt:
+        print(i)
 
