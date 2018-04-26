@@ -61,9 +61,9 @@ class graduate_forcasting(my_module):
         @params 
         @retrun    sklearn.xx estimater:预测器
         '''
-        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
+        from background_program.c_Estimating.Classification import My_SVM
 
-        estimater = MyDecesionTree().estimater
+        estimater = My_SVM().estimater
 
         return estimater
 

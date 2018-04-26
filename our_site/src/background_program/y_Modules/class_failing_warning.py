@@ -62,9 +62,9 @@ class class_failing_warning(my_module):
         @params 
         @retrun    sklearn.某种类  estimater:预测器
         '''
-        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
-        
-        estimater = MyDecesionTree().estimater
+        from background_program.c_Estimating.Classification import My_Cart
+
+        estimater = My_Cart().estimater
         return estimater
     
     def get_model_evaluater(self, y_true, y_predict):

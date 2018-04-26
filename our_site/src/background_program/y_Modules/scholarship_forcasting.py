@@ -54,9 +54,9 @@ class scholarship_forcasting(my_module):
         @params
         @retrun    sklearn.某种类  estimater:预测器
         '''
-        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
+        from background_program.c_Estimating.Classification import My_Cart
 
-        estimater = MyDecesionTree().estimater
+        estimater = My_Cart().estimater
 
         return estimater
 
