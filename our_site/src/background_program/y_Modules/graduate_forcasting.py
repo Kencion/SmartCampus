@@ -11,15 +11,20 @@ from background_program.y_Modules.module_interface import my_module
 class graduate_forcasting(my_module):
 
     def __init__(self):
-        my_module.__init__(self, label_name='graduate')
+        my_module.__init__(self,
+                           label_name='graduate')
 
     def get_features_range(self):
-        features_range = my_module.get_features_range(self, label_name='graduate', label_range={'可以毕业': [0, 1], '不可以毕业': [1, 2]})
+        features_range = my_module.get_features_range(self,
+                                                      label_name='graduate',
+                                                      label_range={'可以毕业': [0, 1], '不可以毕业': [1, 2]})
 
         return features_range
 
     def get_dataset(self):
-        my_module.get_dataset(self, school_year='2016', usage='classification')
+        my_module.get_dataset(self,
+                              school_year='2016',
+                              usage='classification')
 
     def get_pre_processer(self):
         '''
@@ -56,28 +61,43 @@ class graduate_forcasting(my_module):
         @params 
         @retrun    sklearn.xx estimater:预测器
         '''
-        from background_program.c_Estimating.Classification.Tree.MyDecesionTree import MyDecesionTree
+        from background_program.c_Estimating.Ensemble import My_VotingClassifier
+        from background_program.c_Estimating.Classification import My_Cart 
+        from background_program.c_Estimating.Classification import My_ID3
+        from background_program.c_Estimating.Classification import My_GaussianNB 
+        from background_program.c_Estimating.Classification import My_SVM 
 
-        estimater = MyDecesionTree().estimater
+        My_Cart = My_Cart().estimater
+        My_ID3 = My_ID3().estimater
+        My_GaussianNB = My_GaussianNB().estimater
+        My_SVM = My_SVM().estimater
+        
+        VotingClassifier = My_VotingClassifier(
+                            estimators=[('My_Cart', My_Cart),
+                                        ('My_ID3', My_ID3),
+                                        ('My_GaussianNB', My_GaussianNB),],
+#                                         ('My_SVM', My_SVM)],
+                            weights=None).estimater
 
-        return estimater
+        return VotingClassifier
 
     def get_model_evaluater(self, y_true, y_predict):
         '''
-        获得模型评估器，这里用roc曲线下的面积，即auc来评价
+        获得模型评估器，这里用正确率来评价
         @params 
         @retrun    
         '''
-        from background_program.d_Model_evalueting.Classification import accuracy_score
+        from background_program.d_Model_evalueting.Classification import recall_score
 
-        model_evalueter = accuracy_score(y_true, y_predict)
+        model_evalueter = recall_score(y_true, y_predict)
 
         return model_evalueter
 
 
 if __name__ == '__main__':
-#     t, tt = score_forcasting().predict()
-    t = graduate_forcasting().get_feature_scores()
-    for i in t:
-        print(i)
+    t, tt = graduate_forcasting().predict()
+#     t = graduate_forcasting().get_feature_scores()
+    print(t)
+#     for i in tt:
+#         print(i)
 

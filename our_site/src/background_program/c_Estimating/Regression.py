@@ -1,10 +1,12 @@
 '''
-Created on 2017年12月17日
+Created on 2018年4月25日
 
-@author: LI
+@author: Jack
 '''
 
+
 class LogisticRegression():
+
     def __init__(self):
         from sklearn.linear_model import LogisticRegression
         
@@ -20,7 +22,7 @@ class LogisticRegression():
             solver='liblinear',
             max_iter=100,
             multi_class='ovr',
-            verbose=0, 
-            warm_start=False, 
+            verbose=0,
+            warm_start=False,
             n_jobs=1
             )

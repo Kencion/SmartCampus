@@ -25,8 +25,8 @@ class my_module():
         self.evaluate_score = 0
 
         self.predict_result = None
-
-    def predict(self):
+        
+    def train_model(self, train_time):
         from sklearn.pipeline import Pipeline
 
         # 管道
@@ -36,19 +36,27 @@ class my_module():
              ('estimater', self.estimater),
              ]
         )
+        
+        for _ in range(train_time):
+            pipeline.fit(self.X_train, self.Y_train)
+            
+        self.estimater = pipeline
 
-        pipeline.fit(self.X_train, self.Y_train)
+    def predict(self):
+        self.train_model(train_time=100)
+        
+        # evaluete_score
+        predict_result = self.estimater.predict(self.X_validate)
+        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
+                                                   y_predict=[i for i in predict_result])
+        self.evaluete_score = model_evalueter.get_evaluate_score()
 
-        predict_result = pipeline.predict(self.X_test)
+        # get predict result
+        predict_result = self.estimater.predict(self.X_test)
         result = []
         for student, score in zip(self.students, predict_result):
             result.append([student.getStudent_num(), float(score)])
 
-        # evaluete_score
-        predict_result = pipeline.predict(self.X_validate)
-        model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
-                                                   y_predict=[i for i in predict_result])
-        self.evaluete_score = model_evalueter.get_evaluate_score()
         self.predict_result = result
 
         return self.evaluete_score, result
@@ -130,11 +138,11 @@ class my_module():
 
         data_carer = DataCarer(label_name=self.label_name,
                                school_year=school_year, usage=usage)
+        self.labellist = data_carer.labellist.copy()
 
         X_train, Y_train = data_carer.create_train_dataSet()
-        self.labellist = data_carer.labellist.copy()
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
-            X_train, Y_train, test_size=0.6, random_state=5)
+            X_train, Y_train, test_size=0.8, random_state=5)
 
         self.X_train = mat(self.X_train, dtype=float)
         self.X_validate = mat(self.X_validate, dtype=float)
@@ -202,9 +210,15 @@ class my_module():
         return self.evaluete_score, result
 
     def persistence_model(self):
+        '''
+        将模型持久化
+        '''
         joblib.dump(self.estimater, 'train_model')
 
     def load_model(self):
+        '''
+        从文件中加载模型
+        '''
         self.estimater = joblib('train_model')
         
     def predictbyLi(self):

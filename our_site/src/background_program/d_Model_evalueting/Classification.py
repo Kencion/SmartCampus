@@ -47,10 +47,13 @@ class precision_score():
 
 
 class recall_score():
-    from sklearn.metrics import recall_score
 
     def __init__(self, y_true, y_pred):
-        pass
+        from sklearn.metrics import recall_score
+        self.evaluate_score = recall_score(y_true, y_pred)
+    
+    def get_evaluate_score(self):
+        return self.evaluate_score
 
 
 class roc_auc_score():
