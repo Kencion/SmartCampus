@@ -99,16 +99,16 @@ def doit():
 #     from background_program.b_Sample_processing.Feature_calculating.FeatureCalculater import FeatureCalculater
 #     FeatureCalculater().calculate()
 #     
-    # 计算特征值
-    calculate()
-     
-    # 把没用的数据清除掉
-    clean_useless_data()
+#     # 计算特征值
+#     calculate()
+#      
+#     # 把没用的数据清除掉
+#     clean_useless_data()
     
 #     # 聚类
-#     for calculater in tqdm(calculaters):
-#             calculater.cluster()
-#             calculater.tearDown()
+    for calculater in tqdm(calculaters):
+            calculater.cluster()
+            calculater.tearDown()
 
 if __name__ == '__main__':
     doit()

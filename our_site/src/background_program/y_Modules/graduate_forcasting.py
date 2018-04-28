@@ -98,6 +98,6 @@ if __name__ == '__main__':
     t, tt = graduate_forcasting().predict()
 #     t = graduate_forcasting().get_feature_scores()
     print(t)
-    for i in tt:
-        print(i)
+#     for i in tt:
+#         print(i)
 

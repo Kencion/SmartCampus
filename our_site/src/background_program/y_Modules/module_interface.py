@@ -43,7 +43,7 @@ class my_module():
         self.estimater = pipeline
 
     def predict(self):
-        self.train_model(train_time=10)
+        self.train_model(train_time=100)
         
         # evaluete_score
         predict_result = self.estimater.predict(self.X_validate)
