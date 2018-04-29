@@ -10,10 +10,11 @@ from sklearn.externals import joblib
 
 class my_module():
 
-    def __init__(self, label_name):
+    def __init__(self, label_name,usage):
         self.labellist = []
         self.label_name = label_name
         # 获取数据
+        self.usage=usage
         self.get_dataset()
         # 获取数据预处理器
         self.pre_processer = self.get_pre_processer()
@@ -144,7 +145,7 @@ class my_module():
         from background_program.a_Data_prossing.DataCarer import DataCarer
         
         data_carer = DataCarer(label_name=self.label_name,
-                               school_year=school_year, usage=usage)
+                               school_year=school_year, usage=self.usage)
         self.labellist = data_carer.labellist.copy()
 
         X_train, Y_train = data_carer.create_train_dataSet()

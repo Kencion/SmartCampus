@@ -11,9 +11,9 @@ from background_program.y_Modules.module_interface import my_module
 class graduate_forcasting(my_module):
 
     def __init__(self):
-        self.get_dataset()
+#         self.get_dataset()
         my_module.__init__(self,
-                           label_name='graduate')
+                           label_name='graduate',usage='classification')
 
     def get_features_range(self):
         features_range = my_module.get_features_range(self,

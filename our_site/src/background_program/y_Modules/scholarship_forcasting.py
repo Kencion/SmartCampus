@@ -9,7 +9,7 @@ class scholarship_forcasting(my_module):
 
     def __init__(self):
 #         self.get_dataset()
-        my_module.__init__(self, label_name='scholarship_amount')
+        my_module.__init__(self, label_name='scholarship_amount',usage='classification')
 
     def get_features_range(self):
         features_range = my_module.get_features_range(
