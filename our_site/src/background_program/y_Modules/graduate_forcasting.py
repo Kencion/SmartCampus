@@ -95,7 +95,7 @@ class graduate_forcasting(my_module):
 
 
 if __name__ == '__main__':
-    t, tt = graduate_forcasting().predict()
+    t = graduate_forcasting().get_feature_scores()()
 #     t = graduate_forcasting().get_feature_scores()
     print(t)
 #     for i in tt:
