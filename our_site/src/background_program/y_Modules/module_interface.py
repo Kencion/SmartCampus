@@ -58,7 +58,8 @@ class my_module():
             result.append([student.getStudent_num(), float(score)])
 
         self.predict_result = result
-
+#         for re in result:
+#             print(re)
         return self.evaluete_score, result
 
     def get_evaluate_score(self):
@@ -126,7 +127,7 @@ class my_module():
             
         return features_range
 
-    def get_dataset(self, school_year='2016', usage='regression'):
+    def get_dataset(self, school_year='2016',usage='regression'):
         '''
                         获得训练数据和测试数据
         self.X_train=训练数据特征， self.Y_train=训练数据标签
@@ -135,7 +136,7 @@ class my_module():
         @retrun
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
-
+        
         data_carer = DataCarer(label_name=self.label_name,
                                school_year=school_year, usage=usage)
         self.labellist = data_carer.labellist.copy()
@@ -151,6 +152,9 @@ class my_module():
 
         self.students, self.X_test = data_carer.create_validate_dataSet()
 
+#         for test in self.X_test:
+#             print(self.X_test)
+#         print("hhhhhhhhhhha")
     def get_pre_processer(self):
         '''
                         获得特征预处理器
@@ -197,7 +201,8 @@ class my_module():
         pipeline.fit(self.X_train, self.Y_train)
         ree = pipeline.named_steps['feature_selector'].get_support()
         predict_result = pipeline.predict(self.X_test)
-
+#         for pre in predict_result:
+#             print(pre)
         result = np.array(predict_result.copy())
 #         for student, score in zip(self.students, predict_result):
 #             result.append([student.getStudent_num(), float(score)])

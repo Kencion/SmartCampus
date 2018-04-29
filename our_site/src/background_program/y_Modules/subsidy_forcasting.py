@@ -12,6 +12,7 @@ from sklearn.metrics import accuracy_score
 class subsidy_forcasting(my_module):
 
     def __init__(self):
+        self.get_dataset()
         my_module.__init__(self, label_name='subsidy_amount')
 
     def get_dataset(self):

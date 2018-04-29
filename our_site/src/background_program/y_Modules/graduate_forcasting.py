@@ -11,6 +11,7 @@ from background_program.y_Modules.module_interface import my_module
 class graduate_forcasting(my_module):
 
     def __init__(self):
+        self.get_dataset()
         my_module.__init__(self,
                            label_name='graduate')
 

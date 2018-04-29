@@ -8,6 +8,7 @@ from background_program.y_Modules.module_interface import my_module
 class score_forcasting(my_module):
 
     def __init__(self):
+        self.get_dataset()
         my_module.__init__(self, label_name='score')
 
     def get_features_range(self):

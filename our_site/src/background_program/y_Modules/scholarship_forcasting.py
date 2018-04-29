@@ -8,6 +8,7 @@ from background_program.y_Modules.module_interface import my_module
 class scholarship_forcasting(my_module):
 
     def __init__(self):
+#         self.get_dataset()
         my_module.__init__(self, label_name='scholarship_amount')
 
     def get_features_range(self):
@@ -74,4 +75,5 @@ class scholarship_forcasting(my_module):
     
 if __name__ == '__main__':
     t = scholarship_forcasting()
+    t.predict()
     print(t.get_feature_scores())

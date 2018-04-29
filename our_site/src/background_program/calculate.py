@@ -41,7 +41,7 @@ calculaters = [
 #         failed_failed_num.failed_failed_num(),
 #          GPA1.GPA1(),
 #         score_rank1.score_rank1(),
-#         score1.score1(),
+        score1.score1(),
 #             
 #         is_social_practice_great1.is_social_practice_great1(),
 #         social_practice_time.social_practice_time(),

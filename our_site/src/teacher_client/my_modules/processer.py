@@ -91,7 +91,6 @@ class data_processer():
             top_10_feature_range[t] = []
             for f in top_10_features:
                 top_10_feature_range[t].append(features_range[f][t[:-2]][int(t[-1])])
-                
             
         print(top_10_feature_range)
          
