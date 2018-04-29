@@ -67,19 +67,17 @@ class subsidy_forcasting(my_module):
 
     def get_model_evaluater(self, y_true, y_predict):
         '''
-                        获得模型评估器，这里用roc曲线下的面积，即auc来评价
+                        获得模型评估器，这里用f1_score来评价
         @params 
         @retrun    
         '''
         from background_program.d_Model_evalueting.Classification import f1_score
 
-        model_evalueter = f1_score(y_true, y_predict)
+        model_evalueter = f1_score(y_true, y_predict,average='macro')
         print(model_evalueter)
 
         return model_evalueter
     
 if __name__ =='__main__':
-    h=subsidy_forcasting()
-    yr,yp,result = h.predictbyLi()
-    print( accuracy_score(yr,yp))
-    print(result)
+    t = subsidy_forcasting()
+    t.predict()

@@ -145,7 +145,7 @@ class data_processer():
         获得成绩预测饼图数据
         @return pie_data
         """
- 
+        
         if data_update:
             pie_data = self.get_pie_datas(counter, condition)
  
@@ -163,7 +163,7 @@ class data_processer():
             except:
                 pie_data = self.get_pie_data(
                     counter, condition, data_update=True)
- 
+        
         return pie_data
  
     def get_pie_datas(self, counter, condition):
@@ -172,7 +172,7 @@ class data_processer():
         @params
         @retrun data:list
         '''
- 
+        
         def is_between(value, min_value, max_value):
             if value >= min_value and value < max_value:
                 return True
@@ -192,7 +192,7 @@ class data_processer():
                 'name': name,
                 'value': counter[name], }
             pie_data.append(dic)
- 
+        
         return pie_data
  
     def get_feature_scores_and_ranges(self, disp_type, data_update=False):
