@@ -43,10 +43,12 @@ class my_module():
         self.estimater = pipeline
 
     def predict(self):
+
         self.train_model(train_time=100)
-        
+
         # evaluete_score
         predict_result = self.estimater.predict(self.X_validate)
+        
         model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
                                                    y_predict=[i for i in predict_result])
         self.evaluete_score = model_evalueter.get_evaluate_score()
@@ -58,8 +60,8 @@ class my_module():
             result.append([student.getStudent_num(), float(score)])
 
         self.predict_result = result
-
-        return self.evaluete_score, result
+        
+        return self.evaluete_score, self.predict_result
 
     def get_evaluate_score(self):
         '''

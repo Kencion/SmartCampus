@@ -16,7 +16,7 @@ class scholarship_forcasting(my_module):
 
         return features_range
 
-    def get_data(self):
+    def get_dataset(self):
         my_module.get_dataset(self, school_year='2016', usage='classification')
 
     def get_pre_processer(self):
@@ -74,4 +74,4 @@ class scholarship_forcasting(my_module):
     
 if __name__ == '__main__':
     t = scholarship_forcasting()
-    print(t.get_feature_scores())
+    t.predict()
