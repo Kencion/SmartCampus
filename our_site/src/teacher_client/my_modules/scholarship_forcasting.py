@@ -23,9 +23,7 @@ def get_data_update():
     将该学生的score字段设为预测结果
     """
     evaluate_score, students_and_scholarships = scholarship_forcasting().predict()
-#     print(evaluate_score)
-#     print(students_and_scholarships)
-#     print("调用了get_data_update()")
+
     for i in students_and_scholarships:
         try:
             student = Student.objects.get(student_num=i[0])
@@ -34,14 +32,14 @@ def get_data_update():
         student.scholarship = i[1]
         student.save()
 #     print("get_data_update()调用中")
-    '''
-    以下代码未运行是为何
-    '''
-    get_evaluate_score(evaluate_score, data_update=True)
-    get_feature_scores_and_ranges(data_update=True)
 #     print("接下来是get_pie_data")
     get_pie_data(data_update=True)
-#     print("get_data_update()调用完毕")
+#     print("接下来是get_feature_scores_and_ranges")
+    get_feature_scores_and_ranges(data_update=True)
+#     print("接下来是get_evaluate_score")
+    get_evaluate_score(evaluate_score, data_update=True)
+#     print("get_data_update调用完毕")
+    
 
 
 def get_students_and_scholarships():
@@ -63,8 +61,12 @@ def get_evaluate_score():
         return my_module.objects.get(module_name=module_name).evaluate_score
     except:
         pass
-
-    return 0
+ 
+# #     return 0
+# def get_evaluate_score(evaluate_score = 0,data_update = False):
+#     return evaluate_score
+    
+    
 
 
 def get_feature_scores_and_ranges(data_update=False):
@@ -86,6 +88,6 @@ def get_pie_data(data_update=False):
     pie_data = Data_processer.get_pie_data(counter={'未获得奖学金': 0, '获得奖学金': 0},
                                            condition=[
                                                (-9999999, 0.0000001), (0.0000001, 9999999)],
-                                           data_update=True)
+                                           data_update=data_update)
 
     return pie_data

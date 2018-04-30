@@ -201,7 +201,7 @@ class data_processer():
         获得90分以上、60分以下的学生的特征范围
         @return feature_scores_and_ranges
         """
- 
+        
         if data_update:
             if disp_type == 'tree':
                 f_s_and_r = self.get_tree_data()

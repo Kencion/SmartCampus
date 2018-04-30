@@ -44,7 +44,7 @@ class my_module():
 
     def predict(self):
 
-        self.train_model(train_time=100)
+        self.train_model(train_time=1)
 
         # evaluete_score
         predict_result = self.estimater.predict(self.X_validate)
