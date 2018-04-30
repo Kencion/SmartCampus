@@ -20,7 +20,6 @@ fea_name= [
 'in_out_times',
 'student_grade',
 'scholarship_rank',
-'scholarship_amount',
 'avg_out_time',
 'avg_in_time',
 'avg_stay_out_time',
@@ -76,5 +75,7 @@ fea_name= [
 'var_of_other',
 'var_of_snack',
 'var_of_exercise',
-'var_of_study'
+'var_of_study',
+'graduate',
+'score'
 ]
