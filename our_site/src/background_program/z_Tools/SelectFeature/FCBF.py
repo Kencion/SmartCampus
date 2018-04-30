@@ -57,7 +57,6 @@ class FCBF():
         Feature_Values_pandas=S_result
         Feature_Values_np=np.array(S_result)
         print(Feature_Names)
-        print(len(Feature_Names))
         return Feature_Names,Feature_Values_pandas,Feature_Values_np
             
     #计算每个属性与类标签之间的归一化互信息NMI的值
@@ -88,7 +87,7 @@ class FCBF():
 if __name__=="__main__":
     import datetime
     fcbf=FCBF()
-    dc=DataCarer.DataCarer('score','2016',"classify")
+    dc=DataCarer.DataCarer('scholarship_amount','2016',"classification")
     X_train, Y_train=dc.create_train_dataSet()
     X_train=np.array(X_train)
 #     X_train=np.array([[1,2,3,4,1,1],[2,3,3,3,1,1],[1,4,5,3,1,1],[1,2,3,4,1,1],[2,3,3,3,1,1],[1,4,5,3,1,1],[1,1,3,3,4,4],[2,0,1,2,3,4]])

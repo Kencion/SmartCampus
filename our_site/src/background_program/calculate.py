@@ -16,7 +16,7 @@ from background_program.b_Sample_processing.Feature_calculating.card import *
 from tqdm import tqdm  
 
 calculaters = [  
-#         activity_avg_level1.activity_avg_level1(),
+        activity_avg_level1.activity_avg_level1(),
 #         activity_last_time1.activity_last_time1(),
 #         activity_num1.activity_num1(),
 #         participation_avg_point1.participation_avg_point1(),
@@ -39,9 +39,9 @@ calculaters = [
 #         failed_num1.failed_num1(),
 #         failed_pass_num.failed_pass_num(),
 #         failed_failed_num.failed_failed_num(),
-#          GPA1.GPA1(),
+        GPA1.GPA1(),
 #         score_rank1.score_rank1(),
-#         score1.score1(),
+        score1.score1(),
 #             
 #         is_social_practice_great1.is_social_practice_great1(),
 #         social_practice_time.social_practice_time(),
@@ -52,13 +52,13 @@ calculaters = [
 #         hornorary_times.hornorary_times(),
 #            
 #         canteen_times.canteen_times(),
-        Consumption.Consumption(),
+#         Consumption.Consumption(),
 #         max_min_month_consume.max_min_month_consume(),
 #         max_every_type.max_every_type(),
 #         mean_median_var.mean_median_var(),
 #         total_amount_every_type.total_amount_every_type(),
-        transaction_times.transaction_times(),
-        canteen_consumption_divide_by_consumption.canteen_consumption_divide_by_consumption(),
+#         transaction_times.transaction_times(),
+#         canteen_consumption_divide_by_consumption.canteen_consumption_divide_by_consumption(),
         
     ]
 

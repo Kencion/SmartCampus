@@ -9,7 +9,7 @@ from ..FeatureCalculater import FeatureCalculater
 class participation_avg_point1(FeatureCalculater):
 
     def __init__(self):
-        FeatureCalculater.__init__(self, feature_name='activity_avg_level')
+        FeatureCalculater.__init__(self, feature_name='participation_avg_point')
     
     @my_exception_handler
     def calculate(self):

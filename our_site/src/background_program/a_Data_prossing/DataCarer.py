@@ -85,16 +85,17 @@ class DataCarer():
             print('异常：未发现' + self.label_name)
             
         """获得所有学生的数据"""
-        sql = "select * from {0} where right(student_num,4) in('{1}','2017')"
+        sql = "select * from {0} where right(student_num,4) in('{1}','2016')"
         self.executer.execute(sql.format(self.table_name, self.school_year))
         students, X_test = [], []
         for i in self.executer.fetchall():
             student = Student(student_num=i[0], features=list(i[2:index]) + list(i[index + 1:]), label=i[index])
             X_test.append(student.features)
             students.append(student)
+        A=np.array(X_test)
         X_test = mat(X_test)
         self.close_database()
-#         self.pre_process(X_test)
+        self.pre_process(X_test)
         return students, X_test
 
     def pre_process(self, X):
