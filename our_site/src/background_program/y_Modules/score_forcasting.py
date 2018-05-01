@@ -8,16 +8,13 @@ from background_program.y_Modules.module_interface import my_module
 class score_forcasting(my_module):
 
     def __init__(self):
-        my_module.__init__(self, label_name='score')
+        my_module.__init__(self, label_name='score', usage='regression')
 
     def get_features_range(self):
         features_range = my_module.get_features_range(self, label_name='score', label_range={
                                                       '不及格': [0, 60], '60分-90分': [60, 90], '90分以上': [90, 100]})
 
         return features_range
-
-    def get_dataset(self):
-        my_module.get_dataset(self, school_year='2016', usage='regression')
 
     def get_pre_processer(self):
         '''
@@ -83,7 +80,7 @@ class score_forcasting(my_module):
 
 
 if __name__ == '__main__':
-#     t, tt = score_forcasting().predict()
-    t = score_forcasting().get_feature_scores()
-    for i in t:
+    t, tt = score_forcasting().predict()
+#     t = score_forcasting().get_feature_scores()
+    for i in tt:
         print(i)

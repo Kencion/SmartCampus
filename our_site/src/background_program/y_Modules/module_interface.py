@@ -10,10 +10,11 @@ from sklearn.externals import joblib
 
 class my_module():
 
-    def __init__(self, label_name):
+    def __init__(self, label_name, usage):
         self.labellist = []
         self.label_name = label_name
         # 获取数据
+        self.usage = usage
         self.get_dataset()
         # 获取数据预处理器
         self.pre_processer = self.get_pre_processer()
@@ -43,7 +44,7 @@ class my_module():
         self.estimater = pipeline
 
     def predict(self):
-        self.train_model(train_time=100)
+        self.train_model(train_time=1)
         
         # evaluete_score
         predict_result = self.estimater.predict(self.X_validate)
@@ -126,7 +127,7 @@ class my_module():
             
         return features_range
 
-    def get_dataset(self, school_year='2016', usage='regression'):
+    def get_dataset(self, school_year='2016'):
         '''
                         获得训练数据和测试数据
         self.X_train=训练数据特征， self.Y_train=训练数据标签
@@ -137,7 +138,7 @@ class my_module():
         from background_program.a_Data_prossing.DataCarer import DataCarer
 
         data_carer = DataCarer(label_name=self.label_name,
-                               school_year=school_year, usage=usage)
+                               school_year=school_year, usage=self.usage)
         self.labellist = data_carer.labellist.copy()
 
         X_train, Y_train = data_carer.create_train_dataSet()

@@ -91,7 +91,7 @@ def get_pie_data(data_update=False):
     @return pie_data
     """
 
-    pie_data = Data_processer.get_pie_data(counter={'可以毕业': 0, '不可以毕业': 0},
+    pie_data = Data_processer.get_pie_data(counter={'不可以毕业': 0, '可以毕业': 0},
                                            condition=[(0, 1), (1, 2)],
                                            data_update=data_update)
 

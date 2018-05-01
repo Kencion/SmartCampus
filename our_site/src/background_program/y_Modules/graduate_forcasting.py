@@ -12,19 +12,14 @@ class graduate_forcasting(my_module):
 
     def __init__(self):
         my_module.__init__(self,
-                           label_name='graduate')
+                           label_name='graduate', usage='classification')
 
     def get_features_range(self):
         features_range = my_module.get_features_range(self,
                                                       label_name='graduate',
-                                                      label_range={'可以毕业': [0, 1], '不可以毕业': [1, 2]})
+                                                      label_range={'不可以毕业': [0, 1], '可以毕业': [1, 2]})
 
         return features_range
-
-    def get_dataset(self):
-        my_module.get_dataset(self,
-                              school_year='2016',
-                              usage='classification')
 
     def get_pre_processer(self):
         '''
@@ -75,7 +70,7 @@ class graduate_forcasting(my_module):
         VotingClassifier = My_VotingClassifier(
                             estimators=[('My_Cart', My_Cart),
                                         ('My_ID3', My_ID3),
-                                        ('My_GaussianNB', My_GaussianNB),],
+                                        ('My_GaussianNB', My_GaussianNB), ],
 #                                         ('My_SVM', My_SVM)],
                             weights=None).estimater
 
@@ -95,9 +90,9 @@ class graduate_forcasting(my_module):
 
 
 if __name__ == '__main__':
-    t = graduate_forcasting().get_feature_scores()()
-#     t = graduate_forcasting().get_feature_scores()
+    t = graduate_forcasting().get_feature_scores()
     print(t)
+#     t, tt = graduate_forcasting().predict()
 #     for i in tt:
 #         print(i)
 

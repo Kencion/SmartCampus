@@ -8,16 +8,13 @@ from background_program.y_Modules.module_interface import my_module
 class scholarship_forcasting(my_module):
 
     def __init__(self):
-        my_module.__init__(self, label_name='scholarship_amount')
+        my_module.__init__(self, label_name='scholarship_amount', usage='classification')
 
     def get_features_range(self):
         features_range = my_module.get_features_range(
             self, label_name='scholarship_amount', label_range={'没获得': [0, 0], '有获得': [1, 99999], })
 
         return features_range
-
-    def get_data(self):
-        my_module.get_dataset(self, school_year='2016', usage='classification')
 
     def get_pre_processer(self):
         '''
@@ -71,6 +68,7 @@ class scholarship_forcasting(my_module):
         model_evalueter = accuracy_score(y_true, y_predict)
 
         return model_evalueter
+
     
 if __name__ == '__main__':
     t = scholarship_forcasting()

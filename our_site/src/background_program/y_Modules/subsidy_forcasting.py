@@ -7,15 +7,10 @@ from background_program.y_Modules.module_interface import my_module
 from sklearn.metrics import accuracy_score
 
 
-
-
 class subsidy_forcasting(my_module):
 
     def __init__(self):
-        my_module.__init__(self, label_name='subsidy_amount')
-
-    def get_dataset(self):
-        my_module.get_dataset(self, school_year='2016', usage='classification')
+        my_module.__init__(self, label_name='subsidy_amount', usage='classification')
 
     def get_features_range(self):
         features_range = my_module.get_features_range(
@@ -76,9 +71,10 @@ class subsidy_forcasting(my_module):
         print(model_evalueter)
 
         return model_evalueter
+
     
-if __name__ =='__main__':
-    h=subsidy_forcasting()
-    yr,yp,result = h.predictbyLi()
-    print( accuracy_score(yr,yp))
+if __name__ == '__main__':
+    h = subsidy_forcasting()
+    yr, yp, result = h.predictbyLi()
+    print(accuracy_score(yr, yp))
     print(result)
