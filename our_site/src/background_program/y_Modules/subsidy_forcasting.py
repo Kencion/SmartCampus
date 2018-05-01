@@ -58,10 +58,26 @@ class subsidy_forcasting(my_module):
                         获得预测器，这里是分类器
         @params 
         @retrun    sklearn.某种类  estimater:预测器
-        '''
-        from background_program.c_Estimating.Classification import My_Cart
+#         '''
+#         from background_program.c_Estimating.Classification import My_Cart
+# 
+#         estimater = My_Cart().estimater
 
-        estimater = My_Cart().estimater
+        from sklearn import tree
+        
+        estimater = tree.DecisionTreeClassifier(
+        criterion='gini',
+        splitter='best',
+        max_depth=None,
+        min_samples_split=2,
+        min_samples_leaf=1,
+        min_weight_fraction_leaf=0.0,
+        max_features=None,
+        random_state=None,
+        max_leaf_nodes=None,
+        min_impurity_split=0.0,
+        presort=True
+        )
 
         return estimater
 
@@ -71,13 +87,25 @@ class subsidy_forcasting(my_module):
         @params 
         @retrun    
         '''
-        from background_program.d_Model_evalueting.Classification import f1_score
+        from sklearn.metrics import f1_score
 
-        model_evalueter = f1_score(y_true, y_predict,average='macro')
-        print(model_evalueter)
+        model_evalueter = f1_score(y_true, y_predict)
+
 
         return model_evalueter
     
 if __name__ =='__main__':
     t = subsidy_forcasting()
-    t.predict()
+    yr,yp,result = t.predictbyLi()
+    print( t.get_model_evaluater(yr,yp))
+    print(len(yr))
+    count1=0
+    count2=0
+    for i in range(len(yr)):
+        if yr[i] ==1:
+            count1= count1+1
+            if yp[i]==1:
+                count2 = count2+1
+    print(count1)
+    print(count2)
+    print(count2/count1)
