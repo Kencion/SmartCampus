@@ -10,11 +10,19 @@ from sklearn.externals import joblib
 
 class my_module():
 
+<<<<<<< HEAD
     def __init__(self, label_name, usage):
         self.labellist = []
         self.label_name = label_name
         # 获取数据
         self.usage = usage
+=======
+    def __init__(self, label_name,usage):
+        self.labellist = []
+        self.label_name = label_name
+        # 获取数据
+        self.usage=usage
+>>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
         self.get_dataset()
         # 获取数据预处理器
         self.pre_processer = self.get_pre_processer()
@@ -44,10 +52,17 @@ class my_module():
         self.estimater = pipeline
 
     def predict(self):
+<<<<<<< HEAD
         self.train_model(train_time=1)
         
+=======
+
+        self.train_model(train_time=1)
+
+>>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
         # evaluete_score
         predict_result = self.estimater.predict(self.X_validate)
+        
         model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
                                                    y_predict=[i for i in predict_result])
         self.evaluete_score = model_evalueter.get_evaluate_score()
@@ -59,8 +74,13 @@ class my_module():
             result.append([student.getStudent_num(), float(score)])
 
         self.predict_result = result
-
+#         for re in result:
+#             print(re)
         return self.evaluete_score, result
+
+        
+#         return self.evaluete_score, self.predict_result
+
 
     def get_evaluate_score(self):
         '''
@@ -127,7 +147,11 @@ class my_module():
             
         return features_range
 
+<<<<<<< HEAD
     def get_dataset(self, school_year='2016'):
+=======
+    def get_dataset(self, school_year='2016',usage='regression'):
+>>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
         '''
                         获得训练数据和测试数据
         self.X_train=训练数据特征， self.Y_train=训练数据标签
@@ -136,12 +160,17 @@ class my_module():
         @retrun
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
-
+        
         data_carer = DataCarer(label_name=self.label_name,
                                school_year=school_year, usage=self.usage)
+<<<<<<< HEAD
         self.labellist = data_carer.labellist.copy()
 
+=======
+       
+>>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
         X_train, Y_train = data_carer.create_train_dataSet()
+       
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
             X_train, Y_train, test_size=0.8, random_state=5)
 
@@ -151,7 +180,11 @@ class my_module():
         self.Y_validate = mat(self.Y_validate, dtype=float)
 
         self.students, self.X_test = data_carer.create_validate_dataSet()
+        self.labellist = data_carer.labellist.copy()
 
+#         for test in self.X_test:
+#             print(self.X_test)
+#         print("hhhhhhhhhhha")
     def get_pre_processer(self):
         '''
                         获得特征预处理器
@@ -198,7 +231,8 @@ class my_module():
         pipeline.fit(self.X_train, self.Y_train)
         ree = pipeline.named_steps['feature_selector'].get_support()
         predict_result = pipeline.predict(self.X_test)
-
+#         for pre in predict_result:
+#             print(pre)
         result = np.array(predict_result.copy())
 #         for student, score in zip(self.students, predict_result):
 #             result.append([student.getStudent_num(), float(score)])
@@ -232,9 +266,12 @@ class my_module():
              ('estimater', self.estimater),
              ]
         )
-
+        
+        self.get_datasetbyLi()
+        
         pipeline.fit(self.X_train, self.Y_train)
         ree = pipeline.named_steps['feature_selector'].get_support()
+
         for i in range(len(ree)):
             if ree[i] == True:
                 print(self.labellist[i])
@@ -247,3 +284,36 @@ class my_module():
         y_predict = [i for i in predict_result]
 
         return y_true, y_predict, result
+    
+    def get_datasetbyLi(self, school_year='2016',usage='regression'):
+        '''
+                        获得训练数据和测试数据
+        self.X_train=训练数据特征， self.Y_train=训练数据标签
+        self.X_test=测试数据特征
+        @params string student_num:学生学号
+        @retrun
+        '''
+        from background_program.a_Data_prossing.DataCarer import DataCarer
+        
+        data_carer = DataCarer(label_name=self.label_name,
+                               school_year=school_year, usage=self.usage)
+       
+        X_train, Y_train = data_carer.create_train_dataSet()
+        
+        ll=X_train.shape[0]
+        for i in range(ll):
+            if Y_train[i,0] == 1:
+                X_train=np.vstack((X_train,X_train[i]))
+                Y_train=np.vstack((Y_train,Y_train[i]))
+        
+       
+        self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
+            X_train, Y_train, test_size=0.8, random_state=5)
+
+        self.X_train = mat(self.X_train, dtype=float)
+        self.X_validate = mat(self.X_validate, dtype=float)
+        self.Y_train = mat(self.Y_train, dtype=float)
+        self.Y_validate = mat(self.Y_validate, dtype=float)
+
+        self.students, self.X_test = data_carer.create_validate_dataSet()
+        self.labellist = data_carer.labellist.copy()

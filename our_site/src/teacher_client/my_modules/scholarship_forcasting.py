@@ -31,10 +31,15 @@ def get_data_update():
             student = Student(student_num=i[0])
         student.scholarship = i[1]
         student.save()
-
-    get_evaluate_score(evaluate_score, data_update=True)
-    get_feature_scores_and_ranges(data_update=True)
+#     print("get_data_update()调用中")
+#     print("接下来是get_pie_data")
     get_pie_data(data_update=True)
+#     print("接下来是get_feature_scores_and_ranges")
+    get_feature_scores_and_ranges(data_update=True)
+#     print("接下来是get_evaluate_score")
+    get_evaluate_score(evaluate_score, data_update=True)
+#     print("get_data_update调用完毕")
+    
 
 
 def get_students_and_scholarships():
@@ -56,8 +61,12 @@ def get_evaluate_score():
         return my_module.objects.get(module_name=module_name).evaluate_score
     except:
         pass
-
-    return 0
+ 
+# #     return 0
+# def get_evaluate_score(evaluate_score = 0,data_update = False):
+#     return evaluate_score
+    
+    
 
 
 def get_feature_scores_and_ranges(data_update=False):
@@ -75,10 +84,10 @@ def get_pie_data(data_update=False):
             获得90分以上、60分以下的学生的特征范围
     @return list() class_failed_students,
     """
-
-    pie_data = Data_processer.get_pie_data(counter={'未获得奖学金': 0, '获得奖学金': 0},
+    
+    pie_data = Data_processer.get_pie_data(counter={'未获得奖学金': 0, '获得500奖学金': 0, '获得1000奖学金': 0, '获得3000奖学金': 0, '获得8000奖学金': 0},
                                            condition=[
-                                               (-9999999, 0.0000001), (0.0000001, 9999999)],
+                                               (-9999999, 0.0000001), (0.0000001,501), (501,1001), (1001,3001), (3001,8001)],
                                            data_update=data_update)
 
     return pie_data
