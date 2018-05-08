@@ -4,15 +4,15 @@
 # import warnings
 # warnings.filterwarnings("ignore")
  
-from background_program.b_Sample_processing.Feature_calculating.activities import *
-from background_program.b_Sample_processing.Feature_calculating.dorm_entrance import *
-from background_program.b_Sample_processing.Feature_calculating.library import *
-from background_program.b_Sample_processing.Feature_calculating.scholarship import *
-from background_program.b_Sample_processing.Feature_calculating.score import *
-from background_program.b_Sample_processing.Feature_calculating.social_practice import *
-from background_program.b_Sample_processing.Feature_calculating.subsidy import *
-from background_program.b_Sample_processing.Feature_calculating.hornorary_title import *
-from background_program.b_Sample_processing.Feature_calculating.card import *
+from background_program.b_Sample_processing.Feature_calculating.activitie import activity_avg_level1, activity_last_time1, activity_num1, participation_avg_point1
+from background_program.b_Sample_processing.Feature_calculating.dorm_entrance import in_out_times, avg_in_time, avg_out_time, avg_stay_out_time
+from background_program.b_Sample_processing.Feature_calculating.library import library_study_time, library_week_study_time, library_borrow_times1, library_entrance
+from background_program.b_Sample_processing.Feature_calculating.scholarship import scholarship_amount, scholarship_rank
+from background_program.b_Sample_processing.Feature_calculating.score import department, failed_num1, GPA1, school_year1, score_rank1, score1, failed_failed_num, failed_pass_num
+from background_program.b_Sample_processing.Feature_calculating.social_practice import is_social_practice_great1, social_practice_time
+from background_program.b_Sample_processing.Feature_calculating.subsidy import subsidy_rank, subsidy_amount
+from background_program.b_Sample_processing.Feature_calculating.hornorary_title import hornorary_rank, hornorary_times
+from background_program.b_Sample_processing.Feature_calculating.card import canteen_consumption_divide_by_consumption, canteen_times, Consumption, max_every_type, max_min_month_consume, mean_median_var, total_amount_every_type, transaction_times
 from tqdm import tqdm  
 
 calculaters = [  
@@ -109,6 +109,7 @@ def doit():
     for calculater in tqdm(calculaters):
             calculater.cluster()
             calculater.tearDown()
+
 
 if __name__ == '__main__':
     doit()

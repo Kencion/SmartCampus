@@ -11,13 +11,9 @@ from background_program.y_Modules.module_interface import my_module
 class graduate_forcasting(my_module):
 
     def __init__(self):
-#         self.get_dataset()
+        #         self.get_dataset()
         my_module.__init__(self,
-<<<<<<< HEAD
                            label_name='graduate', usage='classification')
-=======
-                           label_name='graduate',usage='classification')
->>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
 
     def get_features_range(self):
         features_range = my_module.get_features_range(self,
@@ -28,7 +24,7 @@ class graduate_forcasting(my_module):
 
     def get_pre_processer(self):
         '''
-                        获得特征预处理器
+        获得特征预处理器
         @params 
         @retrun    sklearn.PreProcessing.xx preProcesser:特征预处理器
         '''
@@ -47,7 +43,7 @@ class graduate_forcasting(my_module):
 
     def get_feature_selector(self):
         '''
-                        获得特征选择器
+        获得特征选择器
         @params 
         @retrun    sklearn.某种类  featureSelector:特征选择器
         '''
@@ -62,22 +58,22 @@ class graduate_forcasting(my_module):
         @retrun    sklearn.xx estimater:预测器
         '''
         from background_program.c_Estimating.Ensemble import My_VotingClassifier
-        from background_program.c_Estimating.Classification import My_Cart 
+        from background_program.c_Estimating.Classification import My_Cart
         from background_program.c_Estimating.Classification import My_ID3
-        from background_program.c_Estimating.Classification import My_GaussianNB 
-        from background_program.c_Estimating.Classification import My_SVM 
+        from background_program.c_Estimating.Classification import My_GaussianNB
+        from background_program.c_Estimating.Classification import My_SVM
 
         My_Cart = My_Cart().estimater
         My_ID3 = My_ID3().estimater
         My_GaussianNB = My_GaussianNB().estimater
         My_SVM = My_SVM().estimater
-        
+
         VotingClassifier = My_VotingClassifier(
-                            estimators=[('My_Cart', My_Cart),
-                                        ('My_ID3', My_ID3),
-                                        ('My_GaussianNB', My_GaussianNB), ],
-#                                         ('My_SVM', My_SVM)],
-                            weights=None).estimater
+            estimators=[('My_Cart', My_Cart),
+                        ('My_ID3', My_ID3),
+                        ('My_GaussianNB', My_GaussianNB), ],
+            #                                         ('My_SVM', My_SVM)],
+            weights=None).estimater
 
         return VotingClassifier
 
@@ -100,4 +96,3 @@ if __name__ == '__main__':
 #     t, tt = graduate_forcasting().predict()
 #     for i in tt:
 #         print(i)
-

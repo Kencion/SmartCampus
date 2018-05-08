@@ -10,19 +10,11 @@ from sklearn.externals import joblib
 
 class my_module():
 
-<<<<<<< HEAD
     def __init__(self, label_name, usage):
         self.labellist = []
         self.label_name = label_name
         # 获取数据
         self.usage = usage
-=======
-    def __init__(self, label_name,usage):
-        self.labellist = []
-        self.label_name = label_name
-        # 获取数据
-        self.usage=usage
->>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
         self.get_dataset()
         # 获取数据预处理器
         self.pre_processer = self.get_pre_processer()
@@ -34,7 +26,7 @@ class my_module():
         self.evaluate_score = 0
 
         self.predict_result = None
-        
+
     def train_model(self, train_time):
         from sklearn.pipeline import Pipeline
 
@@ -45,24 +37,18 @@ class my_module():
              ('estimater', self.estimater),
              ]
         )
-        
+
         for _ in range(train_time):
             pipeline.fit(self.X_train, self.Y_train)
-            
+
         self.estimater = pipeline
 
     def predict(self):
-<<<<<<< HEAD
-        self.train_model(train_time=1)
-        
-=======
-
         self.train_model(train_time=1)
 
->>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
         # evaluete_score
         predict_result = self.estimater.predict(self.X_validate)
-        
+
         model_evalueter = self.get_model_evaluater(y_true=[i[0] for i in self.Y_validate.tolist()],
                                                    y_predict=[i for i in predict_result])
         self.evaluete_score = model_evalueter.get_evaluate_score()
@@ -78,9 +64,8 @@ class my_module():
 #             print(re)
         return self.evaluete_score, result
 
-        
-#         return self.evaluete_score, self.predict_result
 
+#         return self.evaluete_score, self.predict_result
 
     def get_evaluate_score(self):
         '''
@@ -91,19 +76,19 @@ class my_module():
 
     def get_feature_scores(self):
         '''
-                        获得每个特征得到的评分
-        @params 
+        获得每个特征得到的评分
+        @params
         @retrun    dict selected_features:每个特征的评分
         '''
         import operator
         from .feature_name import features_name_ch
-        
+
         # 获取特征选择器
         feature_selector = self.get_feature_selector()
 
         feature_selector.fit(self.X_train, self.Y_train)
         f_scores = feature_selector.scores_
-        
+
         feature_scores = dict()
         for i in range(len(f_scores)):
             if math.isinf(f_scores[i]):
@@ -120,7 +105,7 @@ class my_module():
     def get_features_range(self, label_name, label_range):
         '''
                         获得每个特征的范围
-        @params 
+        @params
         @retrun 每个特征的范围
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
@@ -144,14 +129,15 @@ class my_module():
                     label_min=score_range[0], label_max=score_range[1])
 
             features_range[f_name_ch] = rangee
-            
+
         return features_range
 
-<<<<<<< HEAD
+
+<< << << < HEAD
     def get_dataset(self, school_year='2016'):
-=======
-    def get_dataset(self, school_year='2016',usage='regression'):
->>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
+== == == =
+    def get_dataset(self, school_year='2016', usage='regression'):
+>>>>>> > bb25c3c32ab04f7d3a26f276695163e43a5e5e74
         '''
                         获得训练数据和测试数据
         self.X_train=训练数据特征， self.Y_train=训练数据标签
@@ -160,17 +146,17 @@ class my_module():
         @retrun
         '''
         from background_program.a_Data_prossing.DataCarer import DataCarer
-        
+
         data_carer = DataCarer(label_name=self.label_name,
                                school_year=school_year, usage=self.usage)
-<<<<<<< HEAD
+<< << << < HEAD
         self.labellist = data_carer.labellist.copy()
 
-=======
-       
->>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
+== == == =
+
+>>>>>> > bb25c3c32ab04f7d3a26f276695163e43a5e5e74
         X_train, Y_train = data_carer.create_train_dataSet()
-       
+
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
             X_train, Y_train, test_size=0.8, random_state=5)
 
