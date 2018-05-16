@@ -40,8 +40,14 @@ def get_students_and_subsidies():
     @return list(list()) students_and_scores,
     """
     students_and_subsidies = [[i.student_num, i.subsidy]
-                              for i in Student.objects.order_by('-subsidy')]
-
+                              for i in Student.objects.order_by('-student_num')]
+    
+    for i in range(len(students_and_subsidies)):
+        if students_and_subsidies[i][-1] > 0:
+            students_and_subsidies[i][-1] ='能'
+        else:
+            students_and_subsidies[i][-1] ='不能'
+        
     return students_and_subsidies
 
 

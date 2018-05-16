@@ -10,15 +10,11 @@ from sklearn.metrics import accuracy_score
 class subsidy_forcasting(my_module):
 
     def __init__(self):
-<<<<<<< HEAD
-        my_module.__init__(self, label_name='subsidy_amount', usage='classification')
-=======
 #         self.get_dataset()
         my_module.__init__(self, label_name='subsidy_amount',usage='classification')
 
     def get_dataset(self):
         my_module.get_dataset(self, school_year='2016', usage='classification')
->>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
 
     def get_features_range(self):
         features_range = my_module.get_features_range(
@@ -89,34 +85,30 @@ class subsidy_forcasting(my_module):
         @params 
         @retrun    
         '''
-        from sklearn.metrics import f1_score
+#         from sklearn.metrics import f1_score
+# 
+#         model_evalueter = f1_score(y_true, y_predict)
+        from background_program.d_Model_evalueting.Classification import accuracy_score
 
-        model_evalueter = f1_score(y_true, y_predict)
-
+        model_evalueter = accuracy_score(y_true, y_predict)
 
         return model_evalueter
+#         return model_evalueter
 
     
-<<<<<<< HEAD
-if __name__ == '__main__':
-    h = subsidy_forcasting()
-    yr, yp, result = h.predictbyLi()
-    print(accuracy_score(yr, yp))
-    print(result)
-=======
 if __name__ =='__main__':
     t = subsidy_forcasting()
-    yr,yp,result = t.predictbyLi()
-    print( t.get_model_evaluater(yr,yp))
-    print(len(yr))
-    count1=0
-    count2=0
-    for i in range(len(yr)):
-        if yr[i] ==1:
-            count1= count1+1
-            if yp[i]==1:
-                count2 = count2+1
-    print(count1)
-    print(count2)
-    print(count2/count1)
->>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
+    print(t.predict())
+#     yr,yp,result = t.predictbyLi()
+#     print( t.get_model_evaluater(yr,yp))
+#     print(len(yr))
+#     count1=0
+#     count2=0
+#     for i in range(len(yr)):
+#         if yr[i] ==1:
+#             count1= count1+1
+#             if yp[i]==1:
+#                 count2 = count2+1
+#     print(count1)
+#     print(count2)
+#     print(count2/count1)

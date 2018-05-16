@@ -64,7 +64,6 @@ class my_module():
 #             print(re)
         return self.evaluete_score, result
 
-
 #         return self.evaluete_score, self.predict_result
 
     def get_evaluate_score(self):
@@ -132,12 +131,7 @@ class my_module():
 
         return features_range
 
-
-<< << << < HEAD
-    def get_dataset(self, school_year='2016'):
-== == == =
     def get_dataset(self, school_year='2016', usage='regression'):
->>>>>> > bb25c3c32ab04f7d3a26f276695163e43a5e5e74
         '''
                         获得训练数据和测试数据
         self.X_train=训练数据特征， self.Y_train=训练数据标签
@@ -149,12 +143,9 @@ class my_module():
 
         data_carer = DataCarer(label_name=self.label_name,
                                school_year=school_year, usage=self.usage)
-<< << << < HEAD
+
         self.labellist = data_carer.labellist.copy()
 
-== == == =
-
->>>>>> > bb25c3c32ab04f7d3a26f276695163e43a5e5e74
         X_train, Y_train = data_carer.create_train_dataSet()
 
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
@@ -271,7 +262,7 @@ class my_module():
 
         return y_true, y_predict, result
     
-    def get_datasetbyLi(self, school_year='2016',usage='regression'):
+    def get_datasetbyLi(self, school_year='2016', usage='regression'):
         '''
                         获得训练数据和测试数据
         self.X_train=训练数据特征， self.Y_train=训练数据标签
@@ -286,12 +277,11 @@ class my_module():
        
         X_train, Y_train = data_carer.create_train_dataSet()
         
-        ll=X_train.shape[0]
+        ll = X_train.shape[0]
         for i in range(ll):
-            if Y_train[i,0] == 1:
-                X_train=np.vstack((X_train,X_train[i]))
-                Y_train=np.vstack((Y_train,Y_train[i]))
-        
+            if Y_train[i, 0] == 1:
+                X_train = np.vstack((X_train, X_train[i]))
+                Y_train = np.vstack((Y_train, Y_train[i]))
        
         self.X_train, self.X_validate, self.Y_train, self.Y_validate = train_test_split(
             X_train, Y_train, test_size=0.8, random_state=5)

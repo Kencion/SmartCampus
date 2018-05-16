@@ -57,25 +57,29 @@ class graduate_forcasting(my_module):
         @params 
         @retrun    sklearn.xx estimater:预测器
         '''
-        from background_program.c_Estimating.Ensemble import My_VotingClassifier
+#         from background_program.c_Estimating.Ensemble import My_VotingClassifier
         from background_program.c_Estimating.Classification import My_Cart
         from background_program.c_Estimating.Classification import My_ID3
+        from background_program.c_Estimating.Classification import My_C4_5
         from background_program.c_Estimating.Classification import My_GaussianNB
         from background_program.c_Estimating.Classification import My_SVM
+        from sklearn.ensemble import VotingClassifier  
 
         My_Cart = My_Cart().estimater
         My_ID3 = My_ID3().estimater
+        My_C4_5 = My_C4_5().estimater
         My_GaussianNB = My_GaussianNB().estimater
         My_SVM = My_SVM().estimater
 
-        VotingClassifier = My_VotingClassifier(
+        VC = VotingClassifier(
             estimators=[('My_Cart', My_Cart),
                         ('My_ID3', My_ID3),
+                        ('My_C4_5', My_C4_5),
                         ('My_GaussianNB', My_GaussianNB), ],
-            #                                         ('My_SVM', My_SVM)],
-            weights=None).estimater
+            voting='soft',
+            weights=[2, 2, 1, 2])
 
-        return VotingClassifier
+        return VC
 
     def get_model_evaluater(self, y_true, y_predict):
         '''
@@ -91,8 +95,9 @@ class graduate_forcasting(my_module):
 
 
 if __name__ == '__main__':
-    t = graduate_forcasting().get_feature_scores()
+#     t = graduate_forcasting().get_feature_scores()
+#     print(t)
+    t, tt = graduate_forcasting().predict()
     print(t)
-#     t, tt = graduate_forcasting().predict()
 #     for i in tt:
 #         print(i)

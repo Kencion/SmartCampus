@@ -8,12 +8,8 @@ from background_program.y_Modules.module_interface import my_module
 class scholarship_forcasting(my_module):
 
     def __init__(self):
-<<<<<<< HEAD
-        my_module.__init__(self, label_name='scholarship_amount', usage='classification')
-=======
 #         self.get_dataset()
         my_module.__init__(self, label_name='scholarship_amount',usage='classification')
->>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
 
     def get_features_range(self):
         features_range = my_module.get_features_range(
@@ -21,12 +17,9 @@ class scholarship_forcasting(my_module):
 
         return features_range
 
-<<<<<<< HEAD
-=======
     def get_dataset(self):
         my_module.get_dataset(self, school_year='2016', usage='classification')
 
->>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
     def get_pre_processer(self):
         '''
         获得特征预处理器
@@ -83,9 +76,3 @@ class scholarship_forcasting(my_module):
     
 if __name__ == '__main__':
     t = scholarship_forcasting()
-<<<<<<< HEAD
-    print(t.get_feature_scores())
-=======
-    t.predict()
-
->>>>>>> bb25c3c32ab04f7d3a26f276695163e43a5e5e74
